@@ -1,0 +1,14 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <Fallback ID="Fallback">
+        <CheckLaser name="check_laser"/>
+        <Sequence>
+          <Backward name="backward" duration="3"/>
+          <Turn name="turn" duration="4"/>
+        </Sequence>
+      </Fallback>
+      <Forward name="forward"/>
+    </Sequence>
+  </BehaviorTree>
+</root>
