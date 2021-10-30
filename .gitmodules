@@ -1,0 +1,6 @@
+[submodule "training_stage/kobuki/kobuki_ros"]
+	path = training_stage/kobuki/kobuki_ros
+	url = https://github.com/Carlosalpha1/kobuki_ros
+[submodule "training_stage/kobuki/kobuki_ros_interfaces"]
+	path = training_stage/kobuki/kobuki_ros_interfaces
+	url = https://github.com/kobuki-base/kobuki_ros_interfaces
