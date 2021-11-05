@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <Action ID="CheckBattery"/>
+            <Action ID="CleanAction"/>
+            <Action ID="Recharge"/>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="CheckBattery"/>
+        <Action ID="CleanAction"/>
+        <Action ID="Recharge"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
