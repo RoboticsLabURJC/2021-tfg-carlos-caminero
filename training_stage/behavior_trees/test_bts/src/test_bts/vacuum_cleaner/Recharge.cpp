@@ -11,8 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <memory>
 #include <string>
 #include "test_bts/vacuum_cleaner/Recharge.hpp"
+
+using namespace std::chrono_literals;
 
 namespace BT
 {
@@ -21,6 +24,10 @@ Recharge::Recharge(const std::string & name)
 : BT::ActionNodeBase(name, {})
 {
   node_ = rclcpp::Node::make_shared("RechargeBT");
+  battery_client = node_->create_client<example_interfaces::srv::BatteryOption>("battery_service");
+  while (!battery_client->wait_for_service(1s)) {
+    RCLCPP_INFO(node_->get_logger(), "service not available, waiting again...");
+  }
 }
 
 void Recharge::halt()
@@ -30,8 +37,18 @@ void Recharge::halt()
 
 BT::NodeStatus Recharge::tick()
 {
-  RCLCPP_INFO(node_->get_logger(), "Tick Recharge");
-  return BT::NodeStatus::SUCCESS;
+  auto request = std::make_shared<example_interfaces::srv::BatteryOption::Request>();
+  request->operation = "Recharge";
+
+  auto result = battery_client->async_send_request(request);
+  rclcpp::spin_until_future_complete(node_, result);
+
+  RCLCPP_INFO(node_->get_logger(), "Tick Recharge [%d]", result.get()->level);
+  if (result.get()->level < 90) {
+    return BT::NodeStatus::RUNNING;
+  }
+
+  return BT::NodeStatus::FAILURE;
 }
 
-}
+}  // namespace BT

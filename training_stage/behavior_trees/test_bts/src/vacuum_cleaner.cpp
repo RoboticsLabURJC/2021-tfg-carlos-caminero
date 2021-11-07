@@ -15,7 +15,6 @@
 #include <string>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
 #include "ament_index_cpp/get_package_prefix.hpp"
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
@@ -35,7 +34,7 @@
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  auto node = rclcpp::Node::make_shared("bumpgo_master");
+  auto node = rclcpp::Node::make_shared("vacuum_cleaner");
 
   BT::BehaviorTreeFactory factory;
   factory.registerNodeType<BT::CheckBattery>("CheckBattery");

@@ -19,12 +19,14 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 find_package(behaviortree_cpp_v3 REQUIRED)
+find_package(example_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 set(dependencies
   ament_index_cpp
   behaviortree_cpp_v3
+  example_interfaces
   rclcpp
   std_msgs
 )
@@ -39,10 +41,11 @@ add_library(${PROJECT_NAME} SHARED
 
 ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 
-add_executable(vacuum_cleaner
-  src/vacuum_cleaner.cpp
-)
+add_executable(vacuum_cleaner src/vacuum_cleaner.cpp)
 target_link_libraries(vacuum_cleaner ${PROJECT_NAME})
+
+add_executable(battery_monitor src/battery_monitor.cpp)
+target_link_libraries(battery_monitor ${PROJECT_NAME})
 
 install(DIRECTORY include/
   DESTINATION include/
@@ -53,7 +56,7 @@ install(DIRECTORY bts_xml)
 
 install(TARGETS
   ${PROJECT_NAME}
-  vacuum_cleaner
+  vacuum_cleaner battery_monitor
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
