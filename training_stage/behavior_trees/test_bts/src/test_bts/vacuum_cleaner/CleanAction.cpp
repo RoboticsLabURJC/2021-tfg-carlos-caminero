@@ -11,8 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <memory>
 #include <string>
 #include "test_bts/vacuum_cleaner/CleanAction.hpp"
+
+using namespace std::chrono_literals;
 
 namespace BT
 {
@@ -21,6 +24,10 @@ CleanAction::CleanAction(const std::string & name)
 : BT::ActionNodeBase(name, {})
 {
   node_ = rclcpp::Node::make_shared("CleanActionBT");
+  battery_client = node_->create_client<example_interfaces::srv::BatteryOption>("battery_service");
+  while (!battery_client->wait_for_service(1s)) {
+    RCLCPP_INFO(node_->get_logger(), "service not available, waiting again...");
+  }
 }
 
 void CleanAction::halt()
@@ -30,8 +37,14 @@ void CleanAction::halt()
 
 BT::NodeStatus CleanAction::tick()
 {
-  RCLCPP_INFO(node_->get_logger(), "Tick CleanAction");
+  auto request = std::make_shared<example_interfaces::srv::BatteryOption::Request>();
+  request->operation = "Consume";
+
+  auto result = battery_client->async_send_request(request);
+  rclcpp::spin_until_future_complete(node_, result);
+
+  RCLCPP_INFO(node_->get_logger(), "Tick Cleaning!!");
   return BT::NodeStatus::SUCCESS;
 }
 
-}
+}  // namespace BT

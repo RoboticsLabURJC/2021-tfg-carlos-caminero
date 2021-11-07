@@ -11,12 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef TESTBTS__CHECKBATTERY_HPP_
-#define TESTBTS__CHECKBATTERY_HPP_
+#ifndef TEST_BTS__VACUUM_CLEANER__CHECKBATTERY_HPP_
+#define TEST_BTS__VACUUM_CLEANER__CHECKBATTERY_HPP_
 
 #include <iostream>
 #include <string>
 #include "rclcpp/rclcpp.hpp"
+#include "example_interfaces/srv/battery_option.hpp"
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
@@ -34,8 +35,9 @@ public:
 
 private:
   rclcpp::Node::SharedPtr node_;
+  rclcpp::Client<example_interfaces::srv::BatteryOption>::SharedPtr battery_client;
 };
 
 }  // namespace BT
 
-#endif  // TESTBTS__CHECKBATTERY_HPP_
+#endif  // TEST_BTS__VACUUM_CLEANER__CHECKBATTERY_HPP_

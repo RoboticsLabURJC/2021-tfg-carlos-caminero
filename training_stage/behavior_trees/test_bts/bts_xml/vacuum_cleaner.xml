@@ -3,8 +3,14 @@
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <Sequence>
-            <Action ID="CheckBattery"/>
-            <Action ID="CleanAction"/>
+            <Fallback>
+                <Inverter>
+                    <Action ID="CheckBattery"/>
+                </Inverter>
+                <Inverter>
+                    <Action ID="CleanAction"/>
+                </Inverter>
+            </Fallback>
             <Action ID="Recharge"/>
         </Sequence>
     </BehaviorTree>
