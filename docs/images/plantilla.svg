@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.0633188"
-     inkscape:cx="356.43122"
-     inkscape:cy="454.70842"
+     inkscape:cx="356.4312"
+     inkscape:cy="454.70841"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
@@ -84,20 +84,20 @@
        x="12.552343"
        y="60.317768" />
     <path
-       style="fill:#333333;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="M 12.517982,151.40653 H 185.88562 v 13.21715 H 12.406994 Z"
+       style="fill:#333333;fill-opacity:1;stroke:#000000;stroke-width:0.213301px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 12.517982,156.03358 H 185.88562 v 8.5901 H 12.406994 Z"
        id="path3532" />
     <text
        xml:space="preserve"
-       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
-       x="16.244932"
-       y="161.38487"
+       style="font-size:6.92879px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke-width:0.17322"
+       x="16.038431"
+       y="162.91325"
        id="text6747"><tspan
          sodipodi:role="line"
          id="tspan6745"
-         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
-         x="16.244932"
-         y="161.38487">Titulo</tspan></text>
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.17322"
+         x="16.038431"
+         y="162.91325">Titulo</tspan></text>
   </g>
   <script
      id="mesh_polyfill"
