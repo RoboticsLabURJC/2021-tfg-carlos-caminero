@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <Action ID="SearchAction" objective="person"/>
+            <Action ID="FollowAction" objective="person"/>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="FollowAction">
+            <input_port default="person" name="objective">It follows a objective</input_port>
+        </Action>
+        <Action ID="SearchAction">
+            <input_port default="person" name="objective">It turns itself searching an objective</input_port>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
