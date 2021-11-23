@@ -1,0 +1,5 @@
+/**:
+  ros__parameters:
+    velocity_topic: "/cmd_vel"
+    darknet_bounding_boxes_topic: "/darknet_ros/bounding_boxes"
+    behavior_tree_file: "/behavior_tree/follow_person.xml"
