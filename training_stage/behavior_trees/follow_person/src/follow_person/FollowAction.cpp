@@ -66,14 +66,11 @@ void FollowAction::boundingBoxesCallback(const darknet_ros_msgs::msg::BoundingBo
       cx = xmin + (xmax-xmin)/2;
       cy = ymin + (ymin+ymax)/2;
       if (!objective_.detected ||
-          sqrt(pow(abs(cx - objective_.cx), 2) + pow(abs(cy - objective_.cy), 2)) < 40) {
+          sqrt(pow(abs(cx - objective_.cx), 2) + pow(abs(cy - objective_.cy), 2)) < 60) {
         detection = true;
         objective_.cx = cx;
         objective_.cy = cy;
       }
-      // std::cout << "person at ("
-      //           << xmin + (xmax-xmin)/2 << ", "
-      //           << ymin + (ymin+ymax)/2 << std::endl;
     }
   }
   if (!detection) {
@@ -111,7 +108,7 @@ BT::NodeStatus FollowAction::tick()
 {
   int width = 640;
 
-  static float velocities[11] = {0.5, 0.4, 0.3, 0.2, 0.1, 0, -0.1, -0.2, -0.3, -0.4, -0.5};
+  static float velocities[11] = {0.7, 0.45, 0.3, 0.2, 0.1, 0, -0.1, -0.2, -0.3, -0.45, -0.7};
 
   rclcpp::spin_some(node_);
   geometry_msgs::msg::Twist velocity;
