@@ -9,8 +9,6 @@ WORKDIR ${WORKSPACE}
 RUN mkdir -p src/py_pubsub
 
 COPY py_pubsub src/py_pubsub
-
-RUN cat << EOF > publisher
 COPY publisher .
 COPY subscriber .
 
