@@ -1,24 +1,35 @@
-FROM osrf/ros:foxy-desktop
+FROM nvidia/opengl:1.2-glvnd-runtime-ubuntu20.04
+ARG VIRTUALGL_VERSION=2.6.5
+ARG TURBOVNC_VERSION=2.2.80
 
+ARG DEBIAN_FRONTEND=noninteractive
 ARG WORKSPACE=/ros2_ws
 
-# Installing initial packages
-RUN apt-get update
-RUN apt-get install -y wget apt-utils python3-distutils python3-apt xterm
-RUN apt-get install -y ros-$ROS_DISTRO-action-msgs
-RUN apt-get install -y ros-$ROS_DISTRO-ament-cmake
+# Install CLI tools
+RUN apt-get update && apt-get install -y \
+  curl \
+  lsb-release \
+  python3 python3-rosdep \
+  git
 
+# Install ROS
+ENV ROS_DISTRO foxy
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg \
+  && sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null' \
+  && apt-get update \
+  && apt-get -y --quiet --no-install-recommends install ros-$ROS_DISTRO-desktop
+
+# Install ROS packages
+RUN apt-get install -y \
+  python3-colcon-common-extensions \
+  ros-$ROS_DISTRO-gazebo-* \
+  ros-$ROS_DISTRO-cartographer \
+  ros-$ROS_DISTRO-cartographer-ros
 
 # Creating workspace
 RUN mkdir -p ${WORKSPACE}/src
+WORKDIR ${WORKSPACE}
+RUN colcon build --symlink-install
 
-# Installing darknet_ros for ROS2
-RUN cd ${WORKSPACE}/src && git clone https://github.com/Ar-Ray-code/darknet_ros_fp16.git
-RUN cd ${WORKSPACE}/src/darknet_ros_fp16 && git clone --recursive https://github.com/Ar-Ray-code/darknet_ros.git
-RUN cd ${WORKSPACE}/src && darknet_ros_fp16/darknet_ros/rm_darknet_CMakeLists.sh
-RUN rosdep update && cd ${WORKSPACE} && rosdep install --from-paths src --ignore-src -r -y
-
-# Compiling packages
-RUN . /opt/ros/foxy/setup.sh && cd ${WORKSPACE} && colcon build --symlink-install && . ${WORKSPACE}/install/setup.sh
 
 
