@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# For Docker container
+. /ros2_ws/install/setup.sh
+ros2 run py_pubsub listener
