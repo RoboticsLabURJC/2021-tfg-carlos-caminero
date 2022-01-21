@@ -20,13 +20,17 @@
   <xacro:create_color name="DarkGray" value="0.1 0.1 0.1 0.5"/>
   <xacro:create_color name="Black" value="0 0 0 1"/>
 
-  <xacro:gazebo_color link="tick1_link" color="Gray"/>
-  <xacro:gazebo_color link="tick2_link" color="Gray"/>
-  <xacro:gazebo_color link="tick3_link" color="Gray"/>
-  <xacro:gazebo_color link="tick4_link" color="Gray"/>
-  <xacro:gazebo_color link="tick5_link" color="Gray"/>
+  <xacro:gazebo_color link="base_tick1_link" color="Gray"/>
+  <xacro:gazebo_color link="base_tick2_link" color="Gray"/>
+  <xacro:gazebo_color link="base_tick3_link" color="Gray"/>
+  <xacro:gazebo_color link="base_tick4_link" color="Gray"/>
+  <xacro:gazebo_color link="base_tick5_link" color="Gray"/>
+  <xacro:gazebo_color link="camera_support_tick1_link" color="Gray"/>
+  <xacro:gazebo_color link="camera_support_tick2_link" color="Gray"/>
+  <xacro:gazebo_color link="lower_base_link" color="DarkGrey"/>
   <xacro:gazebo_color link="middle_base_link" color="DarkGrey"/>
-  <xacro:gazebo_color link="laser_base_link" color="DarkGrey"/>
+  <xacro:gazebo_color link="upper_base_link" color="DarkGrey"/>
+  <xacro:gazebo_color link="camera_support_base_link" color="DarkGrey"/>
   <xacro:gazebo_color link="camera_link" color="Black"/>
   <xacro:gazebo_color link="lidar_link" color="Black"/>
   

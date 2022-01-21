@@ -30,4 +30,31 @@
     </joint>
   </xacro:macro>
 
+  <xacro:macro name="cube_structure" params="name x y z x_size y_size z_size parent">
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${x_size} ${y_size} ${z_size}"/>
+        </geometry>
+      </visual>
+      <collision name="base">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${x_size} ${y_size} ${z_size}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.3"/>
+        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
+      </inertial>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="${name}_link" />
+    </joint>
+  </xacro:macro>
+
 </robot>

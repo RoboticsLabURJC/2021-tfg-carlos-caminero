@@ -104,7 +104,7 @@ KeyOp::KeyOp(const rclcpp::NodeOptions & options) : rclcpp::Node("kobuki_keyop_n
   /*********************
    ** Publishers
    **********************/
-  velocity_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/commands/velocity", 1);
+  velocity_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 1);
   motor_power_publisher_ = this->create_publisher<kobuki_ros_interfaces::msg::MotorPower>("motor_power", 1);
 
   auto power_cmd = std::make_unique<kobuki_ros_interfaces::msg::MotorPower>();
