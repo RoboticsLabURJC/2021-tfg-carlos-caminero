@@ -388,25 +388,37 @@
   <material name="Black">
     <color rgba="0 0 0 1"/>
   </material>
-  <gazebo reference="tick1_link">
+  <gazebo reference="base_tick1_link">
     <material>Gazebo/Gray</material>
   </gazebo>
-  <gazebo reference="tick2_link">
+  <gazebo reference="base_tick2_link">
     <material>Gazebo/Gray</material>
   </gazebo>
-  <gazebo reference="tick3_link">
+  <gazebo reference="base_tick3_link">
     <material>Gazebo/Gray</material>
   </gazebo>
-  <gazebo reference="tick4_link">
+  <gazebo reference="base_tick4_link">
     <material>Gazebo/Gray</material>
   </gazebo>
-  <gazebo reference="tick5_link">
+  <gazebo reference="base_tick5_link">
     <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="camera_support_tick1_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="camera_support_tick2_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="lower_base_link">
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
   <gazebo reference="middle_base_link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
-  <gazebo reference="laser_base_link">
+  <gazebo reference="upper_base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="camera_support_base_link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
   <gazebo reference="camera_link">
@@ -415,17 +427,17 @@
   <gazebo reference="lidar_link">
     <material>Gazebo/Black</material>
   </gazebo>
-  <link name="tick1_link">
+  <link name="base_tick1_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </visual>
     <collision name="base">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </collision>
     <inertial>
@@ -435,22 +447,22 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="tick1_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.08 0.14 0.2"/>
+  <joint name="base_tick1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.08 0.14 0.25"/>
     <parent link="base_link"/>
-    <child link="tick1_link"/>
+    <child link="base_tick1_link"/>
   </joint>
-  <link name="tick2_link">
+  <link name="base_tick2_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </visual>
     <collision name="base">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </collision>
     <inertial>
@@ -460,22 +472,22 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="tick2_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-0.09 0.12 0.2"/>
+  <joint name="base_tick2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.09 0.12 0.25"/>
     <parent link="base_link"/>
-    <child link="tick2_link"/>
+    <child link="base_tick2_link"/>
   </joint>
-  <link name="tick3_link">
+  <link name="base_tick3_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </visual>
     <collision name="base">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </collision>
     <inertial>
@@ -485,22 +497,22 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="tick3_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-0.09 -0.12 0.2"/>
+  <joint name="base_tick3_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.09 -0.12 0.25"/>
     <parent link="base_link"/>
-    <child link="tick3_link"/>
+    <child link="base_tick3_link"/>
   </joint>
-  <link name="tick4_link">
+  <link name="base_tick4_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </visual>
     <collision name="base">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.35" radius="0.005"/>
       </geometry>
     </collision>
     <inertial>
@@ -510,22 +522,22 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="tick4_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.08 -0.14 0.2"/>
+  <joint name="base_tick4_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.08 -0.14 0.25"/>
     <parent link="base_link"/>
-    <child link="tick4_link"/>
+    <child link="base_tick4_link"/>
   </joint>
-  <link name="tick5_link">
+  <link name="base_tick5_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.15" radius="0.005"/>
       </geometry>
     </visual>
     <collision name="base">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.33" radius="0.005"/>
+        <cylinder length="0.15" radius="0.005"/>
       </geometry>
     </collision>
     <inertial>
@@ -535,12 +547,62 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="tick5_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-0.15 0.0 0.2"/>
+  <joint name="base_tick5_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.15 0.0 0.14"/>
     <parent link="base_link"/>
-    <child link="tick5_link"/>
+    <child link="base_tick5_link"/>
   </joint>
-  <link name="laser_base_link">
+  <link name="camera_support_tick1_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_tick1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 0.05 0.05"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_tick1_link"/>
+  </joint>
+  <link name="camera_support_tick2_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_tick2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 -0.05 0.05"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_tick2_link"/>
+  </joint>
+  <link name="lower_base_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -560,10 +622,10 @@
       <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
     </inertial>
   </link>
-  <joint name="laser_base_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.35"/>
+  <joint name="lower_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.155"/>
     <parent link="base_link"/>
-    <child link="laser_base_link"/>
+    <child link="lower_base_link"/>
   </joint>
   <link name="middle_base_link">
     <visual>
@@ -586,9 +648,57 @@
     </inertial>
   </link>
   <joint name="middle_base_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.25"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.208"/>
     <parent link="base_link"/>
     <child link="middle_base_link"/>
+  </joint>
+  <link name="upper_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="upper_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.42"/>
+    <parent link="base_link"/>
+    <child link="upper_base_link"/>
+  </joint>
+  <link name="camera_support_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.0175 0.15 0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.0175 0.15 0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 0 0.0975"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_base_link"/>
   </joint>
   <link name="camera_link">
     <visual>
@@ -676,7 +786,7 @@
     </visual>
   </link>
   <joint name="lidar_joint" type="fixed">
-    <parent link="laser_base_link"/>
+    <parent link="upper_base_link"/>
     <child link="lidar_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.0275"/>
   </joint>
