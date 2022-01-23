@@ -1287,8 +1287,6 @@
       </include>
     </model>
 
-
-    <!-- Person to follow -->
     <actor name="actor">
       <link name="link">
         <inertial>
@@ -1317,7 +1315,7 @@
           <pose>4 10 0.02 0.04 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://person/meshes/standing.dae</uri>
+              <uri>model://standing_person/meshes/standing.dae</uri>
             </mesh>
           </geometry>
         </collision>
@@ -1326,7 +1324,7 @@
           <pose>4 10 0.02 0.04 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://person/meshes/standing.dae</uri>
+              <uri>model://standing_person/meshes/standing.dae</uri>
             </mesh>
           </geometry>
         </visual>

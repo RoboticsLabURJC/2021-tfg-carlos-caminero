@@ -20,17 +20,11 @@ def generate_launch_description():
   pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')   
    
   # Set the path to this package.
-  pkg_share = FindPackageShare(package='test_world').find('test_world')
+  pkg_share = FindPackageShare(package='hospital_world').find('hospital_world')
  
   # Set the path to the world file
   world_file_name = 'hospital.world'
   world_path = os.path.join(pkg_share, 'worlds', world_file_name)
-
-  print(world_path)
-   
-  # # Set the path to the SDF model files.
-  # gazebo_models_path = os.path.join(pkg_share, 'models')
-  # os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
  
   ########### YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE ##############  
   # Launch configuration variables specific to simulation
