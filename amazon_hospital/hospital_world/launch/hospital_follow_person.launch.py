@@ -23,8 +23,12 @@ def generate_launch_description():
   pkg_share = FindPackageShare(package='hospital_world').find('hospital_world')
  
   # Set the path to the world file
-  world_file_name = 'hospital_with_animated_person.world'
+  world_file_name = 'hospital_follow_person.world'
   world_path = os.path.join(pkg_share, 'worlds', world_file_name)
+   
+  # Set the path to the SDF model files.
+  gazebo_models_path = os.path.join(pkg_share, 'models')
+  os.environ["GAZEBO_MODEL_PATH"] += gazebo_models_path
  
   ########### YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE ##############  
   # Launch configuration variables specific to simulation
@@ -80,4 +84,3 @@ def generate_launch_description():
   ld.add_action(start_gazebo_client_cmd)
  
   return ld
-  

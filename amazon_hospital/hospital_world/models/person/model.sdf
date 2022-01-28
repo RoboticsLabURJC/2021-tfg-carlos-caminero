@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="person_standing">
+  <model name="person">
     <link name="link">
       <inertial>
         <pose>0 -0.1 0.95 0 0 0</pose>
@@ -28,7 +28,7 @@
         <pose>0 0 0.02 0.04 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://person_standing/meshes/standing.dae</uri>
+            <uri>model://person/meshes/standing.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -37,10 +37,17 @@
         <pose>0 0 0.02 0.04 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://person_standing/meshes/standing.dae</uri>
+            <uri>model://person/meshes/standing.dae</uri>
           </mesh>
         </geometry>
       </visual>
     </link>
+    <plugin name="personplugin" filename="libpersonplugin.so"/>
+
+    <gazebo>
+      <static>true</static>
+    </gazebo>
   </model>
 </sdf>
+
+
