@@ -7,9 +7,9 @@
 #include <vector>
 #include <tuple>
 #include <cmath>
-#include <map>
 
-#define PI 3.14159265
+const float PI = 3.14159265;
+const int QUADRANTS = 4;
 
 namespace gazebo
 {
@@ -19,13 +19,18 @@ namespace gazebo
     private:
 
         int state, current_wp;
-        static constexpr float dt = 0.005;
+        int dir_turn;
+        static constexpr float lv_dt = 0.01;    // discrete lineal velocity
+        static constexpr float av_dt = 0.003;   // discrete angular velocity 
         
         physics::ModelPtr model;
         event::ConnectionPtr updateConnection;
 
         // waypoints where (px, py, next_waypoint)
-        std::map <int, std::tuple<float, float, int> > wp;
+        std::vector <std::tuple<float, float, int>> wp;
+
+        // quadrants vector to know the correct direction of turn
+        std::vector <std::tuple<float, float>> quadrants;
 
     private:
 
@@ -54,30 +59,93 @@ namespace gazebo
         }
 
 
+        int GetBestTurnDirection(float desired_yaw, float actual_yaw)
+        {
+            auto get_quadrant = [](int yaw, std::vector<std::tuple<float, float>> & quadrants) {
+                // iterate over all quadrants (4)
+                for (std::size_t i = 0; i < QUADRANTS; i++) {
+                    if (yaw >= std::get<0>(quadrants[i]) && yaw < std::get<1>(quadrants[i])) {
+                        return i;
+                    }
+                }
+            };
+
+            // Search the corresponding quadrants
+            int actual_quadrant = get_quadrant(actual_yaw, this->quadrants);
+            int desired_quadrant = get_quadrant(desired_yaw, this->quadrants);
+
+            // both angles share the same quadrant
+            if (actual_quadrant == desired_quadrant) {
+                return (desired_yaw > actual_yaw) ? 1 : -1; 
+            }
+
+            /** 
+             * Calculate distance between angles in different quadrants
+             * n1 -> quadrants of separation between the yaw angles for distance 1
+             * n2 -> quadrants of separation between the yaw angles for distance 2
+             **/
+            int n1, n2, dist1, dist2;
+
+            n1 = (desired_quadrant > actual_quadrant) ?
+                  desired_quadrant - actual_quadrant :
+                  QUADRANTS - abs((desired_quadrant - actual_quadrant) % QUADRANTS);
+            n2 = QUADRANTS - n1;
+
+            // Calculating Distance 1
+            dist1 = std::get<1>(quadrants[actual_quadrant]) - actual_yaw;
+            for (int i = 0; i < (n1 - 1); i++) {
+                dist1 += PI/2;
+            }
+            dist1 += desired_yaw - std::get<0>(quadrants[desired_quadrant]);
+
+            // Calculating Distance 2
+            dist2 = actual_yaw - std::get<0>(quadrants[actual_quadrant]);
+            for (int i = 0; i < (n2 - 1); i++) {
+                dist2 += PI/2;
+            }
+            dist2 += std::get<1>(quadrants[desired_quadrant]) - desired_yaw;
+
+            // Return best direction
+            return (dist1 <= dist2) ? 1 : -1;
+        }
+
+
         bool MoveToWaypoint(std::tuple<float, float, int> & waypoint)
         {
             static bool orientation_reached = false;
+            static bool direction_chosen = false;
+
             float rx = std::get<0>(waypoint);
             float ry = std::get<1>(waypoint);
-            float angle = this->GetAngle(rx, ry);
+            float angle = GetAngle(rx, ry);
             auto pose = this->model->WorldPose();
 
-            // First, It will turn until Yaw desired is reached
+            /**
+             * Procedure for moving to the next waypoint
+             **/
+            // First, it will determine the orientation of turn
+            if (!direction_chosen) {
+                direction_chosen = true;
+                dir_turn = GetBestTurnDirection(angle, pose.Rot().Yaw());
+            }
+            // Second, It will turn until Yaw desired is reached
             if (!orientation_reached) {
-                pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + 0.003);
+                pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + dir_turn*av_dt);
                 if (abs(angle - pose.Rot().Yaw()) < 0.005) {
                     orientation_reached = true;
                 }
             }
-            // Move to position desired
+            // Third, it will move to position desired
             else {
-                pose.Pos().X() += -dt * (0*cos(pose.Rot().Yaw()) - 1*sin(pose.Rot().Yaw()));
-                pose.Pos().Y() += -dt * (0*sin(pose.Rot().Yaw()) + 1*cos(pose.Rot().Yaw()));
+                pose.Pos().X() += -lv_dt * (0*cos(pose.Rot().Yaw()) - 1*sin(pose.Rot().Yaw()));
+                pose.Pos().Y() += -lv_dt * (0*sin(pose.Rot().Yaw()) + 1*cos(pose.Rot().Yaw()));
             }
             this->model->SetWorldPose(pose);
 
-            if (orientation_reached && this->GetDistanceEuclidean(rx, ry) < 0.1) {
-                orientation_reached = false;    // Initialize the next waypoint
+            if (orientation_reached && GetDistanceEuclidean(rx, ry) < 0.1) {
+                // Reset static boolean values;
+                orientation_reached = false;
+                direction_chosen = false;
                 return true;
             }
             return false;
@@ -94,30 +162,37 @@ namespace gazebo
             std::cout << "Initial Position Person [" << this->model->WorldPose() << "]\n";
 
             // Setting WayPoints
-            this->current_wp = 1;
+            current_wp = 0;
             wp = {
-                {1, std::make_tuple(4, 6, 2)},
-                {2, std::make_tuple(5, 3, 3)},
-                {3, std::make_tuple(5, -14.5, 4)},
-                {4, std::make_tuple(-5, -14.5, 5)},
-                {5, std::make_tuple(-5, -25, 6)},
-                {6, std::make_tuple(5, -25, 7)},
-                {7, std::make_tuple(5, -14.5, 8)},
-                {8, std::make_tuple(-5, -14.5, 9)},
-                {9, std::make_tuple(-5, -1, 10)},
-                {10, std::make_tuple(-4, 2, 11)},
-                {11, std::make_tuple(-4, 5, 12)},
-                {12, std::make_tuple(-2.5, 13, 13)},
-                {13, std::make_tuple(3, 13, 14)},
-                {14, std::make_tuple(4, 10, 1)},
+                std::make_tuple(4, 6, 1),
+                std::make_tuple(5, 3, 2),
+                std::make_tuple(5, -14.5, 3),
+                std::make_tuple(-5, -14.5, 4),
+                std::make_tuple(-5, -25, 5),
+                std::make_tuple(5, -25, 6),
+                std::make_tuple(5, -14.5, 7),
+                std::make_tuple(-5, -14.5, 8),
+                std::make_tuple(-5, -1, 9),
+                std::make_tuple(-4, 2, 10),
+                std::make_tuple(-4, 5, 11),
+                std::make_tuple(-2.5, 13, 12),
+                std::make_tuple(3, 13, 13),
+                std::make_tuple(4, 10, 0),
+            };
+
+            quadrants = {
+                std::make_tuple(0.0, PI/2),
+                std::make_tuple(PI/2, PI),
+                std::make_tuple(-PI, -PI/2),
+                std::make_tuple(-PI/2, 0.0)
             };
         }
 
 
         void OnUpdate(const common::UpdateInfo &)
         {
-            if (this->MoveToWaypoint(wp[this->current_wp])) {
-                this->current_wp = std::get<2>(wp[this->current_wp]);
+            if (MoveToWaypoint(wp[current_wp])) {
+                current_wp = std::get<2>(wp[current_wp]);
             }
         }
     };
