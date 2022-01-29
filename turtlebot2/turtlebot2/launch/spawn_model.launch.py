@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
   
-  use_sim_time = LaunchConfiguration('use_sim_time', default='True')
+  #use_sim_time = LaunchConfiguration('use_sim_time', default='True')
   
   pkg_share = launch_ros.substitutions.FindPackageShare(package='turtlebot2').find('turtlebot2')
   urdf_file = os.path.join(pkg_share, 'urdf/turtlebot2.urdf')
@@ -30,7 +30,7 @@ def generate_launch_description():
   )
 
   spawn_entity = ExecuteProcess(
-    cmd=['ros2', 'run', 'gazebo_ros', 'spawn_entity.py', '-topic', '/robot_description', '-entity', 'turtlebot2'], output='screen')
+    cmd=['ros2', 'run', 'gazebo_ros', 'spawn_entity.py', '-topic', '/robot_description', '-entity', 'turtlebot2', '-y', '10'], output='screen')
 
   ld = LaunchDescription()
   ld.add_action(kobuki_model)

@@ -18,20 +18,14 @@ namespace gazebo
 
     private:
 
-        int state;
-        static constexpr float dt = 0.001;
+        int state, current_wp;
+        static constexpr float dt = 0.005;
         
         physics::ModelPtr model;
         event::ConnectionPtr updateConnection;
 
         // waypoints where (px, py, next_waypoint)
-        std::map <int, std::tuple<float, float, int> > wp = {
-            {1, std::make_tuple(4, 6, 2)},
-            {2, std::make_tuple(5, 3, 3)},
-            {3, std::make_tuple(5, -14.5, 4)},
-            {4, std::make_tuple(-5, -14.5, 5)},
-            {5, std::make_tuple(-5, -1, 1)}
-        };
+        std::map <int, std::tuple<float, float, int> > wp;
 
     private:
 
@@ -46,26 +40,47 @@ namespace gazebo
         float GetAngle(float rx, float ry)
         {
             // Returns the Angle in Radians
+
             auto pose = this->model->WorldPose();
-            
-            return atan2(ry - pose.Pos().Y(), rx - pose.Pos().X()) * 180 / PI;
+            float angle = atan2(abs(rx - pose.Pos().X()), abs(ry - pose.Pos().Y()));
+
+            if (ry > pose.Pos().Y()) {
+                angle = PI - angle;
+            }
+            if (rx < pose.Pos().X()) {
+                angle *= -1;
+            }
+            return angle;
         }
 
 
         bool MoveToWaypoint(std::tuple<float, float, int> & waypoint)
         {
+            static bool orientation_reached = false;
             float rx = std::get<0>(waypoint);
             float ry = std::get<1>(waypoint);
             float angle = this->GetAngle(rx, ry);
             auto pose = this->model->WorldPose();
 
-            pose.Rot().Euler(0, 0, angle);
-            pose.Pos().X() += -dt * (0*cos(pose.Rot().Yaw()) - 1*sin(pose.Rot().Yaw()));
-            pose.Pos().Y() += -dt * (0*sin(pose.Rot().Yaw()) + 1*cos(pose.Rot().Yaw()));
-
+            // First, It will turn until Yaw desired is reached
+            if (!orientation_reached) {
+                pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + 0.003);
+                if (abs(angle - pose.Rot().Yaw()) < 0.005) {
+                    orientation_reached = true;
+                }
+            }
+            // Move to position desired
+            else {
+                pose.Pos().X() += -dt * (0*cos(pose.Rot().Yaw()) - 1*sin(pose.Rot().Yaw()));
+                pose.Pos().Y() += -dt * (0*sin(pose.Rot().Yaw()) + 1*cos(pose.Rot().Yaw()));
+            }
             this->model->SetWorldPose(pose);
 
-            return this->GetDistanceEuclidean(rx, ry) < 0.025;
+            if (orientation_reached && this->GetDistanceEuclidean(rx, ry) < 0.1) {
+                orientation_reached = false;    // Initialize the next waypoint
+                return true;
+            }
+            return false;
         }
 
 
@@ -76,17 +91,33 @@ namespace gazebo
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(
                 boost::bind(&Person::OnUpdate, this, _1));
 
-            std::cout << "Loading person to follow at " << this->model->WorldPose() << std::endl;
+            std::cout << "Initial Position Person [" << this->model->WorldPose() << "]\n";
 
-            // Init values
-            this->state = 1;
+            // Setting WayPoints
+            this->current_wp = 1;
+            wp = {
+                {1, std::make_tuple(4, 6, 2)},
+                {2, std::make_tuple(5, 3, 3)},
+                {3, std::make_tuple(5, -14.5, 4)},
+                {4, std::make_tuple(-5, -14.5, 5)},
+                {5, std::make_tuple(-5, -25, 6)},
+                {6, std::make_tuple(5, -25, 7)},
+                {7, std::make_tuple(5, -14.5, 8)},
+                {8, std::make_tuple(-5, -14.5, 9)},
+                {9, std::make_tuple(-5, -1, 10)},
+                {10, std::make_tuple(-4, 2, 11)},
+                {11, std::make_tuple(-4, 5, 12)},
+                {12, std::make_tuple(-2.5, 13, 13)},
+                {13, std::make_tuple(3, 13, 14)},
+                {14, std::make_tuple(4, 10, 1)},
+            };
         }
 
 
         void OnUpdate(const common::UpdateInfo &)
         {
-            if (this->MoveToWaypoint(wp[this->state])) {
-                this->state = std::get<2>(wp[this->state]);
+            if (this->MoveToWaypoint(wp[this->current_wp])) {
+                this->current_wp = std::get<2>(wp[this->current_wp]);
             }
         }
     };
