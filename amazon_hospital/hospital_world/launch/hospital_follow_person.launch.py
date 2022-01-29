@@ -17,8 +17,11 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
  
   # Set the path to the Gazebo ROS package
-  pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')   
-   
+  pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')
+
+  # Set the path to the Turtlebot2 ROS package
+  pkg_turtlebot2 = FindPackageShare(package='turtlebot2').find('turtlebot2')
+
   # Set the path to this package.
   pkg_share = FindPackageShare(package='hospital_world').find('hospital_world')
  
@@ -69,6 +72,10 @@ def generate_launch_description():
   start_gazebo_client_cmd = IncludeLaunchDescription(
     PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')),
     condition=IfCondition(PythonExpression([use_simulator, ' and not ', headless])))
+  
+  start_turtlebot2_cmd = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(os.path.join(pkg_turtlebot2, 'launch', 'spawn_model.launch.py'))
+  )
  
   # Create the launch description and populate
   ld = LaunchDescription()
@@ -82,5 +89,6 @@ def generate_launch_description():
   # Add any actions
   ld.add_action(start_gazebo_server_cmd)
   ld.add_action(start_gazebo_client_cmd)
+  ld.add_action(start_turtlebot2_cmd)
  
   return ld
