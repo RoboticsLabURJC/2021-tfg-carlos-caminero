@@ -3,9 +3,17 @@
 <package format="3">
   <name>follow_person</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="carlos2caminero@gmail.com">carloscam</maintainer>
+  <description>
+    This is a implementation of Follow Person
+    in Python to use as example in the Unibotics
+    exercise.
+  </description>
+  <maintainer email="carlos2caminero@gmail.com">Carlosalpha1</maintainer>
   <license>TODO: License declaration</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

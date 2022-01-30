@@ -13,13 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='carloscam',
+    maintainer='Carlos Caminero (Carlosalpha1)',
     maintainer_email='carlos2caminero@gmail.com',
-    description='TODO: Package description',
+    description='It is a implementation of Follow Person in Python to use as example in the Unibotics exercise',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'follow_person_main = follow_person.follow_person_main:main'
         ],
     },
 )
