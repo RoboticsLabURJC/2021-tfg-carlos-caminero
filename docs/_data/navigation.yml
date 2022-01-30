@@ -1,6 +1,6 @@
 main:
   - title: "Publicaciones"
-    url: /posts/
+    url: /
   - title: "Categorías"
     url: /categories/
   - title: "Etiquetas"
