@@ -7,9 +7,29 @@
 #include <vector>
 #include <tuple>
 #include <cmath>
+#include <thread>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <err.h>
+
+/**
+ * SOCKET FUNCTIONS declaration (teleop)
+ **/
+int create_socket(void);
+void close_socket(int fd);
+void set_ip_port(struct sockaddr_in & addr, const char * ip, int port);
+void make_bind(int fd, struct sockaddr_in & addr);
+int recv_message(int fd, struct sockaddr_in & dest_addr, void * buf, size_t len);
+
 
 const float PI = 3.14159265;
 const int QUADRANTS = 4;
+const std::string IP = "0.0.0.0";
+const int PORT = 36677;
 
 namespace gazebo
 {
@@ -19,9 +39,14 @@ namespace gazebo
     private:
 
         int state, current_wp;
-        int dir_turn;
-        static constexpr float lv_dt = 0.01;    // discrete lineal velocity
-        static constexpr float av_dt = 0.003;   // discrete angular velocity 
+        int turn_dir, linear_dir;
+        bool auto_movement, linear_movement;
+        float lv_dt = 0.001; // discrete lineal velocity
+        float av_dt = 0.003; // discrete angular velocity
+
+        // variables to use in MoveToWaypoint method
+        bool orientation_reached = false;
+        bool direction_chosen = false;
         
         physics::ModelPtr model;
         event::ConnectionPtr updateConnection;
@@ -32,13 +57,46 @@ namespace gazebo
         // quadrants vector to know the correct direction of turn
         std::vector <std::tuple<float, float>> quadrants;
 
+        // The server will receive velocity commands from client to move the model
+        int sockfd;
+        struct sockaddr_in addr;
+        std::thread server_thread;
+
+
     private:
 
         float GetDistanceEuclidean(float rx, float ry)
         {
             auto pose = this->model->WorldPose();
-            
+
             return sqrt(pow(pose.Pos().X() - rx, 2) + pow(pose.Pos().Y() - ry, 2));
+        }
+
+
+        float GetDistanceEuclidean(std::tuple <float, float, int> & waypoint)
+        {
+            int wx = std::get<0>(waypoint);
+            int wy = std::get<1>(waypoint);
+            
+            return GetDistanceEuclidean(wx, wy);
+        }
+
+
+        int GetNearestWaypoint(std::vector < std::tuple<float, float, int> > & waypoints)
+        {
+            float current_dist;
+            int nearest_index = 0;
+            float min_dist = GetDistanceEuclidean(waypoints[0]);
+            
+            for (size_t i = 0; i < waypoints.size(); i++) {
+                current_dist = GetDistanceEuclidean(waypoints[i]);
+                if (current_dist < min_dist) {
+                    min_dist = current_dist;
+                    nearest_index = i;
+                }
+            }
+
+            return nearest_index;
         }
 
 
@@ -112,9 +170,6 @@ namespace gazebo
 
         bool MoveToWaypoint(std::tuple<float, float, int> & waypoint)
         {
-            static bool orientation_reached = false;
-            static bool direction_chosen = false;
-
             float rx = std::get<0>(waypoint);
             float ry = std::get<1>(waypoint);
             float angle = GetAngle(rx, ry);
@@ -126,11 +181,11 @@ namespace gazebo
             // First, it will determine the orientation of turn
             if (!direction_chosen) {
                 direction_chosen = true;
-                dir_turn = GetBestTurnDirection(angle, pose.Rot().Yaw());
+                turn_dir = GetBestTurnDirection(angle, pose.Rot().Yaw());
             }
             // Second, It will turn until Yaw desired is reached
             if (!orientation_reached) {
-                pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + dir_turn*av_dt);
+                pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + turn_dir*av_dt);
                 if (abs(angle - pose.Rot().Yaw()) < 0.005) {
                     orientation_reached = true;
                 }
@@ -151,8 +206,58 @@ namespace gazebo
             return false;
         }
 
+        void ServerThreadLoop(void)
+        {
+            char msg[3];
+
+            while (true) {
+                recv_message(this->sockfd, this->addr, &msg, sizeof msg);
+                
+                if (msg[0] == 'U') {
+                    auto_movement = false;
+
+                    if (msg[1] == 'V') {
+                        linear_movement = true;
+                        if (msg[2] == 'F') {
+                            linear_dir = 1;
+                        }
+                        else if (msg[2] == 'B') {
+                            linear_dir = -1;
+                        }
+                    }
+                    else if (msg[1] == 'A') {
+                        linear_movement = false;
+                        if (msg[2] == 'R') {
+                            turn_dir = -1;
+                        }
+                        else if (msg[2] == 'L') {
+                            turn_dir = 1;
+                        }
+                    }
+                    else if (msg[1] == 'S') {
+                        linear_dir = 0;
+                        turn_dir = 0;
+                    }
+                }
+                else if (msg[0] == 'A') {
+                    current_wp = GetNearestWaypoint(this->wp);
+                    auto_movement = true;
+                    orientation_reached = false;
+                    direction_chosen = false;
+                }
+            }
+        }
+
 
     public:
+
+        virtual ~Person()
+        {
+            this->ModelPlugin::~ModelPlugin();
+            close_socket(this->sockfd);
+        }
+
+
         void Load(physics::ModelPtr _parent, sdf::ElementPtr)
         {
             this->model = _parent;
@@ -186,15 +291,86 @@ namespace gazebo
                 std::make_tuple(-PI, -PI/2),
                 std::make_tuple(-PI/2, 0.0)
             };
+
+            auto_movement = true;
+            linear_movement = true;
+            linear_dir = 0;
+            
+            // Initializing Server
+            this->sockfd = create_socket();
+            set_ip_port(this->addr, IP.c_str(), PORT);
+            make_bind(this->sockfd, this->addr);
+            server_thread = std::thread(&Person::ServerThreadLoop, this);
         }
 
 
         void OnUpdate(const common::UpdateInfo &)
         {
-            if (MoveToWaypoint(wp[current_wp])) {
-                current_wp = std::get<2>(wp[current_wp]);
+            if (auto_movement) {
+                if (MoveToWaypoint(wp[current_wp])) {
+                    current_wp = std::get<2>(wp[current_wp]);
+                }
+            }
+            else {
+                auto pose = this->model->WorldPose();
+                if (linear_movement) {
+                    pose.Pos().X() += -(linear_dir)*lv_dt * (0*cos(pose.Rot().Yaw()) - 1*sin(pose.Rot().Yaw()));
+                    pose.Pos().Y() += -(linear_dir)*lv_dt * (0*sin(pose.Rot().Yaw()) + 1*cos(pose.Rot().Yaw()));
+                }
+                else {
+                    pose.Rot() = ignition::math::Quaterniond(0, 0, pose.Rot().Yaw() + turn_dir*av_dt);
+                }
+                this->model->SetWorldPose(pose);
             }
         }
     };
     GZ_REGISTER_MODEL_PLUGIN(Person)
+}
+
+/**
+ * SOCKETS FUNCTIONS Definitions
+ **/
+
+int create_socket(void)
+{
+    int fd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (fd == -1) {
+        err(1, "socket failed");
+    }
+    return fd;
+}
+
+
+void close_socket(int fd)
+{
+    if (close(fd) == -1) {
+        err(1, "close failed");
+    }
+}
+
+
+void set_ip_port(struct sockaddr_in & addr, const char * ip, int port)
+{
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = inet_addr(ip);
+    addr.sin_port = htons(port);
+}
+
+
+void make_bind(int fd, struct sockaddr_in & addr)
+{
+    if (bind(fd, (struct sockaddr *)&addr, sizeof addr) == -1) {
+        err(1, "bind failed");
+    }
+}
+
+
+int recv_message(int fd, struct sockaddr_in & dest_addr, void * buf, size_t len)
+{
+    socklen_t socklen = sizeof dest_addr;
+    if (recvfrom(fd, buf, len, 0, (struct sockaddr *)&dest_addr, &socklen) == -1) {
+        warn("recvfrom failed");
+        return 1;
+    }
+    return 0;
 }
