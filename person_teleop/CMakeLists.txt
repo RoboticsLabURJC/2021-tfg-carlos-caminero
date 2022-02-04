@@ -32,6 +32,8 @@ if(ANDROID)
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    proxy.cpp
+    proxy.h
   )
 else()
   add_executable(person_teleop
@@ -39,7 +41,21 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    proxy.cpp
+    proxy.h
   )
 endif()
+
+install(TARGETS
+  ${PROJECT_NAME}
+  person_teleop
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+install(
+  DIRECTORY images
+  DESTINATION bin)
 
 target_link_libraries(person_teleop PRIVATE Qt5::Widgets)
