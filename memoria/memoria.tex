@@ -1,24 +1,13 @@
-\documentclass[a4paper,12pt]{report}
+\input{estilo.tex}
 
-\usepackage{graphicx} 
-\usepackage{indentfirst}
-\usepackage[spanish]{babel}
-\usepackage{subfig}
-\usepackage{biblatex}
-\usepackage{fancyhdr}
-\usepackage{epigraph}
-\usepackage{hyperref}
-\usepackage{url}
+\makeindex
 
 \begin{document}
 
-\pagestyle{empty}
-\include{portada}
+\input{portada/indice.tex}
 
+\mainmatter
 
-\clearpage\null\newpage
-\pagenumbering{roman}
-
-\include{resumen}
+\input{capitulos/capitulo1}
 
 \end{document}
