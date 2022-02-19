@@ -1,0 +1,56 @@
+\chapter{Herramientas utilizadas}
+\label{cap:capitulo3}
+
+En este capítulo se describen las herramientas y tecnologías utilizadas para la elaboración de los 2 ejercicios de Unibotics. Su desarrollo ha abarcado varios temas: programación del comportamiento autónomo del Robot mediante ROS 2, desarrollo de la imagen docker RADI versión 4 de Unibotics, uso hardware específico para el robot Turtlebot 2 real, etc.
+
+\section{ROS}
+\label{sec:ros}
+ROS (Robot Operating System) es un middleware que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework estan la abstracción del hardware, controladores de dispositivos, herramientas de visualización entre otros. La primera versión de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas versiones siendo la actual y estable ROS Noetic.\\
+
+El funcionamiento de ROS se basa en un sistema centralizado donde un nodo principal se encarga del intercambio de información entre otros nodos del que forma la aplicación que se comportan como publicadores o suscriptores, permitiendo así, ejecutar en paralelo varios procesos que se dedican a subtareas específicas del robot. De esta forma, por ejemplo, se puede tener un nodo encargado de la recogida de datos de la cámara y otro que comande velocidades dependiendo del resultado del procesamiento que se ha obtenido del nodo de visualización.\\
+
+De manera paralela, ha ido surgiendo ROS 2 que es una versión en auge que incorpora nuevas características y novedades en cuanto a su uso. Al igual que en ROS se basa en publicadores y suscriptores, sin embargo, no usa un nodo maestro, y posee mecanismos de seguridad para asegurar la autenticación de los nodos y la integración de los mensajes. La versión mas reciente y estable es \textbf{ROS Foxy}. Es la distribución usada en este proyecto.\\
+
+Los lenguajes de programación que soporta tanto ROS como ROS 2 son C++ y Python.
+
+\section{Lenguajes de Programación}
+\subsection{C++}
+\label{sec:c++}
+
+C++ es un lenguaje de programación diseñado en 1979 de Bjarne Stroustrup. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la Programación Orientada a Objetos (POO). Además, incorpora una gran cantidad de nuevas librerías para facilitar la programación entre ellas las librerías estandar y STL (Standard Template Library).
+
+\subsection{Python}
+\label{sec:python}
+
+Python (TODO)
+
+\subsection{Javascript}
+\label{sec:javascript}
+
+Javascript (TODO)
+
+\section{Lenguajes de Marcado}
+\subsection{HTML}
+\label{sec:html}
+
+HTML (TODO)
+
+\subsection{URDF}
+\label{sec:urdf}
+
+URDF (TODO)
+
+\subsection{XACRO}
+\label{sec:xacro}
+
+XACRO (TODO)
+
+\section{CSS}
+\label{sec:css}
+
+CSS (TODO)
+
+\section{Docker}
+\label{sec:docker}
+
+Docker (TODO)
