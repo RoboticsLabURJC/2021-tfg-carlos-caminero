@@ -8,6 +8,9 @@ stop_button.disabled = true;
 stop_button.style.opacity = "0.4";
 stop_button.style.cursor = "not-allowed";
 
+// Teleop button id for changing color
+const teleop_btn = document.querySelector('#teleop_button');
+
 // running variable for psuedo decoupling
 // Play/Pause from Reset
 var frequency = "0",
@@ -110,6 +113,12 @@ var key_pressed = "";
 // Function to teleoperate a model
 function teleopCode() {
 	activate_teleop = !activate_teleop;
+	if (activate_teleop) {
+		teleop_btn.style.background = '#BEBEBE';
+	}
+	else {
+		teleop_btn.style.background = 'whitesmoke';
+	}
 	var message = "#teleop_"+activate_teleop;
 	websocket_code.send(message);
 }
