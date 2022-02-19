@@ -45,10 +45,7 @@ class Template:
         self.gui = GUI(self.host, self.hal)
 
         # Client Socket to connect with the person model server
-        debug("Iniciando cliente\n")
         self.model_address = ("127.0.0.1", 36677)
-        debug("Address[0]: " + self.model_address[0] + "\n")
-        debug("Address[1]: " + str(self.model_address[1]) + "\n")
         self.model_client = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 
@@ -285,11 +282,21 @@ class Template:
             debug(message + "\n")
             mode = message[message.find('_')+1:]
             if mode == "true":
-                debug("Activate Teleop\n")
-                self.model_client.sendto(str.encode("UFB"), self.model_address)
+                self.model_client.sendto(str.encode("US-"), self.model_address) # User Stop
             elif mode == "false":
-                debug("Deactivate Teleop\n")
-                self.model_client.sendto(str.encode("A--"), self.model_address)
+                self.model_client.sendto(str.encode("A--"), self.model_address) # Autonomous
+            return
+        
+        if (message[:4] == "#key"):
+            mode = message[message.find('_')+1:]
+            if mode == "w":
+                self.model_client.sendto(str.encode("UVF"), self.model_address) # User Velocity Forward
+            elif mode == "s":
+                self.model_client.sendto(str.encode("UVB"), self.model_address) # User Velocity Backward
+            elif mode == "a":
+                self.model_client.sendto(str.encode("UAL"), self.model_address) # User Angular Left
+            elif mode == "d":
+                self.model_client.sendto(str.encode("UAR"), self.model_address) # User Angular Right
             return
 
         try:

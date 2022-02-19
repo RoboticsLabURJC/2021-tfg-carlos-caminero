@@ -105,14 +105,23 @@ function resetSim(){
 }
 
 var activate_teleop = false;
-// Function to Teleoperate a model
+var key_pressed = "";
+
+// Function to teleoperate a model
 function teleopCode() {
 	activate_teleop = !activate_teleop;
-	var message = "#teleop_"+activate_teleop
-	console.log("Enviando mensaje: " + message)
-	websocket_code.send(message)
-	console.log("Enviado")
+	var message = "#teleop_"+activate_teleop;
+	websocket_code.send(message);
 }
+
+// Key events to move the model
+window.onkeydown = (e) => {
+	if (activate_teleop) {
+    	key_pressed = e.key;
+		websocket_code.send("#key_"+key_pressed);
+	}
+}
+
 
 // Function for range slider
 function codefrequencyUpdate(vol) {
