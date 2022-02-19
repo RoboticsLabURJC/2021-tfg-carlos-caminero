@@ -1,0 +1,11 @@
+# Dependencias de Instalación para RADI 4
+
+ros-foxy-ecl-build
+ros-foxy-diagnostic-updater
+ros-foxy-kobuki-core
+ros-foxy-ecl-errors
+ros-foxy-ecl-exceptions
+ros-foxy-ecl-geometry
+ros-foxy-ecl-linear-algebra
+ros-foxy-ecl-sigslots
+ros-foxy-joint-state-publisher
