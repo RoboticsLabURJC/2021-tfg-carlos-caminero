@@ -181,7 +181,9 @@ class Template:
         hal_module = importlib.util.module_from_spec(importlib.machinery.ModuleSpec("HAL", None))
         hal_module.HAL = importlib.util.module_from_spec(importlib.machinery.ModuleSpec("HAL", None))
         # Add HAL functions
-        hal_module.HAL.getImage = self.hal.getImage
+        #hal_module.HAL.getImage = self.hal.getImage
+        hal_module.HAL.setV = self.hal.setV
+        hal_module.HAL.setW = self.hal.setW
 
         # Define GUI module
         gui_module = importlib.util.module_from_spec(importlib.machinery.ModuleSpec("GUI", None))
