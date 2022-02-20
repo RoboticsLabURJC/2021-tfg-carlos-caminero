@@ -1,8 +1,15 @@
 \input{estilo.tex}
 
+% Bibliografa
+\let\OLDthebibliography=\thebibliography
+\def\thebibliography#1{\OLDthebibliography{#1}
+  \addcontentsline{toc}{chapter}{\bibname}}
+
+
 \makeindex
 
 \begin{document}
+
 
 \input{portada/indice.tex}
 
@@ -13,5 +20,18 @@
 \input{capitulos/capitulo2}
 
 \input{capitulos/capitulo3}
+
+\input{capitulos/capitulo4}
+
+\input{capitulos/capitulo5}
+
+\input{capitulos/capitulo6}
+
+\input{capitulos/conclusiones}
+
+\printindex \nocite{*}
+
+\bibliographystyle{apalike} \bibliography{bibliografia}
+
 
 \end{document}
