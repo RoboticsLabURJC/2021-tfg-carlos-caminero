@@ -2,3 +2,7 @@ __pycache__
 .vscode
 *.tex.swp
 *.tex.bak
+*.bcf
+*.idx
+*.locode
+*.run.xml
