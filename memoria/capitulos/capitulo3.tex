@@ -1,17 +1,64 @@
 \chapter{Herramientas utilizadas}
 \label{cap:capitulo3}
 
-En este capítulo se describen las herramientas y tecnologías utilizadas para la elaboración de los 2 ejercicios de Unibotics. Su desarrollo ha abarcado varios temas: programación del comportamiento autónomo del Robot mediante ROS 2, desarrollo de la imagen docker RADI versión 4 de Unibotics, uso hardware específico para el robot Turtlebot 2 real, etc.
+En este capítulo se describen las herramientas y tecnologías utilizadas para la elaboración de los 2 ejercicios de Unibotics. Su desarrollo ha abarcado varios temas: programación del comportamiento autónomo del Robot mediante ROS 2, desarrollo de la imagen docker RADI versión 4 de Unibotics, uso hardware específico para el robot Turtlebot 2 real, etc.\\
 
-\section{ROS}
+\section{ROS (Robot Operating System)}
 \label{sec:ros}
-ROS (Robot Operating System) es un middleware que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework estan la abstracción del hardware, controladores de dispositivos, herramientas de visualización entre otros. La primera versión de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas versiones siendo la actual y estable ROS Noetic.\\
+ROS (Robot Operating System) es un middleware que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework están la abstracción del hardware, controladores de dispositivos y de herramientas de visualización entre otros.\\
 
-El funcionamiento de ROS se basa en un sistema centralizado donde un nodo principal se encarga del intercambio de información entre otros nodos del que forma la aplicación que se comportan como publicadores o suscriptores, permitiendo así, ejecutar en paralelo varios procesos que se dedican a subtareas específicas del robot. De esta forma, por ejemplo, se puede tener un nodo encargado de la recogida de datos de la cámara y otro que comande velocidades dependiendo del resultado del procesamiento que se ha obtenido del nodo de visualización.\\
+\subsection {ROS y ROS 2}
+\label{sec:ros_versions}
+La primera versión de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas versiones siendo la actual y estable ROS Noetic.\\
+
+El funcionamiento de ROS se basa en un sistema centralizado donde un nodo principal se encarga del intercambio de información entre otros nodos del que forma la aplicación, los cuales se comportan como publicadores o suscriptores, permitiendo así, ejecutar en paralelo varios procesos que se dedican a subtareas específicas del robot. De esta forma, por ejemplo, se puede tener un nodo encargado de la recogida de datos de la cámara y otro que comande velocidades dependiendo del resultado del procesamiento que se ha obtenido del nodo de visualización.\\
 
 De manera paralela, ha ido surgiendo ROS 2 que es una versión en auge que incorpora nuevas características y novedades en cuanto a su uso. Al igual que en ROS se basa en publicadores y suscriptores, sin embargo, no usa un nodo maestro, y posee mecanismos de seguridad para asegurar la autenticación de los nodos y la integración de los mensajes. La versión mas reciente y estable es \textbf{ROS Foxy}. Es la distribución usada en este proyecto.\\
 
-Los lenguajes de programación que soporta tanto ROS como ROS 2 son C++ y Python.
+Los lenguajes de programación que soporta tanto ROS como ROS 2 son C++ y Python.\\
+
+\subsection{URDF}
+\label{sec:urdf}
+
+\textbf{URDF (United Robotics Description Format)} es un lenguaje de marcado para describir robots (eslabones, uniones, jerarquías, modelo visual, modelo de collisión, modelo inercial, controladores, etc) que usa la gramática de XML. Se utiliza tanto para robots reales como simulados.\\
+
+La sintaxis sigue la siguiente \textbf{regla}: El robot se divide en su mayoría en eslabones (links) y uniones entre eslabones (joints), de manera que se forma un árbol jerárquico desde un eslabón principal (root) hasta los eslabones terminales.\\
+
+Para definir un link hay que proporcionarle su modelo visual (<visual>), su modelo de colisión (<collision>) y su modelo inercial (<inertial>). Después se define el joint que une el eslabón que hemos definido con otro mediante una jerarquía de padres e hijos.\\
+
+\begin{code}[h]
+\begin{lstlisting}[language=XML]
+<?xml version="1.0"?>
+<robot name="simple_cube">
+	<link name="base_link">
+		<visual>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<box size="1.0 1.0 1.0"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<box size="1.0 1.0 1.0"/>
+			</geometry>
+		</collosion>
+		<inertial>
+			<origin xyz="0 0 0" /> 
+			<mass value="1.0" />
+			<inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0"/>
+		</inertial>
+	</link>
+</robot>
+\end{lstlisting}
+\caption[Ejemplo de código URDF: Definición de un cubo]{Ejemplo de código URDF: Definición de un cubo}
+\label{cod:codigo_urdf}
+\end{code}
+
+\subsection{XACRO}
+\label{sec:xacro}
+
+XACRO (TODO)
 
 \section{Lenguajes de Programación}
 \subsection{C++}
@@ -30,20 +77,9 @@ Python (TODO)
 Javascript (TODO)
 
 \section{Lenguajes de Marcado}
-\subsection{HTML}
 \label{sec:html}
 
 HTML (TODO)
-
-\subsection{URDF}
-\label{sec:urdf}
-
-URDF (TODO)
-
-\subsection{XACRO}
-\label{sec:xacro}
-
-XACRO (TODO)
 
 \section{CSS}
 \label{sec:css}
