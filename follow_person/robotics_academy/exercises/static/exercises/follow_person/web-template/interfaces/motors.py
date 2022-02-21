@@ -8,12 +8,12 @@ from .threadPublisher import ThreadPublisher
 def cmdvel2Twist(vel):
 
     tw = Twist()
-    tw.linear.x = vel.vx
-    tw.linear.y = vel.vy
-    tw.linear.z = vel.vz
-    tw.angular.x = vel.ax
-    tw.angular.y = vel.ay
-    tw.angular.z = vel.az
+    tw.linear.x = float(vel.vx)
+    tw.linear.y = float(vel.vy)
+    tw.linear.z = float(vel.vz)
+    tw.angular.x = float(vel.ax)
+    tw.angular.y = float(vel.ay)
+    tw.angular.z = float(vel.az)
 
     return tw
 
@@ -22,12 +22,12 @@ class CMDVel ():
 
     def __init__(self):
 
-        self.vx = 0.0 # vel in x[m/s] (use this for V in wheeled robots)
-        self.vy = 0.0 # vel in y[m/s]
-        self.vz = 0.0 # vel in z[m/s]
-        self.ax = 0.0 # angular vel in X axis [rad/s]
-        self.ay = 0.0 # angular vel in X axis [rad/s]
-        self.az = 0.0 # angular vel in Z axis [rad/s] (use this for W in wheeled robots)
+        self.vx = 0 # vel in x[m/s] (use this for V in wheeled robots)
+        self.vy = 0 # vel in y[m/s]
+        self.vz = 0 # vel in z[m/s]
+        self.ax = 0 # angular vel in X axis [rad/s]
+        self.ay = 0 # angular vel in X axis [rad/s]
+        self.az = 0 # angular vel in Z axis [rad/s] (use this for W in wheeled robots)
         self.timeStamp = 0 # Time stamp [s]
 
 
