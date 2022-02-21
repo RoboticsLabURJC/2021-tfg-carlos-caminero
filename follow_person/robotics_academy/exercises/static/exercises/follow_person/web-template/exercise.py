@@ -136,7 +136,11 @@ class Template:
         start_console()
 
         iterative_code, sequential_code, debug_code_level = self.parse_code(source_code)
-
+        
+        # Whatever the code is, first step is to just stop!
+        self.hal.motors.sendV(0)
+        self.hal.motors.sendW(0)
+        
         # print("The debug level is " + str(debug_level)
         # print(sequential_code)
         # print(iterative_code)
@@ -184,6 +188,7 @@ class Template:
         #hal_module.HAL.getImage = self.hal.getImage
         hal_module.HAL.setV = self.hal.setV
         hal_module.HAL.setW = self.hal.setW
+        hal_module.HAL.getLaserData = self.hal.getLaserData
 
         # Define GUI module
         gui_module = importlib.util.module_from_spec(importlib.machinery.ModuleSpec("GUI", None))
@@ -313,6 +318,7 @@ class Template:
     # Function that gets called when the server is connected
     def connected(self, client, server):
         self.client = client
+        
         # Start the GUI update thread
         self.thread_gui = ThreadGUI(self.gui)
         self.thread_gui.start()
