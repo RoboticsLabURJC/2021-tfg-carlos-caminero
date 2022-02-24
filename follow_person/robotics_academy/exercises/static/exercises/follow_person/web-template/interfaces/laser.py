@@ -54,7 +54,7 @@ def laserScan2LaserData(scan):
     laser.maxAngle = scan.angle_max  + PI/2
     laser.maxRange = scan.range_max
     laser.minRange = scan.range_min
-    laser.timeStamp = scan.header.stamp.secs + (scan.header.stamp.nsecs *1e-9)
+    laser.timeStamp = scan.header.stamp.sec + (scan.header.stamp.nanosec *1e-9)
     return laser
 
 class ListenerLaser(Node):
@@ -91,7 +91,6 @@ class ListenerLaser(Node):
         self.lock.acquire()
         self.data = laser
         self.lock.release()
-        debug("leyendo laser: " + str(self.data.maxRange) + "\n")
         
     def stop(self):
         '''
@@ -105,8 +104,7 @@ class ListenerLaser(Node):
         Starts (Subscribes) the client.
 
         '''
-        self.sub = self.create_subscription(LaserScan, self.topic, self.__callback, 1)
-        debug("Se creo subscriptor\n")
+        self.sub = self.create_subscription(LaserScan, self.topic, self.__callback, 10)
         
     def getLaserData(self):
         '''
