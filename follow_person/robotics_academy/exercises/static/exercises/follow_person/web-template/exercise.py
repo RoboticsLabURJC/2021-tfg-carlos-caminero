@@ -319,6 +319,8 @@ class Template:
     def connected(self, client, server):
         self.client = client
         
+        self.hal.start_thread()
+        
         # Start the GUI update thread
         self.thread_gui = ThreadGUI(self.gui)
         self.thread_gui.start()
