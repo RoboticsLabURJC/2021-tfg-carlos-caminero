@@ -189,6 +189,7 @@ class Template:
         hal_module.HAL.setV = self.hal.setV
         hal_module.HAL.setW = self.hal.setW
         hal_module.HAL.getLaserData = self.hal.getLaserData
+        hal_module.HAL.getImage = self.hal.getImage
 
         # Define GUI module
         gui_module = importlib.util.module_from_spec(importlib.machinery.ModuleSpec("GUI", None))
