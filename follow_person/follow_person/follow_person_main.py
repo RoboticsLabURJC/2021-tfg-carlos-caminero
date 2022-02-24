@@ -1,4 +1,5 @@
 import follow_person.HAL as HAL
+import cv2
 
 
 # ----- USER PROGRAM -----
@@ -49,12 +50,15 @@ def user_main(args=None):
     #     if max_bounding_box != None:
     #         print("maximo area: ", getArea(max_bounding_box))
 
-    laser_data = HAL.getLaserData()
-    if laser_data != None:
-        for i in range(len(laser_data)):
-            print("["+str(i)+"]:", laser_data[i], end=' ')
-        print("\n\n")
-    #HAL.setW(0.2)
+    # laser_data = HAL.getLaserData()
+    # if laser_data != None:
+    #     for i in range(len(laser_data)):
+    #         print("["+str(i)+"]:", laser_data[i], end=' ')
+    #     print("\n\n")
+
+    image = HAL.getImage()
+    cv2.imshow("Imagen", image)
+    cv2.waitKey(1)
 
 ##########################
 
