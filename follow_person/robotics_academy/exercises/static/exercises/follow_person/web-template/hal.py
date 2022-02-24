@@ -1,5 +1,6 @@
 from interfaces.motors import PublisherMotors
 from interfaces.laser import ListenerLaser
+from interfaces.camera import ListenerCamera
 import threading
 import rclpy
 from rclpy.executors import MultiThreadedExecutor
@@ -19,9 +20,11 @@ class HAL:
     	
     	self.motors = PublisherMotors("cmd_vel", 4, 0.3)
     	self.laser = ListenerLaser("scan")
+    	self.camera = ListenerCamera("/depth_camera/image_raw")
     	
     	self.listener_executor = MultiThreadedExecutor(num_threads=4)
     	self.listener_executor.add_node(self.laser)
+    	self.listener_executor.add_node(self.camera)
     	
     	# Update thread
     	self.thread = ThreadHAL(self.listener_executor)
@@ -37,6 +40,9 @@ class HAL:
     
     def getLaserData(self):
     	return self.laser.getLaserData()
+    
+    def getImage(self):
+    	return self.camera.getImage().data
 
 
 class ThreadHAL(threading.Thread):
