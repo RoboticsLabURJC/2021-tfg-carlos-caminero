@@ -1,11 +1,22 @@
+# Carlos Caminero
+# My HAL. Only to test publishers and subscribers
+
 import rclpy
 import geometry_msgs.msg
+import cv2
 
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
 from std_msgs.msg import String
 from darknet_ros_msgs.msg import BoundingBoxes, ObjectCount
-from sensor_msgs.msg import LaserScan
+from sensor_msgs.msg import LaserScan, Image
+from cv_bridge import CvBridge, CvBridgeError
+
+
+def imageMsg2Image(img, bridge):
+    cv_image = bridge.imgmsg_to_cv2(img, "bgr8")
+    return cv_image
+
 
 class VelocityPublisher(Node):
 
@@ -94,11 +105,34 @@ class Laser(Node):
         return self.laser_data
 
 
+class Camera(Node):
+
+    def __init__(self):
+        super().__init__("camera_node")
+
+        self.camera_subscription = self.create_subscription(
+            Image,
+            "/depth_camera/image_raw",
+            self.cameraCallback,
+            10)
+        
+        self.bridge = CvBridge()
+        self.camera_subscription
+        self.image = 0
+    
+    def cameraCallback(self, img):
+        self.image = imageMsg2Image(img, self.bridge)
+        #cv2.imshow("Imagen", imageMsg2Image(img, self.bridge))
+    
+    def getImage(self):
+        return self.image
+
 
 rclpy.init()
 velocity_node = VelocityPublisher()
 darknet_ros_node = DarknetRos()
 laser_node = Laser()
+camera_node = Camera()
 
 
 # -- HAL Functions --
@@ -130,6 +164,9 @@ def getLaserData():
         return v1+v2
     return None
 
+def getImage():
+    return camera_node.getImage()
+
 
 def main(user_main, num_threads=4, args=None):
 
@@ -138,6 +175,7 @@ def main(user_main, num_threads=4, args=None):
     executor.add_node(velocity_node)
     executor.add_node(darknet_ros_node)
     executor.add_node(laser_node)
+    executor.add_node(camera_node)
     try:
         while rclpy.ok():
             user_main()
