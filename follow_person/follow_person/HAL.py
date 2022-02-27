@@ -3,6 +3,7 @@
 
 import rclpy
 import geometry_msgs.msg
+import numpy as np
 import cv2
 
 from rclpy.executors import MultiThreadedExecutor
@@ -118,7 +119,7 @@ class Camera(Node):
         
         self.bridge = CvBridge()
         self.camera_subscription
-        self.image = 0
+        self.image = np.zeros((3, 3, 3), np.uint8)
     
     def cameraCallback(self, img):
         self.image = imageMsg2Image(img, self.bridge)
