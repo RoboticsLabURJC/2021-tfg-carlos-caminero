@@ -7,8 +7,6 @@ En este capítulo se describen las herramientas y tecnologías utilizadas para l
 \label{sec:ros}
 ROS (Robot Operating System) es un middleware que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework están la abstracción del hardware, controladores de dispositivos y de herramientas de visualización entre otros.\\
 
-\subsection {ROS y ROS 2}
-\label{sec:ros_versions}
 La primera versión de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas versiones siendo la actual y estable ROS Noetic.\\
 
 El funcionamiento de ROS se basa en un sistema centralizado donde un nodo principal se encarga del intercambio de información entre otros nodos del que forma la aplicación, los cuales se comportan como publicadores o suscriptores, permitiendo así, ejecutar en paralelo varios procesos que se dedican a subtareas específicas del robot. De esta forma, por ejemplo, se puede tener un nodo encargado de la recogida de datos de la cámara y otro que comande velocidades dependiendo del resultado del procesamiento que se ha obtenido del nodo de visualización.\\
@@ -25,7 +23,7 @@ De manera paralela, ha ido surgiendo ROS 2 que es una versión en auge que incor
 
 Los lenguajes de programación que soporta tanto ROS como ROS 2 son C++ y Python.\\
 
-\subsection{URDF}
+\section{URDF}
 \label{sec:urdf}
 
 \textbf{URDF (United Robotics Description Format)} es un lenguaje de marcado para describir robots (eslabones, uniones, jerarquías, modelo visual, modelo de collisión, modelo inercial, controladores, etc) que usa la gramática de XML. Se utiliza tanto para robots reales como simulados.\\
@@ -63,34 +61,56 @@ Para definir un link hay que proporcionarle su modelo visual (<visual>), su mode
 \label{cod:codigo_urdf}
 \end{code}
 
-\subsection{XACRO}
+\section{XACRO}
 \label{sec:xacro}
 
 XACRO (TODO)
 
-\section{Lenguajes de Programación}
-\subsection{C++}
+\section{C++}
 \label{sec:c++}
 
 C++ es un lenguaje de programación diseñado en 1979 de Bjarne Stroustrup. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la Programación Orientada a Objetos (POO). Además, incorpora una gran cantidad de nuevas librerías para facilitar la programación entre ellas las librerías estandar y STL (Standard Template Library).\\
 
-Muchos paquetes de ROS se programan con C++ debido a la gran cantidad de posibilidades que presenta este lenguaje para desarrollar Plugins, Behavior Trees, Máquinas de Estado, etc.
+Muchos paquetes de ROS se programan con C++ debido a la gran cantidad de posibilidades que presenta este lenguaje para desarrollar Plugins, Behavior Trees, Máquinas de Estado, etc.\\
 
-\subsection{Python}
+\begin{code}[h]
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int main(int argc, char ** argv)
+{
+	std::cout << "Hello World!\n";
+	return 0;
+}
+\end{lstlisting}
+\caption[Hola mundo en C++]{Hola mundo en C++}
+\label{cod:holamundo_cplusplus}
+\end{code}
+
+
+\section{Python}
 \label{sec:python}
 
 Python es un lenguaje de programación interpretado que destaca por su legibilidad, facilidad y soportabilidad a la programación Orientada a Objetos. Posee características particulares que lo diferencian de otros lenguajes de programación como puede ser el uso estricto de indentación en bloques de código.\\
 
 La infraestructura de Unibotics y de Robotics Academy están programadas en Python
 
-\subsection{Javascript}
+\begin{code}[h]
+\begin{lstlisting}[language=Python]
+print("Hola mundo")
+\end{lstlisting}
+\caption[Hola mundo en Python]{Hola mundo en Python}
+\label{cod:holamundo_python}
+\end{code}
+
+\section{Javascript}
 \label{sec:javascript}
 
 Javascript es un lenguaje de programación interpretado que destaca por ser utilizado en el lado del cliente, en el Frontend de una página web que lee el navegador. Con Javascript podemos crear páginas web dinámicas a través de la definición de eventos que provocan resultados en el Backend (si tiene) o en la propia estructura HTML. Javascript puede usarse para más cosas: Websockets, Canvas, Animaciones, etc...\\
 
 En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos del exercise.html con exercise.py
 
-\section{Lenguajes de Marcado}
+\section{HTML}
 \label{sec:html}
 
 HTML (TODO)
