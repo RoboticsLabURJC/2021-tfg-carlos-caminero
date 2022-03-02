@@ -2,11 +2,13 @@ from interfaces.motors import PublisherMotors
 from interfaces.laser import ListenerLaser
 from interfaces.camera import ListenerCamera
 from interfaces.bounding_boxes import ListenerBoundingBoxes
-import threading
-import rclpy
+from interfaces.ssd_detection import NeuralNetwork, BoundingBox
+from coco_labels import LABEL_MAP
 from rclpy.executors import MultiThreadedExecutor
-import time
 from datetime import datetime
+import rclpy
+import time
+import threading
 
 def debug(cad):
     f = open("mydebug", "a")
@@ -29,6 +31,8 @@ class HAL:
     	self.listener_executor.add_node(self.camera)
     	self.listener_executor.add_node(self.bounding_boxes)
     	
+    	self.net = NeuralNetwork()
+    	
     	# Update thread
     	self.thread = ThreadHAL(self.listener_executor)
     
@@ -47,8 +51,23 @@ class HAL:
     def getImage(self):
     	return self.camera.getImage().data
     
-    def getBoundingBoxes(self):
-    	return self.bounding_boxes.getBoundingBoxes()
+    def getBoundingBoxes(self, img):
+    	rows = img.shape[0]
+    	cols = img.shape[1]
+    	detections = self.net.detect(img)
+    	bounding_boxes = []
+    	for detection in detections:
+    		bounding_box = BoundingBox(
+    			int(detection[1]),
+    			LABEL_MAP[int(detection[1])],
+    			float(detection[2]),
+    			detection[3]*cols,
+    			detection[4]*rows,
+    			detection[5]*cols,
+    			detection[6]*rows)
+    		bounding_boxes.append(bounding_box)
+    	return bounding_boxes
+    	#return self.bounding_boxes.getBoundingBoxes()
 
 
 class ThreadHAL(threading.Thread):
