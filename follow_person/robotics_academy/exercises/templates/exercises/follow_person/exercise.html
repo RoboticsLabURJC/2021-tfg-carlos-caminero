@@ -25,8 +25,14 @@ while True:
 
     <div id="visual">
     <!-- Canvas -->
-        <h3 id="output_heading">Output</h3>
+        <h3 class="output_heading">Camera Image</h3>
         <canvas id="gui_canvas"></canvas>
+    </div>
+
+    <div id="visual">
+    <!-- Canvas Visual Ray -->
+        <h3 class="output_heading">Visual Ray</h3>
+        <canvas id="gui_canvas_ray"></canvas>
     </div>
     
     <iframe id="console" style="display:none;" src="" width="100%" height="50%"></iframe>
@@ -63,7 +69,7 @@ while True:
 <script>
   Split(['.a', '.b'], {
     gutterSize: 3,
-    sizes: [50,50]
+    sizes: [40,60]
   });
 </script>
 <script src='https://huningxin.github.io/opencv.js/build/asm.js/opencv.js' async></script>
