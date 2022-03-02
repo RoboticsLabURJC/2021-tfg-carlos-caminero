@@ -73,7 +73,7 @@ class ListenerLaser(Node):
         super().__init__("laser_subscriber_node")
         self.topic = topic
         self.data = LaserData()
-        self.sub = None
+        self.sub= None
         self.lock = threading.Lock()
         self.start()
  

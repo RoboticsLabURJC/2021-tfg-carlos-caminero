@@ -19,12 +19,12 @@ def generate_launch_description():
 	pkg_darknet_ros = FindPackageShare(package='darknet_ros').find('darknet_ros')
 	
 	darknet_ros_launch = IncludeLaunchDescription(
-		PythonLaunchDescriptionSource(os.path.join(pkg_darknet_ros, 'launch', 'yolov4-tiny.launch.py'))
+		PythonLaunchDescriptionSource(os.path.join(pkg_darknet_ros, 'launch', 'darknet_ros.launch.py'))
 	)
 
 	ld = LaunchDescription()
 	
 	ld.add_action(hospital_world_launch)
-	ld.add_action(darknet_ros_launch)
+	#ld.add_action(darknet_ros_launch)
 	
 	return ld
