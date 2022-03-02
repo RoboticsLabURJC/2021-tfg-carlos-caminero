@@ -292,7 +292,7 @@ namespace gazebo
                 std::make_tuple(-PI/2, 0.0)
             };
 
-            auto_movement = true;
+            auto_movement = false;
             linear_movement = true;
             linear_dir = 0;
             

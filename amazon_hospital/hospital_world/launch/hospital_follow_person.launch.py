@@ -22,6 +22,18 @@ def generate_launch_description():
   # Set the path to the Turtlebot2 ROS package
   pkg_turtlebot2 = FindPackageShare(package='turtlebot2').find('turtlebot2')
 
+  # Set Turtlebot2 Arguments
+  x_turtlebot2_position = '0'
+  y_turtlebot2_position = '10'
+  declare_x_position_cmd = DeclareLaunchArgument(
+    '-x', default_value=x_turtlebot2_position,
+    description="Position on the axis x of Turtlebot2"
+  )
+  declare_y_position_cmd = DeclareLaunchArgument(
+    '-y', default_value=y_turtlebot2_position,
+    description="Position on the axis y of Turtlebot2"
+  )
+
   # Set the path to this package.
   pkg_share = FindPackageShare(package='hospital_world').find('hospital_world')
  
@@ -74,7 +86,8 @@ def generate_launch_description():
     condition=IfCondition(PythonExpression([use_simulator, ' and not ', headless])))
   
   start_turtlebot2_cmd = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource(os.path.join(pkg_turtlebot2, 'launch', 'spawn_model.launch.py'))
+    PythonLaunchDescriptionSource(os.path.join(pkg_turtlebot2, 'launch', 'spawn_model.launch.py')),
+    launch_arguments = {'-x': x_turtlebot2_position, '-y': y_turtlebot2_position}.items()
   )
  
   # Create the launch description and populate
@@ -85,6 +98,8 @@ def generate_launch_description():
   ld.add_action(declare_use_sim_time_cmd)
   ld.add_action(declare_use_simulator_cmd)
   ld.add_action(declare_world_cmd)
+  ld.add_action(declare_x_position_cmd)
+  ld.add_action(declare_y_position_cmd)
  
   # Add any actions
   ld.add_action(start_gazebo_server_cmd)
