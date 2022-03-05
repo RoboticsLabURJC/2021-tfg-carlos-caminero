@@ -189,6 +189,7 @@ class Template:
         hal_module.HAL.setV = self.hal.setV
         hal_module.HAL.setW = self.hal.setW
         hal_module.HAL.getLaserData = self.hal.getLaserData
+        hal_module.HAL.getPose3d = self.hal.getPose3d
         hal_module.HAL.getImage = self.hal.getImage
         hal_module.HAL.getBoundingBoxes = self.hal.getBoundingBoxes
 
