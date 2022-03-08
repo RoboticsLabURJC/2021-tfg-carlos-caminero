@@ -22,7 +22,7 @@ Su evolución tuvo lugar en la segunda mitad del siglo XX a partir de varios ava
   \begin{center}
     \includegraphics[width=5cm]{imagenes/shakey.jpg}
   \end{center}
-  \caption{Shakey (1966-1972) \cite{shakey-the-robot}}
+  \caption[Shakey (1966-1972)]{Shakey (1966-1972) \cite{shakey-the-robot}.}
   \label{fig:shakey}
 \end{figure}\
 
@@ -40,23 +40,28 @@ Una aplicación de Redes Neuronales es la detección mediante Vision Artificial 
 
 Típicamente, una Red Neuronal consta de un conjunto de capas formado por varias neuronas que se encuentran interconectadas. Suelen dividirse en 1 capa de entrada, 1 o más capas ocultas y 1 capa de salida. Pero, ¿cómo funciona una neurona?\\
 
+Una neurona, tal y como se muestra en la figura \ref{fig:neurona} está formada pos los siguientes elementos:
+\begin{itemize}
+	\item \textbf{Valores de Entrada}: Puede ser tanto los valores de las \textbf{características} de cada muestra como la salida de la neurona de una capa anterior.
+	\item \textbf{Pesos}: Son unos valores que se optienen al final de la etapa de entrenamiento.
+	\item \textbf{Sumatorio}: Esta formado por los productos de los Valores de Entrada por sus correspondientes Pesos
+	\item \textbf{Función de Decisión/Activación}: Es una función matemática que se aplica al sumatorio: Lineal, Escalón, Sigmoide, etc
+	\item \textbf{Salida}: Es el valor de la función de decisión. Dependiendo de la función de activación usada, la salida será distinta.
+\end{itemize}
 
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=15cm]{imagenes/neurona.png}
   \end{center}
-  \caption{Una Neurona \cite{AIMA}}
+  \caption[Modelo computacional de una neurona]{Modelo computacional de una neurona \cite{AIMA}}
   \label{fig:neurona}
-\end{figure}\
+\end{figure}
 
-Una neurona está formada pos los siguientes elementos:
-\begin{itemize}
-	\item \textbf{Valores de Entrada}: Puede ser tanto los valores de las \textbf{características} de cada muestra como la salida de la neurona de una capa anterior.
-	\item \textbf{Pesos}: Son unos valores que se optienen al final de la etapa de entrenamiento.
-	\item \textbf{Sumatorio}: Esta formado por los productos de los Valores de Entrada por sus correspondientes Pesos
-	\item \textbf{Función de Decisión/Activación}: Es una función matemática que se aplica al sumatorio.
-	\item \textbf{Salida}: Es el valor de la función de decisión. Dependiendo de la función aplicada, la salida será distinta.
-\end{itemize}
+\subsection{YOLO}
+\label{subsec:yolo}
+
+\subsection{SSD}
+\label{subsec:SSD}
 
 \section{Educación en Robótica}
 \label{sec:educacion_robotica}
@@ -66,8 +71,37 @@ Una neurona está formada pos los siguientes elementos:
 
 \subsection{Robotics Academy}
 \label{sec:robotics_academy}
+Robotics Academy \cite{robotics-academy} es una colección de ejercicios y desafíos para aprender robótica. Está mantenido por la organización JdeRobot. Sus ejercicios abarcan varios temas: drones, robótica móvil, visión artificial, coches autónomos, robótica industrial, etc. Además es una plataforma Open Source, por lo que cualquier interesado/a puede contribuir desde Github.\\
+
+En sus orígenes, solo se podía ejecutar sobre un sistema operativo Linux, pero desde sus últimas versiones puede ejecutar también sobre Windows y MAC, gracias a la incorporación de plantillas web que se ejecutan en un navegador estableciendo una conexión a través de WebSockets con un contenedor docker que lanza el usuario, permitiendo de esta manera, el despliegue de los ejercicios sobre un sistema operativo virtualizado y con todas sus dependencias ya instaladas.\\
+
+Los usuarios una vez que escogen un ejercicio, lanzan un contenedor docker indicado y automáticamente tienen acceso a una dirección web local donde pueden empezar a programar. La plantilla web incorpora un Editor de Texto y la posibilidad de visualizar un entorno de Gazebo y un terminal mediante una conexión VNC con el contenedor. En la figura \ref{fig:rob-ac-web-template} vemos un ejemplo de plantilla web correspondiente al ejercicio \textit{Follow Person}. La programación se realiza con Python (un lenguaje fácil de entender y aprender, y muy usado en la Robótica).\\
+
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/robotics-academy-web-template.png}
+  \end{center}
+  \caption[Robotics Academy (Web Template)]{Menú de Robótics Academy (Web Template}
+  \label{fig:rob-ac-web-template}
+\end{figure}
+
+Una ventaja de usar Robotics Academy, es que permite al usario centrarse única y exclusivamente con el algoritmo que tenga que implementar. Toda la complejidad relacionada con la comunicación con el hardware del robot: motores, laser, cámara, etc. que, por lo general se realiza mediante ROS (un framework para programar Robots) queda encapsulado por 2 módulos: HAL y GUI. De esta manera, el usuario dispone de una API de HAL (Hardware Abstración Layer) para comandar a los actuadores o recibir información de los sensores, y una API de GUI (Graphical User Interface) para visualizar por el navegador información como puede ser una imagen, un mapa o incluso vectores.\\
 
 \subsection{Unibotics}
 \label{sec:unibotics}
+
+\textbf{Unibotics} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y además, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto de manera que los usuarios no necesiten instalar docker en sus sistemas operativos.\\
+
+Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}
+
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/unibotics-menu.png}
+  \end{center}
+  \caption[Unibotics (Menú)]{Unibotics (Menú)}
+  \label{fig:menu-unibotics}
+\end{figure}
+
+
 
 
