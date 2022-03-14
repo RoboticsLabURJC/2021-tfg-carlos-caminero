@@ -1,6 +1,6 @@
 from interfaces.motors import PublisherMotors
 from interfaces.laser import ListenerLaser
-from interfaces.camera import Camera
+from interfaces.camera import ListenerCamera
 from interfaces.pose3d import ListenerPose3d
 from interfaces.ssd_detection import NeuralNetwork, BoundingBox
 from coco_labels import LABEL_MAP
@@ -23,12 +23,13 @@ class HAL:
     	
     	self.motors = PublisherMotors("cmd_vel", 4, 0.3)
     	self.laser = ListenerLaser("scan")
-    	self.camera = Camera(4)
+    	self.camera = ListenerCamera("/image_raw")
     	self.odometry = ListenerPose3d("/odom")
     	
     	self.listener_executor = MultiThreadedExecutor(num_threads=4)
     	self.listener_executor.add_node(self.laser)
     	self.listener_executor.add_node(self.odometry)
+    	self.listener_executor.add_node(self.camera)
     	
     	self.net = NeuralNetwork()
     	
@@ -48,7 +49,7 @@ class HAL:
     	return self.laser.getLaserData()
     
     def getImage(self):
-    	return self.camera.getImage()
+    	return self.camera.getImage().data
     
     def getPose3d(self):
     	return self.odometry.getPose3d()
