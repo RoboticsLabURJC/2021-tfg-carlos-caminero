@@ -1,0 +1,20 @@
+nvidia-docker run -it --device /dev/video4 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -p 8000:8000 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 --name foxy_radi_container_camera jderobot/robotics-academy:4.2.0 bash
+
+# hay que copiar:
+db.sqlite3
+manager.py
+instructions.json
+radi-entrypoint.sh
+hospital_world
+turtlebot2
+
+# Acceder a /opt/jderobot/CustomRobots
+
+# Instalar dependencias
+apt-get update
+rosdep install --from-paths . --ignore-src -r -y
+... o ...
+apt-get install ros-foxy-ecl-build ros-foxy-diagnostic-updater ros-foxy-kobuki-core ros-foxy-ecl-errors ros-foxy-ecl-exceptions ros-foxy-ecl-geometry ros-foxy-ecl-linear-algebra ros-foxy-ecl-sigslots ros-foxy-joint-state-publisher
+
+# Pasamos el ejercicio follow_person del repositorio al contenedor
+
