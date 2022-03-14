@@ -1,0 +1,32 @@
+{
+    "amazon_single": {
+        "gazebo_path": "",
+        "instructions_ros": ["ros2 launch /RoboticsAcademy/exercises/static/exercises/amazon_single/web-template/launch/amazon_robot_in_aws_world.launch.py"],
+        "instructions_rviz": "ros2 launch /RoboticsAcademy/exercises/static/exercises/amazon_single/web-template/launch/rviz.launch.py",
+        "instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/amazon_single/web-template/exercise.py 0.0.0.0"
+    },
+    "tb3_nav": {
+        "gazebo_path": "",
+        "instructions_ros": ["ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py"],
+        "instructions_rviz": "ros2 launch /RoboticsAcademy/exercises/static/exercises/tb3_nav/web-template/launch/cartographer.launch.py",
+        "instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/tb3_nav/web-template/exercise.py 0.0.0.0"
+    },
+    "tb3_teleop": {
+        "gazebo_path": "",
+        "instructions_ros": ["ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py"],
+        "instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/tb3_teleop/web-template/exercise.py 0.0.0.0"
+    },
+    "color_filter": {
+        "instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/color_filter/web-template/exercise.py 0.0.0.0"
+    },
+    "follow_person": {
+        "gazebo_path": "",
+        "instructions_ros": ["ros2 launch /RoboticsAcademy/exercises/static/exercises/follow_person/web-template/launch/follow_person.launch.py"],
+        "instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/follow_person/web-template/exercise.py 0.0.0.0"
+    },
+    "real_follow_person": {
+    	"gazebo_path": "",
+    	"instructions_ros": ["ros2 launch /RoboticsAcademy/exercises/static/exercises/real_follow_person/web-template/launch/real_follow_person.launch.py"],
+    	"instructions_host": "python3 /RoboticsAcademy/exercises/static/exercises/real_follow_person/web-template/exercise.py 0.0.0.0"
+    }
+}
