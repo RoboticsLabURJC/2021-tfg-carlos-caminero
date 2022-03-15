@@ -21,8 +21,8 @@ class HAL:
     	# init node
     	rclpy.init()
     	
-    	self.motors = PublisherMotors("cmd_vel", 4, 0.3)
-    	self.laser = ListenerLaser("scan")
+    	self.motors = PublisherMotors("/commands/velocity", 4, 0.3)
+    	self.laser = ListenerLaser("/scan")
     	self.camera = ListenerCamera("/image_raw")
     	self.odometry = ListenerPose3d("/odom")
     	
