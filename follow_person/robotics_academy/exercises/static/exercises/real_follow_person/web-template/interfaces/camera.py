@@ -79,7 +79,6 @@ class ListenerCamera(Node):
     def getImage(self):
         
         self.lock.acquire()
-        debug("Solicitando Datos\n")
         image = self.data
         self.lock.release()
         

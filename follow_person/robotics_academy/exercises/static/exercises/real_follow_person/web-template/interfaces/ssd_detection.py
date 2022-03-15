@@ -1,7 +1,7 @@
 import cv2
 
-FROZEN_GRAPH = "/RoboticsAcademy/exercises/static/exercises/follow_person/web-template/interfaces/pretrained_model/ssd_inception_v2_coco.pb"
-PB_TXT = "/RoboticsAcademy/exercises/static/exercises/follow_person/web-template/interfaces/pretrained_model/ssd_inception_v2_coco.pbtxt"
+FROZEN_GRAPH = "/RoboticsAcademy/exercises/static/exercises/real_follow_person/web-template/interfaces/pretrained_model/ssd_inception_v2_coco.pb"
+PB_TXT = "/RoboticsAcademy/exercises/static/exercises/real_follow_person/web-template/interfaces/pretrained_model/ssd_inception_v2_coco.pbtxt"
 SIZE = 300
 
 class BoundingBox:
