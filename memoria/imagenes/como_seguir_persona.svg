@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="como_seguir_persona.svg"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="411"
+     inkscape:cy="508.5"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect112275"
+       width="205.90216"
+       height="163.82225"
+       x="1.8423859"
+       y="60.90694"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <rect
+       style="fill:#d1ffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       id="rect868"
+       width="192.8786"
+       height="127.8762"
+       x="6.914031"
+       y="67.914238"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <circle
+       style="fill:#ffccaa;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
+       id="path894"
+       cx="63.037624"
+       cy="93.989548"
+       r="10.727391"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 6.9144482,174.12788 H 199.35074"
+       id="path929"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <rect
+       style="fill:#d38d5f;stroke:#ffba00;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect2903"
+       width="192.87819"
+       height="21.662571"
+       x="6.9144483"
+       y="174.12787"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 62.345789,104.72189 v 32.84773 l -13.184468,42.47275"
+       id="path1073"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 62.345789,137.56962 11.645188,43.46043"
+       id="path1075"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 87.94679,94.748875 83.664363,110.73111 62.543258,116.39049 47.268294,142.8475"
+       id="path1077"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <circle
+       style="fill:#ffccaa;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
+       id="path1104"
+       cx="44.883865"
+       cy="144.95572"
+       r="2.3729336"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <circle
+       style="fill:#ffccaa;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
+       id="path1104-3"
+       cx="88.677727"
+       cy="93.252373"
+       r="2.3729336"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <rect
+       style="fill:none;stroke:#00bf00;stroke-width:0.907471;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect1235"
+       width="56.706154"
+       height="108.28015"
+       x="37.640156"
+       y="78.574524"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <circle
+       style="fill:#ffff00;stroke:#ffc600;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path2417"
+       cx="152.00864"
+       cy="93.535172"
+       r="10.020878"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <circle
+       style="fill:#ff0000;stroke:#ffba00;stroke-width:0.665001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4059"
+       cx="66.736237"
+       cy="130.93701"
+       r="2.3844888"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#008000;stroke-width:0.264583"
+       x="41.107365"
+       y="75.455414"
+       id="text8983"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan8981"
+         style="fill:#008000;stroke-width:0.264583"
+         x="41.107365"
+         y="75.455414">Person. Score: 99%</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583;fill:#ff0000"
+       x="67.263023"
+       y="139.45712"
+       id="text12719"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan12717"
+         style="stroke-width:0.264583;fill:#ff0000"
+         x="67.263023"
+         y="139.45712">Centroid</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.266479px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 6.7965875,203.56229 H 202.29733"
+       id="path17785"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 29.238403,200.66218 v 6.24655"
+       id="path17787"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 50.173508,200.77257 v 6.24655"
+       id="path17787-7"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 70.811021,200.77257 v 6.24655"
+       id="path17787-5"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 90.3902,200.77257 v 6.24655"
+       id="path17787-3"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 111.55694,200.77257 v 6.24655"
+       id="path17787-56"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 131.6654,200.77257 v 6.24655"
+       id="path17787-2"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 151.24469,200.77257 v 6.24655"
+       id="path17787-9"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 170.29481,200.77257 v 6.24655"
+       id="path17787-1"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 188.28659,200.77257 v 6.24655"
+       id="path17787-27"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 29.006828,200.77257 v 6.24655"
+       id="path17787-0"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="14.104836"
+       y="77.104668"
+       id="text20247"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan20245"
+         style="stroke-width:0.264583"
+         x="14.104836"
+         y="77.104668">(x,y)min</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="95.212677"
+       y="188.87866"
+       id="text23719"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan23717"
+         style="stroke-width:0.264583"
+         x="95.212677"
+         y="188.87866">(x,y)max</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="100.05439"
+       y="213.28996"
+       id="text44009"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007"
+         style="stroke-width:0.264583"
+         x="100.05439"
+         y="213.28996">0.0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="118.65577"
+       y="213.23831"
+       id="text44009-6"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0"
+         style="stroke-width:0.264583"
+         x="118.65577"
+         y="213.23831">0.1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="138.07529"
+       y="213.06377"
+       id="text44009-6-7"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-5"
+         style="stroke-width:0.264583"
+         x="138.07529"
+         y="213.06377">0.2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="158.9196"
+       y="213.06377"
+       id="text44009-6-7-9"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-5-2"
+         style="stroke-width:0.264583"
+         x="158.9196"
+         y="213.06377">0.3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="176.90692"
+       y="213.06377"
+       id="text44009-6-7-2"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-5-8"
+         style="stroke-width:0.264583"
+         x="176.90692"
+         y="213.06377">0.4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="77.728271"
+       y="213.32822"
+       id="text44009-6-6"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-2"
+         style="stroke-width:0.264583"
+         x="77.728271"
+         y="213.32822">-0.1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="55.215717"
+       y="213.59293"
+       id="text44009-6-6-6"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-2-1"
+         style="stroke-width:0.264583"
+         x="55.215717"
+         y="213.59293">-0.2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="36.143852"
+       y="213.9167"
+       id="text44009-6-6-8"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-2-7"
+         style="stroke-width:0.264583"
+         x="36.143852"
+         y="213.9167">-0.3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="14.530616"
+       y="213.51654"
+       id="text44009-6-6-9"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan44007-0-2-2"
+         style="stroke-width:0.264583"
+         x="14.530616"
+         y="213.51654">-0.4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="122.55038"
+       y="211.76158"
+       id="text51837"><tspan
+         sodipodi:role="line"
+         id="tspan51835"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="0.6005528"
+       y="209.76125"
+       id="text88018"><tspan
+         sodipodi:role="line"
+         id="tspan88016"
+         style="stroke-width:0.264583"
+         x="0.6005528"
+         y="209.76125" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="74.917557"
+       y="220.66634"
+       id="text96080"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/how_to_follow_person.png"
+       inkscape:export-xdpi="98.560806"
+       inkscape:export-ydpi="98.560806"><tspan
+         sodipodi:role="line"
+         id="tspan96078"
+         style="stroke-width:0.264583"
+         x="74.917557"
+         y="220.66634">Angular velocities (rad/s)</tspan></text>
+  </g>
+</svg>

@@ -11,7 +11,7 @@ La primera versión de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí ha
 
 El funcionamiento de ROS se basa en un sistema centralizado donde un nodo principal se encarga del intercambio de información entre otros nodos del que forma la aplicación, los cuales se comportan como publicadores o suscriptores, permitiendo así, ejecutar en paralelo varios procesos que se dedican a subtareas específicas del robot. De esta forma, por ejemplo, se puede tener un nodo encargado de la recogida de datos de la cámara y otro que comande velocidades dependiendo del resultado del procesamiento que se ha obtenido del nodo de visualización.\\
 
-\begin{figure} [h!]
+\begin{figure} [H]
   \begin{center}
     \includegraphics[width=15cm]{imagenes/ros_master_communication.png}
   \end{center}
@@ -32,7 +32,7 @@ La sintaxis sigue la siguiente \textbf{regla}: El robot se divide en su mayoría
 
 Para definir un link hay que proporcionarle su modelo visual (<visual>), su modelo de colisión (<collision>) y su modelo inercial (<inertial>). Después se define el joint que une el eslabón que hemos definido con otro mediante una jerarquía de padres e hijos.\\
 
-\begin{code}[h]
+\begin{code}[H]
 \begin{lstlisting}[language=XML]
 <?xml version="1.0"?>
 <robot name="simple_cube">
@@ -73,7 +73,7 @@ C++ es un lenguaje de programación diseñado en 1979 de Bjarne Stroustrup. Deri
 
 Muchos paquetes de ROS se programan con C++ debido a la gran cantidad de posibilidades que presenta este lenguaje para desarrollar Plugins, Behavior Trees, Máquinas de Estado, etc.\\
 
-\begin{code}[h]
+\begin{code}[H]
 \begin{lstlisting}[language=C++]
 #include <iostream>
 
@@ -95,7 +95,7 @@ Python es un lenguaje de programación interpretado que destaca por su legibilid
 
 La infraestructura de Unibotics y de Robotics Academy están programadas en Python
 
-\begin{code}[h]
+\begin{code}[H]
 \begin{lstlisting}[language=Python]
 print("Hola mundo")
 \end{lstlisting}
