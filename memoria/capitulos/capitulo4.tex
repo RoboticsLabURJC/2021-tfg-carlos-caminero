@@ -221,13 +221,11 @@ En el fichero \textbf{structures.urdf.xacro} creamos 2 macros para que podamos c
 \label{fig:creacion_link_macro}
 \end{code}
 
-También en el fichero turtlebot2.urdf.xacro incluimos con la macro \textbf{xacro:include} las definicones URDF de los ficheros del paquete \textbf{kobuki\_description}. Por último creamos dos ficheros XACRO para establecer una cámara RGBD y un láser 360 grados. Los ficheros los podéis ver en este \textbf{enlace}\footnote{\url{https://github.com/RoboticsLabURJC/2021-tfg-carlos-caminero/tree/main/turtlebot2/turtlebot2/urdf/sensors/}}\\
+También en el fichero turtlebot2.urdf.xacro incluimos con la macro \textbf{xacro:include} las definicones URDF de los ficheros del paquete \textbf{kobuki\_description}. Por último creamos dos ficheros XACRO para establecer una cámara RGBD y un láser 360 grados. Los ficheros de los sensores los podéis ver en este \textbf{enlace}\footnote{\url{https://github.com/RoboticsLabURJC/2021-tfg-carlos-caminero/tree/main/turtlebot2/turtlebot2/urdf/sensors/}}\\
 
-Mediante este script generé un fichero urdf con toda la descripción del modelo a partir de turtlebot2.urdf.xacro:
+Mediante este comando generaba un fichero urdf con toda la descripción del modelo a partir de turtlebot2.urdf.xacro:
 \begin{lstlisting}
-#!/bin/sh
 ros2 run xacro xacro urdf/turtlebot2.urdf.xacro > urdf/turtlebot2.urdf
-ros2 launch turtlebot2 spawn_model.launch.py
 \end{lstlisting}
 
 % -- TURTLEBOT 2: LANZAMIENTO EN GAZEBO
@@ -235,4 +233,39 @@ ros2 launch turtlebot2 spawn_model.launch.py
 \subsection{Lanzamiento en Gazebo}
 \label{sec:turtlebot2_gazebo}
 
-(TODO)
+Para la visualización del modelo URDF en Gazebo me basé en los mismos ficheros que hice con la base Kobuki \ref{sec:kobuki_gazebo}: \textbf{empty\_world.launch.py} y \textbf{spawn\_model.launch.py}\\
+
+La única diferencia es que definí 3 argumentos por defecto para establecer la posición del robot, para que cuando se quiera importar el modelo en cualquier otro mundo de gazebo, se pueda especificar el punto de inicio. Estos 3 argumentos se lo pasaba al Nodo \textbf{spawn\_entity}. A continuación podéis ver dicha sección del código del fichero \textbf{spawn\_model.launch.py}:
+\begin{lstlisting}
+	# Set (x, y, z) default position of turtlebot2
+	x_pos = LaunchConfiguration('-x', default='0')
+	y_pos = LaunchConfiguration('-y', default='0')
+	z_pos = LaunchConfiguration('-z', default='0')
+	
+	spawn_entity_node = Node(
+		package='gazebo_ros',
+		executable='spawn_entity.py',
+		name='entity_spawner',
+		output='screen',
+		arguments=["-topic", "/robot_description", "-entity", "turtlebot2", "-x", x_pos, "-y", y_pos, "-z", z_pos]
+	)
+\end{lstlisting}
+
+Una vez abierto Gazebo, para lanzar el modelo ejecutamos el siguiente comando:
+\begin{lstlisting}
+ros2 launch turtlebot2 spawn_model.launch.py
+\end{lstlisting}
+
+En la figura \ref{fig:evolucion_turtlebot2_sim} podemos ver la evolución del proceso creativo del Turtlebot2 simulado.
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/creacion-turtlebot2-sim.png}
+  \end{center}
+  \caption[Evolución Turtlebot 2 simulado]{Evolución Turtlebot 2 simulado}
+  \label{fig:evolucion_turtlebot2_sim}
+\end{figure}
+
+
+\textbf{Consideraciones a tener en cuenta}: Tanto el modelo Kobuki como el Turtlebot 2 simulado usan un plugin para controlar los motores denominado \textbf{differential\_drive\_controller.so}. Este plugin se suscribe a un topic para controlar la velocidad de las ruedas del robot llamado \textbf{/cmd\_vel} (estándar en ROS), por lo que no coincide con el topic del robot real \textbf{/commands/velocity}. 
+
+
