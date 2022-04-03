@@ -27,6 +27,11 @@ class PIDController:
         return P + D + I
 
 
+def parse_laser_data(laser_data):
+    values = laser_data.values
+    return values[90:0:-1] + values[0:1] + values[360:269:-1]
+
+
 def euclidean_distance(p1, p2):
     return math.sqrt(math.pow(abs(p2[0]-p1[0]), 2) + math.pow(abs(p2[1]-p1[1]), 2))
     
