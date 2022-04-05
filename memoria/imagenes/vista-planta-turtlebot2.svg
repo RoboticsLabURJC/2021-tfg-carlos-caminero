@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   sodipodi:docname="vista-planta-turtlebot2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="1.0633188"
+     inkscape:cx="138.24641"
+     inkscape:cy="575.08625"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker33026"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path33024" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker33016"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path33014" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path32644" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path32641" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5118">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1;"
+         offset="0"
+         id="stop5114" />
+      <stop
+         style="stop-color:#00ffff;stop-opacity:0.04923929"
+         offset="1"
+         id="stop5116" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3178">
+      <stop
+         style="stop-color:#800080;stop-opacity:1;"
+         offset="0"
+         id="stop3174" />
+      <stop
+         style="stop-color:#800080;stop-opacity:0;"
+         offset="1"
+         id="stop3176" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3178"
+       id="radialGradient3180"
+       cx="109.14995"
+       cy="153.67181"
+       fx="109.14995"
+       fy="153.67181"
+       r="78.308945"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.4145681,0.68241918,-0.27197222,0.9623051,-118.9366,-75.890183)" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter3182"
+       x="-0.021828329"
+       y="-0.021828329"
+       width="1.0436567"
+       height="1.0436567">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.3668429"
+         id="feGaussianBlur3184" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5118"
+       id="radialGradient5120"
+       cx="102.40188"
+       cy="71.548134"
+       fx="102.40188"
+       fy="71.548134"
+       r="51.281103"
+       gradientTransform="matrix(2.0314765,0.02497402,-0.0068578,0.55783754,-105.13447,29.078512)"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter5160"
+       x="-0.28882251"
+       y="-0.42235656"
+       width="1.5776248"
+       height="1.8447131">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="12.19224"
+         id="feGaussianBlur5162" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#000000;stroke:#000000;stroke-width:0.149367;stroke-linecap:round;stroke-linejoin:round"
+       id="rect4018"
+       width="12.66542"
+       height="2.6033208"
+       x="55.539185"
+       y="113.78909"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#666666;stroke:#000000;stroke-width:0.149367;stroke-linecap:round;stroke-linejoin:round"
+       id="path846"
+       cx="62.101059"
+       cy="135.44727"
+       r="21.116722"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="opacity:1;mix-blend-mode:normal;fill:url(#radialGradient3180);fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;filter:url(#filter3182)"
+       id="path1166"
+       cx="102.81892"
+       cy="146.47501"
+       r="78.176445"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"
+       transform="matrix(0.5636511,0,0,0.5636511,3.9480404,53.84742)" />
+    <path
+       style="fill:url(#radialGradient5120);fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5160)"
+       d="M 91.53028,106.34535 51.349912,36.750913 H 153.45591 L 114.0006,106.34535 Z"
+       id="path4975"
+       sodipodi:nodetypes="ccccc"
+       transform="matrix(0.54215772,0,0,0.66613245,6.1490024,41.855577)"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#000000;stroke:#000000;stroke-width:0.105176;stroke-linecap:round;stroke-linejoin:round"
+       id="path1040"
+       cx="61.897465"
+       cy="135.28053"
+       r="6.2728949"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.98266px;line-height:1.25;font-family:sans-serif;stroke-width:0.149132"
+       x="75.7397"
+       y="105.89979"
+       id="text8116"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan8114"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;stroke-width:0.149132"
+         x="75.7397"
+         y="105.89979">cámara</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.98266px;line-height:1.25;font-family:sans-serif;stroke-width:0.149132"
+       x="47.120487"
+       y="126.54789"
+       id="text12482"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan12480"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffff00;stroke-width:0.149132"
+         x="47.120487"
+         y="126.54789">láser</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.149368;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 74.611783,106.32325 -8.803418,5.74333"
+       id="path32621"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:#ffff00;stroke:#ffff00;stroke-width:0.149132px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker33026)"
+       d="m 50.64317,128.08813 4.087595,4.08759"
+       id="path33012"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="36.269932"
+       y="40.320171"
+       id="text34559"><tspan
+         sodipodi:role="line"
+         id="tspan34557"
+         style="stroke-width:0.264583"
+         x="36.269932"
+         y="40.320171" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="7.2120895"
+       y="156.08102"
+       id="text47229"><tspan
+         sodipodi:role="line"
+         id="tspan47227"
+         style="stroke-width:0.264583"
+         x="7.2120895"
+         y="156.08102" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.98266px;line-height:1.25;font-family:sans-serif;stroke-width:0.149132"
+       x="8.766818"
+       y="134.46082"
+       id="text55861"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan55859"
+         style="stroke-width:0.149132"
+         x="8.766818"
+         y="134.46082">i = 0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.98266px;line-height:1.25;font-family:sans-serif;stroke-width:0.149132"
+       x="58.660355"
+       y="90.868355"
+       id="text57895"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan57893"
+         style="stroke-width:0.149132"
+         x="58.660355"
+         y="90.868355">i = 90</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.98266px;line-height:1.25;font-family:sans-serif;stroke-width:0.149132"
+       x="107.90376"
+       y="134.54247"
+       id="text59849"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/vista-planta-turtlebot2.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan59847"
+         style="stroke-width:0.149132"
+         x="107.90376"
+         y="134.54247">i = 179</tspan></text>
+  </g>
+</svg>
