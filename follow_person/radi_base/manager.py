@@ -42,7 +42,7 @@ class Commands:
 
     # Function to get the instructions to run ROS
     def get_ros_instructions(self, exercise):
-        roslaunch_cmd = '/bin/sh -c "' #"export DISPLAY=:0;'
+        roslaunch_cmd = '/bin/sh -c "export DISPLAY=:0;'
 
         gz_cmd = roslaunch_cmd
         roslaunch_cmd = roslaunch_cmd + self.get_gazebo_path(exercise)
@@ -52,7 +52,6 @@ class Commands:
             else:
                 roslaunch_cmd = roslaunch_cmd + "vglrun " + instruction + ";"
         roslaunch_cmd = roslaunch_cmd + '"'
-        print("instruccion: ", roslaunch_cmd)
         return roslaunch_cmd, gz_cmd
 
     # Function to start gzclient
@@ -65,21 +64,26 @@ class Commands:
                                 f"echo height={height} >> ~/.gazebo/gui.ini;"]
 
         if not (ACCELERATION_ENABLED):
-	    # Write display config and start gzclient
-            gzclient_cmd = (f"" + self.get_gazebo_path(exercise) + "".join(gzclient_config_cmds) + "gzclient --verbose")
+        # Write display config and start gzclient
+            gzclient_cmd = (f"export DISPLAY={self.DISPLAY};" + self.get_gazebo_path(exercise) + "".join(gzclient_config_cmds) + "gzclient --verbose")
         else:
-            gzclient_cmd = (f"" +
-		    self.get_gazebo_path(exercise) +
-		    "".join(gzclient_config_cmds) +
-		    "export VGL_DISPLAY=/dev/dri/card0; vglrun gzclient --verbose")
+            gzclient_cmd = (f"export DISPLAY={self.DISPLAY};" +
+            self.get_gazebo_path(exercise) +
+            "".join(gzclient_config_cmds) +
+            "export VGL_DISPLAY=/dev/dri/card0; vglrun gzclient --verbose")
         gzclient_thread = m_utils.DockerThread(gzclient_cmd)
         gzclient_thread.start()
+
+    # Function to stop gzclient
+    def stop_gzclient(self):
+        cmd_stop = ['pkill', '-f', 'gzclient']
+        self.run_subprocess(cmd_stop)
 
     # Function to start the console
     def start_console(self, width, height):
         # Write display config and start the console
         width = int(width) / 10; height = int(height) / 18
-        console_cmd = f""
+        console_cmd = f"export DISPLAY=:1;"
         if ACCELERATION_ENABLED:
             console_cmd += f"vglrun xterm -fullscreen -sb -fa 'Monospace' -fs 10 -bg black -fg white"
         else:
@@ -123,12 +127,12 @@ class Commands:
 
     # Function to stop VNC server for accelerated simulation
     def stop_vnc(self):
-        cmd_console = "/opt/TurboVNC/bin/vncserver -kill :0"
-        os.popen(cmd_console)
-        cmd_console = "/opt/TurboVNC/bin/vncserver -kill :1"
-        os.popen(cmd_console)
-        cmd_console = "/opt/TurboVNC/bin/vncserver -kill :2"
-        os.popen(cmd_console)
+        cmd_vnc_0 = ['/opt/TurboVNC/bin/vncserver', '-kill', ':0']
+        self.run_subprocess(cmd_vnc_0)
+        cmd_vnc_1 = ['/opt/TurboVNC/bin/vncserver', '-kill', ':1']
+        self.run_subprocess(cmd_vnc_1)
+        cmd_vnc_2 = ['/opt/TurboVNC/bin/vncserver', '-kill', ':2']
+        self.run_subprocess(cmd_vnc_2)
 
     # Function to start an exercise
     def start_exercise(self, exercise):
@@ -154,9 +158,9 @@ class Commands:
     
     # Function to launch only ros instructions
     def start_ros_instructions(self, exercise):
-    	roslaunch_cmd, gz_cmd = self.get_ros_instructions(exercise)
-    	roslaunch_thread = m_utils.DockerThread(roslaunch_cmd)
-    	roslaunch_thread.start()
+        roslaunch_cmd, gz_cmd = self.get_ros_instructions(exercise)
+        roslaunch_thread = m_utils.DockerThread(roslaunch_cmd)
+        roslaunch_thread.start()
 
     # Function to roslaunch Gazebo Server
     def start_gzserver(self, exercise, width, height):
@@ -188,6 +192,7 @@ class Commands:
         #            else:
         #                print("Trying again")
 
+
     ## Reference service names for ROS2-
     ## https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-ROS-Clocks-and-sim-time#time-commands
 
@@ -209,39 +214,53 @@ class Commands:
         rosservice_thread = m_utils.DockerThread(cmd)
         rosservice_thread.start()
 
+
+    # Function to start subprocess
+    def run_subprocess(self, cmd):
+        subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True)
+
     # Function to kill every program
     async def kill_all(self):
-        cmd_py = 'pkill -9 -f "python "'
-        os.popen(cmd_py)
-        cmd_gz = "pkill -9 -f gz"
-        os.popen(cmd_gz)
-        cmd_exercise = "pkill -9 -f exercise.py"
-        os.popen(cmd_exercise)
-        cmd_gui = "pkill -9 -f gui.py"
-        os.popen(cmd_gui)
-        cmd_host = "pkill -9 -f node"
-        os.popen(cmd_host)
-        cmd_host = "pkill -9 -f gzserver"
-        os.popen(cmd_host)
-        cmd_client = "pkill -9 -f gzclient"
-        os.popen(cmd_client)
-        cmd_ros = "pkill -9 -f roslaunch"
-        os.popen(cmd_ros)
-        cmd_rosout = "pkill -9 -f rosout"
-        os.popen(cmd_rosout)
-        cmd_mel = "pkill -9 -f melodroot"
-        os.popen(cmd_mel)
-        cmd_rosout = "pkill -9 -f rosout"
-        os.popen(cmd_rosout)
-        cmd_websockify = "pkill -9 -f websockify"
-        os.popen(cmd_websockify)
-        cmd_x11vnc = "pkill -9 -f x11vnc"
-        os.popen(cmd_x11vnc)
-        cmd_novnc = "pkill -9 -f launch.sh"
-        os.popen(cmd_novnc)
-        os.popen(cmd_novnc)
-        cmd_console = "pkill -9 -f xterm"
-        os.popen(cmd_console)
+        cmd = ['pkill', '-9', '-f']
+        cmd_py = cmd + ['"python "']
+        self.run_subprocess(cmd_py)
+        cmd_gz = cmd + ['gz']
+        self.run_subprocess(cmd_gz)
+        cmd_launch = cmd + ['launch.py']
+        self.run_subprocess(cmd_launch)
+        cmd_exercise = cmd + ['exercise.py']
+        self.run_subprocess(cmd_exercise)
+        cmd_gui = cmd + ['gui.py']
+        self.run_subprocess(cmd_gui)
+        try:
+            cmd_exercise_guest = cmd + ['exercise_guest.py']
+            self.run_subprocess(cmd_exercise_guest)
+            cmd_gui_guest = cmd + ['gui_guest.py']
+            self.run_subprocess(cmd_gui_guest)
+        except:
+            pass
+        cmd_host = cmd + ['node']
+        self.run_subprocess(cmd_host)
+        cmd_host = cmd + ['gzserver']
+        self.run_subprocess(cmd_host)
+        cmd_client = cmd + ['gzclient']
+        self.run_subprocess(cmd_client)
+        cmd_ros = cmd + ['roslaunch']
+        self.run_subprocess(cmd_ros)
+        cmd_rosout = cmd + ['rosout']
+        self.run_subprocess(cmd_rosout)
+        cmd_mel = cmd + ['melodroot']
+        self.run_subprocess(cmd_mel)
+        cmd_websockify = cmd + ['websockify']
+        self.run_subprocess(cmd_websockify)
+        cmd_x11vnc = cmd + ['x11vnc']
+        self.run_subprocess(cmd_x11vnc)
+        cmd_novnc = cmd + ['launch.sh']
+        self.run_subprocess(cmd_novnc)
+        cmd_console = cmd + ['xterm']
+        self.run_subprocess(cmd_console)
+        cmd_px4 = cmd + ['px4']
+        self.run_subprocess(cmd_px4)
 
 
 # Main Manager class
@@ -254,6 +273,9 @@ class Manager:
         self.commands = Commands()
         self.launch_level = 0
 
+        self.height = None
+        self.width = None
+
     # Function to handle all the requests
     async def handle(self, websocket, path):
         self.client = websocket
@@ -263,15 +285,12 @@ class Manager:
             command = data["command"]
 
             if command == "open":
-                print("open abierto")
-                width = data.get("width", 1920)
+                self.width = data.get("width", 1920)
                 height = data.get("height", 1080)
                 if not (ACCELERATION_ENABLED):
-                    print("-- entrando sin aceleracion")
-                    self.open_simulation(data["exercise"], width, height)
+                    self.open_simulation(data["exercise"], self.width, height)
                 else:
-                    print("-- entrando con acelaracion")
-                    self.open_accelerated_simulation(data["exercise"], width, height)
+                    self.open_accelerated_simulation(data["exercise"], self.width, height)
             elif command == "resume":
                 self.resume_simulation()
             elif command == "stop":
@@ -290,8 +309,8 @@ class Manager:
         print("> Starting simulation")
 
         # X Server for Console and Gazebo
-        #self.commands.start_xserver(":0")
-        #self.commands.start_xserver(":1")
+        self.commands.start_xserver(":0")
+        self.commands.start_xserver(":1")
 
         # Start the exercise
         if exercise in ["tb3_nav", "amazon_single"]:
@@ -319,19 +338,18 @@ class Manager:
             '''
             Gazebo + Console
             '''
-            print("Aqui estamos1")
-            self.commands.start_gzserver(exercise, 1000, 800)
+            self.commands.start_gzserver(exercise, width, height)
             self.commands.start_exercise(exercise)
             time.sleep(5)
             self.launch_level = 3
 
             # Start x11vnc servers
-            #self.commands.start_vnc(":0", 5900, 6080)
-            #self.commands.start_vnc(":1", 5901, 1108)
+            self.commands.start_vnc(":0", 5900, 6080)
+            self.commands.start_vnc(":1", 5901, 1108)
 
             time.sleep(2)
-            self.commands.start_console(1000, 800)
-
+            self.commands.start_console(width, height)
+        
         elif exercise in ["real_follow_person"]:
             '''
             Real robot + Console
@@ -340,6 +358,7 @@ class Manager:
             self.commands.start_exercise(exercise)
             time.sleep(2)
             self.launch_level = 3
+            self.commands.start_vnc(":1", 5900, 1108)
             self.commands.start_console(1920, 1080)
             
         else:
@@ -349,7 +368,7 @@ class Manager:
             self.commands.start_exercise(exercise)
             time.sleep(2)
             self.launch_level = 3
-            #self.commands.start_vnc(":1", 5900, 1108)
+            self.commands.start_vnc(":1", 5900, 1108)
             self.commands.start_console(1920, 1080)
 
     # Function to open accelerated simulation
@@ -385,10 +404,9 @@ class Manager:
             '''
             Gazebo + Console
             '''
-            print("Aqui estamos2")
             # Start new VNC and accelerated displays
-            #self.commands.start_vnc(":0", 5900, 6080)
-            #self.commands.start_vnc(":1", 5901, 1108)
+            self.commands.start_vnc(":0", 5900, 6080)
+            self.commands.start_vnc(":1", 5901, 1108)
             time.sleep(2)
 
             self.commands.start_gzserver(exercise, width, height)
@@ -407,14 +425,15 @@ class Manager:
             self.commands.start_exercise(exercise)
             time.sleep(2)
             self.launch_level = 3
+            self.commands.start_vnc(":1", 5900, 1108)
             self.commands.start_console(1920, 1080)
-            
+
         else:
             '''
             Only Console
             '''
             # Start new VNC and accelerated displays
-            #self.commands.start_vnc(":1", 5900, 1108)
+            self.commands.start_vnc(":1", 5900, 1108)
 
             self.commands.start_exercise(exercise)
             time.sleep(2)
