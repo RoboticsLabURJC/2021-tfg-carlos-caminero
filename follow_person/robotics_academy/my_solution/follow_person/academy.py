@@ -133,6 +133,9 @@ tracker = Tracker()
 
 tracking_failure_cont = 0
 
+horizontal_fov = 1.05
+
+
 while True:
     
     img = HAL.getImage()
@@ -145,12 +148,12 @@ while True:
     
     if state == SEARCH_PERSON:
         HAL.setV(0)
-        HAL.setW(0.1)
+        HAL.setW(0)
+        print(HAL.getLaserData())
         if len(filter3) > 0:
             
             for bbox in filter3:
                 draw_bounding_box(img, bbox, color=(0, 255, 0), thickness=3)
-                print(area_bounding_box(bbox))
             max_bbox = max_bounding_box(filter3)
 
             candidate2follow = BoundingBoxObject(max_bbox)
@@ -172,18 +175,37 @@ while True:
 
             # Setting angular velocity according to the centroid of the person to follow
             width = img.shape[1]
+            
             step = width/len(vels)
 
             object2follow, index = tracker.getObjectiveFromSet(objects)
             if index >= 0:
                 tracking_failure_cont = 0
+                centroid = object2follow.centroid
+                
+                # angle of the person with the camera
+                angle = 1.05*centroid[0]/width
+                if centroid[0] > (width/2):
+                    angle = angle - (horizontal_fov/2)
+                else:
+                    angle = -((horizontal_fov/2) - angle)
+                
+                dist = 2
+                
+                # attraction vector
+                tx = dist*math.sin(angle)
+                ty = dist*math.cos(angle)
+                
+                print("({},{})".format(round(tx, 3), round(ty, 3)))
+                
+                
                 draw_bounding_box(img, filter3[index], color=(0, 0, 255), thickness=3)
             else:
                 tracking_failure_cont += 1
             
             angular_vel = vels[int(object2follow.centroid[0]/step)]
-            HAL.setW(angular_vel)
-            HAL.setV(0.1)
+            #HAL.setW(angular_vel)
+            #HAL.setV(0.1)
         
         else:
             tracking_failure_cont += 1
@@ -192,5 +214,3 @@ while True:
             print("Person lost")
 
     GUI.showImage(img)
-
-cv2.destroyAllWindows()
