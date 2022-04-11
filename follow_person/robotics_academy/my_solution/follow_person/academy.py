@@ -1,3 +1,8 @@
+##########################
+# Carlos Caminero
+# Simulated Follow Person
+# 2021/2022
+##########################
 from GUI import GUI
 from HAL import HAL
 import cv2
@@ -124,17 +129,49 @@ def centroid_bounding_box(bbox):
     return (cx, cy)
 
 
+
+def repulsion_vector(laser_data):
+	""" It returns a vector (x, y), being the sum of
+		all repulsions vectors of each laser and
+		minimized by a scale factor """
+	x = y = 0
+	scale_laser = 0.2
+	
+	for dist_rep, ang in laser_data:
+		# Scale factor -> Scale laser
+		dist_rep = scale_laser/dist_rep
+
+		# repulsion distance is raised to 2 because we have control
+		# better the laser and we can reduce the locals minimums
+		x += (dist_rep**2) * math.cos(ang)
+		y += -(dist_rep**2) * math.sin(ang)
+
+	return (x, y)
+
+
+
 def parse_laser_data(laser_data):
     values = laser_data.values
-    return values[90:0:-1] + values[0:1] + values[360:270:-1]
+    aux = values[90:0:-1] + values[0:1] + values[360:270:-1]
+    values = []
+    for i in range(len(aux)):
+        dist = aux[i]
+        if dist == float("inf"):
+            continue
+        angle = math.radians(i)
+        values += [(dist, angle)]
+    return values
+    
 
 # Main program
 tracker = Tracker()
 
 tracking_failure_cont = 0
 
+# VFF variables
 horizontal_fov = 1.05
-
+alfa = 0.5
+beta = 0.3
 
 while True:
     
@@ -146,10 +183,10 @@ while True:
     filter2 = bounding_boxes_by_name(filter1, "person")
     filter3 = bounding_boxes_by_area(filter2, 5000)
     
+    print(repulsion_vector(parse_laser_data(HAL.getLaserData())))
     if state == SEARCH_PERSON:
         HAL.setV(0)
         HAL.setW(0)
-        print(HAL.getLaserData())
         if len(filter3) > 0:
             
             for bbox in filter3:
@@ -196,7 +233,7 @@ while True:
                 tx = dist*math.sin(angle)
                 ty = dist*math.cos(angle)
                 
-                print("({},{})".format(round(tx, 3), round(ty, 3)))
+                #print("({},{})".format(round(tx, 3), round(ty, 3)))
                 
                 
                 draw_bounding_box(img, filter3[index], color=(0, 0, 255), thickness=3)
