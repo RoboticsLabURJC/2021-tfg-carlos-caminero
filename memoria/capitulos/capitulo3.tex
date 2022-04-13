@@ -47,7 +47,7 @@ print("Hola mundo")
 \label{cod:holamundo_python}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de Python en este proyecto?} El desarrollo de la infraestructura interna que da soporte a los dos nuevos ejercicios de Robotics Academy, programación de nodos de ROS (más en la sección \ref{sec:ros}) y ficheros de lanzamiento, creación de los módulos HAL y GUI y desarollo de la solución a los ejercicios.
+\textbf{¿Cuál ha sido la utilidad de Python en este proyecto?} El desarrollo de la infraestructura interna que da soporte a los dos nuevos ejercicios de Robotics Academy, programación de nodos de ROS (más en la sección \ref{sec:ros}) y ficheros de lanzamiento, creación de los módulos HAL y GUI y desarollo de la solución a los ejercicios.\\
 
 
 
@@ -78,7 +78,7 @@ En 2016 surge ROS 2, nuevo framework basado en ROS con muchas más mejoras como 
 
 Aprender ROS no es una tarea sencilla y requiere mucha dedicación y esfuerzo. Por lo tanto, el objetivo de Robotics Academy es proporcionar una interfaz de programación sencilla para programar robots sin necesidad de saber ROS. Es decir, el usuario tiene acceso a unas librerías HAL y GUI, las cuales usan por debajo nodos de ROS.\\
 
-\textbf{¿Cuál ha sido la utilidad de ROS2 en este proyecto?} Crear los ficheros \textbf{interfaces} (laser.py, motors.py, camera.py, ...) que se comunican con los topics necesarios para el control del robot Turtlebot 2.
+\textbf{¿Cuál ha sido la utilidad de ROS2 en este proyecto?} Crear los ficheros \textbf{interfaces} (laser.py, motors.py, camera.py, ...) que se comunican con los topics necesarios para el control del robot Turtlebot 2.\\
 
 
 
@@ -148,6 +148,7 @@ Una vez que tenemos nuestro diseño en XACRO, podemos exportarlo a URDF mediante
 
 
 
+
 % -- SECCION HTML Y CSS
 % -----------------------
 \section{HTML y CSS}
@@ -169,7 +170,8 @@ p {
 \label{cod:codigo_urdf}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de HTML y CSS en este proyecto?} Diseñar y dar estilo a la plantilla web de los 2 nuevos ejercicios de Robotics Academy. El diseño se base en seguir las plantillas de los demás ejercicios con algunos pequeños cambios e incorporaciones específicos.
+\textbf{¿Cuál ha sido la utilidad de HTML y CSS en este proyecto?} Diseñar y dar estilo a la plantilla web de los 2 nuevos ejercicios de Robotics Academy. El diseño se base en seguir las plantillas de los demás ejercicios con algunos pequeños cambios e incorporaciones específicos.\\
+
 
 
 
@@ -178,10 +180,11 @@ p {
 \section{Javascript}
 \label{sec:javascript}
 
-Javascript es un lenguaje de programación interpretado que destaca por ser utilizado en el lado del cliente, en el Frontend de una página web que lee el navegador. Con Javascript podemos crear páginas web dinámicas a través de la definición de eventos que provocan resultados en el Backend (si tiene) o en la propia estructura HTML. Javascript puede usarse para multitud de tareas: Websockets, juegos, animaciones, etc.\\
+\textbf{Javascript} es un lenguaje de programación interpretado que destaca por ser utilizado en el lado del cliente, en el Frontend de una página web que lee el navegador. Con Javascript podemos crear páginas web dinámicas a través de la definición de eventos que provocan resultados en el Backend (si tiene) o en la propia estructura HTML. Javascript puede usarse para multitud de tareas: Websockets, juegos, animaciones, etc.\\
 
 \textbf{¿Cuál ha sido la utilidad de Javascript en este proyecto?}
 En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos de la página con el fichero maestro de cada ejercicio que se llama \textbf{exercise.py}.\\
+
 
 
 
@@ -190,7 +193,13 @@ En las plantillas web de Robotics Academy se usa Javascript para comunicar los e
 \section{Docker}
 \label{sec:docker}
 
-Docker (TODO)
+\textbf{Docker} es un framework que nos permite desplegar aplicaciones dentro de contenedores software que pueden ejecutar sobre cualquier sistema operativo.\\
+
+La creación de imágenes se realiza mediante ficheros \textbf{Dockerfile} donde el programador indica los comandos (de Unix) necesarios para la construcción y despliegue de su aplicación.\\
+
+\textbf{¿Cuál ha sido la utilidad de Docker en este proyecto?} Cuando Robotics Academy crea una nueva versión construye una imagen Docker con la instalación de todos los repositorios base y de terceros necesarios para la ejecución del entorno web en una distribución de Linux. Gracias a la ejecución de un contenedor docker el usuario solo necesita instalar dicho framework y nada más en su ordenador. Con el comando \textbf{\textit{docker pull}} elige la imagen que quiere descargar y con \textbf{\textit{docker run}} lanza un contenedor para realizar los ejercicios siguiendo sus correspondientes instrucciones. En este proyecto, fue necesario crear una imagen particular en el que funcionara los 2 nuevos ejercicios para posteriormente fusionarlos en la nueva imagen oficial RADI 4.\\
+
+
 
 
 % -- SECCIÓN DESCRIPCION INFRAESTRUCTURA
@@ -207,3 +216,5 @@ Una vez que hemos resumido las herramientas usadas podemos recopilarlas y mostra
   \caption{Infraestructura Robotics Academy}
   \label{fig:infraestructura_robotics_academy}
 \end{figure}\
+
+Cuando el usuario lanza un contenedor, se ejecuta el fichero \textbf{manager.py}. Este fichero se encarga del control (puesta en marcha, cierre, eventos...) y lanzamiento de todos los recursos necesarios para los ejercicios. El \textbf{manager.py} se comunica con el \textbf{exercise.py} del ejercicio que esté usando el usuario. Este último fichero se encarga de la comunicación con la plantilla web (eventos de javascript) así como la incorporación de los módulos de programación (HAL y GUI) que internamente se comunican con los nodos de ROS
