@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   sodipodi:docname="esquema-tracker.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="false"
+     inkscape:zoom="0.75187991"
+     inkscape:cx="450.86987"
+     inkscape:cy="404.98489"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path12954" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path12954-3" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#d5f6ff;stroke:#000000;stroke-width:0.585284;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect846"
+       width="167.02423"
+       height="124.69091"
+       x="25.305237"
+       y="78.35067"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="opacity:1;fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573"
+       cx="40.087589"
+       cy="96.25563"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;stroke:#000000;stroke-width:0.801901;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2018"
+       width="117.38512"
+       height="29.5919"
+       x="25.305237"
+       y="173.44968"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-1"
+       cx="36.855904"
+       cy="181.05002"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-2"
+       cx="36.812908"
+       cy="187.74559"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-3"
+       cx="74.411392"
+       cy="117.14758"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-6"
+       cx="52.575928"
+       cy="146.83698"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-7"
+       cx="88.623314"
+       cy="149.13731"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#0000ff;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-5"
+       cx="113.91078"
+       cy="117.88612"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-35"
+       cx="106.56035"
+       cy="123.06293"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-62"
+       cx="141.9393"
+       cy="144.87306"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-9"
+       cx="175.40372"
+       cy="134.68611"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#0000ff;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1573-70"
+       cx="36.795563"
+       cy="194.62411"
+       r="1.8728685"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="42.271564"
+       y="182.7437"
+       id="text6822"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan6820"
+         style="stroke-width:0.264583"
+         x="42.271564"
+         y="182.7437">centroide no candidato</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="42.271564"
+         y="189.35829"
+         id="tspan6824">centroide candidato</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="42.271564"
+         y="195.97287"
+         id="tspan6826">centroide del fotograma anterior</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 106.5803,123.00754 7.59085,-5.31777"
+       id="path10358"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="opacity:1;fill:none;stroke:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path10382"
+       cx="113.52531"
+       cy="117.8658"
+       r="14.538098"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Lend)"
+       d="M 110.66141,120.01797 96.899964,101.54258"
+       id="path12931"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.136295;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend-9)"
+       d="m 116.09646,131.83999 2.64046,17.54141"
+       id="path12931-6"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="82.207726"
+       y="100.25838"
+       id="text15049"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan15047"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="82.207726"
+         y="100.25838">distancia mínima</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="109.62831"
+       y="153.37146"
+       id="text31601"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/esquema-tracker.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan31599"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="109.62831"
+         y="153.37146">distancia límite</tspan></text>
+  </g>
+</svg>

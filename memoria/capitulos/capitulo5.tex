@@ -1,7 +1,7 @@
 \chapter{Ejercicio Sigue Personas simulado en Robotics Academy}
 \label{cap:capitulo5}
 
-En este capítulo se presenta la elaboración del ejercicio Follow Person para Robotics Academy empezando desde el desarrollo interno de la infraestructura del ejercicio hasta una solución óptima que realice la tarea de seguir a una persona.
+En este capítulo se presenta la elaboración del ejercicio Follow Person para Robotics Academy empezando desde el desarrollo interno de la infraestructura del ejercicio hasta una solución óptima de referencia que realice la tarea de seguir a una persona.
 
 
 
@@ -10,7 +10,7 @@ En este capítulo se presenta la elaboración del ejercicio Follow Person para R
 \section{Entorno simulado de un hospital}
 \label{sec:hospital_gazebo}
 
-La primera tarea fue integrar un entorno para Gazebo sobre el cual el robot Turtlebot2 tendría que enfrentarse. El entorno candidato que elegimos fue un \textbf{Hospital} debido a las siguientes ventajas:
+La primera tarea fue integrar un entorno para Gazebo en el cual el robot Turtlebot2 tendría que enfrentarse. El entorno candidato que elegimos fue un \textbf{Hospital} debido a las siguientes ventajas:
 
 \begin{enumerate}
 	\item El robot se enfrenta a un entorno complejo (paredes, obstáculos, varias personas).
@@ -100,6 +100,7 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 % -----------------------------------------
 \subsection{Desplazamiento del modelo}
 \label{subsec:desplazamiento_modelo}
+(TODO)
 
 
 
@@ -125,4 +126,71 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 \section{Solución Sigue-Personas Simulado}
 \label{sec:sigue_personas_simulado}
 
-En esta sección explicaremos la elaboración de una solución óptima del problema Sigue Personas para este ejercicio en simulado. Para ello, abarcaremos varios objetivos:
+En esta sección explicaremos la elaboración de una solución de referencia para el problema Sigue Personas de este ejercicio en simulado. La solución la podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados.
+
+\subsection{detección mediante ML y creación de un Tracker}
+\label{sec:ml_tracker}
+Para detectar a la persona usaremos la función del módulo HAL llamada \textbf{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una \textbf{imagen} de entrada y devuelve una lista de objetos \textbf{Bounding Box} (TODO explicados en la sección anterior). Crearemos una función llamada \textbf{\textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)}} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/deteccion-ssd-sin-filtro.png}
+  \end{center}
+  \caption[Detección mediante SSD sin filtro]{Detección mediante SSD sin filtro}
+  \label{fig:deteccion_ssd_sin_filtro}
+\end{figure}
+
+Sin embargo, un modelo de red neuronal genera una \textbf{puntuación} o \textbf{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por score para desechar los \textbf{falsos positivos}. Para ello, generamos una función que llamaremos \textbf{\textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)}} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a \textbf{0.3} (el rango es de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/deteccion-ssd-filtro-score.png}
+  \end{center}
+  \caption[Detección mediante SSD filtrando el \textbf{Score}]{Detección mediante SSD filtrando el \textbf{Score}}
+  \label{fig:deteccion_ssd_filtro_score}
+\end{figure}
+
+Tal y como vemos en la figura \ref{fig:deteccion_ssd_filtro_score}, tras el filtro de \textbf{puntuación} obtenemos una imagen donde hay 3 Bounding Boxes detectados: una persona y 2 sillas. Para quedarnos solo con las personas aplicaremos un \textbf{segundo filtro}, en la cual nos fijaremos en la \textbf{clase} del Bounding Box. Recordemos que el objeto Bounding Box tenía un atributo \textbf{id} que correspondía a un número entero y un atributo \textbf{class\_id} que era la traducción de dicho número a una cadena de texto (ej: 1 - ``person", 2 - ``bicycle"). Crearemos una función llamada \textbf{\textit{bounding\_boxes\_by\_name(bounding\_boxes, name)}} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el nombre de la clase que queremos filtrar (en este caso ``person"). Aplicando el filtro obtenemos una correcta detección de personas (Figura \ref{fig:deteccion_ssd_filtro_score_class}):
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/deteccion-ssd-filtro-score-class.png}
+  \end{center}
+  \caption[Detección mediante SSD filtrando el \textbf{Score} y la \textbf{Clase}]{Detección mediante SSD filtrando el \textbf{Score} y la \textbf{Clase}}
+  \label{fig:deteccion_ssd_filtro_score_class}
+\end{figure}
+
+Como último filtro y muy recomendable es rechazar aquellas detecciones que no superen un \textbf{área} determinado. Con este filtro, evitamos que el robot se confunda con personas que se encuentren a una distancia lejana o con un falso positivo, para ello, crearemos una función llamada \textbf{\textit{bounding\_boxes\_by\_area(bounding\_boxes, min\_area)}} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el área mínima que debe filtrar.\\
+
+El siguiente paso es crear un \textbf{Tracker} de seguimiento. Nuestro tracker se basará en la distancia de los centroides de los Bounding Boxes de un fotograma el candidato anterior. Recordemos que un Bounding Box tenía otros 4 parámetros más: xmin e ymin correspondían a las coordenadas (x,y) del extremo superior izquierdo de la caja de detección, y xmax e ymax correspondían a las coordenadas (x,y) del extremo inferior derecho. Para obtener el \textbf{centroide} aplicaremos la siguiente fórmula:\\
+\begin{eqnarray*}
+C_x = \frac{x_{min} + x_{max}}{2}\\
+C_y = \frac{y_{min} + y_{max}}{2}\\
+\end{eqnarray*}
+
+Crearemos una clase llamada \textbf{BoundingBoxObject} que tendrá 3 atributos: El \textbf{Bounding Box} correspondiente, su \textbf{centroide} y el \textbf{área}. El área lo calcularemos tal que así: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$\\
+
+Posteriormente, creamos una clase llamada \textbf{Tracker} que nos proporcionará una capa de abstracción al usar los siguientes métodos que definiremos:
+\begin{itemize}
+	\item \textbf{\textit{setObjective(self, obj)}}: Establece el objetivo BoundingBoxObject de seguimiento.
+	\item \textbf{\textit{getObjective(self)}}: Devuelve el objetivo BoundingBoxObject actual de seguimiento.
+	\item \textbf{\textit{getObjectiveFromSet(self, objlist)}}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca al actual, que no supere una distancia límite de diferencia(50) y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la Distancia Euclídea:
+	\begin{equation*}
+	d = \sqrt{(C_{x}' - C_{x})^2 + (C_{y}' - C_{y})^2}
+	\end{equation*}
+\end{itemize}
+
+En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en que se basa esté procedimiento: comparamos cada centroide con el centroide candidato del fotograma anterior y elegiremos aquel que cumpla los requisitos descritos anteriormente.
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/esquema-tracker.png}
+  \end{center}
+  \caption[Modo de obtención del centroide candidato]{Modo de obtención del centroide candidato}
+  \label{fig:obtencion_centroide}
+\end{figure}
+
+En cada iteración del bucle principal del programa cuando llamemos al método \textbf{getObjectiveFromSet()} de la clase Tracker obtendremos un BoundingBoxObject el cual dibujaremos en la imagen de color rojo. El resultado sería el siguiente:
+
+
+ 
+
