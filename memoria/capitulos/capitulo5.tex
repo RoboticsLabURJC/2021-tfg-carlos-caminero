@@ -128,8 +128,11 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 
 En esta sección explicaremos la elaboración de una solución de referencia para el problema Sigue Personas de este ejercicio en simulado. La solución la podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados.
 
+
+% -- SUBSECCION TRACKER
+% -----------------------
 \subsection{detección mediante ML y creación de un Tracker}
-\label{sec:ml_tracker}
+\label{subsec:ml_tracker}
 Para detectar a la persona usaremos la función del módulo HAL llamada \textbf{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una \textbf{imagen} de entrada y devuelve una lista de objetos \textbf{Bounding Box} (TODO explicados en la sección anterior). Crearemos una función llamada \textbf{\textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)}} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
 
 \begin{figure} [H]
@@ -168,7 +171,7 @@ C_x = \frac{x_{min} + x_{max}}{2}\\
 C_y = \frac{y_{min} + y_{max}}{2}\\
 \end{eqnarray*}
 
-Crearemos una clase llamada \textbf{BoundingBoxObject} que tendrá 3 atributos: El \textbf{Bounding Box} correspondiente, su \textbf{centroide} y el \textbf{área}. El área lo calcularemos tal que así: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$\\
+Crearemos una clase llamada \textbf{BoundingBoxObject} que tendrá 3 atributos: El \textbf{Bounding Box} correspondiente, su \textbf{centroide} y su \textbf{área}. El área lo obtendremos de la siguiente manera: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$\\
 
 Posteriormente, creamos una clase llamada \textbf{Tracker} que nos proporcionará una capa de abstracción al usar los siguientes métodos que definiremos:
 \begin{itemize}
@@ -180,7 +183,7 @@ Posteriormente, creamos una clase llamada \textbf{Tracker} que nos proporcionar�
 	\end{equation*}
 \end{itemize}
 
-En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en que se basa esté procedimiento: comparamos cada centroide con el centroide candidato del fotograma anterior y elegiremos aquel que cumpla los requisitos descritos anteriormente.
+En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en qué se basa esté procedimiento: comparamos cada centroide con el centroide candidato del fotograma anterior y elegiremos aquel que cumpla los requisitos descritos anteriormente.
 \begin{figure} [H]
   \begin{center}
     \includegraphics[width=10cm]{imagenes/esquema-tracker.png}
@@ -189,8 +192,75 @@ En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en que s
   \label{fig:obtencion_centroide}
 \end{figure}
 
-En cada iteración del bucle principal del programa cuando llamemos al método \textbf{getObjectiveFromSet()} de la clase Tracker obtendremos un BoundingBoxObject el cual dibujaremos en la imagen de color rojo. El resultado sería el siguiente:
+Al principio del programa inicalizaremos una \textbf{instancia} de tipo Tracker, y, en cada iteración del bucle principal al método \textbf{getObjectiveFromSet(self, objlist)} para obtener un BoundingBoxObject que dibujaremos en la imagen de color rojo. El resultado será el siguiente:
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/aplicando-tracker.png}
+  \end{center}
+  \caption[Usando el Tracker para no perder al objetivo]{Uso del Tracker para no perder al objetivo}
+  \label{fig:uso_tracker}
+\end{figure}
+
+Como criterio de selección de la persona que seguiremos, deberá cumplir los 3 filtros indicados anteriormente, aparecer en el segundo tercio de la imagen (dividiremos la imagen en 3 y analizaremos la mitad) y ser aquel BoundingBoxObject con un área mayor que el resto.\\
 
 
+% -- SUBSECCIÓN EVITAR OBSTÁCULOS
+% ---------------------------------
+\subsection{Algoritmo VFF}
+\label{subsec:vff}
+
+Seguir a una persona en un mundo vacío es sencillo, pero cuando el entorno presenta \textbf{obstáculos}, es importante tener ese riesgo en cuenta:
+
+\begin{itemize}
+	\item ¿Qué ocurre si la persona que seguimos gira por un pasillo a la derecha?. ¿El robot sufriría una colisión con la pared antes de girar?
+	\item ¿Qué ocurre si el robot se está acercando a la pata de una mesa? ¿Y si está pasando cerca de otra persona a la que ha descartado en el proceso de Tracking?
+\end{itemize}
+
+El algoritmo de \textbf{Campo de Fuerzas Virtuales (VFF)} es el más indicado para esas situaciones. Se basa en la suma vectorial de un vector de atracción y de repulsión originando un vector resultante que indica la nueva dirección de desplazamiento. La suma vectorial estará influenciada por el valor de unos pesos llamados \textbf{alfa} y \textbf{beta} aplicados a los vectores de atraccion y repulsión respectivamente, pudiendo de esta manera, dar más valor a uno que otro.\\
+
+El \textbf{vector de atracción} será aquel que desde el robot apuntará al objetivo. Al usar una cámara en la que no tenemos en cuenta la profundidad, estableceremos que el \textbf{módulo} del vector será siempre 2 metros. Para obtener el ángulo nos basaremos en el \textbf{Campo de Visión (FOV) horizontal} de la cámara. Al ser una cámara simulada, en su fichero urdf.xacro (tal y como vimos en el capítulo \ref{cap:capitulo4}) indicamos que FOV fuera 1.04 radianes (60 grados). Por lo tanto, 0 grados se corresponderá al centro de la imagen y los extremos a los ángulos -30 y 30. Para conocer el ángulo con el objetivo necesitaremos conocer el ancho de la imagen, y la posición de la coordenada x del centroide. La ecuación es la siguiente:\\
+
+\begin{equation*}
+\alpha = \frac{H_{FOV} \cdot C_{x}}{w} - \frac{H_{FOV}}{2}
+\end{equation*}\\
+
+Conociendo el ángulo ($\alpha$) y módulo (m) podremos obtener las \textbf{componentes x e y} del vector de atracción \textbf{A}:
+\begin{eqnarray*}
+A_x = m \cdot sin(\alpha)\\
+A_y = m \cdot cos(\alpha)\\
+\end{eqnarray*}
+
+El \textbf{vector de repulsión} se calculará a partir de todas las lecturas del láser. Cada obstáculo presente en el rango del láser provocará un vector en sentido contrario cuyo módulo estará influenciado por una constante y será inversamente proporcional a la distancia con el obstáculo (es decir, cuanto más cerca, mayor será el módulo). Sabiendo la constante (K) y la distancia (d) de cada lectura del láser (n lecturas), la ecuación del vector de repulsión (R) es la siguiente:
+
+\begin{eqnarray*}
+R_x &=& \sum_{i=1}^n\left(\frac{K}{d_i}\right)^2 \cdot cos(\alpha)\\
+R_y &=& \sum_{i=1}^n\left(\frac{-K}{d_i}\right)^2 \cdot sin(\alpha)\\
+\end{eqnarray*}
+
+En la ecuación vemos como la componente $R_y$ va en dirección contraria al desplazamiento del robot. La potencia de 2 se aplica para evitar \textbf{mínimos locales}\\
+
+El \textbf{vector final (F) o resultante} lo obtendremos sumando las componentes de los vectores de atracción y repulsión. Ambos multiplicados por 2 constantes $\alpha$ y $\beta$ respectivamente. La ecuación queda de esta manera.
+
+\begin{eqnarray*}
+F_x &=& \alpha \cdot A_x + \beta \cdot R_x\\
+F_y &=& \alpha \cdot A_y + \beta \cdot R_y\\
+\end{eqnarray*}
+
+Queda en la labor del programador ajustar empíricamente los parámetros $\alpha$ y $\beta$ dependiendo del comportamiento que desee. Si queremos darle más peso a la repulsión aumentaremos $\beta$ pero en casos extremos podríamos llegar a perder el objetivo. En cambio si queremos darle más perso a la atracción conseguiremos que evité los obstáculos sin perder al objetivo pero si está mal ajustado podríamos colisionar a causa de una escasa repulsión. En la figura \ref{fig:esquema_vff} resumimos el algoritmo VFF de manera gráfica para una mejor comprensión.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/esquema-vff.png}
+  \end{center}
+  \caption[Algoritmo VFF]{Algoritmo VFF}
+  \label{fig:esquema_vff}
+\end{figure}
+
+
+% -- SUBSECCION MÁQUINA DE ESTADOS
+% ----------------------------------
+\subsection{Máquina de Estados}
+\label{subsec:maquina_estados}
  
 
