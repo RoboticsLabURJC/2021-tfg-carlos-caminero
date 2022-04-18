@@ -3,6 +3,11 @@
 
 La importancia de los robots de servicio ha ido aumentando en los últimos años, sobre todo en campos como la salud y el entretenimiento. Con la era del software libre, el conocimiento está al alcance de todos. Con este proyecto se pretende enseñar a realizar una tarea muy común en la robótica de servicio: seguir un objetivo, y además, fomentar la participación del alumnado o usuario a través de la plataforma académica Unibotics poniendo en práctica lo aprendido tanto en la simulación como en la realidad.
 
+
+
+
+% -- SECCION OBJETIVOS
+% ----------------------
 \section{Objetivos}
 \label{sec:objetivos}
 El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios educativos para Seguir a una Persona en Robotics Academy, que una vez superados ciertos tests, serán incorporados a la plataforma universitaria Unibotics. Un ejercicio será programar un robot Turtlebot2 simulado para seguir a una persona en un hospital y el otro será programar el robot real. Para hacer este proyecto realidad, se han marcado estos subobjetivos:
@@ -16,22 +21,42 @@ El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios
 \end{itemize}
 
 
+
+% -- SECCION METODOLOGÍA
+% ------------------------
 \section{Metodología}
 \label{sec:metodologia}
 El TFG comenzó en \textbf{octubre}. El primer mes se correspondió a una \textbf{etapa de entrenamiento} donde se empieza a probar distintas tecnologías para elegir correctamente el tema a desarrollar: Behavior Trees, Groot, aplicaciones en ROS 2, etc.\\
 
 Una vez elegido el tema del trabajo, fue necesario aprender varias herramientas para su elaboración:
 \begin{itemize}
+	\item Construir imágenes Docker personalizados.
 	\item De la página de documentación de ROS Foxy se ha profundizado en XACRO y plugins.
 	\item Para profundizar en HTML, CSS y Javascript se ha consultado el curso del profesor \textbf{Juan González Gomez} (también conocido como \textit{Obijuan}) de la asignatura de Construcción de Servicios y Aplicaciones Audiovisuales en Internet.
 \end{itemize}
 
 Una vez adquiridas las competencias necesarias, se desarrolló el entorno de Gazebo y se programó el plugin para mover a una persona simulada con el teclado. Después se integró en un contenedor Docker y se desarrolló la plantilla web para la programación del ejercicio.\\
 
-A lo largo del proyecto, se ha ido colgando en un blog\footnote{\url{https://roboticslaburjc.github.io/2021-tfg-carlos-caminero/}} todos los avances realizados semanalmente.\\
+A lo largo del proyecto, se ha ido colgando en un blog\footnote{\url{https://roboticslaburjc.github.io/2021-tfg-carlos-caminero/}} todos los avances realizados semanalmente. También, todas las pruebas realizadas se han ido subiendo a este repositorio: \textbf{\textit{https://github.com/RoboticsLabURJC/2021-tfg-carlos-caminero}}\\
 
 Cada semana, se realizaba una reunión de TFG con el tutor para comentar los avances y recibir retroalimentación. Además, se ha usado la plataforma \textbf{Slack} para estar en comunicación con los miembros de Robotics Academy y Unibotics.\\
 
-Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor como por parte del laboratorio de Robótica de la ETSIT.
+Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor (todo tipo de cámaras para hacer pruebas) como por parte del laboratorio de Robótica de la ETSIT (el robot Turtlebot2, y los RPLIDAR).
+
+
+
+% -- SECCIÓN PLAN DE TRABAJO
+% ----------------------------
+\section{Plan de Trabajo}
+\label{sec:plan_trabajo}
+A lo largo de estos meses, la planificación del TFG ha sido la siguiente:
+
+\begin{enumerate}
+	\item \textbf{Etapa de Entrenamiento}. Conociendo las herramientas y posibilidades antes de decidir el tema del que consiste este proyecto: ROS, Docker, ROS Bridge, BTs, etc.
+	\item \textbf{Inicio del TFG}. Una vez conocido el tema, comenzar a organizar el proyecto, preparando el entorno ROS, programando el plugin y migrando el Turtlebot2 a ROS Foxy.
+	\item \textbf{Programación de la infraestructura de los ejercicios}. Usando como referencia otros ejercicios de Robotics Academy como por ejemplo \textbf{Color Filter} \footnote{\textbf{Color filter (foxy github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/foxy/exercises/static/exercises/color_filter/web-template}} o \footnote{\textbf{Follow Line (noetic github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/master/exercises/static/exercises/follow_line/web-template}}, y, adaptándolo a ROS 2.
+	\item \textbf{Programación de una solución de referencia para cada ejercicio Sigue Personas de Robotics Academy}. Con la solución de referencia demostramos la posibilidad de usar el nuevo ejercicio como recurso educativo para futuros cursos académicos en Robótica Software y en otros ámbitos.
+	\item \textbf{Memoria de Trabajo Fin de Grado}. La redacción de la presente memoria se realizó durante los últimos 4 meses del curso. 
+\end{enumerate}
 
 
