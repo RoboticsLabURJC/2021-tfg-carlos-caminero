@@ -58,6 +58,7 @@ El plugin requiere \textbf{2 funcionalidades}:
 	\item \textbf{Establecimiento de una ruta} por defecto y capacidad de incorporar nuevas rutas. Esta última funcionalidad no es necesaria para el ejercicio, además de que puede suponer cierta molestia al usuario, pero no se descarta su utilidad para un futuro.
 \end{enumerate}
 
+
 % -- SUBSECCION COMUNICACION REMOTA
 % ----------------------------------
 \subsection{Comunicación remota}
@@ -110,15 +111,76 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 \section{Desarrollo de la Capa de Abstracción Hardware (HAL)}
 \label{sec:turtlebot2_hal_simulado}
 
+En esta sección explicaremos el desarrollo de la Capa de Abstracción Hardware (HAL) que incluímos en este ejercicio, además de algunos nuevos cambios para su adaptación a ROS2.\\
+
+Todos los ejercicios de Robotics Academy comparten una estructura muy similar. Tienen un fichero llamado \textbf{exercise.py} que se comunica tanto con el \textbf{navegador} como con los demás ficheros de su directorio. Partiendo de dicha ruta relativa, hay un directorio denominado \textbf{interfaces} donde encontramos ficheros python que actuan a modo de plantilla para comunicarse con nodos de ROS dedicados. En todos hubo que hacer algunas modificaciones debido al cambio de ROS 1 a ROS 2 (modo de creación de los nodos, publicadores y suscriptores). Como ficheros \textit{interfaces} tenemos la cámara, el láser, los motores, la odometría, y la detección mediante SSD entre otros.\\
+
+La gran novedad se encuentra en el fichero \textbf{ssd\_detection.py}. En él definimos la clase \textbf{BoundingBox} y la clase \textbf{NeuralNetwork}:\\
+
+La clase \textbf{BoundingBox} tiene los siguientes atributos:
+\begin{itemize}
+	\item \textbf{id}: Es un entero que identifica un tipo de objeto.
+	\item \textbf{class\_id}: Es una cadena de texto que identifica un tipo de objeto. Con el atributo \textbf{id} forman una pareja que se puede observar en un fichero que importamos llamado \textbf{coco\_labels.py} donde se registran todos los tipos de objetos que puede detectar la red neuronal.
+\begin{lstlisting}
+LABEL_MAP = {
+    0: "unlabeled",
+    1: "person",
+    2: "bicycle",
+    3: "car",
+    4: "motorcycle",
+    5: "airplane",
+    6: "bus",
+    7: "train",
+    8: "truck",
+...
+}
+\end{lstlisting}
+	\item \textbf{score}: Es un número en coma flotante que va de 0 a 1 que indica la \textbf{probabilidad} de que el objeto detectado coincida con la clasificación de la red neuronal. Su elección se debe a que ha sido seleccionado como el objeto con mayor porcentaje de la lista \textbf{LABEL\_MAP}
+	\item \textbf{xmin} e \textbf{ymin}: Indican las coordenadas (x, y) del extremo superior izquierdo del Bounding Box.
+	\item \textbf{xmax} e \textbf{ymax}: Indican las coordenadas (x, y) del extremo inferior derecho del Bounding Box.
+\end{itemize}
+
+En la clase \textbf{NeuralNetwork}, encapsulamos la importación de los ficheros que definen la red neuronal (SSD): \textbf{ssd\_inception\_v2\_coco.pb} y \textbf{ssd\_inception\_v2\_coco.pbtxt}. La creación de la red neuronal se usará con OpenCv usando la función \textbf{cv2.dnn.readNetFromTensorFlow(model, config)} al que se le pasa como argumentos la ruta a los 2 ficheros citados anteriormente. Creamos un método llamado \textbf{detect(self, img)} que se encarga de llamar internamente al modelo para realizar una detección sobre una imagen.\\
+
+Una vez creado los ficheros \textbf{interfaces} crearemos la API de HAL en el fichero \textbf{hal.py}. Nuestro módulo (que usará el usuario) tendrá las siguientes funciones:
+\begin{itemize}
+	\item \textbf{setV(velocity)}. Nos permite usar velocidades lineales. Usa la interfaz \textbf{motors} que publica sobre el topic \textbf{/cmd\_vel}
+	\item \textbf{setW(velocity)}. Nos permite usar velocidades angulares (radianes). Usa también la interfaz \textbf{motors} para publicar sobre el mismo topic.
+	\item \textbf{getLaserData()}. Devuelve las lecturas del láser a través de un tipo de datos llamado \textbf{LaserData} usando la interfaz \textbf{laser} que se suscribe al topic \textbf{/scan}.
+	\item \textbf{getImage()}. Devuelve una imagen en formato OpenCV a través de la interfaz \textbf{camera} suscrita al topic \textbf{/depth\_camera/image\_raw}
+	\item \textbf{getPose3d()}. Obtiene la posición actual del robot a través de la interfaz \textbf{pose3d} suscrita al topic \textbf{/odom}
+	\item \textbf{getBoundingBoxes(img)}. Dada una imagen realiza una llamada al modelo de red neuronal para realizar una detección y devolver una lista de Bounding Boxes.  
+\end{itemize}
+
+El láser RPLIDAR 360 del fichero de configuración URDF está colocado de tal manera que el ángulo 0 apunta hacia delante del robot y en sentido anti-horario. Para una correcta lectura del láser propongo la siguiente función para colocarla en el editor de texto de la plantilla web:
+
+\begin{code}[H]
+\begin{lstlisting}
+def parse_laser_data(laser_data):
+    values = laser_data.values
+    aux = values[90:0:-1] + values[0:1] + values[360:270:-1]
+    values = []
+    for i in range(len(aux)):
+        dist = aux[i]
+        if dist == float("inf"):
+            continue
+        angle = math.radians(i)
+        values += [(dist, angle)]
+    return values
+\end{lstlisting}
+\caption[Transformador de lecturas del láser]{Transformador de lecturas del láser}
+\label{cod:holamundo_cplusplus}
+\end{code}
+
+Con esta función leeremos como máximo 180 lecturas láser y con valores definidos. En la figura \ref{fig:vista_planta_turtlebot2} podemos ver la nueva distribución del láser hallándose el ángulo 0 a la izquierda del robot.
+
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=15cm]{imagenes/vista-planta-turtlebot2.png}
+    \includegraphics[width=10cm]{imagenes/vista-planta-turtlebot2.png}
   \end{center}
   \caption[Láser Turtlebot 2]{Láser Turtlebot 2}
   \label{fig:vista_planta_turtlebot2}
 \end{figure}
-(TODO)
-
 
 
 
@@ -257,10 +319,18 @@ Queda en la labor del programador ajustar empíricamente los parámetros $\alpha
   \label{fig:esquema_vff}
 \end{figure}
 
+En nuestra solución de referencia, aplicaremos solamente la componente $F_x$ como velocidad angular, ya que la velocidad lineal estará \textbf{basada en casos} dependiendo de la distancia al objetivo. En el siguiente apartado [\ref{subsec:maquina_estados}] lo explicaremos con más detalle.
 
 % -- SUBSECCION MÁQUINA DE ESTADOS
 % ----------------------------------
 \subsection{Máquina de Estados}
 \label{subsec:maquina_estados}
- 
+
+Como último paso de la solución, queda implementar una máquina de estados que le dé al robot la capacidad de tomar distintas acciones dependiendo del estado en el que se encuentre. En nuestro caso, hemos definido \textbf{2 estados}: Buscar-Persona y Seguir-Persona.\\
+
+El estado \textbf{Buscar-Persona} será aquel con el que empecemos la ejecución del programa. Al principio, girará a una velocidad angular determinada mientras aplica los 3 filtros de detección sobre la imagen para detectar personas. Transitará al siguiente estado cuando el robot identifique un candidato a seguir (mayor área del BoundingBoxObject y posicionado en la franja central de la imagen).\\
+
+En el estado \textbf{Seguir-Persona} aplicaremos el algoritmo de Tracking [\ref{subsec:ml_tracker}] y VFF [\ref{subsec:vff}]. Además, la velocidad lineal cambiará dependiendo de la distancia al objetivo. Para ello crearemos unas condiciones en las que dependiendo del área del Bounding Box aplicaremos una velocidad u otra. Cuanto más pequeño sea el área, más lejos estará nuestro objetivo. Si por algún motivo perdemos a la persona, incrementaremos un \textbf{contador de fallo} y de esta manera, en caso de no detectarla en el siguiente fotograma, nos quedaremos con el mismo valor del centroide candidato. Cuando el contador supere un límite, transitaremos al primer estado: \textbf{Buscar-Persona}.\\
+
+El \textbf{resultado de nuestra solución} podéis verla en el siguiente enlace: \textbf{\textit{https://youtu.be/fDAU465eVxQ}}
 
