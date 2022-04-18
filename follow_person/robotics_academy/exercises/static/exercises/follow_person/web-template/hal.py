@@ -2,7 +2,6 @@ from interfaces.motors import PublisherMotors
 from interfaces.laser import ListenerLaser
 from interfaces.camera import ListenerCamera
 from interfaces.pose3d import ListenerPose3d
-from interfaces.bounding_boxes import ListenerBoundingBoxes
 from interfaces.ssd_detection import NeuralNetwork, BoundingBox
 from coco_labels import LABEL_MAP
 from rclpy.executors import MultiThreadedExecutor
@@ -10,11 +9,6 @@ from datetime import datetime
 import rclpy
 import time
 import threading
-
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
     
 class HAL:
 
@@ -26,13 +20,11 @@ class HAL:
     	self.laser = ListenerLaser("scan")
     	self.camera = ListenerCamera("/depth_camera/image_raw")
     	self.odometry = ListenerPose3d("/odom")
-    	self.bounding_boxes = ListenerBoundingBoxes("/darknet_ros/bounding_boxes")
     	
     	self.listener_executor = MultiThreadedExecutor(num_threads=4)
     	self.listener_executor.add_node(self.laser)
     	self.listener_executor.add_node(self.camera)
     	self.listener_executor.add_node(self.odometry)
-    	self.listener_executor.add_node(self.bounding_boxes)
     	
     	self.net = NeuralNetwork()
     	
@@ -73,7 +65,6 @@ class HAL:
     			detection[6]*rows)
     		bounding_boxes.append(bounding_box)
     	return bounding_boxes
-    	#return self.bounding_boxes.getBoundingBoxes()
 
 
 class ThreadHAL(threading.Thread):

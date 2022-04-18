@@ -17,11 +17,6 @@ from hal import HAL
 from console import start_console, close_console
 
 
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
-
 class Template:
     # Initialize class variables
     # self.time_cycle to run an execution for atleast 1 second
@@ -289,7 +284,6 @@ class Template:
             return
         
         if (message[:7] == "#teleop"):
-            debug(message + "\n")
             mode = message[message.find('_')+1:]
             if mode == "true":
                 self.model_client.sendto(str.encode("US-"), self.model_address) # User Stop
@@ -307,6 +301,8 @@ class Template:
                 self.model_client.sendto(str.encode("UAL"), self.model_address) # User Angular Left
             elif mode == "d":
                 self.model_client.sendto(str.encode("UAR"), self.model_address) # User Angular Right
+            elif mode == "x":
+                self.model_client.sendto(str.encode("US--"), self.model_address) # User Stop model
             return
 
         try:
