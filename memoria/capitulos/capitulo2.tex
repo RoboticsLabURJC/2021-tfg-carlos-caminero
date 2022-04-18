@@ -1,7 +1,37 @@
-\chapter{Objetivos}
+\chapter{Objetivos y Metodología de Trabajo}
 \label{cap:capitulo2}
 
-Capitulo 2
+La importancia de los robots de servicio ha ido aumentando en los últimos años, sobre todo en campos como la salud y el entretenimiento. Con la era del software libre, el conocimiento está al alcance de todos. Con este proyecto se pretende enseñar a realizar una tarea muy común en la robótica de servicio: seguir un objetivo, y además, fomentar la participación del alumnado o usuario a través de la plataforma académica Unibotics poniendo en práctica lo aprendido tanto en la simulación como en la realidad.
 
-\section{Sección 1}
-\label{sec:miseccion}
+\section{Objetivos}
+\label{sec:objetivos}
+El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios educativos para Seguir a una Persona en Robotics Academy, que una vez superados ciertos tests, serán incorporados a la plataforma universitaria Unibotics. Un ejercicio será programar un robot Turtlebot2 simulado para seguir a una persona en un hospital y el otro será programar el robot real. Para hacer este proyecto realidad, se han marcado estos subobjetivos:
+
+\begin{itemize}
+	\item Crear soporte simulado del robot Turtlebot 2 en ROS Foxy.
+	\item Entender la infraestructura de Robotics Academy y aprender a desarrollar un nuevo ejercicio, diseñando la plantilla web de cada ejercicio (Frontend) y sus comunicaciones con ROS.
+	\item Diseñar el entorno simulado de Gazebo (incorporando un hospital de un repositorio externo) y programando la lógica de la persona autónoma simulada (plugin).
+	\item Controlar el robot real a través de un contenedor Docker.
+	\item Diseñar una solución de referencia para cada ejercicio.
+\end{itemize}
+
+
+\section{Metodología}
+\label{sec:metodologia}
+El TFG comenzó en \textbf{octubre}. El primer mes se correspondió a una \textbf{etapa de entrenamiento} donde se empieza a probar distintas tecnologías para elegir correctamente el tema a desarrollar: Behavior Trees, Groot, aplicaciones en ROS 2, etc.\\
+
+Una vez elegido el tema del trabajo, fue necesario aprender varias herramientas para su elaboración:
+\begin{itemize}
+	\item De la página de documentación de ROS Foxy se ha profundizado en XACRO y plugins.
+	\item Para profundizar en HTML, CSS y Javascript se ha consultado el curso del profesor \textbf{Juan González Gomez} (también conocido como \textit{Obijuan}) de la asignatura de Construcción de Servicios y Aplicaciones Audiovisuales en Internet.
+\end{itemize}
+
+Una vez adquiridas las competencias necesarias, se desarrolló el entorno de Gazebo y se programó el plugin para mover a una persona simulada con el teclado. Después se integró en un contenedor Docker y se desarrolló la plantilla web para la programación del ejercicio.\\
+
+A lo largo del proyecto, se ha ido colgando en un blog\footnote{\url{https://roboticslaburjc.github.io/2021-tfg-carlos-caminero/}} todos los avances realizados semanalmente.\\
+
+Cada semana, se realizaba una reunión de TFG con el tutor para comentar los avances y recibir retroalimentación. Además, se ha usado la plataforma \textbf{Slack} para estar en comunicación con los miembros de Robotics Academy y Unibotics.\\
+
+Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor como por parte del laboratorio de Robótica de la ETSIT.
+
+
