@@ -210,8 +210,7 @@ p {
 \textbf{Javascript} es un lenguaje de programación interpretado que destaca por ser utilizado en el lado del cliente, en el Frontend de una página web que lee el navegador. Con Javascript podemos crear páginas web dinámicas a través de la definición de eventos que provocan resultados en el Backend (si tiene) o en la propia estructura HTML. Javascript puede usarse para multitud de tareas: Websockets, juegos, animaciones, etc.\\
 
 \textbf{¿Cuál ha sido la utilidad de Javascript en este proyecto?}
-En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos de la página con el fichero maestro de cada ejercicio que se llama \textbf{exercise.py} (este fichero actua como puente de comunicación con ROS en el SO anfitrión).\\
-
+En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos de la página con el fichero maestro de cada ejercicio que se llama \textbf{exercise.py}.
 
 
 
@@ -220,11 +219,21 @@ En las plantillas web de Robotics Academy se usa Javascript para comunicar los e
 \section{Docker}
 \label{sec:docker}
 
-\textbf{Docker} es un framework que nos permite desplegar aplicaciones dentro de contenedores software que pueden ejecutar sobre cualquier sistema operativo.\\
+\textbf{Docker} \cite{documentacion_docker} es un proyecto de código abierto que nos permite desplegar aplicaciones dentro de contenedores software que pueden ejecutar sobre cualquier sistema operativo.\\
 
 La creación de imágenes se realiza mediante ficheros \textbf{Dockerfile} donde el programador indica los comandos (de Unix) necesarios para la construcción y despliegue de su aplicación.\\
 
-\textbf{¿Cuál ha sido la utilidad de Docker en este proyecto?} Cuando Robotics Academy crea una nueva versión construye una imagen Docker con la instalación de todos los repositorios base y de terceros necesarios para la ejecución del entorno web en una distribución de Linux. Gracias a la ejecución de un contenedor docker el usuario solo necesita instalar dicho framework y nada más en su ordenador. Con el comando \textbf{\textit{docker pull}} elige la imagen que quiere descargar y con \textbf{\textit{docker run}} lanza un contenedor para realizar los ejercicios siguiendo sus correspondientes instrucciones. En este proyecto, fue necesario crear una imagen particular en el que funcionara los 2 nuevos ejercicios para posteriormente fusionarlos en la nueva imagen oficial RADI 4.\\
+\textbf{¿Cuál ha sido la utilidad de Docker en este proyecto?} Cuando Robotics Academy crea una nueva versión construye una imagen Docker con la instalación de todos los repositorios base y de terceros necesarios para la ejecución del entorno web en una distribución de Linux. Gracias a la ejecución de un contenedor el usuario solamente necesita instalar Docker en su SO. Con el comando \textbf{\textit{docker pull}} elige la imagen que quiere descargar y con \textbf{\textit{docker run}} lanza un contenedor para realizar los ejercicios siguiendo sus correspondientes instrucciones. En este proyecto, fue necesario crear una imagen particular en el que funcionara los 2 nuevos ejercicios para posteriormente fusionarlos en la nueva imagen oficial RADI 4.\\
+
+En el siguiente código [\ref{cod:comando_lanzamiento_docker_unibotics}] vemos qué comando tendría que ejecutar el usuario para lanzar un contenedor con la última imagen de Unibotics y poder interactuar con los ejercicios de la plataforma.\\
+
+\begin{code}[H]
+\begin{lstlisting}
+$> docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:latest ./start_manager.sh
+\end{lstlisting}
+\caption{Comando de lanzamiento de un contenedor Docker para Unibotics}
+\label{cod:comando_lanzamiento_docker_unibotics}
+\end{code}\
 
 
 
@@ -234,7 +243,7 @@ La creación de imágenes se realiza mediante ficheros \textbf{Dockerfile} donde
 
 \section{Infraestructura Robotics Academy}
 \label{sec:infraestructura_robotics_academy}
-Una vez que hemos resumido las herramientas usadas podemos recopilarlas y mostrar un esquema génerico de la infraestructura de Robotics Academy:
+Una vez llegados a este punto, podemos mostrar un esquema génerico de la infraestructura de Robotics Academy:
 
 \begin{figure} [H]
   \begin{center}
@@ -252,4 +261,42 @@ Cuando el usuario lanza un contenedor, se ejecuta el fichero \textbf{manager.py}
 \section{Turtlebot2}
 \label{sec:turtlebot2}
 
-(TODO)
+El \textbf{laboratorio de Robótica} de la ETSIT URJC tiene a su disposición una decena de robots \textbf{Turtlebot2} para que los alumnos hagan uso de ellos en algunas asignaturas del grado. Este robot móvil es ideal para la enseñanza e investigación en robótica.\\
+
+Los robots Turtlebot2 constan de una base superior donde el alumno puede colocar su \textbf{portatil} y conectarse al robot a través de los \textbf{puertos USB}. Tienen una \textbf{batería recargable} que opera entre 3 y 7 horas y con una alta velocidad de recarga. Además, el robot está adaptado para incorporarle varios tipos de sensores como camaras (RGB y RGB-D) y láseres e incluso actuadores como un brazo robótico.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/turtlebot2-real.png}
+  \end{center}
+  \caption[Turtlebot 2]{Turtlebot 2. Imagen obtenida de \cite{turtlebot2}}
+  \label{fig:turtlebot2_real}
+\end{figure}\
+
+Para este proyecto hemos necesitado un Turtlebot2 que tuviera los siguientes \textbf{sensores}:
+\subsection{RPLIDAR A1}
+\label{subsec:rplidar_a1}
+El láser que hemos usado ha sido un modelo RPLIDAR A1. Se trata de un láser de 360 grados con un alcance de 12 metros. El repositorio de github que hemos utilizado para leer las lecturas del láser se encuentra en este enlace: \url{https://github.com/allenh1/rplidar_ros}\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/rplidar-a1.png}
+  \end{center}
+  \caption[Láser RPLIDAR A1]{Láser RPLIDAR A1. Imagen obtenida de \cite{rplidar_a1}}
+  \label{fig:rplidar_a1}
+\end{figure}\
+
+\subsection{Cámara Intel Realsense 3d R200}
+\label{subsec:intel_realsense_3d}
+
+La cámara usada ha sido una \textbf{Intel Realsense R200}. Durante este proyecto hemos probado varias cámaras: Asus XTION PRO Live, Realsense D435 y T265. Debido a la inexistencia de repositorios soportados para ROS Foxy, está fue la cámara candidata. Sin embargo, este modelo no permitia usar la profundidad 3D en ROS, por lo que la utilizamos como una simple cámara RGB. Cualquier cámara que abrá dispositivos en /dev/video* (como por ejemplo una webcam) podrá ser utilizado en el ejercicio Real Follow Person. Simplemente tendremos que realizar un mapeo de puertos cuando lancemos el contenedor docker indicado.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/r200.jpg}
+  \end{center}
+  \caption[Cámara Intel Realsense 3D R200]{Cámara Intel Realsense 3D R200. Imagen obtenida de \cite{R200}}
+  \label{fig:camara_r200}
+\end{figure}\
+
+
