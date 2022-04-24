@@ -1,7 +1,7 @@
 \chapter{Herramientas utilizadas}
 \label{cap:capitulo3}
 
-El desarrollo de los 2 nuevos ejercicios de Robotics Academy han abarcado varios campos: programación, Docker, modelado y simulación de robots, ROS y ROS2, visión artificial, machine learning, desarrollo web... por lo que es necesario introducir y describir las herramientas y tecnologías utilizadas.
+El desarrollo de los 2 nuevos ejercicios de Robotics Academy han abarcado varios campos: programación, Docker, modelado y simulación de robots, ROS y ROS2, visión artificial, machine learning, desarrollo web... por lo que es necesario introducir y describir las herramientas y tecnologías utilizadas al lector.\\
 
 
 
@@ -11,7 +11,7 @@ El desarrollo de los 2 nuevos ejercicios de Robotics Academy han abarcado varios
 \section{C++}
 \label{sec:c++}
 
-C++ es un lenguaje de programación diseñado en 1979 por Bjarne Stroustrup. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la Programación Orientada a Objetos (POO). Además, incorpora una gran cantidad de nuevas librerías para facilitar la programación como por ejemplo las librerías estandar y STL (Standard Template Library).\\
+C++ es un lenguaje de programación diseñado en 1979 por \textbf{Bjarne Stroustrup}. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la \textbf{Programación Orientada a Objetos} (POO). Además, incorpora una novedosa librería que facilita el desarrollo de Software de calidad: \textbf{STL (Standard Template Library)}: vector, stack, map, etc. \cite{history_c++}\\
 
 \begin{code}[H]
 \begin{lstlisting}[language=C++]
@@ -27,7 +27,7 @@ int main(int argc, char ** argv)
 \label{cod:holamundo_cplusplus}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de C++ en este proyecto?} La programación de un \textbf{plugin} \footnote{\textbf{Plugin}: Complemento que añade una funcionalidad extra o mejora a un programa} que permite mover a una persona simulada en Gazebo \footnote{\textbf{Gazebo}: simulador robótico} con el teclado.\\
+\textbf{¿Cuál ha sido la utilidad de C++ en este proyecto?} La programación de un \textbf{plugin} que permite mover a una persona simulada en Gazebo \footnote{\textbf{Gazebo}: simulador robótico} con el teclado.\\
 
 
 
@@ -37,7 +37,7 @@ int main(int argc, char ** argv)
 \section{Python}
 \label{sec:python}
 
-Python es un lenguaje de programación interpretado \footnote{\textbf{Interprete} (programación): programa informático que se encarga de ejecutar las instrucciones de otro programa sin compilación previa} que destaca por su legibilidad, facilidad y soportabilidad a la programación Orientada a Objetos. Posee características particulares que lo diferencian de otros lenguajes de programación como puede ser el uso estricto de indentación en bloques de código.\\
+Python es un lenguaje de programación \textbf{interpretado} \footnote{\textbf{Interprete} (programación): programa informático que se encarga de ejecutar las instrucciones de otro programa sin compilación previa} que destaca por su legibilidad, facilidad y soportabilidad con el paradigma \textbf{POO}. Posee características particulares que lo diferencian de otros lenguajes de programación como puede ser el uso estricto de indentación en bloques de código, o incluso la capacidad de crear listas mezcladas de diferentes tipos de datos.\\
 
 \begin{code}[H]
 \begin{lstlisting}[language=Python]
@@ -47,7 +47,7 @@ print("Hola mundo")
 \label{cod:holamundo_python}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de Python en este proyecto?} El desarrollo de la infraestructura interna que da soporte a los dos nuevos ejercicios de Robotics Academy, programación de nodos de ROS (más en la sección \ref{sec:ros}) y ficheros de lanzamiento, creación de los módulos HAL y GUI y desarollo de la solución a los ejercicios.\\
+\textbf{¿Cuál ha sido la utilidad de Python en este proyecto?} El desarrollo de la infraestructura interna que da soporte a los dos nuevos ejercicios de Robotics Academy, programación de nodos de ROS (más en la sección \ref{sec:ros}) y ficheros de lanzamiento, creación de los módulos HAL y GUI y desarollo de las soluciones de referencia de los ejercicios.\\
 
 
 
@@ -56,11 +56,9 @@ print("Hola mundo")
 % ----------------
 \section{ROS (Robot Operating System)}
 \label{sec:ros}
-ROS (Robot Operating System) es un middleware \footnote{\textbf{Middleware}: software que se sitúa entre las aplicaciones y el sistema operativo} que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework están la abstracción del hardware, controladores de dispositivos, herramientas de visualización y geometría espacial entre otros.\\
+ROS (Robot Operating System) \cite{ROS} es un middleware \footnote{\textbf{Middleware}: software que se sitúa entre las aplicaciones y el sistema operativo} que ayuda a la programación de robots a través de varias \textbf{librerías} y \textbf{herramientas} desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este framework están la abstracción del hardware, controladores de dispositivos, herramientas de visualización (rviz) y geometría espacial (transformadas, tfs) entre otros.\\
 
-Desde un principio, ROS se ha ejecutado sobre sistemas operativos de tipo Unix (Ubuntu - principal), aunque han ido surgiendo versiones beta para otros sistemas como Windows o MacOS X. La primera distribución de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas distribuciones siendo la actual y estable ROS Noetic.\\
-
-El funcionamiento de ROS se basa en una arquitectura cliente-servidor centralizado donde un nodo principal se encarga del intercambio de mensajes entre otros nodos que forman la aplicación (remotos o locales), los cuales se comportan como publicadores o suscriptores del proceso de comunicación. El objetivo es dividir el software robótico en secciones o nodos que se encargan de realizar tareas específicas de manera paralela: recogida de datos de la cámara, ejecución de una máquina de estados o árboles de comportamiento (Behavior Trees), recogida de las lecturas del láser, navegación, etc.\\
+El \textbf{funcionamiento} de ROS se basa en una arquitectura \textbf{cliente-servidor} centralizado donde un nodo principal se encarga del intercambio de mensajes entre otros nodos que forman la aplicación (remotos o locales), los cuales se comportan como \textbf{publicadores o suscriptores} del proceso de comunicación. El objetivo es dividir el software robótico en secciones o \textbf{nodos} que se encargan de realizar tareas específicas de manera \textbf{concurrente}: recogida de datos de la cámara, ejecución de una máquina de estados o árboles de comportamiento (Behavior Trees), recogida de las lecturas del láser, navegación, etc.\\
 
 El intercambio de mensajes se realiza a través \textbf{topics}. Un nodo puede tener \textbf{publicadores}, \textbf{suscriptores} o ambos. Cuando un nodo publica un mensaje lo hace a través de un topic que gestiona el nodo maestro. Si otro nodo quiere leer ese mensaje tendrá que suscribirse al tópic correspondiente. Por ejemplo: en nuestro robot Turtlebot2 podemos comandar velocidades enviando mensajes de tipo \textbf{geometry\_msgs.msg.Twist} a través del topic \textbf{/cmd\_vel}. En la figura se puede ver con más detalle \ref{fig:ros_master_comunicacion}\\
 
@@ -72,13 +70,50 @@ El intercambio de mensajes se realiza a través \textbf{topics}. Un nodo puede t
   \label{fig:ros_master_comunicación}
 \end{figure}\
 
-ROS incorpora un conjunto de librerías para ser usadas en C++ y Python. Con estos lenguajes de programación podemos desarrollar los nodos de los paquetes que tendrá nuestra aplicación. También incorpora un conjunto de comandos de \textbf{Shell} (términal) para hacer tareas de depuración, creación, compilación, etc.\\
+Desde un principio, ROS se ha ejecutado sobre sistemas operativos de tipo Unix (Ubuntu - principal), aunque han ido surgiendo versiones beta para otros SOs como Windows o MacOS X. La primera distribución de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas distribuciones siendo la actual y estable ROS Noetic.\\
 
-En 2016 surge ROS 2, nuevo framework basado en ROS con muchas más mejoras como la \textbf{calidad de servicio}, los \textbf{lifecycle nodes} o \textbf{seguridad} (DDS) para asegurar la autenticación de los nodos y la integridad de los mensajes. Al igual que con ROS 1 ha tenido varias distribuciones siendo la primera \textbf{ROS Ardent}. La versión más reciente y estable es \textbf{ROS Foxy}, que es la que hemos usado en este proyecto.\\
+Las librerías que incorpora ROS estan desarrolladas en \textbf{C++} y \textbf{Python}. Con estos lenguajes de programación podemos desarrollar los nodos de los paquetes que tendrá nuestra aplicación. También incorpora un conjunto de comandos de \textbf{Shell} \footnote{\textbf{Shell}: Programa que toma entradas del usuario a través del teclado y pasa esos comandos al sistema operativo para realizar una función específica}. Para hacer tareas de depuración, creación, compilación, etc.\\
 
-Aprender ROS no es una tarea sencilla y requiere mucha dedicación y esfuerzo. Por lo tanto, el objetivo de Robotics Academy es proporcionar una interfaz de programación sencilla para programar robots sin necesidad de saber ROS. Es decir, el usuario tiene acceso a unas librerías HAL y GUI, las cuales usan por debajo nodos de ROS.\\
+En 2016 surge ROS 2, nuevo framework basado en ROS que incorpora nuevas mejoras como la \textbf{calidad de servicio}, \textbf{lifecycle nodes} o \textbf{seguridad} (DDS) para asegurar la autenticación de los nodos y la integridad de los mensajes. Al igual que con ROS 1 ha tenido varias distribuciones siendo la primera \textbf{ROS Ardent}. La versión más reciente y estable es \textbf{ROS Foxy}, que es la que hemos usado en este proyecto.\\
 
-\textbf{¿Cuál ha sido la utilidad de ROS2 en este proyecto?} Crear los ficheros \textbf{interfaces} (laser.py, motors.py, camera.py, ...) que se comunican con los topics necesarios para el control del robot Turtlebot 2.\\
+Aprender ROS no es una tarea sencilla y requiere mucha dedicación y esfuerzo. Por lo tanto, el objetivo de Robotics Academy es proporcionar una interfaz de programación sencilla para programar robots sin necesidad de saber ROS. Es decir, el usuario tiene acceso a unas librerías HAL y GUI, las cuales usan por debajo nodos de ROS, y de esta manera, se puede centrar más en el desarrollo del algoritmo.\\
+
+\textbf{¿Cuál ha sido la utilidad de ROS2 en este proyecto?}
+\begin{itemize}
+	\item Crear los ficheros \textbf{interfaces} (laser.py, motors.py, camera.py, ...) que se comunican con los topics necesarios para el control del robot Turtlebot 2 tanto real como simulado. Estos ficheros usan nodos con publicadores o suscriptores de distintos topics como /cmd\_vel, /scan, /odom o /raw\_image.
+	\item Crear los \textbf{paquetes} de la simulación del hospital y la adaptación del Turtlebot 2 simulado.
+	\item Incorporar de Github los paquetes de ROS 2 para controlar la base kobuki del robot real, y el láser RPLIDAR. Profundizaremos en el capítulo [\ref{cap:capitulo6}]
+\end{itemize}
+
+Durante la etapa de entrenamiento del TFG, usamos una modalidad para hacer unas primeras pruebas con el Robot Turtlebot2 simulado de ROS Noetic en ROS 2. Para lograr esto, usamos \textbf{ROS Bridge} \footnote{\textbf{ROS Bridge}: \url{https://github.com/ros2/ros1_bridge}}. Se trata de un paquete que proporciona un puente de red que permite el intercambio de mensajes entre ROS 1 y ROS 2. De esta manera, podíamos lanzar una simulación en ROS 1 y ejecutar un programa en ROS 2 (el cual se comunica con los topics lanzados en el nodo maestro de ROS 1).\\
+
+
+
+
+% -- GAZEBO
+% -----------
+\section{Gazebo}
+\label{sec:gazebo}
+
+Gazebo \cite{Gazebo} es un \textbf{simulador robótico} que nos permite integrar escenarios realistas con robos simulados para desarrollar y probar algoritmos. Gazebo surgió en 2002 en la Universidad del Sur de California. En 2009 un ingeniero superior de investigación integró \textbf{ROS} y el \textbf{robot PR2} en Gazebo.\\
+
+Gazebo presenta estas características relevantes para nuestro proyecto:
+\begin{itemize}
+	\item Usa \textbf{motores de físicas} de alto rendimiento incluido Bullet, OGRE, Simbody y DART
+	\item Puede simular \textbf{sensores} y su \textbf{ruido} característico para asemejarlo con el mundo real (RPLIDAR, camaras Kinect, sensores de contacto).
+	\item Se puede programar \textbf{plugins} para incorporar nuevas características. Gazebo incorpora su propia API para ello.
+	\item Muchos robots tienen soporte en Gazebo como PR2, Pioneer2 DX,  o \textbf{Turtlebot 2} y 3. También permite construir robots propios usando \textbf{SDF} (o URDF).
+\end{itemize}
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/simulacion-gazebo.png}
+  \end{center}
+  \caption{Simulador Gazebo (demostración)}
+  \label{fig:simulador_gazebo}
+\end{figure}\
+
+\textbf{¿Cuál ha sido la utilidad de Gazebo en este proyecto?} Incorporar un escenario proporcionado por AWS que simula un hospital e integrar el robot simulado Turtlebot2 (sensores incluidos) adaptado para ROS 2 Foxy. El nuevo ejercicio \textbf{Follow Person} simulado hace uso de dicho simulador.\\
 
 
 
@@ -88,48 +123,40 @@ Aprender ROS no es una tarea sencilla y requiere mucha dedicación y esfuerzo. P
 \section{URDF}
 \label{sec:urdf}
 
-\textbf{URDF (United Robotics Description Format)} es un lenguaje de marcado para describir robots (eslabones, uniones, jerarquías, modelo visual, modelo de collisión, modelo inercial, controladores, etc) que usa la gramática de XML. Se utiliza tanto para robots reales como simulados.\\
+\textbf{URDF (United Robotics Description Format)} es un lenguaje de marcado que usa la gramática de XML para describir robots (eslabones y uniones de eslabones) y sensores (cámaras, láser y muchos otros sensores). Se utiliza tanto para robots reales como simulados.\\
 
-Por lo general el robot se divide en su mayoría en eslabones (links) y uniones entre eslabones (joints), de manera que se forma un árbol jerárquico desde un eslabón principal (root) hasta los eslabones terminales.\\
+Por lo general el robot se divide en eslabones (links) y uniones entre eslabones (joints), de manera que se forma un árbol jerárquico de transformadas (TFs) desde un eslabón principal (root) hasta los eslabones terminales (camera\_link, laser\_link, effector1, ...).\\
 
-Para definir un link hay que proporcionar un modelo visual, un modelo de colisión y un modelo inercial. Después se define el joint que une el eslabón que hemos definido con otro mediante una jerarquía de padres e hijos. En el siguiente código podemos ver un ejemplo de como se definiría un cubo de 1 metro por lado para su representación en un simulador.\\
+Para definir un link hay que proporcionar un modelo visual, un modelo de colisión y un modelo inercial (similar a los videojuegos) [\ref{cod:estructura_urfd}]. Después definimos el joint que une el eslabón que hemos definido con otro mediante relación jerárquica de padre e hijo.\\
 
 \begin{code}[H]
 \begin{lstlisting}
 <?xml version="1.0"?>
-<robot name="simple_cube">
-	<link name="base_link">
+<robot name="turtlebot">
+	<link name="base">
 		<visual>
-			<origin xyz="0 0 0"/>
-			<geometry>
-				<box size="1.0 1.0 1.0"/>
-			</geometry>
+			...
 		</visual>
 		<collision>
-			<origin xyz="0 0 0"/>
-			<geometry>
-				<box size="1.0 1.0 1.0"/>
-			</geometry>
+			...
 		</collosion>
 		<inertial>
-			<origin xyz="0 0 0" /> 
-			<mass value="1.0" />
-			<inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0"/>
+			...
 		</inertial>
 	</link>
 </robot>
 \end{lstlisting}
-\caption[Ejemplo de código URDF: Definición de un cubo]{Ejemplo de código URDF: Definición de un cubo}
-\label{cod:codigo_urdf}
+\caption[Estructura URDF de la definicion de un link]{Estructura URDF de la definición de un link}
+\label{cod:estructura_urdf}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de URDF en este proyecto?} Para la creación del modelo Turtlebot 2 simulado en ROS Foxy.
+\textbf{¿Cuál ha sido la utilidad de URDF en este proyecto?} Crear el modelo Turtlebot 2 simulado en ROS Foxy. En la figura \ref{fig:modelo_turtlebot2_simulado} podemos ver el resultado. Veremos más en el capítulo \ref{cap:capitulo4} que tratará del proceso de creación del modelo.
 \begin{figure} [H]
   \begin{center}
     \includegraphics[width=10cm]{imagenes/turtlebot2-sim.png}
   \end{center}
   \caption{Modelo Turtlebot2 simulado (definido mediante URDF)}
-  \label{fig:ros_master_comunicación}
+  \label{fig:modelo_turtlebot2_simulado}
 \end{figure}\
 
 
@@ -142,9 +169,9 @@ Para definir un link hay que proporcionar un modelo visual, un modelo de colisi�
 
 XACRO (XML Macros) es un lenguaje XML diseñado para crear macros \footnote{\textbf{macro}: plantilla que define un patrón} en URDF. Con XACRO conseguimos diseños URDF mucho más legibles y sencillos. De esta manera podemos estructurar el diseño de un robot en componentes más pequeños y repetitivos. Por ejemplo: para el diseño del robot Turtlebot2 creamos una macro que se pueda aplicar a todos las barras verticales que sujetan la estructura del robot.\\
 
-Una vez que tenemos nuestro diseño en XACRO, podemos exportarlo a URDF mediante el paquete de ROS denominado \textbf{xacro}. Su comportamiento es semejante al preprocesador de los lengauejes de programación como C: la macro la sustituye por el código URDF deseado teniendo en cuenta el valor de la variables que haya definido el programador.\\
+Una vez que tenemos nuestro diseño en XACRO, podemos exportarlo a URDF mediante el paquete de ROS denominado \textbf{xacro}. Su comportamiento es semejante al preprocesador de los lenguajes de programación como C: la macro la sustituye por el código URDF deseado teniendo en cuenta el valor de la variables que haya definido el programador.\\
 
-\textbf{¿Cuál ha sido la utilidad de XACRO en este proyecto?} Diseñar un diseño sencillo y flexible del robot Turtlebot2. En el capítulo \ref{cap:capitulo4} describiremos mejor los detalles mediante algunas muestras del diseño.\\
+\textbf{¿Cuál ha sido la utilidad de XACRO en este proyecto?} Diseñar un diseño sencillo y flexible del robot Turtlebot2. En el capítulo \ref{cap:capitulo4} mostraremos mejor la utilidad de XACRO aplicado a nuestro modelo.\\
 
 
 
@@ -170,7 +197,7 @@ p {
 \label{cod:codigo_urdf}
 \end{code}
 
-\textbf{¿Cuál ha sido la utilidad de HTML y CSS en este proyecto?} Diseñar y dar estilo a la plantilla web de los 2 nuevos ejercicios de Robotics Academy. El diseño se base en seguir las plantillas de los demás ejercicios con algunos pequeños cambios e incorporaciones específicos.\\
+\textbf{¿Cuál ha sido la utilidad de HTML y CSS en este proyecto?} Diseñar y dar estilo a la plantilla web de los 2 nuevos ejercicios de Robotics Academy. El diseño se basó en tomar como referencia las plantillas web de otros ejercicios realizando algunos cambios e incorporando características propias (como por ejemplo, el botón de \textit{teleoperación}).\\
 
 
 
@@ -183,7 +210,7 @@ p {
 \textbf{Javascript} es un lenguaje de programación interpretado que destaca por ser utilizado en el lado del cliente, en el Frontend de una página web que lee el navegador. Con Javascript podemos crear páginas web dinámicas a través de la definición de eventos que provocan resultados en el Backend (si tiene) o en la propia estructura HTML. Javascript puede usarse para multitud de tareas: Websockets, juegos, animaciones, etc.\\
 
 \textbf{¿Cuál ha sido la utilidad de Javascript en este proyecto?}
-En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos de la página con el fichero maestro de cada ejercicio que se llama \textbf{exercise.py}.\\
+En las plantillas web de Robotics Academy se usa Javascript para comunicar los eventos de la página con el fichero maestro de cada ejercicio que se llama \textbf{exercise.py} (este fichero actua como puente de comunicación con ROS en el SO anfitrión).\\
 
 
 
@@ -217,4 +244,12 @@ Una vez que hemos resumido las herramientas usadas podemos recopilarlas y mostra
   \label{fig:infraestructura_robotics_academy}
 \end{figure}\
 
-Cuando el usuario lanza un contenedor, se ejecuta el fichero \textbf{manager.py}. Este fichero se encarga del control (puesta en marcha, cierre, eventos...) y lanzamiento de todos los recursos necesarios para los ejercicios. El \textbf{manager.py} se comunica con el \textbf{exercise.py} del ejercicio que esté usando el usuario. Este último fichero se encarga de la comunicación con la plantilla web (eventos de javascript) así como la incorporación de los módulos de programación (HAL y GUI) que internamente se comunican con los nodos de ROS
+Cuando el usuario lanza un contenedor, se ejecuta el fichero \textbf{manager.py}. Este fichero se encarga del control (puesta en marcha, cierre, eventos...) y lanzamiento de todos los recursos necesarios para los ejercicios. El \textbf{manager.py} se comunica con el \textbf{exercise.py} del ejercicio que esté usando el usuario. Este último fichero se encarga de la comunicación con la plantilla web (eventos de javascript) así como la incorporación de los módulos de programación (HAL y GUI) que internamente se comunican con los nodos de ROS.\\
+
+
+
+% -- SECCION TURTLEBOT 2
+\section{Turtlebot2}
+\label{sec:turtlebot2}
+
+(TODO)
