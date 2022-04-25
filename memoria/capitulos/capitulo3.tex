@@ -60,7 +60,7 @@ ROS (Robot Operating System) \cite{ROS} es un middleware \footnote{\textbf{Middl
 
 El \textbf{funcionamiento} de ROS se basa en una arquitectura \textbf{cliente-servidor} centralizado donde un nodo principal se encarga del intercambio de mensajes entre otros nodos que forman la aplicación (remotos o locales), los cuales se comportan como \textbf{publicadores o suscriptores} del proceso de comunicación. El objetivo es dividir el software robótico en secciones o \textbf{nodos} que se encargan de realizar tareas específicas de manera \textbf{concurrente}: recogida de datos de la cámara, ejecución de una máquina de estados o árboles de comportamiento (Behavior Trees), recogida de las lecturas del láser, navegación, etc.\\
 
-El intercambio de mensajes se realiza a través \textbf{topics}. Un nodo puede tener \textbf{publicadores}, \textbf{suscriptores} o ambos. Cuando un nodo publica un mensaje lo hace a través de un topic que gestiona el nodo maestro. Si otro nodo quiere leer ese mensaje tendrá que suscribirse al tópic correspondiente. Por ejemplo: en nuestro robot Turtlebot2 podemos comandar velocidades enviando mensajes de tipo \textbf{geometry\_msgs.msg.Twist} a través del topic \textbf{/cmd\_vel}. En la figura se puede ver con más detalle \ref{fig:ros_master_comunicacion}\\
+El intercambio de mensajes se realiza a través \textbf{topics}. Un nodo puede tener \textbf{publicadores}, \textbf{suscriptores} o ambos. Cuando un nodo publica un mensaje lo hace a través de un topic que gestiona el nodo maestro. Si otro nodo quiere leer ese mensaje tendrá que suscribirse al tópic correspondiente. Por ejemplo: en nuestro robot Turtlebot 2 podemos comandar velocidades enviando mensajes de tipo \textbf{geometry\_msgs.msg.Twist} a través del topic \textbf{/cmd\_vel}. En la figura se puede ver con más detalle \ref{fig:ros_master_comunicacion}\\
 
 \begin{figure} [H]
   \begin{center}
@@ -85,7 +85,7 @@ Aprender ROS no es una tarea sencilla y requiere mucha dedicación y esfuerzo. P
 	\item Incorporar de Github los paquetes de ROS 2 para controlar la base kobuki del robot real, y el láser RPLIDAR. Profundizaremos en el capítulo [\ref{cap:capitulo6}]
 \end{itemize}
 
-Durante la etapa de entrenamiento del TFG, usamos una modalidad para hacer unas primeras pruebas con el Robot Turtlebot2 simulado de ROS Noetic en ROS 2. Para lograr esto, usamos \textbf{ROS Bridge} \footnote{\textbf{ROS Bridge}: \url{https://github.com/ros2/ros1_bridge}}. Se trata de un paquete que proporciona un puente de red que permite el intercambio de mensajes entre ROS 1 y ROS 2. De esta manera, podíamos lanzar una simulación en ROS 1 y ejecutar un programa en ROS 2 (el cual se comunica con los topics lanzados en el nodo maestro de ROS 1).\\
+Durante la etapa de entrenamiento del TFG, usamos una modalidad para hacer unas primeras pruebas con el Robot Turtlebot 2 simulado de ROS Noetic en ROS 2. Para lograr esto, usamos \textbf{ROS Bridge} \footnote{\textbf{ROS Bridge}: \url{https://github.com/ros2/ros1_bridge}}. Se trata de un paquete que proporciona un puente de red que permite el intercambio de mensajes entre ROS 1 y ROS 2. De esta manera, podíamos lanzar una simulación en ROS 1 y ejecutar un programa en ROS 2 (el cual se comunica con los topics lanzados en el nodo maestro de ROS 1).\\
 
 
 
@@ -113,7 +113,7 @@ Gazebo presenta estas características relevantes para nuestro proyecto:
   \label{fig:simulador_gazebo}
 \end{figure}\
 
-\textbf{¿Cuál ha sido la utilidad de Gazebo en este proyecto?} Incorporar un escenario proporcionado por AWS que simula un hospital e integrar el robot simulado Turtlebot2 (sensores incluidos) adaptado para ROS 2 Foxy. El nuevo ejercicio \textbf{Follow Person} simulado hace uso de dicho simulador.\\
+\textbf{¿Cuál ha sido la utilidad de Gazebo en este proyecto?} Incorporar un escenario proporcionado por AWS que simula un hospital e integrar el robot simulado Turtlebot 2 (sensores incluidos) adaptado para ROS 2 Foxy. El nuevo ejercicio \textbf{Follow Person} simulado hace uso de dicho simulador.\\
 
 
 
@@ -167,11 +167,11 @@ Para definir un link hay que proporcionar un modelo visual, un modelo de colisi�
 \section{XACRO}
 \label{sec:xacro}
 
-XACRO (XML Macros) es un lenguaje XML diseñado para crear macros \footnote{\textbf{macro}: plantilla que define un patrón} en URDF. Con XACRO conseguimos diseños URDF mucho más legibles y sencillos. De esta manera podemos estructurar el diseño de un robot en componentes más pequeños y repetitivos. Por ejemplo: para el diseño del robot Turtlebot2 creamos una macro que se pueda aplicar a todos las barras verticales que sujetan la estructura del robot.\\
+XACRO (XML Macros) es un lenguaje XML diseñado para crear macros \footnote{\textbf{macro}: plantilla que define un patrón} en URDF. Con XACRO conseguimos diseños URDF mucho más legibles y sencillos. De esta manera podemos estructurar el diseño de un robot en componentes más pequeños y repetitivos. Por ejemplo: para el diseño del robot Turtlebot 2 creamos una macro que se pueda aplicar a todos las barras verticales que sujetan la estructura del robot.\\
 
 Una vez que tenemos nuestro diseño en XACRO, podemos exportarlo a URDF mediante el paquete de ROS denominado \textbf{xacro}. Su comportamiento es semejante al preprocesador de los lenguajes de programación como C: la macro la sustituye por el código URDF deseado teniendo en cuenta el valor de la variables que haya definido el programador.\\
 
-\textbf{¿Cuál ha sido la utilidad de XACRO en este proyecto?} Diseñar un diseño sencillo y flexible del robot Turtlebot2. En el capítulo \ref{cap:capitulo4} mostraremos mejor la utilidad de XACRO aplicado a nuestro modelo.\\
+\textbf{¿Cuál ha sido la utilidad de XACRO en este proyecto?} Diseñar un diseño sencillo y flexible del robot Turtlebot 2. En el capítulo \ref{cap:capitulo4} mostraremos mejor la utilidad de XACRO aplicado a nuestro modelo.\\
 
 
 
@@ -258,12 +258,12 @@ Cuando el usuario lanza un contenedor, se ejecuta el fichero \textbf{manager.py}
 
 
 % -- SECCION TURTLEBOT 2
-\section{Turtlebot2}
+\section{Turtlebot 2}
 \label{sec:turtlebot2}
 
-El \textbf{laboratorio de Robótica} de la ETSIT URJC tiene a su disposición una decena de robots \textbf{Turtlebot2} para que los alumnos hagan uso de ellos en algunas asignaturas del grado. Este robot móvil es ideal para la enseñanza e investigación en robótica.\\
+El \textbf{laboratorio de Robótica} de la ETSIT URJC tiene a su disposición una decena de robots \textbf{Turtlebot 2} para que los alumnos hagan uso de ellos en algunas asignaturas del grado. Este robot móvil es ideal para la enseñanza e investigación en robótica.\\
 
-Los robots Turtlebot2 constan de una base superior donde el alumno puede colocar su \textbf{portatil} y conectarse al robot a través de los \textbf{puertos USB}. Tienen una \textbf{batería recargable} que opera entre 3 y 7 horas y con una alta velocidad de recarga. Además, el robot está adaptado para incorporarle varios tipos de sensores como camaras (RGB y RGB-D) y láseres e incluso actuadores como un brazo robótico.\\
+Los robots Turtlebot 2 constan de una \textbf{base inferior} denominada \textbf{Kobuki} (similar al de las aspiradores de limpieza robóticas) y una \textbf{base superior} donde el alumno puede colocar su \textbf{portátil} y conectarse al robot a través de los \textbf{puertos USB}. Tienen una \textbf{batería recargable} que opera entre 3 y 7 horas y con una alta velocidad de recarga. Además, el robot está adaptado para incorporarle varios tipos de sensores como camaras (RGB y RGB-D) y láseres e incluso actuadores como un brazo robótico.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -273,7 +273,7 @@ Los robots Turtlebot2 constan de una base superior donde el alumno puede colocar
   \label{fig:turtlebot2_real}
 \end{figure}\
 
-Para este proyecto hemos necesitado un Turtlebot2 que tuviera los siguientes \textbf{sensores}:
+Para este proyecto hemos necesitado un Turtlebot 2 y los siguientes \textbf{sensores}:
 \subsection{RPLIDAR A1}
 \label{subsec:rplidar_a1}
 El láser que hemos usado ha sido un modelo RPLIDAR A1. Se trata de un láser de 360 grados con un alcance de 12 metros. El repositorio de github que hemos utilizado para leer las lecturas del láser se encuentra en este enlace: \url{https://github.com/allenh1/rplidar_ros}\\
