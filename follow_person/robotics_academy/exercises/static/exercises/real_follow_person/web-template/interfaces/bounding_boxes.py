@@ -2,11 +2,6 @@ import rclpy
 from rclpy.node import Node
 import threading
 from darknet_ros_msgs.msg import BoundingBoxes
-
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
     
 class BoundingBoxData:
 
