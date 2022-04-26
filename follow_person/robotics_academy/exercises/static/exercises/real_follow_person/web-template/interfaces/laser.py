@@ -3,11 +3,6 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 import threading
 from math import pi as PI
-
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
     
 class LaserData ():
 

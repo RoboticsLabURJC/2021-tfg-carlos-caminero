@@ -17,11 +17,6 @@ from hal import HAL
 from console import start_console, close_console
 
 
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
-
 class Template:
     # Initialize class variables
     # self.time_cycle to run an execution for atleast 1 second

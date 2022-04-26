@@ -10,10 +10,6 @@ import rclpy
 import time
 import threading
 
-def debug(cad):
-    f = open("mydebug", "a")
-    f.write(cad)
-    f.close()
     
 class HAL:
 
@@ -46,7 +42,8 @@ class HAL:
     	self.motors.sendW(velocity)
     
     def getLaserData(self):
-    	return self.laser.getLaserData()
+        values = self.laser.getLaserData().values
+        return values[270:360:1] + values[0:1] + values[1:90:1]
     
     def getImage(self):
     	return self.camera.getImage().data
@@ -70,7 +67,6 @@ class HAL:
     			detection[6]*rows)
     		bounding_boxes.append(bounding_box)
     	return bounding_boxes
-    	#return self.bounding_boxes.getBoundingBoxes()
 
 
 class ThreadHAL(threading.Thread):
