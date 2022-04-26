@@ -114,7 +114,7 @@ En la figura \ref{fig:sim_kobuki_base} podréis ver el resultado de la base kobu
 % -- SECCION IMAGEN DOCKER
 % --------------------------
 \subsection{Imagen Docker}
-\label{sec:kobuki_base_docker}
+\label{subsec:kobuki_base_docker}
 
 Para empezar a controlar la base kobuki con un contenedor docker, definimos un fichero Dockerfile con todas las dependencias necesarias junto con los comandos necesarios para lanzar los nodos.\\
 
@@ -147,7 +147,7 @@ Entonces, la \textbf{solución} fue crear la estructura restante del robot a man
 % -- FICHEROS DE CONFIGURACION XACRO
 % ------------------------------------
 \subsection{Ficheros de Configuración XACRO}
-\label{sec:turtlebot2_xacro}
+\label{subsec:turtlebot2_xacro}
 
 El primer paso de esta segunda parte fue crear el modelo URDF. Usando XACRO me permitió crear \textbf{macros} que facilitara la estructura y la legibilidad del modelo. Con XACRO era sencillo incluir nuevos elementos en el modelo y establecer la jerarquía de transformadas entre links de padres a hijos (siempre es importante indicar las relaciones jerárquicas para poder realizar futuras operaciones basadas en frames).\\
 
@@ -162,7 +162,7 @@ La estructura del nuevo directorio es la siguiente:
           .2 kobuki\_base.
           .3 kobuki\_ros\_interfaces.
           .3 kobuki\_ros.
-          .4 Ficheros de kobuki\_gazebo \ref{sec:kobuki_gazebo}.
+          .4 Ficheros de kobuki\_gazebo \ref{subsec:kobuki_gazebo}.
           .4 \vdots.
           .2 turtlebot2.
           .3 launch.
@@ -232,9 +232,9 @@ ros2 run xacro xacro urdf/turtlebot2.urdf.xacro > urdf/turtlebot2.urdf
 % -- TURTLEBOT 2: LANZAMIENTO EN GAZEBO
 % ---------------------------------------
 \subsection{Lanzamiento en Gazebo}
-\label{sec:turtlebot2_gazebo}
+\label{subsec:turtlebot2_gazebo}
 
-Para la \textbf{visualización} del modelo URDF en Gazebo me basé en los mismos ficheros que hice con la base Kobuki: \textbf{empty\_world.launch.py} y \textbf{spawn\_model.launch.py} [\ref{sec:kobuki_gazebo}]\\
+Para la \textbf{visualización} del modelo URDF en Gazebo me basé en los mismos ficheros que hice con la base Kobuki: \textbf{empty\_world.launch.py} y \textbf{spawn\_model.launch.py} [\ref{subsec:kobuki_gazebo}]\\
 
 La única diferencia fue definir 3 argumentos por defecto para establecer la \textbf{posición inicial} del robot, para que cuando se quiera importar el modelo en cualquier otro mundo de Gazebo, el programador pueda especificar el punto de inicio. Estos 3 argumentos se pasan al nodo \textbf{spawn\_entity}. A continuación podemos ver la sección referente a la posición inicial del fichero \textbf{spawn\_model.launch.py}:\\
 \begin{lstlisting}
