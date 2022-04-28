@@ -102,14 +102,16 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 \cleardoublepage
 
 
+
+
 % -- SECCION RNA
 % ----------------
-\section{Elección la RNA para detección de Objetos}
+\section{Elección de RNA para detección de Objetos}
 \label{sec:eleccion_rna}
 
-La elección de una RNA que pueda detectar objetos se basó en este \textbf{criterio}: tiene que procesar óptimamente en una CPU y o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los FPS cuando se usa estos 2 modelos de RNA en una aplicación de Visión Artificial: Darknet ROS y SSD Inceptión V2 (ambos introducidos en el capítulo 1).\\
+La elección de una RNA que pueda detectar objetos se basó en este \textbf{criterio}: tiene que ejecutar de manera óptima en una CPU o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los \textbf{FPS} (fotogramas por segundo) cuando se usan estos 2 modelos de RNA en una aplicación de Visión Artificial: YOLO a través de Darknet ROS [\ref{subsec:yolo}] y SSD Inceptión V2 [\ref{subsec:ssd}] (ambos introducidos en el capítulo 1).\\
 
-Primero probamos un paquete \textit{fork}\footnote{\textbf{Darknet ROS}: \url{https://github.com/Ar-Ray-code/darknet_ros/tree/foxy/darknet_ros/}} del repositorio oficial de \textbf{Darknet ROS} para ROS 2 Foxy que incluía 1 fichero de lanzamiento \textbf{yolov4-tiny.launch.py} que ejecutaba una RNA profunda con menos capas que la original, provocando un aumento de rendimiento pero menor precisión. La ventaja de usar Darknet ROS es que indicas en un fichero de configuración el topic sobre el que se publica las imágenes de OpenCv \footnote{para la cámara IntelRealsense R200 usamos este comando para publicar la imagen sobre un topic: \textbf{ros2 run v4l2\_camera v4l2\_camera\_node --ros-args -p video\_device:="/dev/video4"}} y automáticamente la Red Neuronal procesa la imagen y publica los resultados en 3 topics: \textbf{/darknet\_ros/bounding\_boxes}, \textbf{/darknet\_ros/found\_object} y \textbf{/darknet\_ros/detection\_image}.\\
+Primero probamos un paquete \textit{fork}\footnote{\textbf{Darknet ROS}: \url{https://github.com/Ar-Ray-code/darknet_ros/tree/foxy/darknet_ros/}} del repositorio oficial de \textbf{Darknet ROS} para ROS 2 Foxy que incluía 1 fichero de lanzamiento \textbf{yolov4-tiny.launch.py} que ejecutaba una RNA profunda con menos capas que la original, provocando un aumento de rendimiento pero menor precisión. La ventaja de usar Darknet ROS es que indicas en un fichero de configuración el topic sobre el que se publica las imágenes de OpenCV \footnote{para la cámara IntelRealsense R200 usamos este comando para publicar la imagen sobre un topic: \textbf{ros2 run v4l2\_camera v4l2\_camera\_node --ros-args -p video\_device:="/dev/video4"}} y automáticamente la Red Neuronal procesa la imagen y publica los resultados en 3 topics: \textbf{/darknet\_ros/bounding\_boxes}, \textbf{/darknet\_ros/found\_object} y \textbf{/darknet\_ros/detection\_image}.\\
 
 Mientras ejecutábamos Darknet ROS lanzamos este comando para medir los FPS y volcar los datos en un fichero:\\
 
@@ -166,11 +168,11 @@ Como vemos en la figura, Darknet ROS no funciona de manera óptima para portáti
 % -- SECCION HAL
 % ----------------
 \section{Desarrollo de la Capa de Abstracción Hardware (HAL)}
-\label{sec:turtlebot2_hal_simulado}
+\label{sec:hal_sim_follow_person}
 
 En esta sección explicaremos el desarrollo de la Capa de Abstracción Hardware (HAL) que incluímos en este ejercicio, además de algunos nuevos cambios para su adaptación a ROS2.\\
 
-Todos los ejercicios de Robotics Academy comparten una estructura muy similar. Tienen un fichero llamado \textbf{exercise.py} que se comunica tanto con el \textbf{navegador} como con los demás ficheros de su directorio. Partiendo de dicha ruta relativa, hay un directorio denominado \textbf{interfaces} donde encontramos ficheros python que actuan a modo de plantilla para comunicarse con nodos de ROS dedicados. En todos hubo que hacer algunas modificaciones debido al cambio de ROS 1 a ROS 2 (modo de creación de los nodos, publicadores y suscriptores). Como ficheros \textit{interfaces} tenemos la cámara, el láser, los motores, la odometría, y la detección mediante SSD Inception entre otros.\\
+Todos los ejercicios de Robotics Academy comparten una estructura muy similar. Tienen un fichero llamado \textbf{exercise.py} que se comunica tanto con el \textbf{navegador} como con los demás ficheros de su directorio. Partiendo de dicha ruta relativa, hay un directorio denominado \textbf{interfaces} donde encontramos ficheros python que actuan a modo de plantilla para comunicarse con nodos de ROS dedicados. En todos ellos hubo que hacer algunas modificaciones debido al cambio de ROS 1 a ROS 2 (modo de creación de los nodos, publicadores y suscriptores). Como ficheros \textit{interfaces} tenemos la cámara, el láser, los motores, la odometría, y la detección mediante SSD Inception entre otros.\\
 
 La gran novedad se encuentra en el fichero \textbf{ssd\_detection.py} (nueva incorporación). En él definimos la clase \textbf{BoundingBox} y la clase \textbf{NeuralNetwork}:\\
 
@@ -204,12 +206,19 @@ Una vez creado los ficheros \textbf{interfaces} crearemos la API de HAL en el fi
 	\item \textbf{setV(velocity)}. Nos permite usar velocidades lineales. Usa la interfaz \textbf{motors} que publica sobre el topic \textbf{/cmd\_vel}
 	\item \textbf{setW(velocity)}. Nos permite usar velocidades angulares (radianes). Usa también la interfaz \textbf{motors} para publicar sobre el mismo topic.
 	\item \textbf{getLaserData()}. Devuelve una lista 180 lecturas del láser (para facilitar la programación al usuario y ocultar distintas calibraciones) mediante de un tipo de datos llamado \textbf{LaserData} usando la interfaz \textbf{laser} que se suscribe al topic \textbf{/scan}. El láser RPLIDAR 360 del fichero de configuración URDF está colocado de tal manera que el ángulo 0 apunta hacia delante del robot y en sentido anti-horario, por lo tanto fue necesario retornar 180 valores del láser en el orden que mostramos en la figura [\ref{fig:vista_planta_turtlebot2}]
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/vista-planta-turtlebot2.png}
+  \end{center}
+  \caption[Láser Turtlebot 2]{Láser Turtlebot 2}
+  \label{fig:vista_planta_turtlebot2}
+\end{figure}
 	\item \textbf{getImage()}. Devuelve una imagen en formato OpenCV a través de la interfaz \textbf{camera} suscrita al topic \textbf{/depth\_camera/image\_raw}
 	\item \textbf{getPose3d()}. Obtiene la posición actual del robot a través de la interfaz \textbf{pose3d} suscrita al topic \textbf{/odom}
 	\item \textbf{getBoundingBoxes(img)}. Dada una imagen realiza una llamada al modelo de red neuronal para realizar una \textbf{detección} y devolver una lista de \textbf{Bounding Boxes}.  
 \end{itemize}\
 
-Para una correcta lectura del láser por parte del usuario en su solución, propongo la siguiente función para colocarla en el editor de texto de la plantilla web.\\
+Para un uso correcto del láser por parte del usuario en su solución Sigue Personas, propongo la siguiente función para colocarla en el editor de texto de la plantilla web. Esta función será útil para usarla en el algoritmo VFF [\ref{subsec:vff}]. Simplemente nos devolverá una lista de tuplas que indican la distancia y ángulo de cada rayo láser, descartando aquellas lecturas no definidas (``inf").\\
 
 \begin{code}[H]
 \begin{lstlisting}
@@ -227,30 +236,23 @@ def parse_laser_data(laser_data):
 \label{cod:parse_laser_data}
 \end{code}\
 
-Con esta función leeremos como máximo 180 lecturas láser y con valores definidos. En la figura \ref{fig:vista_planta_turtlebot2} podemos ver la nueva distribución del láser hallándose el ángulo 0 a la izquierda del robot.\\
 
-\begin{figure} [H]
-  \begin{center}
-    \includegraphics[width=10cm]{imagenes/vista-planta-turtlebot2.png}
-  \end{center}
-  \caption[Láser Turtlebot 2]{Láser Turtlebot 2}
-  \label{fig:vista_planta_turtlebot2}
-\end{figure}\
 
-\cleardoublepage
 
 % -- SECCION SIGUE PERSONAS
 \section{Solución Sigue-Personas Simulado}
 \label{sec:sigue_personas_simulado}
 
-En esta sección explicaremos la elaboración de una solución de referencia para el problema Sigue Personas de este ejercicio en simulado. La solución la podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados.\\
+En esta sección explicaremos la elaboración de una solución de referencia para el problema Sigue Personas de este ejercicio en simulado. La solución la podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados. La nueva documentación del ejercicio Follow Person simulado está disponible en Robotics Academy en este enlace: \url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}\\\\
+
+
 
 
 % -- SUBSECCION TRACKER
 % -----------------------
 \subsection{detección mediante ML y creación de un Tracker}
 \label{subsec:ml_tracker}
-Para detectar a la persona usaremos la función del módulo HAL llamada \textbf{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una \textbf{imagen} de entrada y devuelve una lista de objetos \textbf{Bounding Box} (TODO explicados en la sección anterior). Crearemos una función llamada \textbf{\textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)}} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
+Para detectar a la persona usaremos la función del módulo HAL llamada \textbf{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una \textbf{imagen} de entrada y devuelve una lista de objetos \textbf{Bounding Box} (explicados en la sección anterior [\ref{sec:hal_sim_follow_person}]). Crearemos una función llamada \textbf{\textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)}} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
 
 \begin{figure} [H]
   \begin{center}
@@ -260,7 +262,7 @@ Para detectar a la persona usaremos la función del módulo HAL llamada \textbf{
   \label{fig:deteccion_ssd_sin_filtro}
 \end{figure}\
 
-Sin embargo, un modelo de red neuronal genera una \textbf{puntuación} o \textbf{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por score para desechar los \textbf{falsos positivos}. Para ello, generamos una función que llamaremos \textbf{\textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)}} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a \textbf{0.3} (el rango es de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
+Sin embargo, un modelo de red neuronal genera una \textbf{puntuación} o \textbf{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por score para desechar los \textbf{falsos positivos}. Para ello, generamos una función que llamaremos \textbf{\textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)}} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a \textbf{0.3} (el rango va de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
 
 \begin{figure} [H]
   \begin{center}
@@ -282,20 +284,20 @@ Tal y como vemos en la figura \ref{fig:deteccion_ssd_filtro_score}, tras el filt
 
 Como último filtro y muy recomendable es rechazar aquellas detecciones que no superen un \textbf{área} determinado. Con este filtro, evitamos que el robot se confunda con personas que se encuentren a una distancia lejana o con un falso positivo, para ello, crearemos una función llamada \textbf{\textit{bounding\_boxes\_by\_area(bounding\_boxes, min\_area)}} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el área mínima que debe filtrar.\\
 
-El siguiente paso es crear un \textbf{Tracker} de seguimiento. Nuestro tracker se basará en la distancia de los centroides de los Bounding Boxes de un fotograma el candidato anterior. Recordemos que un Bounding Box tenía otros 4 parámetros más: xmin e ymin correspondían a las coordenadas (x,y) del extremo superior izquierdo de la caja de detección, y xmax e ymax correspondían a las coordenadas (x,y) del extremo inferior derecho. Para obtener el \textbf{centroide} aplicaremos la siguiente fórmula:\\
+El siguiente paso es crear un \textbf{Tracker} de seguimiento. Nuestro tracker se basará en la distancia de los centroides de los Bounding Boxes del fotograma actual con el candidato del fotograma anterior. Recordemos que un Bounding Box tenía otros 4 parámetros más: $x_{min}$ e $y_{min}$ correspondían a las coordenadas (x,y) del extremo superior izquierdo de la caja de detección, y $x_{max}$ e $y_{max}$ correspondían a las coordenadas (x,y) del extremo inferior derecho. Para obtener el \textbf{centroide} aplicaremos la siguiente fórmula:\\
 \begin{eqnarray*}
 C_x = \frac{x_{min} + x_{max}}{2}\\
 C_y = \frac{y_{min} + y_{max}}{2}\\
 \end{eqnarray*}
 
-Crearemos una clase llamada \textbf{BoundingBoxObject} que tendrá 3 atributos: El \textbf{Bounding Box} correspondiente, su \textbf{centroide} y su \textbf{área}. El área lo obtendremos de la siguiente manera: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$\\
+Crearemos una clase llamada \textbf{BoundingBoxObject} que tendrá 3 atributos: El \textbf{Bounding Box} correspondiente, su \textbf{centroide} y su \textbf{área}. El área lo obtendremos de la siguiente manera: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$.\\
 
 Posteriormente, creamos una clase llamada \textbf{Tracker} que nos proporcionará una capa de abstracción al usar los siguientes métodos que definiremos:
 
 \begin{itemize}
 	\item \textbf{\textit{setObjective(self, obj)}}: Establece el objetivo BoundingBoxObject de seguimiento.
 	\item \textbf{\textit{getObjective(self)}}: Devuelve el objetivo BoundingBoxObject actual de seguimiento.
-	\item \textbf{\textit{getObjectiveFromSet(self, objlist)}}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca al actual, que no supere una distancia límite de diferencia(50) y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la Distancia Euclídea:
+	\item \textbf{\textit{getObjectiveFromSet(self, objlist)}}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca del actual, no supere una distancia límite(50) con él, y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la \textbf{Distancia Euclídea}:
 	\begin{equation*}
 	d = \sqrt{(C_{x}' - C_{x})^2 + (C_{y}' - C_{y})^2}
 	\end{equation*}
@@ -311,7 +313,7 @@ En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en qué 
   \label{fig:obtencion_centroide}
 \end{figure}\
 
-Al principio del programa inicalizaremos una \textbf{instancia} de tipo Tracker, y, en cada iteración del bucle principal al método \textbf{getObjectiveFromSet(self, objlist)} para obtener un BoundingBoxObject que dibujaremos en la imagen de color rojo. El resultado será el siguiente:\\
+Al principio del programa inicializamos una \textbf{instancia} de tipo Tracker, y, en cada iteración del bucle principal llamamos al método \textbf{getObjectiveFromSet(self, objlist)} para obtener un BoundingBoxObject que dibujamos en la imagen de color rojo. El resultado queda de la siguiente manera:\\
 
 \begin{figure} [H]
   \begin{center}
@@ -366,7 +368,7 @@ F_x &=& \alpha \cdot A_x + \beta \cdot R_x\\
 F_y &=& \alpha \cdot A_y + \beta \cdot R_y\\
 \end{eqnarray*}
 
-Queda en la labor del programador ajustar empíricamente los parámetros $\alpha$ y $\beta$ dependiendo del comportamiento que desee. Si queremos darle más peso a la repulsión aumentaremos $\beta$ pero en casos extremos podríamos llegar a perder el objetivo. En cambio si queremos darle más perso a la atracción conseguiremos que evité los obstáculos sin perder al objetivo pero si está mal ajustado podríamos colisionar a causa de una escasa repulsión. En la figura \ref{fig:esquema_vff} resumimos el algoritmo VFF de manera gráfica para una mejor comprensión.\\
+Queda en la labor del programador ajustar empíricamente los parámetros $\alpha$ y $\beta$ dependiendo del comportamiento que desee. Si queremos darle más peso a la repulsión aumentaremos $\beta$ pero en casos extremos podríamos llegar a perder el objetivo. En cambio si queremos darle más peso a la atracción conseguiremos que evité los obstáculos sin perder al objetivo pero si está mal ajustado podríamos colisionar a causa de una escasa repulsión. En la figura \ref{fig:esquema_vff} resumimos el algoritmo VFF de manera gráfica para una mejor comprensión.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -376,7 +378,9 @@ Queda en la labor del programador ajustar empíricamente los parámetros $\alpha
   \label{fig:esquema_vff}
 \end{figure}\
 
-En nuestra solución de referencia, aplicaremos solamente la componente $F_x$ como velocidad angular, ya que la velocidad lineal estará \textbf{basada en casos} dependiendo de la distancia al objetivo. En el siguiente apartado [\ref{subsec:maquina_estados}] lo explicaremos con más detalle.
+En nuestra solución de referencia, aplicaremos solamente la componente $F_x$ como velocidad angular, ya que la velocidad lineal estará \textbf{basada en casos} dependiendo de la distancia al objetivo. En el siguiente apartado [\ref{subsec:maquina_estados}] lo explicaremos con más detalle.\\
+
+
 
 % -- SUBSECCION MÁQUINA DE ESTADOS
 % ----------------------------------
@@ -389,5 +393,45 @@ El estado \textbf{Buscar-Persona} será aquel con el que empecemos la ejecución
 
 En el estado \textbf{Seguir-Persona} aplicaremos el algoritmo de Tracking [\ref{subsec:ml_tracker}] y VFF [\ref{subsec:vff}]. Además, la velocidad lineal cambiará dependiendo de la distancia al objetivo. Para ello crearemos unas condiciones en las que dependiendo del área del Bounding Box aplicaremos una velocidad u otra. Cuanto más pequeño sea el área, más lejos estará nuestro objetivo. Si por algún motivo perdemos a la persona, incrementaremos un \textbf{contador de fallo} y de esta manera, en caso de no detectarla en el siguiente fotograma, nos quedaremos con el mismo valor del centroide candidato. Cuando el contador supere un límite, transitaremos al primer estado: \textbf{Buscar-Persona}.\\
 
-El \textbf{resultado de nuestra solución} podéis verla en el siguiente enlace: \textbf{\textit{\url{https://youtu.be/fDAU465eVxQ}}}
+El \textbf{resultado de la solución} podemos verla en el siguiente enlace:\\ \textbf{\textit{\url{https://youtu.be/fDAU465eVxQ}}}\\
 
+
+
+% -- SECCION VARIANTES
+% ----------------------
+\section{Variantes de la solución}
+\label{sec:variantes_solucion}
+
+La solución mostrada en la sección [\ref{sec:sigue_personas_simulado}] no es lá unica para abordar el problema. Podemos enfocar el problema Sigue Personas de varias maneras. A continuación indicamos algunas posibles opciones que tuvimos en cuenta antes de llegar a la solución final de referencia:\\
+
+\begin{itemize}
+	\item \textbf{Control de velocidad basado en franjas}. En este modelo de seguimiento, dividimos la imagen en franjas y dependiendo de la posición $C_{x}$ del centroide usamos una velocidad angular determinada. A continuación mostramos un ejemplo de implementación
+\begin{code}[H]
+\begin{lstlisting}
+vels = [0.3, 0.2, 0.1, 0, -0.1, -0.2, -0.3]	 # vel > 0 === left turn
+
+width = img.shape[1]
+step = width/len(vels)
+
+while True:
+	# ...
+	cx, cy = centroid
+	# ...
+	
+	HAL.setW(vels[int(cx/step)]) # Angular velocity
+\end{lstlisting}
+\caption{Ejemplo de control de velocidad basado en franjas}
+\label{cod:vel_bar}
+\end{code}
+	\item \textbf{Velocidad basada en un controlador PID}. Con un controlador PID bien configurado obtendríamos una respuesta rápida y precisa para no perder a la persona. Su algoritmo de seguimiento sería semejante al ejercicio \textbf{Follow Line} \footnote{\textbf{Follow Line}: \url{http://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/}}. Una desventaja de usar un controlador PID es el hecho de verse afectado a causa de una baja velocidad de fotogramas por segundo. Además, tendríamos que tener en cuenta la fuerza repulsiva del láser a la hora de comandar velocidades angulares.
+	\item \textbf{Detección de color}. Como solución de escape en caso de tener problemas de alto de rendimiento, pensamos poner al alcance la opción de Seguir a la persona del hospital dependiendo del color de la camiseta (la pusimos de color verde para facilitar la detección). Para ellos tendríamos que seguir estos pasos:
+	\begin{enumerate}
+		\item Cambiar el espacio de color de la imagen de RGB a HSV\footnote{\textbf{HSV}: \url{https://es.wikipedia.org/wiki/Modelo_de_color_HSV}}. El espacio HSV (Hue, Saturation, Value) facilita la detección de colores.
+		\item Obtener el rango HSV de valores mínimo y máximo del color verde y crear una máscara que filtre correctamente la camiseta.
+		\item Siendo $p_{i}$ el valor del pixel (0 o 1) de la máscara y $x_i$ las coordenadas del pixel correspondiente, el centroide lo obtendremos de la siguiente manera (ecuacion obtenida de \cite{centroide_ecuacion}):
+		\begin{equation*}
+		c = \frac{\sum_{i=1}^n\left(p_i \cdot x_i\right)}{\sum_{i=1}^n\left(p_i\right)}
+		\end{equation*}
+		\item Una vez obtenido el centroide, aplicar el algoritmo VFF igual que en la solución de referencia.
+	\end{enumerate}
+\end{itemize}
