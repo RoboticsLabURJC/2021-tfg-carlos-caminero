@@ -5,7 +5,6 @@ En este capítulo nos centraremos en la implementación del ejercicio \textit{Re
 
 
 
-
 % -- INTEGRACION DOCKER
 % -----------------------
 \section{Integración Turtlebot2 en Docker}
@@ -51,6 +50,14 @@ $>  docker run -it --device /dev/ttyUSB0 --device /dev/ttyUSB1 --device /dev/vid
 
 Una vez lanzado el contenedor, podremos acceder a la plantilla web del ejercicio y comenzar a programar sobre el robot real. En la plantilla web tendremos como GUI, un \textit{canvas} para visualizar los fotogramas de la cámara y un terminal (mediante conexión VNC) para depurar.
 
+\begin{figure} [H]
+	\begin{center}
+		\includegraphics[width=12cm]{imagenes/cap6/plantilla-web.png}
+	\end{center}
+	\caption[Plantilla web del ejercicio Real Follow Person]{Plantilla web del ejercicio Real Follow Person}
+	\label{fig:plantilla_web_real_follow_person}
+\end{figure}\
+
 
 
 
@@ -59,12 +66,27 @@ Una vez lanzado el contenedor, podremos acceder a la plantilla web del ejercicio
 \section{HAL y solución de referencia}
 \label{sec:hal_solucion_real_follow_person}
 
-La infraestructura del ejercicio es muy parecido al del ejercicio Follow Person simulado, de modo que describiremos los cambios más relevantes:
+La infraestructura del ejercicio es muy parecida al del ejercicio Follow Person simulado, de modo que describiremos los cambios más relevantes:
 
 \begin{itemize}
 	\item Ausencia del simulador Gazebo debido al uso de un robot físico y su ejecución sobre un escenario real. Ello implica un incremento de velocidad de procesamiento al no saturar de procesos el sistema virtualizado.
-	\item Cambio en los tópics de publicación y suscripción: (TODO)
-	\item Cambio en la configuración del láser en la función HAL.getLaserData().
+	\item Cambio en los tópics de publicación y suscripción en el módulo HAL:
+	\begin{itemize}
+		\item La velocidad se publica en el \textit{topic} /commands/velocity. El nodo de la base \textit{Kobuki} (fichero kobuki\_ros.cpp del paquete kobuki\_node) se suscribe al topic y comanda directamente las velocidades al hardware: \textit{kobuki\_.setBaseControl(msg-$>$linear.x, msg-$>$angular.z)};
+		\item Las lecturas del láser se obtienen del mismo \textit{topic} /scan.
+		\item Los fotogramas de la cámara se obtienen del \textit{topic} /image\_raw que se genera cuando lanzamos el nodo v4l2\_camera\_node sobre el dispositivo /dev/video0
+		\item La odometría del robot se obtiene del mismo \textit{topic}: /odom.
+	\end{itemize}
+	\item Cambio en la configuración del láser en la función HAL.getLaserData(). Durante las pruebas realizadas con el robot real, fue necesario volver a ajustar la dirección de las lecturas del láser tal y como hizimos en el capítulo 5 [\ref{sec:hal_sim_follow_person}] y poder devolver 180 lecturas en un orden correcto:
+	\begin{code}[H]
+	\begin{lstlisting}
+	def getLaserData(self):
+		values = self.laser.getLaserData().values
+		return values[270:360:1] + values[0:1] + values[1:90:1]
+	\end{lstlisting}
+	\caption{Módulo HAL en Real Follow Person: getLaserData}
+	\label{cod:real_follow_person_hal_laser}
+	\end{code}
 \end{itemize}
 
 En la \textit{solución} de referencia seguimos los mismos pasos que en la sección [\ref{sec:sigue_personas_simulado}]:
@@ -74,8 +96,22 @@ En la \textit{solución} de referencia seguimos los mismos pasos que en la secci
 		\item Localizar a una persona aplicando los filtros de \textit{score} o puntuación, cláse y área.
 		\item Aplicaremos el criterio de \textit{selección}: dividir la imagen en 3 secciones y elegir como objetivo la persona más cercana que esté situada en la sección central
 		\item Crear una clase Tracker que guarde constantemente y vaya actualizando el objetivo de seguimiento por cada fotograma.
-		\item Para no perder al objetivo, en cada fotograma nos quedaremos con el centroide del \textit{Bounding Box} más cercano al centroide candidato del fotograma anterior, mientras no supere un límite de distancia. En caso de no detectar al objetivo, iremos incrementando un contador de fallo. 
+		\item Para no perder al objetivo, en cada fotograma nos quedaremos con el centroide del \textit{Bounding Box} más cercano al centroide candidato del fotograma anterior, mientras no supere un límite de distancia. En caso de no detectar al objetivo, iremos incrementando un contador de fallo.
 	\end{enumerate}
-	\item Implementación del algoritmo VFF
-	\item Máquina de Estados Finitos.
-\end{itemize}
+	\begin{figure} [H]
+		\begin{center}
+			\includegraphics[width=10cm]{imagenes/cap6/tracker.png}
+		\end{center}
+		\caption[Tracker en el ejercicio Real Follow Person]{Tracker en el ejercicio Real Follow Person}
+		\label{fig:tracker_real_follow_person}
+	\end{figure}\
+	
+	\item Implementación del algoritmo VFF. Como la frecuencia de actualización cambia ante la ausencia del simulador, ha sido necesario reajustar los parámetros $\alpha$ y $\beta$ del algoritmo, para equilibrar la relación entre la fuerza de atracción y de repulsión.
+	
+	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio \textit{Follow Person} simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, de esta manera, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide del útlimo \textit{Bounding Box} candidato.
+\end{itemize}\
+
+El resultado de la solución podemos verlo en el siguiente enlace:\\
+\textit{\url{https://youtu.be/54Jb4KJwyDM}}\\
+
+Con este nuevo ejercicio y el anterior se pretende poner en práctica la experiencia del programador de robots cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (ejemplo de Follow Person simulado), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (Real Follow Person). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
