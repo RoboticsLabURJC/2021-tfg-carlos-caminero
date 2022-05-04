@@ -77,7 +77,7 @@ La infraestructura del ejercicio es muy parecida al del ejercicio Follow Person 
 		\item Los fotogramas de la cámara se obtienen del \textit{topic} /image\_raw que se genera cuando lanzamos el nodo v4l2\_camera\_node sobre el dispositivo /dev/video0
 		\item La odometría del robot se obtiene del mismo \textit{topic}: /odom.
 	\end{itemize}
-	\item Cambio en la configuración del láser en la función HAL.getLaserData(). Durante las pruebas realizadas con el robot real, fue necesario volver a ajustar la dirección de las lecturas del láser tal y como hizimos en el capítulo 5 [\ref{sec:hal_sim_follow_person}] y poder devolver 180 lecturas en un orden correcto:
+	\item Cambio en la configuración del láser en la función HAL.getLaserData(). Durante las pruebas realizadas con el robot real, fue necesario volver a ajustar la dirección de las lecturas del láser tal y como hicimos en el capítulo 5 [\ref{sec:hal_sim_follow_person}] y poder devolver 180 lecturas en un orden correcto:
 	\begin{code}[H]
 	\begin{lstlisting}
 	def getLaserData(self):

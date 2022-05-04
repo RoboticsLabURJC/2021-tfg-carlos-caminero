@@ -3,7 +3,7 @@
 \setcounter{page}{1}
 \pagestyle{plain}
 
-La tarea Sigue-Personas es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. El siguiente TFG propone desarrollar dos nuevos ejercicios para la plataforma Unibotics con el objetivo de que los usuarios programen un robot Turtlebot2 tanto en simulado como en real para que realice dicha tarea.\\
+La tarea Sigue-Personas es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. El siguiente TFG propone desarrollar dos nuevos ejercicios para Robotics Academy con el fin de que sean integrados en la plataforma Unibotics, con el objetivo de que los usuarios programen un robot Turtlebot2 tanto simulado como real para que realice dicha tarea.\\
 
 Este primer capítulo trata de presentar el estado actual de varios campos de la Robótica que están directamente relacionados con este proyecto para poner en contexto al lector y facilitar su lectura.\\
 
@@ -11,18 +11,23 @@ Por un lado presentaremos la Robótica Móvil, un sector de la robótica que est
 
 
 
+
+% -- ROBOTICA MOVIL
+% -------------------
 \section{Robótica Móvil}
 \label{sec:robotica_movil}
 
 La robótica es la ciencia que engloba varias ramas tecnológicas o disciplinas, con el objetivo de diseñar máquinas (``robots'') que sean capaces de realizar tareas automatizadas o de simular el comportamiento humano o animal, en función de la capacidad de su software. \cite{revistaderobots}. Su término se remonta a la obra de ciencia ficción escrita por Isaac Asimov: Yo, Robot. (1950)\\
 
-Una vez que la robótica emerge a partir de mediados del siglo XX, surgen 2 sectores: la Robótica Industrial y la Robótica de Servicio. Los \textbf{Robots industriales} se encargan de realizar tareas automatizadas y muy repetitivas en entornos industriales, donde el entorno es controlado. Los \textbf{Robots de Servicio} son aquellos que realizan tareas útiles para el ser humano proporcionándole un servicio. Destacan los robots móviles que permiten desplazarse de un sitio a otro, sin embargo el entorno en el que se enfrentan es bastante heterogéneo, por tanto su software tiene que ser muy robusto para adaptarse correctamente a los cambios.\\
+Una vez que la robótica emerge a partir de mediados del siglo XX, surgen 2 sectores: la Robótica Industrial y la Robótica de Servicio. Los \textit{Robots industriales} se encargan de realizar tareas automatizadas y muy repetitivas en escenarios industriales, donde el entorno está muy controlado. Los \textit{robots de Servicio} son aquellos que realizan tareas útiles para el ser humano y mejorar su comodidad. Entre los robots de servicio, destacan los robots móviles.\\
 
-Un \textbf{robot móvil} un sistema electromecánico capaz de desplazarse de ma­nera autónoma sin estar sujeto físicamente a un solo punto. Posee sensores que permiten monitorear a cada momento su posición relativa a su punto de origen (odometría) y a su punto de destino. Normalmente su control es en lazo cerrado. Se clasifican en robots móviles de \textbf{locomoción con ruedas}, \textbf{locomoción con patas} y \textbf{locomoción con orugas}.  Los primeros son más fáciles de controlar pero no se adaptan bien a muchas superficies, sin embargo los robots con patas (cuadrúpedos o bípedos) se adaptan muy bien a distintas superficies pero requieren varios controladores para mantener su equilibrio tanto estático como dinámico.
-
-
+Un \textit{robot móvil} es un sistema electromecánico capaz de desplazarse de ma­nera autónoma sin estar sujeto físicamente a un solo punto\cite{robots-moviles-evolucion-estado-arte}. Posee sensores que permiten monitorear en cada momento su posición relativa a su punto de origen (odometría) y a su punto de destino. Normalmente su control se basa en un sistema de lazo cerrado (modo de actuación está determinado por su estado anterior). Se clasifican en robots móviles de locomoción con \textit{ruedas}, locomoción con \textit{patas} y locomoción con \textit{orugas}.  Los primeros son más fáciles de controlar pero no se adaptan bien a muchas superficies, sin embargo los robots con patas (cuadrúpedos o bípedos) se adaptan muy bien a distintas superficies pero requieren varios controladores para mantener su equilibrio tanto estático como dinámico. El entorno en el que se enfrentan es bastante \textit{heterogéneo}, por tanto su software debe ser lo más robusto posible para adaptarse correctamente a los cambios.\\
 
 
+
+
+% -- EVOLUCION HISTORICA
+% ------------------------
 \subsection{Evolución Histórica}
 \label{subsec:evolucion_historica}
 
@@ -32,60 +37,109 @@ marcaron grandes avances en la robótica:
 \begin {itemize}
 	\item En 1952 aparece la primera máquina de control numérico del MIT que era capaz de automatizar algunas tareas industriales.
 	\item En 1961, la compañía Unimates introdujo el primer robot industral en la General Motors.
-	\item En 1966, comenzó el desarrollo del primer robot móvil llamado Shakey [Nilsson, 1984]. \ref{fig:shakey}
+	\item En 1966, comenzó el desarrollo del primer robot móvil llamado Shakey [Nilsson, 1984]
+	\begin{figure} [H]
+	\begin{center}
+	\includegraphics[width=5cm]{imagenes/shakey.jpg}
+	\end{center}
+	\caption[Shakey (1966-1972)]{Shakey (1966-1972) Imagen obtenida de \cite{shakey-the-robot}.}
+	\label{fig:shakey}
+	\end{figure}\
 	\item En los años 70, NASA desarrolló MARS-ROVER, una plataforma móvil que integraba un brazo mecánico, sensores de proximidad, un dispositivo telemétrico láser y cámaras estéreo
 	\item En 1997, la NASA envió a Marte un dispositivo móvil llamado Sojourner Rover, para enviar fotografías a la Tierra del planeta rojo. Además, la empresa HONDA sacó el primer humanoide capaz de imitar comportamientos humanos
 	\item En 2000, Honda presenta el robot Asimo.
 	\item En 2004, Qrio de Sony, un pequeño robot humanoide capaz de correr, bailar, y reconocer caras.
-	\item En 2008, SoftBank Robotics presenta el Robot Nao, un robot bípedo dedicado a interactuar con el ser humano y ser muy amigable
-	\item En 2013, Boston Dynamics saca a la luz el robot Atlas, un humanoide con actuadores neumáticos. La empresa lo usa para imitar el comportamiento humano llevándolo a otro nivel haciendo acrobacias o incluso parkour.
-	\item En 2014, SoftBank Robotics presenta el robot Pepper, robot con forma humana pero se desplaza con ruedas. Se ha usado sobre todo como robot guía, recepcionista y en exhibiciones, sin embargo, fue abandonado en 2021
-	\item En 2020, Boston Dynamics saca a la venta el robot cuadrúpedo que imita el comportamiento de un perro llamado Spot, que se usa en algunas fábricas para transportar materiales o realizar tareas de mantenimiento
+	\item En 2008, SoftBank Robotics presenta el Robot \textit{Nao}, un robot bípedo dedicado a interactuar con el ser humano y ser muy amigable. En 2014, la empresa presenta el robot \textit{Pepper}, robot con forma humana pero se desplaza con ruedas. Se ha usado sobre todo como robot guía, recepcionista y en exhibiciones, sin embargo, fue abandonado en 2021 (Figura \ref{fig:nao_pepper})
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap1/nao-pepper.png}
+		\end{center}
+		\caption[Nao y Pepper]{Nao y Pepper. Imagen obtenida de \cite{softbank-robotics}.}
+		\label{fig:nao_pepper}
+	\end{figure}
+	\item En 2013, Boston Dynamics saca a la luz el robot \textit{Atlas}, un humanoide con actuadores neumáticos. La empresa lo usa para imitar el comportamiento humano llevándolo a otro nivel haciendo acrobacias o incluso parkour. En 2020, la empresa saca a la venta un robot cuadrúpedo llamado \textit{Spot} que imita el comportamiento de un perro, que se usa en algunas fábricas para transportar materiales o realizar tareas de mantenimiento (Figura \ref{fig:atlas_spot})
+	
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap1/spot-atlas.png}
+		\end{center}
+		\caption[Atlas y Spot]{Atlas y Spot. Imagen obtenida de \cite{spot-atlas}.}
+		\label{fig:atlas_spot}
+	\end{figure}\
 \end{itemize}
 
-\begin{figure} [h!]
-  \begin{center}
-    \includegraphics[width=5cm]{imagenes/shakey.jpg}
-  \end{center}
-  \caption[Shakey (1966-1972)]{Shakey (1966-1972) \cite{shakey-the-robot}.}
-  \label{fig:shakey}
-\end{figure}\
 
 
-
+% -- APLICACIONES ACTUALES
+% --------------------------
 \subsection{Aplicaciones actuales}
 \label{subsec:aplicaciones_actuales}
+Como hemos visto, el avance de los robots móviles ha emergido durantes estas últimas décadas. Con ellos han surgido una gran diversidad de aplicaciones:
 
+\begin{enumerate}
+	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como \textit{Roomba} (robot aspirador) y \textit{Braava} de iRobot (robot friegasuelos) o \textit{WinBot} de Ecovacs (limpia ventans). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
+	\item Agricultura. Incorporación de tractores o vehículos autónomos encargados del mantenimiento y monitorización de los cultivos.
+	\item Inspección y mantenimiento en zonas críticas (centrales nucleares) o poco seguras para el ser humano
+	\item Reparto. Muy empleado en la logística, o como prototipo para las entregas a domicilio (última milla).
+	\item Enseñanza. Robots móviles usados en las ingenierías como el robot Turtlebot2 (robot usado en este proyecto).
+\end{enumerate}\
+
+
+
+% -- MACHINE LEARNING
+% ---------------------
+\section{Machine Learning}
+\label{sec:machine_learning}
+La \textit{Inteligencia Artificial} (IA) es un campo muy extenso que está evolucionado rápidamente en este siglo XXI. Se basa en el estudio de algoritmos que permitan a las máquinas realizar tareas de manera ``inteligente'' (búsqueda, lógica, teoría de juegos, planificación). Sin embargo, la IA es sólo una \textit{apariencia}. Cuando incorporamos a un computador la capacidad de \textit{aprendizaje} es entonces cuando hablamos de \textit{Machine Learning}\\
+
+Según \emph{Arthur Samuel}, el \textit{Aprendizaje Automático} o \textit{Machine Learning} es el ``campo de estudio que otorga a los ordenadores la capacidad de aprender sin ser programados explícitamente''. Para ello se emplean diversas técnicas dependiendo del resultado deseado: Regresión Lineal, Regresión Logística, K-NN, K-Means, SVM, Redes Neuronales, Q-Learning, etc.\\
 
 
 \section{Redes Neuronales Artificiales (RNA)}
 \label{sec:redes_neuronales}
 
-Según \emph{Arthur Samuel}, el Aprendizaje Automático o Machine Learning es el ``campo de estudio que otorga a los ordenadores la capacidad de aprender sin ser programados explícitamente''. Para ello se emplean diversas técnicas dependiendo del objetivo deseado: Regresión Lineal, Regresión Logística, K-NN, K-Means, SVM, Redes Neuronales, Q-Learning, etc.
-\\
-
-Cuando incorporamos una RNA, lo que queremos es que nuestro programa o aplicación sepa \textbf{clasificar} unos datos de entrada con su correspondiente salida, habiendo entrenado previamente un modelo computacional inspirado en el cerebro humano. Para ello se le proporciona un set de datos de entrenamiento, donde indicamos, por cada muestra, a qué clase pertenece (Aprendizaje Supervisado). De esta forma, ajustando los valores de unos pesos que se utilizan en el entrenamiento, conseguiremos un nivel de clasificación determinado.\\
-
-Una aplicación de Redes Neuronales es la detección mediante Vision Artificial de objetos. Para ello, se usan modelos de redes de varias capas con un gran número de neuronas (Deep Learning) y de esta forma conseguimos dada una imagen detectar ciertos objetos solicitados como puede ser fruta, coches, utensilios o incluso hasta personas y animales.\\
-
-Típicamente, una Red Neuronal consta de un conjunto de capas formado por varias neuronas que se encuentran interconectadas. Suelen dividirse en 1 capa de entrada, 1 o más capas ocultas y 1 capa de salida. Pero, ¿cómo funciona una neurona?\\
+Una \textit{Red Nueronal Artificial (RNA)} es un modelo computacional inspirado en el cerebro humano que sirve para \textit{clasificar} datos de entrada con su correspondiente salida a partir de un entrenamiento previo. Para ello se le proporciona un \textit{dataset} (conjunto de datos), donde indicamos, por cada muestra, a qué clase pertenece (Aprendizaje Supervisado). Al iniciar el entrenamiento, se realiza un proceso de optimización ajustando los valores de unas variables que actúan como pesos o cargas de las \textit{dendritas} de las \textit{neuronas}, consiguiendo un nivel de clasificación determinado. Pero, ¿cómo funciona una neurona?\\
 
 Una neurona, tal y como se muestra en la figura \ref{fig:neurona} está formada pos los siguientes elementos:
 \begin{itemize}
-	\item \textbf{Valores de Entrada}: Puede ser tanto los valores de las \textbf{características} de cada muestra como la salida de la neurona de una capa anterior.
+	\item \textbf{Valores de Entrada}: Puede ser tanto los valores de las \textit{características} de cada muestra como la salida de la neurona de una capa anterior.
 	\item \textbf{Pesos}: Son unos valores que se optienen al final de la etapa de entrenamiento.
 	\item \textbf{Sumatorio}: Esta formado por los productos de los Valores de Entrada por sus correspondientes Pesos
 	\item \textbf{Función de Decisión/Activación}: Es una función matemática que se aplica al sumatorio: Lineal, Escalón, Sigmoide, etc
 	\item \textbf{Salida}: Es el valor de la función de decisión. Dependiendo de la función de activación usada, la salida será distinta.
 \end{itemize}
 
-\begin{figure} [h!]
+\begin{figure}[H]
   \begin{center}
     \includegraphics[width=15cm]{imagenes/neurona.png}
   \end{center}
   \caption[Modelo computacional de una neurona]{Modelo computacional de una neurona \cite{AIMA}}
   \label{fig:neurona}
 \end{figure}
+
+Tomando como ejemplo un perceptrón (neurona utilizada para resolver tareas de clasificación binaria) la clasificación se realiza mediante un \textit{hiperplano de separación} sujeto a la función de decisión (función escalón) separando en dos clases (0 o 1) los datos de entrada. La posición y orientación del hiperplano de separación está determinado por el proceso de optimización realizado durante el entrenamiento de la neurona. En la siguiente Figura mostramos dos ejemplo de un perceptrón entrenado a partir de cuatro datos de entrada que simulan una puerta lógica AND y OR respectivamente:\\
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/cap1/ejemplo-perceptron.png}
+  \end{center}
+  \caption[Salida de un perceptrón de tipo AND y OR]{Salida de un perceptrón de tipo AND y OR \cite{AIMA}}
+  \label{fig:salida_perceptron}
+\end{figure}\
+
+Cuando los datos de entrada no son linealmente separables mediante un hiperplano de separación es cuando necesitamos aumentar el número de neuronas. Normalmente, una RNA consta de un conjunto de capas formado por varias neuronas que se encuentran interconectadas. Suelen dividirse en 1 capa de entrada, 1 o más capas ocultas y 1 capa de salida.\\
+
+Cuando el problema de clasificación involucra una gran cantidad de información y entradas como puede ser un video o una imagen, se usan modelos de redes neuronales profundas (\textit{Deep Neural Networks}, DNN) de varias capas con un elevado número de neuronas. Variante de \textit{Machine Learning} conocida como \textit{Deep Learning}\\
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/cap1/dnn.jpeg}
+  \end{center}
+  \caption[Red Neuronal Profunda (DNN)]{Red Neuronal Profunda. Imagen obtenida de \cite{dnn}}
+  \label{fig:salida_perceptron}
+\end{figure}\
+
+Una aplicación muy popular de Redes Neuronales es la detección de objetos mediante \textit{Vision Artificial}: dada una imagen/fotograma como valor de entrada, la red neuronal es capaz de detectar ciertos objetos solicitados como puede ser fruta, coches, utensilios o incluso personas y animales dependiendo del entrenamiento aplicado.\\
 
 
 \subsection{Redes Neuronales Convolucionales (CNN)}
@@ -94,8 +148,8 @@ Una neurona, tal y como se muestra en la figura \ref{fig:neurona} está formada 
 \subsection{YOLO}
 \label{subsec:yolo}
 
-\subsection{SSD}
-\label{subsec:SSD}
+\subsection{SSD Inception}
+\label{subsec:ssd_inception}
 
 \section{Educación en Robótica}
 \label{sec:educacion_robotica}
