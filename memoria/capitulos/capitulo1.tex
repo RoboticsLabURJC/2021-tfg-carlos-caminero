@@ -133,7 +133,7 @@ Cuando el problema de clasificación involucra una gran cantidad de información
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/cap1/dnn.jpeg}
+    \includegraphics[width=15cm]{imagenes/cap1/dnn.jpeg}
   \end{center}
   \caption[Red Neuronal Profunda (DNN)]{Red Neuronal Profunda. Imagen obtenida de \cite{dnn}}
   \label{fig:salida_perceptron}
@@ -145,18 +145,44 @@ Una aplicación muy popular de Redes Neuronales es la detección de objetos medi
 \subsection{Redes Neuronales Convolucionales (CNN)}
 \label{subsec:redes_convolucionales}
 
-\subsection{YOLO}
-\label{subsec:yolo}
+Las \textit{Redes Neuronales Convolucionales, CNN} son un tipo de RNA multicapa aplicados para identificar y \textit{clasificar} objetos en una imagen o video. Se basan en la \textit{Convolución de capas}. El funcionamiento de la convolución trata de iterar sobre todos los píxeles de una imagen y aplicar varios filtros de \textit{Kernel} \footnote{\textbf{Filtro Kernel}: En Vision Artificial, es una matriz cuadrada a la que se le aplica un producto escalar a una región de píxeles con la misma dimensión} obteniendo así varias matrices de píxeles, las cuales se les aplican una función de \textit{decisión} obteniendo una mapa de detección de características.\\
 
-\subsection{SSD Inception}
-\label{subsec:ssd_inception}
+La siguiente capa tendrá matrices más pequeñas debido a la reducción de los mapas de características (\textit{Max-Polling}), y así sucesivamente, hasta que en las últimas capas obtenemos patrones que diferencian a unos objetos de otros. A la última capa oculta de neuronas se le aplica una función llamada \textit{Softmax} generando una capa de salida con el mismo número de neuronas que de clases.\\
+
+Al usar la CNN dada una imagen obtendremos una lista de porcentajes normalizados de 0 a 1 indicando el grado de probabilidad de que la imagen se corresponda con cada clase. En la siguiente Figura [\ref{fig:ocr_cnn}] podemos ver un ejemplo de OCR (Reconocimiento Óptimo de Caracteres) usando CNN.\\
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/cap1/ocr-cnn.png}
+  \end{center}
+  \caption[OCR usando CNN)]{OCR usando CNN. Imagen obtenida de \cite{dnn}}
+  \label{fig:ocr_cnn}
+\end{figure}\
+
+A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based Convolutional Neural Network}) que permite \textit{detectar} varios objetos en una imagen y que utilizaremos en este proyecto para realizar la tarea de seguir a una persona. Su funcionamiento se basa en la extracción de regiones de interés que pasan a través de una CNN devolviendo el resultado de una clasificación. Las regiones que pintamos según el resultado de la CNN se conocen como \textit{Bounding Boxes}.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/cap1/r-cnn.png}
+  \end{center}
+  \caption[Ejemplo de R-CNN]{R-CNN. Imagen obtenida de \cite{r-cnn}}
+  \label{fig:r-cnn}
+\end{figure}\
+
+Actualmente, hay disponibles varias arquitecturas de R-CNN para implementar aplicaciones de Machine Learning basada en la detección de objetos:
+
+\begin{itemize}
+	\item \textbf{YOLO} (You Only Look Once)
+	\item \textbf{SSD Inception}
+\end{itemize}
+
 
 \section{Educación en Robótica}
 \label{sec:educacion_robotica}
 
 \subsection{Grado en Ingeniería de Robótica Software (URJC, España)}
 \label{subsec:grado_robotica_software}
-La Universidad Rey Juan Carlos (España) imparte en el campus de Fuenlabrada, el grado en Ingeniería de Robótica Software (primer año: 2018) para enseñar a los futuros ingenieros interesados en este campo a programar la \textbf{inteligencia} de los robots del futuro.\\
+La Universidad Rey Juan Carlos (España) imparte en el campus de Fuenlabrada, el grado en Ingeniería de Robótica Software (primer año: 2018) para enseñar a los futuros ingenieros interesados en este campo a programar la \textit{inteligencia} de los robots del futuro.\\
 
 Tal y como indica el título del grado, se trata de una carrera universitaria de programación, donde los alumnos abarcarán varios temas como por ejmplo Inteligencia Artificial, visión artificial, programación de lenguajes de alto nivel (C++, Python...), Seguridad, Drones, robots de servicio, robótica industrial, y mucho más. Las clases se imparten tanto en salas de ordenadores con sistemas operativos Linux (distribución Ubuntu) como en el laboratorio de Robótica, donde los alumnos podrán programar directamente robots reales.\\
 
@@ -164,38 +190,46 @@ El robot usado en este Trabajo Fin de Grado es un modelo Turtlebot 2 de Yujin. C
 
 \subsection{The Construct}
 \label{sec:the_construct}
-The Construct es una organización que mantiene una plataforma para aprender robótica con ROS, un framework para programar robots. Imparten varios cursos donde los usuarios acceden a máquinas virtuales con un Linux instalado y todas las dependencias adquiridas. 
+The Construct es una organización que mantiene una plataforma para aprender robótica con ROS, un framework para programar robots muy utilizado en este sector. Imparten varios cursos donde los usuarios acceden a máquinas virtuales con un Linux instalado y todas las dependencias adquiridas.\\
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/cap1/the-construct.png}
+  \end{center}
+  \caption[Plataforma web de The Construct]{Plataforma web de The Construct\cite{the-construct}}
+  \label{fig:r-cnn}
+\end{figure}\
 
 \subsection{Robotics Academy}
 \label{sec:robotics_academy}
 Robotics Academy \cite{robotics-academy} es una colección de ejercicios y desafíos para aprender robótica. Está mantenido por la organización JdeRobot. Sus ejercicios abarcan varios temas: drones, robótica móvil, visión artificial, coches autónomos, robótica industrial, etc. Además es una plataforma Open Source, por lo que cualquier interesado/a puede contribuir desde Github.\\
 
-En sus orígenes, solo se podía ejecutar sobre un sistema operativo Linux, pero desde sus últimas versiones puede ejecutar también sobre Windows y MAC, gracias a la incorporación de plantillas web que se ejecutan en un navegador estableciendo una conexión a través de WebSockets con un contenedor docker que lanza el usuario, permitiendo de esta manera, el despliegue de los ejercicios sobre un sistema operativo virtualizado y con todas sus dependencias ya instaladas.\\
+En sus orígenes, solo se podía ejecutar sobre un sistema operativo Linux, pero desde sus últimas versiones puede ejecutar también sobre Windows y MAC, gracias a la incorporación de plantillas web que se ejecutan en un navegador estableciendo una conexión a través de WebSockets con un contenedor software (Docker) que lanza el usuario, permitiendo de esta manera, el despliegue de los ejercicios sobre un sistema operativo virtualizado y con todas sus dependencias ya instaladas.\\
 
-Los usuarios una vez que escogen un ejercicio, lanzan un contenedor docker indicado y automáticamente tienen acceso a una dirección web local donde pueden empezar a programar. La plantilla web incorpora un Editor de Texto y la posibilidad de visualizar un entorno de Gazebo y un terminal mediante una conexión VNC con el contenedor. En la figura \ref{fig:rob-ac-web-template} vemos un ejemplo de plantilla web correspondiente al ejercicio \textit{Follow Person}. La programación se realiza con Python (un lenguaje fácil de entender y aprender, y muy usado en la Robótica).\\
+Los usuarios una vez que escogen un ejercicio y lanzan el contenedor obtienen acceso a una dirección web local donde pueden empezar a programar. La plantilla web incorpora un Editor de Texto y la posibilidad de visualizar un simulador y un terminal mediante una conexión VNC con el contenedor. En la figura \ref{fig:rob-ac-web-template} vemos un ejemplo de plantilla web correspondiente al ejercicio \textit{Follow Person}. La programación se realiza con Python (un lenguaje fácil de entender y aprender, y muy usado en la Robótica).\\
 
 \begin{figure} [h!]
   \begin{center}
-    \includegraphics[width=15cm]{imagenes/robotics-academy-web-template.png}
+    \includegraphics[width=10cm]{imagenes/cap1/robotics-academy-web-template.png}
   \end{center}
   \caption[Robotics Academy (Web Template)]{Robotics Academy (Web Template)}
   \label{fig:rob-ac-web-template}
-\end{figure}
+\end{figure}\
 
-Una ventaja de usar Robotics Academy, es que permite al usario centrarse única y exclusivamente con el algoritmo que tenga que implementar. Toda la complejidad relacionada con la comunicación con el hardware del robot: motores, laser, cámara, etc. que, por lo general se realiza mediante ROS (un framework para programar Robots) queda encapsulado por 2 módulos: HAL y GUI. De esta manera, el usuario dispone de una API de HAL (Hardware Abstración Layer) para comandar a los actuadores o recibir información de los sensores, y una API de GUI (Graphical User Interface) para visualizar por el navegador información como puede ser una imagen, un mapa o incluso vectores.\\
+Una ventaja de usar Robotics Academy, es que permite al usario centrarse única y exclusivamente en el algoritmo que tiene que implementar. Toda la complejidad relacionada con la comunicación con el hardware del robot: motores, laser, cámara, etc. que, por lo general se realiza mediante ROS (un framework para programar Robots) queda encapsulado por 2 módulos de Python: HAL y GUI. De esta manera, el usuario dispone de una API de HAL (Hardware Abstración Layer) para comandar a los actuadores o recibir información de los sensores, y una API de GUI (Graphical User Interface) para visualizar por el navegador información como puede ser una imagen, un mapa o incluso vectores.\\
 
 \subsection{Unibotics}
 \label{sec:unibotics}
 
-\textbf{Unibotics} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y además, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto de manera que los usuarios no necesiten instalar docker en sus sistemas operativos.\\
+\textbf{Unibotics} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en sus sistemas operativos.\\
 
-Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del sistema operativo virtual la distribución ROS Noetic como báse.
+Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del sistema operativo virtual la distribución ROS Noetic como base.\\
 
-Con los 2 nuevos ejercicios Sigue-Personas que explicaremos en este proyecto, pretendemos integrarlos en Unibotics usando ROS Foxy como base. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS Foxy
+Con los 2 nuevos ejercicios Sigue-Personas que explicaremos en este proyecto, pretendemos integrarlos en Unibotics usando ROS Foxy como base. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS Foxy.\\
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=15cm]{imagenes/unibotics-menu.png}
+    \includegraphics[width=10cm]{imagenes/cap1/unibotics-menu.png}
   \end{center}
   \caption[Unibotics (Menú)]{Unibotics (Menú)}
   \label{fig:menu-unibotics}
