@@ -4,6 +4,8 @@
 En este capítulo profundizaremos en el proceso creativo de la infraestructura de los dos ejercicios Follow Person para Robotics Academy para dar al usuario una plantilla web óptima con el que pueda desarrollar el algoritmo cómodamente.\\
 
 
+
+
 % -- SECCION ENTORNO GAZEBO
 % ---------------------------
 \section{Entorno simulado de un hospital}
@@ -20,7 +22,7 @@ De modo que incorporamos el siguiente escenario de Gazebo que proporciona AWS (A
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/hospital_world.png}
+    \includegraphics[width=10cm]{imagenes/cap5/hospital_world.png}
   \end{center}
   \caption[Hospital de AWS en Gazebo]{Hospital de AWS en Gazebo}
   \label{fig:hospital_gazebo}
@@ -43,7 +45,7 @@ El primer punto de partida era integrar una persona en el nuevo entorno simulado
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/person_model.png}
+    \includegraphics[width=10cm]{imagenes/cap5/person_model.png}
   \end{center}
   \caption[Persona simulada en Gazebo]{Persona simulada en Gazebo}
   \label{fig:persona_gazebo}
@@ -92,7 +94,7 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=15cm]{imagenes/comunicacion-teleoperador.png}
+    \includegraphics[width=15cm]{imagenes/cap5/comunicacion-teleoperador.png}
   \end{center}
   \caption[Comunicación del teleoperador]{Comunicación del teleoperador}
   \label{fig:comunicacion_teleoperador}
@@ -108,9 +110,9 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
 \section{Elección de RNA para detección de Objetos}
 \label{sec:eleccion_rna}
 
-La elección de una RNA que pueda detectar objetos se basó en este criterio: tiene que ejecutar de manera óptima en una CPU o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los FPS (fotogramas por segundo) cuando se usan estos 2 modelos de RNA en una aplicación de Visión Artificial: YOLO a través de Darknet ROS [\ref{subsec:yolo}] y SSD Inceptión V2 [\ref{subsec:ssd_inception}] (ambos introducidos en el capítulo 1).\\
+La elección de una RNA que pueda detectar objetos se basó en este criterio: tiene que ejecutar de manera óptima en una CPU o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los FPS (fotogramas por segundo) cuando se usan estos 2 modelos de RNA en una aplicación de Visión Artificial: YOLO a través de Darknet ROS y SSD Inceptión V2 (ambos mencionados en el capítulo 1 como arquitecturas de redes convolucionales [\ref{subsec:redes_convolucionales}]).\\
 
-Primero probamos un paquete \textit{fork}\footnote{\textbf{Darknet ROS}: \url{https://github.com/Ar-Ray-code/darknet_ros/tree/foxy/darknet_ros/}} del repositorio oficial de \textit{Darknet ROS} para ROS 2 Foxy que incluía 1 fichero de lanzamiento yolov4-tiny.launch.py que ejecutaba una RNA profunda con menos capas que la original, provocando un aumento de rendimiento pero menor precisión. La ventaja de usar Darknet ROS es que indicas en un fichero de configuración el topic sobre el que se publica las imágenes de OpenCV \footnote{para la cámara IntelRealsense R200 usamos este comando para publicar la imagen sobre un topic: \textbf{ros2 run v4l2\_camera v4l2\_camera\_node --ros-args -p video\_device:="/dev/video4"}} y automáticamente la Red Neuronal procesa la imagen y publica los resultados en 3 topics: /darknet\_ros/bounding\_boxes, /darknet\_ros/found\_object y /darknet\_ros/detection\_image.\\
+Primero probamos un paquete \textit{fork}\footnote{\textbf{Darknet ROS}: \url{https://github.com/Ar-Ray-code/darknet_ros/tree/foxy/darknet_ros/}} del repositorio oficial de \textit{Darknet ROS} para ROS2 Foxy que incluía un fichero de lanzamiento \textit{yolov4-tiny.launch.py} que ejecutaba una RNA profunda con menos capas que la original, provocando un aumento de rendimiento pero menor precisión. La ventaja de usar Darknet ROS es que indicas en un fichero de configuración el topic sobre el que se publica las imágenes de OpenCV \footnote{para la cámara IntelRealsense R200 usamos este comando para publicar la imagen sobre un topic: \textbf{ros2 run v4l2\_camera v4l2\_camera\_node --ros-args -p video\_device:="/dev/video4"}} y automáticamente la Red Neuronal procesa la imagen y publica los resultados en 3 topics: /darknet\_ros/bounding\_boxes, /darknet\_ros/found\_object y /darknet\_ros/detection\_image.\\
 
 Mientras ejecutábamos Darknet ROS lanzamos este comando para medir los FPS y volcar los datos en un fichero:\\
 
@@ -118,7 +120,7 @@ Mientras ejecutábamos Darknet ROS lanzamos este comando para medir los FPS y vo
 ros2 topic hz /darknet_ros/detection_image > darknet_ros_hz
 \end{lstlisting}\
 
-Después probamos la velocidad de procesamiento de la red Inception de SSD (cuyos ficheros de configuración los obtuvimos de este repositorio\footnote{\textbf{ficheros SSD}: \url{https://github.com/iitzco/OpenCV-dnn-samples/tree/master/tensorflow}}, ejecutando un programa python [\ref{cod:medicion_fps}] y mostrando los bounding boxes en pantalla (en la sección \ref{sec:sigue_personas_simulado} explicaremos cómo dibujar los Bounding Boxes). Al igual que hicimos con Darknet ROS volcamos los resultados en otro fichero.\\
+Después probamos la velocidad de procesamiento de la red Inception de SSD (cuyos ficheros de configuración los obtuvimos de este repositorio\footnote{\textbf{ficheros SSD}: \url{https://github.com/iitzco/OpenCV-dnn-samples/tree/master/tensorflow}} mientras ejecutábamos un programa en Python [\ref{cod:medicion_fps}] y mostrábamos los \textit{Bounding Boxes} en pantalla (en la sección \ref{sec:solucion_sigue_personas_simulado} explicaremos cómo dibujar los Bounding Boxes). Al igual que hicimos con \textit{Darknet ROS} volcamos los resultados en otro fichero.\\
 
 \begin{code}[H]
 \begin{lstlisting}
@@ -145,21 +147,21 @@ while True:
 
 cap.release()
 \end{lstlisting}
-\caption{Medición de FPS con SSD Inception}
+\caption{Programa para medir los FPS para SSD Inception V2}
 \label{cod:medicion_fps}
 \end{code}\
 
-Una vez realizadas las 2 mediciones comprobamos los resultados mediante una gráfica de python (usando el módulo \textit{matplotlib}). El resultado fue el siguiente:\\
+Una vez realizadas las 2 mediciones comprobamos los resultados mediante una gráfica de Python (usando el módulo \textit{matplotlib}). El resultado fue el siguiente:
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/comparativa-fps-models.png}
+    \includegraphics[width=12cm]{imagenes/cap5/comparativa-fps-models.png}
   \end{center}
   \caption[Comparativa FPS entre Darknet ROS y SSD Inception]{Comparativa FPS entre Darknet ROS y SSD Inception}
   \label{fig:comparativa_fps_models}
 \end{figure}\
 
-Como vemos en la figura, Darknet ROS no funciona de manera óptima para portátiles sin GPU (media de 2.5 fps). En cambio, SSD Inception nos sorprende a priori con una velocidad de unos 25 fotogramas por segundo de media. Por tanto la elección de SSD se ve clara, sin embargo, estos resultados no serán los esperados cuando el usuario lance un contenedor Docker. Recordemos que el contenedor tendrá que lanzar ROS, un escenario de Gazebo y varios módulos de Python de manera concurrente (incluido VNC para visualización remota), pero con SSD habremos conseguido proporcionar un ejercicio de Deep Learning con mayor nivel de procesamiento.\\
+Como vemos en la figura, Darknet ROS no funciona de manera óptima para portátiles sin GPU (media de 2.5 fps). En cambio, SSD Inception nos sorprende a priori con una velocidad de unos 25 fotogramas por segundo de media. Por tanto la elección de SSD se ve clara, sin embargo, estos resultados no serán los esperados cuando el usuario lance un contenedor Docker. Recordemos que el contenedor tendrá que lanzar ROS, un escenario de Gazebo y varios módulos de Python de manera concurrente (incluido VNC para visualización remota), pero con \textit{SSD Inception} habremos conseguido proporcionar un ejercicio de Deep Learning con mayor nivel de procesamiento.\\
 
 
 
@@ -208,7 +210,7 @@ Una vez creado los ficheros \textit{interfaces} crearemos la API de HAL en el fi
 	\item \textbf{getLaserData()}. Devuelve una lista 180 lecturas del láser (para facilitar la programación al usuario y ocultar distintas calibraciones) mediante de un tipo de datos llamado \textit{LaserData} usando la interfaz \textit{laser} que se suscribe al topic /scan. En el robot simulado, el láser 360 grados del fichero de configuración URDF está colocado de tal manera que el ángulo 0 apunta hacia delante del robot y en sentido anti-horario, por lo tanto fue necesario retornar 180 valores del láser en el orden que mostramos en la figura [\ref{fig:vista_planta_turtlebot2}]. De manera similar, ocurrió lo mismo con el robot real.
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/vista-planta-turtlebot2.png}
+    \includegraphics[width=10cm]{imagenes/cap5/vista-planta-turtlebot2.png}
   \end{center}
   \caption[Láser Turtlebot 2]{Láser Turtlebot 2}
   \label{fig:vista_planta_turtlebot2}
@@ -226,6 +228,36 @@ Una vez creado los ficheros \textit{interfaces} crearemos la API de HAL en el fi
 	\item \textbf{getPose3d()}. Obtiene la posición actual del robot a través de la interfaz \textit{pose3d} suscrita al topic /odom
 	\item \textbf{getBoundingBoxes(img)}. Dada una imagen realiza una llamada al modelo de red neuronal para realizar una detección y devolver una lista de \textbf{Bounding Boxes}.  
 \end{itemize}\
+
+
+
+
+% -- PLANTILLAS WEB
+% -------------------
+\section{Plantillas web}
+\label{subsec:plantillas_web}
+
+Con los conocimientos adquiridos en HTML, CSS y JavaScript tomamos como referencia algunas plantillas web de otros ejercicios para diseñar las nuestras.\\
+
+En el ejercicio \textit{Simulated Follow Person} ha sido necesario que la plantilla incorpore el editor de texto, una ventana al simulador, una a los fotogramas capturados por la cámara, y otra a una consola de comandos para depurar las soluciones de los usuarios. Además, se incorporó en el menú de la plantilla el botón de Teleoperacion que permite controlar a la persona a la que tenemos que seguir en el escenario del hospital con el teclado.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/cap5/plantilla-web-simulated-follow-person.png}
+  \end{center}
+  \caption[Plantilla web del ejercicio Simulated Follow Person]{Plantilla web del ejercicio Simulated Follow Person}
+  \label{fig:plantilla_web_simulated_follow_person}
+\end{figure}
+
+En el ejercicio \textit{Real Follow Person} solamente hemos necesitado un editor de texto, una ventana para visualizar los fotogramas de la cámara y un terminal para depurar. Al no haber simulador, evitamos una conexión VNC extra, y sus elementos de frontend correspondientes.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=15cm]{imagenes/cap5/plantilla-web-real-follow-person.png}
+  \end{center}
+  \caption[Plantilla web del ejercicio Real Follow Person]{Plantilla web del ejercicio Real Follow Person}
+  \label{fig:plantilla_web_real_follow_person}
+\end{figure}
 
 %Para un uso correcto del láser por parte del usuario en su solución Sigue Personas, propongo la siguiente función para colocarla en el editor de texto de la plantilla web. Esta función será útil para usarla en el algoritmo VFF [\ref{subsec:vff}]. Simplemente nos devolverá una lista de tuplas que indican la distancia y ángulo de cada rayo láser, descartando aquellas lecturas no definidas (``inf").\\
 

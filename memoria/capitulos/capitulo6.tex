@@ -1,7 +1,7 @@
 \chapter{Soluciones de referencia}
 \label{cap:capitulo6}
 
-En este capítulo abordaremos la solución al problema Sigue Personas para los ejercicios \textit{Simulated Follow Person} y \textit{Real Follow Person} en este orden. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (\textit{Simulated Follow Person}), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (\textit{Real Follow Person}). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
+En este capítulo abordaremos la solución al problema Sigue Personas para los ejercicios \textit{Simulated Follow Person} y \textit{Real Follow Person}. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (\textit{Simulated Follow Person}), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (\textit{Real Follow Person}). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
 
 \section{Solución Sigue-Personas Simulado}
 \label{sec:solucion_sigue_personas_simulado}
@@ -18,7 +18,7 @@ Para detectar a la persona usaremos la función del módulo HAL llamada \textit{
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/deteccion-ssd-sin-filtro.png}
+    \includegraphics[width=10cm]{imagenes/cap6/deteccion-ssd-sin-filtro.png}
   \end{center}
   \caption[Detección mediante SSD sin filtro]{Detección mediante SSD sin filtro}
   \label{fig:deteccion_ssd_sin_filtro}
@@ -28,7 +28,7 @@ Sin embargo, un modelo de red neuronal genera una puntuación o \textit{score} p
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/deteccion-ssd-filtro-score.png}
+    \includegraphics[width=10cm]{imagenes/cap6/deteccion-ssd-filtro-score.png}
   \end{center}
   \caption[Detección mediante SSD filtrando el \textbf{Score}]{Detección mediante SSD filtrando el \textbf{Score}}
   \label{fig:deteccion_ssd_filtro_score}
@@ -38,7 +38,7 @@ Tal y como vemos en la figura \ref{fig:deteccion_ssd_filtro_score}, tras el filt
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/deteccion-ssd-filtro-score-class.png}
+    \includegraphics[width=10cm]{imagenes/cap6/deteccion-ssd-filtro-score-class.png}
   \end{center}
   \caption[Detección mediante SSD filtrando la puntuación y la clase]{Detección mediante SSD filtrando la puntuación y la clase}
   \label{fig:deteccion_ssd_filtro_score_class}
@@ -69,7 +69,7 @@ En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en qué 
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/esquema-tracker.png}
+    \includegraphics[width=10cm]{imagenes/cap6/esquema-tracker.png}
   \end{center}
   \caption[Modo de obtención del centroide candidato]{Modo de obtención del centroide candidato}
   \label{fig:obtencion_centroide}
@@ -79,7 +79,7 @@ Al principio del programa inicializamos una instancia de tipo Tracker, y, en cad
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/aplicando-tracker.png}
+    \includegraphics[width=10cm]{imagenes/cap6/aplicando-tracker.png}
   \end{center}
   \caption[Usando el Tracker para no perder al objetivo]{Uso del Tracker para no perder al objetivo}
   \label{fig:uso_tracker}
@@ -134,7 +134,7 @@ Queda en la labor del programador ajustar empíricamente los parámetros $\alpha
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/esquema-vff.png}
+    \includegraphics[width=10cm]{imagenes/cap6/esquema-vff.png}
   \end{center}
   \caption[Algoritmo VFF]{Algoritmo VFF}
   \label{fig:esquema_vff}
@@ -163,7 +163,7 @@ El resultado de la solución podemos verla en el siguiente enlace:\\ \textit{\ur
 
 El modo de resolver este problema es idéntico al Sigue-Personas simulado, sin embargo, el entorno sobre el que se mueve el robot, y el rendimiento del ejercicio debido a una distinta carga computacional causada por la ausencia del simulador puede provocar que el comportamiento de la ejecución no sea el esperado.\\
 
-En la \textit{solución} de referencia seguimos los mismos pasos que en la sección [\ref{sec:sigue_personas_simulado}]:\\
+En la \textit{solución} de referencia seguimos los mismos pasos que en la sección [\ref{sec:solucion_sigue_personas_simulado}]:\\
 
 \begin{itemize}
 	\item Implementación del \textit{Tracker} de seguimiento. Los pasos son los mismos:

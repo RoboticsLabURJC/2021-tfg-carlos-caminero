@@ -14,7 +14,7 @@ El desarrollo de los dos nuevos ejercicios de Robotics Academy han abarcado vari
 \subsection{C++}
 \label{subsec:c++}
 
-C++ \cite{c++} es un lenguaje de programación diseñado en 1979 por Bjarne Stroustrup. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la \textit{Programación Orientada a Objetos} (POO). Además, incorpora una novedosa librería que facilita el desarrollo de Software de calidad: \textit{STL} (Standard Template Library): vector, stack, map, etc. Desde sus comienzos, C++ ha tenido varias versiones que han incorporado nuevas características al lenguaje (98, 11, 14, 17...) siendo C++20 la última.\\
+C++\footnote{\textbf{C++}: \url{https://www.cplusplus.com/}} es un lenguaje de programación diseñado en 1979 por Bjarne Stroustrup. Deriva del lenguaje C, y destaca principalmente porque incorpora el paradigma de la \textit{Programación Orientada a Objetos} (POO). Además, incorpora una novedosa librería que facilita el desarrollo de Software de calidad: \textit{STL} (Standard Template Library): vector, stack, map, etc. Desde sus comienzos, C++ ha tenido varias versiones que han incorporado nuevas características al lenguaje (98, 11, 14, 17...) siendo C++20 la última.\\
 
 \begin{code}[H]
 \begin{lstlisting}[language=C++]
@@ -40,7 +40,7 @@ int main(int argc, char ** argv)
 \subsection{Python}
 \label{subsec:python}
 
-Python \cite{python_doc} es un lenguaje de programación \textit{interpretado} \footnote{\textbf{Interprete} (programación): programa informático que se encarga de ejecutar las instrucciones de otro programa sin compilación previa} que destaca por su legibilidad, facilidad y soportabilidad con el paradigma \textit{POO}. Posee características particulares que lo diferencian de otros lenguajes de programación como puede ser el uso estricto de indentación en bloques de código, o incluso la capacidad de crear listas mezcladas de diferentes tipos de datos. Las versión más reciente de Python es la 3.10.\\
+Python\footnote{\textbf{Python}: \url{https://docs.python.org/3/}} es un lenguaje de programación \textit{interpretado} \footnote{\textbf{Interprete} (programación): programa informático que se encarga de ejecutar las instrucciones de otro programa sin compilación previa} que destaca por su legibilidad, facilidad y soportabilidad con el paradigma \textit{POO}. Posee características particulares que lo diferencian de otros lenguajes de programación como puede ser el uso estricto de indentación en bloques de código, o incluso la capacidad de crear listas mezcladas de diferentes tipos de datos. Las versión más reciente de Python es la 3.10.\\
 
 \begin{code}[H]
 \begin{lstlisting}[language=Python]
@@ -59,18 +59,18 @@ print("Hola mundo")
 % ----------------
 \section{ROS (Robot Operating System)}
 \label{sec:ros}
-ROS (Robot Operating System) \cite{ROS} es un \textit{middleware} \footnote{\textbf{Middleware}: software que se sitúa entre las aplicaciones y el sistema operativo} que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este entorno/ecosistema están la abstracción del hardware, controladores de dispositivos, herramientas de visualización (rviz) y geometría espacial (transformadas, tfs) entre otros. ROS está mantenido por la fundación OpenRobotics.\\
+ROS (Robot Operating System)\footnote{\textbf{ROS}: \url{http://wiki.ros.org/es}} es un \textit{middleware} \footnote{\textbf{Middleware}: software que se sitúa entre las aplicaciones y el sistema operativo} que ayuda a la programación de robots a través de varias librerías y herramientas desarrolladas por la comunidad de software libre. Entre las ayudas que proporciona este entorno/ecosistema están la abstracción del hardware, controladores de dispositivos, herramientas de visualización (rviz) y geometría espacial (transformadas, tfs) entre otros. ROS está mantenido por la fundación OpenRobotics.\\
 
 El \textit{funcionamiento} de ROS se basa en una arquitectura \textit{cliente-servidor} centralizado donde un nodo principal se encarga del intercambio de mensajes entre otros nodos que forman la aplicación (remotos o locales), los cuales se comportan como \textit{publicadores o suscriptores} del proceso de comunicación. El objetivo es dividir el software robótico en secciones o \textit{nodos} que se encargan de realizar tareas específicas de manera concurrente: recogida de datos de la cámara, ejecución de una máquina de estados o árboles de comportamiento (Behavior Trees), recogida de las lecturas del láser, navegación, etc.\\
 
-El intercambio de mensajes se realiza a través \textit{topics}. Un nodo puede tener publicadores, suscriptores o ambos. Cuando un nodo publica un mensaje lo hace a través de un \textit{topic} que gestiona el nodo maestro. Si otro nodo quiere leer ese mensaje tendrá que suscribirse al \textit{topic} correspondiente. Por ejemplo: en nuestro robot Turtlebot2 podemos comandar velocidades enviando mensajes de tipo geometry\_msgs.msg.Twist a través del \textit{topic} /cmd\_vel. En la figura se puede ver con más detalle \ref{fig:ros_master_comunicacion}\\
+El intercambio de mensajes se realiza a través \textit{topics}. Un nodo puede tener publicadores, suscriptores o ambos. Cuando un nodo publica un mensaje lo hace a través de un \textit{topic} que gestiona el nodo maestro. Si otro nodo quiere leer ese mensaje tendrá que suscribirse al \textit{topic} correspondiente. Por ejemplo: en nuestro robot Turtlebot2 podemos comandar velocidades enviando mensajes de tipo geometry\_msgs.msg.Twist a través del \textit{topic} /cmd\_vel. En la Figura [\ref{fig:ros_master_comunicacion}] se puede ver con más detalle el funcionamiento de las comunicaciones en ROS.\\
 
 \begin{figure} [H]
   \begin{center}
     \includegraphics[width=15cm]{imagenes/cap3/ros_master_communication.png}
   \end{center}
   \caption{Comunicación del nodo Master con los nodos Intermedios (ROS)}
-  \label{fig:ros_master_comunicación}
+  \label{fig:ros_master_comunicacion}
 \end{figure}\
 
 Desde un principio, ROS se ha ejecutado sobre sistemas operativos de tipo Linux, aunque han ido surgiendo versiones beta para otros SOs como Windows o MacOS X. La primera distribución de ROS salió en 2010 (ROS Box Turtle) y a partir de ahí han ido surgiendo nuevas distribuciones siendo la actual y estable ROS Noetic.\\
@@ -96,7 +96,7 @@ Durante la etapa de entrenamiento del TFG, hicimos unas primeras pruebas utiliza
 \section{Gazebo}
 \label{sec:gazebo}
 
-Gazebo \cite{Gazebo} es un simulador robótico creado por la \textit{Open Source Robotics Foundation} que permite integrar escenarios realistas con robos simulados para desarrollar y probar algoritmos. Gazebo surgió en 2002 en la Universidad del Sur de California. En 2009 un ingeniero superior de investigación integró ROS y el robot PR2 en Gazebo.\\
+Gazebo\footnote{\textbf{Gazebo}: \url{https://classic.gazebosim.org/}} es un simulador robótico creado por la \textit{Open Source Robotics Foundation} que permite integrar escenarios realistas con robos simulados para desarrollar y probar algoritmos. Gazebo surgió en 2002 en la Universidad del Sur de California. En 2009 un ingeniero superior de investigación integró ROS y el robot PR2 en Gazebo.\\
 
 Gazebo presenta características relevantes para nuestro proyecto:
 \begin{itemize}
@@ -127,7 +127,7 @@ Gazebo presenta características relevantes para nuestro proyecto:
 \subsection{URDF}
 \label{subsec:urdf}
 
-URDF\footnote{\textbf{urdf url:} \url{http://wiki.ros.org/urdf}}  \textit{United Robotics Description Format} es un lenguaje de marcado que usa la gramática de XML para describir robots (eslabones y uniones de eslabones) y sensores (cámaras, láser y muchos otros sensores). Se utiliza tanto para robots reales como simulados.\\
+URDF\footnote{\textbf{URDF:} \url{http://wiki.ros.org/urdf}}  \textit{United Robotics Description Format} es un lenguaje de marcado que usa la gramática de XML para describir robots (eslabones y uniones de eslabones) y sensores (cámaras, láser y muchos otros sensores). Se utiliza tanto para robots reales como simulados.\\
 
 Por lo general el robot se divide en eslabones (\textit{links}) y uniones entre eslabones (\textit{joints}), de manera que se forma un árbol jerárquico de transformadas (TFs) desde un eslabón principal (\textit{root}) hasta los eslabones terminales (\textit{camera\_link}, \textit{laser\_link}, \textit{effector1}, ...).\\
 
@@ -171,7 +171,7 @@ Para definir un \textit{link} hay que proporcionar un modelo visual, un modelo d
 \subsection{Xacro}
 \label{subsec:xacro}
 
-Xacro\footnote{\textbf{Xacro url}: \url{http://wiki.ros.org/xacro}} (XML Macros) es un lenguaje XML diseñado para crear macros \footnote{\textbf{macro}: plantilla que define un patrón} en URDF. Con Xacro conseguimos diseños URDF mucho más legibles y sencillos. De esta manera podemos estructurar el diseño de un robot en componentes más pequeños y repetitivos. Por ejemplo: para el diseño del robot Turtlebot2 creamos una macro que se pueda aplicar a todos las barras verticales que sujetan la estructura del robot.\\
+Xacro\footnote{\textbf{Xacro}: \url{http://wiki.ros.org/xacro}} (XML Macros) es un lenguaje XML diseñado para crear macros \footnote{\textbf{macro}: plantilla que define un patrón} en URDF. Con Xacro conseguimos diseños URDF mucho más legibles y sencillos. De esta manera podemos estructurar el diseño de un robot en componentes más pequeños y repetitivos. Por ejemplo: para el diseño del robot Turtlebot2 creamos una macro que se pueda aplicar a todos las barras verticales que sujetan la estructura del robot.\\
 
 Una vez que tenemos nuestro diseño en Xacro, podemos exportarlo a URDF mediante el paquete de ROS denominado \textit{Xacro}. Su comportamiento es semejante al preprocesador de los lenguajes de programación como C: la macro la sustituye por el código URDF deseado teniendo en cuenta el valor de la variables que haya definido el programador.\\
 
@@ -256,7 +256,7 @@ $> docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 60
 \section{Robotics Academy}
 \label{sec:infraestructura_robotics_academy}
 
-\textit{Robotics Academy} \footnote{\textbf{Robotics Academy}: \url{http://jderobot.github.io/RoboticsAcademy/}} es una plataforma web que proporciona una colección de ejercicios de Robótica. Para su ejecución usamos unos contenedores \textit{Docker} [\ref{sec:docker}]  (imagen RADI) que lanza un servidor local (Django) proporcionando todos los ejercicios (las dependencias quedan resueltas) y permitiendo al usuario programar sus soluciones a través del navegador.\\
+\textit{Robotics Academy}\footnote{\textbf{Robotics Academy}: \url{http://jderobot.github.io/RoboticsAcademy/}} es una plataforma web que proporciona una colección de ejercicios de Robótica. Para su ejecución usamos unos contenedores \textit{Docker} [\ref{sec:docker}]  (imagen RADI) que lanza un servidor local (Django) proporcionando todos los ejercicios (las dependencias quedan resueltas) y permitiendo al usuario programar sus soluciones a través del navegador.\\
 
 Por lo general, el usuario dispone en cada ejercicio de un editor de texto, una ventana al simulador de Gazebo y un terminal para depurar su programa. Además, dentro del RADI se lanzan distintos nodos de ROS o incluso el simulador dependiendo del ejercicio. La encapsulación proporcionada hace creer al usuario que todo el procesamiento ocurre en el navegador mientras que en realidad es en el contenedor. El funcionamiento y protocolo de comunicación queda reflejado en la siguiente Figura [\ref{fig:arquitectura_robotics_academy}]:\\
 
@@ -289,8 +289,10 @@ Actualmente, Robotics Academy dispone de dos ramas de desarrollo: una rama princ
 
 El laboratorio de Robótica de la ETSIT URJC tiene a su disposición una decena de robots Turtlebot2 para que los alumnos hagan uso de ellos en algunas asignaturas del grado. Este robot móvil, ideal para la enseñanza e investigación en robótica, consta de dos bases principales:\\
 
-\begin{itemize}
-	\item Una base inferior denominada \textit{Kobuki}. Es similar a las aspiradoras de limpieza robóticas como Roomba (iRobot). Respecto al hardware presenta tres sensores de contacto (bumpers) para detectar colisiones con el entorno, odometría, leds programables, sensor de caída y un giroscopio entre otros. Alcanza una velocidad lineal máxima de 0.7 m/s y una velocidad angular de 180 deg/s. Además tiene una batería recargable que opera entre 3 y 7 horas y con alta velocidad de recarga. \textit{Kobuki} tiene soporte real tanto en ROS como en ROS2 con una amplia collección de repositorios en Github\footnote{\textbf{Kobuki (Github)}: \url{https://github.com/kobuki-base}}
+\subsection{Base Kobuki}
+\label{subsec:turtlebot_base_kobuki}
+
+La base inferior del Turtlebot2 se denomina \textit{Kobuki}. Es similar a las aspiradoras de limpieza robóticas como Roomba (iRobot). Respecto al hardware presenta tres sensores de contacto (bumpers) para detectar colisiones con el entorno, odometría, leds programables, sensor de caída y un giroscopio entre otros. Alcanza una velocidad lineal máxima de 0.7 m/s y una velocidad angular de 180 deg/s. Además tiene una batería recargable que opera entre 3 y 7 horas y con alta velocidad de recarga. Los drivers del \textit{Kobuki} se encuentran en este repositorio de Github: \textit{Kobuki Core}\footnote{\textbf{Drivers Kobuki (ROS)}: \url{https://github.com/yujinrobot/kobuki_core}}. Con ROS usamos un repositorio\footnote{\textbf{Wrapper Kobuki (ROS)}: \url{https://github.com/yujinrobot/kobuki}} que actúa de envoltorio o \textit{wrapper} para comunicarnos con el driver real a través de un paquete denominado \textit{kobuki\_node}
 \begin{figure} [H]
 	\begin{center}
 	\includegraphics[width=10cm]{imagenes/cap3/base-kobuki.png}
@@ -298,8 +300,11 @@ El laboratorio de Robótica de la ETSIT URJC tiene a su disposición una decena 
 	\caption[Base Kobuki]{Base \textit{Kobuki}. Imagen obtenida de \cite{kobuki}}
 	\label{fig:kobuki_real}
 \end{figure}\
-	\item Una base superior donde el alumno puede colocar su portatil y conectarse a la base Kobuki mediante USB. Está adaptado para incorporar varios tipos de sensores como cámaras (RGB y RGB-D), láseres e incluso actuadores como un brazo robótico.
-\end{itemize}
+
+\subsection{Cuerpot del Turtlebot2}
+\label{subsec:turtlebot2_cuerpo}
+
+Se trata de la base superior del robot donde el alumno puede colocar su portatil y conectarse a la base Kobuki mediante USB. Está adaptado para incorporar varios tipos de sensores como cámaras (RGB y RGB-D), láseres e incluso actuadores como un brazo robótico.
 
 \begin{figure} [H]
   \begin{center}
@@ -309,10 +314,12 @@ El laboratorio de Robótica de la ETSIT URJC tiene a su disposición una decena 
   \label{fig:turtlebot2_real}
 \end{figure}\
 
-Para este proyecto hemos necesitado un Turtlebot2 y los siguientes sensores:
+Para este proyecto hemos necesitado tener en el cuerpo del Turtlebot2 un láser RPLIDAR A1 para evitar obstáculos y una cámara modelo Intel Realsense 3D R200 para seguir al objetivo en la tarea de seguir a una persona.
+
 \subsection{RPLIDAR A1}
-\label{subsec:rplidar_a1}
-El láser que hemos usado ha sido un modelo RPLIDAR A1. Se trata de un láser de 360 grados con un alcance de 12 metros y una frecuencia de muestreo de 5.5 Hz. El repositorio de github que hemos utilizado para leer las lecturas del láser se encuentra en este enlace: \url{https://github.com/allenh1/rplidar_ros}\\
+\label{subsec:turtlebot2_rplidar_a1}
+
+Se trata de un láser de 360 grados con un alcance de 12 metros y una frecuencia de muestreo de 5.5 Hz. En ROS tenemos el siguiente repositorio de la organización \textit{SLAMTec} que nos permite usar los láseres de la familia RPLIDAR: \url{https://github.com/Slamtec/rplidar_ros}\\
 
 \begin{figure} [H]
   \begin{center}
@@ -332,10 +339,11 @@ En la Figura [\ref{fig:laser_rviz}] vemos la visualización de las lecturas de u
   \label{fig:laser_rviz}
 \end{figure}\
 
-\subsection{Cámara Intel Realsense 3d R200}
-\label{subsec:intel_realsense_3d}
 
-La cámara usada ha sido una \textit{Intel Realsense 3D R200}. Durante este proyecto hemos probado varias cámaras: Asus XTION PRO Live, Realsense D435 y T265. Debido a la inexistencia de repositorios soportados para ROS Foxy, está fue la cámara candidata. Sin embargo, este modelo no permitia usar la profundidad 3D en ROS, por lo que la utilizamos como una simple cámara RGB. Cualquier cámara que abra dispositivos en /dev/video* (como por ejemplo una webcam) podrá ser utilizado en el ejercicio Real Follow Person. Simplemente tendremos que realizar un mapeo de puertos cuando lancemos el contenedor docker indicado.\\
+\subsection{Cámara Intel Realsense 3d R200}
+\label{subsec:turtlebot2_intel_realsense_3d}
+
+Durante este proyecto hemos probado varias cámaras: Asus XTION PRO Live, Realsense D435 y T265. Debido a la inexistencia de repositorios soportados para ROS Foxy, Intel Realsense 3D R200 fue la cámara candidata. Sin embargo, este modelo no permitía usar la profundidad 3D en ROS, por lo que la utilizamos como una simple cámara RGB. Cualquier cámara que abra dispositivos en /dev/video* (como por ejemplo una webcam) podrá ser utilizado en el ejercicio Real Follow Person. Simplemente tendremos que realizar un mapeo de puertos cuando lancemos el contenedor docker indicado.\\
 
 \begin{figure} [H]
   \begin{center}

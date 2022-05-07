@@ -40,7 +40,7 @@ marcaron grandes avances en la robótica:
 	\item En 1966, comenzó el desarrollo del primer robot móvil llamado Shakey [Nilsson, 1984]
 	\begin{figure} [H]
 	\begin{center}
-	\includegraphics[width=5cm]{imagenes/shakey.jpg}
+	\includegraphics[width=5cm]{imagenes/cap1/shakey.jpg}
 	\end{center}
 	\caption[Shakey (1966-1972)]{Shakey (1966-1972) Imagen obtenida de \cite{shakey-the-robot}.}
 	\label{fig:shakey}
@@ -111,7 +111,7 @@ Una neurona, tal y como se muestra en la figura \ref{fig:neurona} está formada 
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=15cm]{imagenes/neurona.png}
+    \includegraphics[width=15cm]{imagenes/cap1/neurona.png}
   \end{center}
   \caption[Modelo computacional de una neurona]{Modelo computacional de una neurona \cite{AIMA}}
   \label{fig:neurona}
@@ -169,12 +169,7 @@ A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based C
   \label{fig:r-cnn}
 \end{figure}\
 
-Actualmente, hay disponibles varias arquitecturas de R-CNN para implementar aplicaciones de Machine Learning basada en la detección de objetos:
-
-\begin{itemize}
-	\item \textbf{YOLO} (You Only Look Once)
-	\item \textbf{SSD Inception}
-\end{itemize}
+Actualmente, hay disponibles varias arquitecturas de R-CNN para implementar aplicaciones de Machine Learning basada en la detección de objetos como YOLO (\textit{You Only Look Once}) o SSD Inception (\textit{Single-Shot Detector}). Cada una de estas redes poseen características específicas aportando distintas ventajas e inconvenientes. En el capítulo \ref{cap:capitulo5} realizaremos un estudio de selección de la arquitectura CNN óptima para usarla en los nuevos ejercicios de Robotics Academy basados en \textit{Deep Learning}.
 
 
 \section{Educación en Robótica}
@@ -184,9 +179,25 @@ Actualmente, hay disponibles varias arquitecturas de R-CNN para implementar apli
 \label{subsec:grado_robotica_software}
 La Universidad Rey Juan Carlos (España) imparte en el campus de Fuenlabrada, el grado en Ingeniería de Robótica Software (primer año: 2018) para enseñar a los futuros ingenieros interesados en este campo a programar la \textit{inteligencia} de los robots del futuro.\\
 
-Tal y como indica el título del grado, se trata de una carrera universitaria de programación, donde los alumnos abarcarán varios temas como por ejmplo Inteligencia Artificial, visión artificial, programación de lenguajes de alto nivel (C++, Python...), Seguridad, Drones, robots de servicio, robótica industrial, y mucho más. Las clases se imparten tanto en salas de ordenadores con sistemas operativos Linux (distribución Ubuntu) como en el laboratorio de Robótica, donde los alumnos podrán programar directamente robots reales.\\
+Tal y como indica el título del grado, se trata de una carrera universitaria de programación, donde los alumnos abarcarán varios temas como por ejmplo Inteligencia Artificial, visión artificial, programación de lenguajes de alto nivel (C++, Python...), Seguridad, Drones, robots de servicio, robótica industrial, y mucho más. Las clases se imparten tanto en salas de ordenadores con sistemas operativos Linux (distribución Ubuntu) como en el laboratorio de Robótica, donde los alumnos podrán programar directamente robots reales. Además, se anima a los alumnos a participar anualmente en el campeonato internacional de la \textit{Robocup}\footnote{\textbf{Robocup}: Competición de robótica internacional que pretende promover la investigación y educacion en IA por todo el mundo} puediendo usar el laboratorio como escenario de competición\\
 
-El robot usado en este Trabajo Fin de Grado es un modelo Turtlebot 2 de Yujin. Consta de una base (kobuki) similar a la de un robot de limpieza con sensores de contaco (bumpers), y un soporte encima que le permite incorporar un RPLIDAR, una cámara, y colocar el portátil del estudiante cuando desarrolla una solución al problema.
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=12cm]{imagenes/cap1/laboratorio-robotica.png}
+  \end{center}
+  \caption[Laboratorio de Robotica ETSIT durante la RoboCup@Home 2022]{Laboratorio de Robotica ETSIT durante la RoboCup@Home 2022}
+  \label{fig:laboratorio_robocup}
+\end{figure}\
+
+El robot usado en este Trabajo Fin de Grado y proporcionado por el grado es un modelo Turtlebot 2 de Yujin. Consta de una base  similar a la de un robot de limpieza con sensores de contaco, y un soporte encima que le permite incorporar un RPLIDAR, una cámara, y colocar el portátil del estudiante cuando desarrolla una solución al problema.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=10cm]{imagenes/cap1/robots-turtlebot2-laboratorio.png}
+  \end{center}
+  \caption[Robots Turtlebot2 del laboratorio de robótica]{Robots Turtlebot2 del laboratorio de robótica}
+  \label{fig:robots_laboratorio_robotica}
+\end{figure}\
 
 \subsection{The Construct}
 \label{sec:the_construct}
@@ -197,7 +208,7 @@ The Construct es una organización que mantiene una plataforma para aprender rob
     \includegraphics[width=10cm]{imagenes/cap1/the-construct.png}
   \end{center}
   \caption[Plataforma web de The Construct]{Plataforma web de The Construct\cite{the-construct}}
-  \label{fig:r-cnn}
+  \label{fig:the-construct}
 \end{figure}\
 
 \subsection{Robotics Academy}
@@ -210,7 +221,7 @@ Los usuarios una vez que escogen un ejercicio y lanzan el contenedor obtienen ac
 
 \begin{figure} [h!]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/cap1/robotics-academy-web-template.png}
+    \includegraphics[width=12cm]{imagenes/cap1/robotics-academy-web-template.png}
   \end{center}
   \caption[Robotics Academy (Web Template)]{Robotics Academy (Web Template)}
   \label{fig:rob-ac-web-template}
@@ -221,19 +232,19 @@ Una ventaja de usar Robotics Academy, es que permite al usario centrarse única 
 \subsection{Unibotics}
 \label{sec:unibotics}
 
-\textbf{Unibotics} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en sus sistemas operativos.\\
+\textbf{Unibotics}\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en sus sistemas operativos.\\
 
-Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del sistema operativo virtual la distribución ROS Noetic como base.\\
-
-Con los 2 nuevos ejercicios Sigue-Personas que explicaremos en este proyecto, pretendemos integrarlos en Unibotics usando ROS Foxy como base. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS Foxy.\\
+Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del contenedor software la distribución ROS Noetic como base.\\
 
 \begin{figure} [H]
   \begin{center}
-    \includegraphics[width=10cm]{imagenes/cap1/unibotics-menu.png}
+    \includegraphics[width=12cm]{imagenes/cap1/unibotics-menu.png}
   \end{center}
   \caption[Unibotics (Menú)]{Unibotics (Menú)}
   \label{fig:menu-unibotics}
 \end{figure}
+
+Con los 2 nuevos ejercicios Sigue-Personas que explicaremos en este proyecto, pretendemos integrarlos en Unibotics a través de una nueva rama que soporta ROS Foxy. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS Foxy.\\
 
 
 

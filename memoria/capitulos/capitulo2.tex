@@ -13,11 +13,11 @@ La importancia de los robots de servicio ha ido aumentando en los últimos años
 El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios educativos para seguir a una persona en \textit{Robotics Academy}. Estos ejercicios, una vez superen ciertos tests de calidad, se incorporarán a la plataforma \textit{Unibotics}. Un ejercicio consistirá en programar un robot Turtlebot2 simulado para seguir a una persona en un hospital, y el otro, en programar la misma tarea pero usando el robot real. Para hacer este proyecto realidad, se han marcado estos subobjetivos:
 
 \begin{itemize}
-	\item Crear soporte simulado del robot Turtlebot 2 en \textit{ROS Foxy}. La última versión simulada del Turtlebot2 se encuentra en ROS Noetic distribuido por \textit{The Construct}\footnote{\textbf{Turtlebot2 (Noetic):} \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Profundizaremos más en el capítulo [\ref{cap:capitulo4}]
-	\item Entender la infraestructura de \textit{Robotics Academy} y aprender a desarrollar un nuevo ejercicio, diseñando su plantilla web (frontend) y sus propios ficheros personales (exercise.py, interfaces con ROS, y módulos HAL y GUI). Veremos más en los capitulos [\ref{cap:capitulo5}] y [\ref{cap:capitulo6}]
+	\item Crear soporte simulado del robot Turtlebot2 en \textit{ROS Foxy}. La última versión simulada del Turtlebot2 se encuentra en ROS Noetic distribuido por \textit{The Construct}\footnote{\textbf{Turtlebot2 (Noetic):} \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Profundizaremos más en el capítulo [\ref{cap:capitulo4}]
+	\item Entender la infraestructura de \textit{Robotics Academy} y aprender a desarrollar un nuevo ejercicio, diseñando su plantilla web (frontend) y sus propios ficheros personales (exercise.py, interfaces con ROS, y módulos HAL y GUI). Veremos más en el capítulo [\ref{cap:capitulo5}]
 	\item Diseñar un escenario en el simulador para el ejercicio \textit{Follow Person simulado} (incorporando un hospital de un repositorio externo de AWS) y programando un \textit{plugin} \footnote{\textbf{plugin}: Complemento que añade una funcionalidad extra o mejora a un programa} que permita controlar a una persona simulada desde el navegador web [\ref{sec:teleoperador}]
-	\item Controlar el robot real a través de un contenedor \textit{Docker}. Un robot que se conecta a un portatil abre muchos dispositivos (/dev) que necesitan ser mapeados para ser utilizados por el contenedor [\ref{cap:capitulo6}]
-	\item Diseñar una solución de referencia para cada ejercicio. De este modo demostramos la posibilidad de usar el nuevo ejercicio como recurso educativo para futuros cursos académicos en el grado de Robótica Software y en otros ámbitos. Además, enseñamos un posible modo de resolver el problema Sigue-Personas [\ref{sec:sigue_personas_simulado}] [\ref{sec:hal_solucion_real_follow_person}]
+	\item Controlar el robot real a través de un contenedor \textit{Docker}. Un robot que se conecta a un portatil abre muchos dispositivos (/dev) que necesitan ser mapeados para ser utilizados por el contenedor [\ref{sec:robot_radi4}]
+	\item Diseñar una solución de referencia para cada ejercicio. De este modo demostramos la posibilidad de usar el nuevo ejercicio como recurso educativo para futuros cursos académicos en el grado de Robótica Software y en otros ámbitos. Además, enseñamos un posible modo de resolver el problema Sigue-Personas [\ref{sec:solucion_sigue_personas_simulado}] [\ref{sec:solucion_sigue_personas_real}]
 \end{itemize}
 
 
@@ -44,9 +44,9 @@ Una vez elegido el tema del trabajo, fue necesario aprender varias herramientas 
 	\item Para profundizar en HTML, CSS y Javascript se ha consultado el curso del profesor \textit{Juan González Gomez} (también conocido como \textit{Obijuan}) de la asignatura de Construcción de Servicios y Aplicaciones Audiovisuales en Internet (CSAAI) \footnote{\textbf{CSAAI}: \url{https://github.com/myTeachingURJC/2020-2021-CSAAI/wiki}}.
 \end{itemize}
 
-Una vez adquiridas las competencias necesarias, se desarrolló el entorno de Gazebo y se programó el plugin para mover a una persona simulada con el teclado. Después desarrollamos la plantilla web para la programación del ejercicio y la integramos en un contenedor Docker.\\
+Una vez adquiridas las competencias necesarias comenzamos con el desarrollo de los ejercicios. Se implementó el escenario del simulador \textit{Gazebo} y se programó un \textit{plugin} para mover a una persona simulada con el teclado. Después desarrollamos la plantilla web para la programación del ejercicio y la integramos en un contenedor Docker.\\
 
-Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor (todo tipo de cámaras para hacer pruebas) como por parte del laboratorio de Robótica de la ETSIT (el robot Turtlebot2, y los RPLIDAR).
+De manera similiar, hicimos lo mismo con el ejercicio \textit{Real Follow Person}. Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor (todo tipo de cámaras para hacer pruebas) como por parte del laboratorio de Robótica de la ETSIT (el robot Turtlebot2, y los RPLIDAR).
 
 
 % -- SECCIÓN PLAN DE TRABAJO
