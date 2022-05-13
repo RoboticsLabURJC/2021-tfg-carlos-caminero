@@ -1,6 +1,6 @@
 <br>
 <h1 align="center">2021-TFG-Carlos Caminero</h1>
-<h2 align="center"> Ejercicio educativo Sigue-Personas Visual Real y Simulado para la plataforma académica Unibotics en ROS 2 Foxy</h2>
+<h2 align="center"> Ejercicios Sigue-Personas Real y Simulado para la plataforma académica Robotics Academy en ROS 2 Foxy</h2>
 
 <br/><br/>
 <div align="center">
