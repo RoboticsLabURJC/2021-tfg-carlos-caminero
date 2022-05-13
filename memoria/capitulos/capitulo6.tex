@@ -14,7 +14,7 @@ La solución que resuelve el problema de \textit{Seguir a una persona} lo podemo
 % -----------------------
 \subsection{detección mediante ML y creación de un Tracker}
 \label{subsec:ml_tracker}
-Para detectar a la persona usaremos la función del módulo HAL llamada \textit{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una imagen de entrada y devuelve una lista de objetos \textit{Bounding Box} (explicados en la sección anterior [\ref{sec:hal_sim_follow_person}]). Crearemos una función llamada \textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
+Para detectar a la persona usaremos la función del módulo HAL llamada \textit{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una imagen de entrada y devuelve una lista de objetos \textit{Bounding Box} (explicados en la Sección [\ref{sec:plantilla_python}]). Crearemos una función llamada \textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
 
 \begin{figure} [H]
   \begin{center}
