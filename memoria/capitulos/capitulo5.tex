@@ -1,7 +1,7 @@
 \chapter{Integración de los ejercicios en Robotics Academy}
 \label{cap:capitulo5}
 
-En este capítulo profundizaremos en el proceso creativo de la infraestructura de los dos ejercicios Follow Person para Robotics Academy para dar al usuario una plantilla web óptima con el que pueda desarrollar el algoritmo cómodamente.\\
+En este capítulo profundizamos en el proceso creativo de la infraestructura de los dos ejercicios Follow Person para Robotics Academy para dar al usuario una plantilla web óptima con el que pueda desarrollar el algoritmo cómodamente.\\
 
 
 
@@ -28,7 +28,7 @@ De modo que incorporamos el siguiente escenario de Gazebo que proporciona AWS (A
   \label{fig:hospital_gazebo}
 \end{figure}\
 
-El repositorio proporcionaba varios ficheros \textit{.world} con distintas versiones del Hospital: solo planta baja, una planta y dos plantas. Elegimos por comodidad la primera.\\
+El repositorio proporcionaba varios ficheros \texttt{.world} con distintas versiones del Hospital: solo planta baja, una planta y dos plantas. Elegimos por comodidad la primera.\\
 
 El siguiente paso era integrar una persona que pudiera desplazarse por el entorno.\\
 
@@ -51,7 +51,7 @@ El primer punto de partida era integrar una persona en el nuevo entorno simulado
   \label{fig:persona_gazebo}
 \end{figure}\
 
-Ahora bien, el modelo es \textit{estático}, carece de capacidad de desplazamiento, por lo que fue necesario desarrollar un \textit{plugin} para Gazebo que permitiera controlarlo o que pudiera desplazarse a través de una ruta que eligiera el programador. De modo que en el mismo paquete donde teníamos los ficheros de lanzamiento del hospital diseñamos el \textit{plugin} (escrito en C++) que denominamos \textit{libpersonplugin.so} para incorporarlo en el fichero \textit{.sdf} (similar a URDF) de la persona. En este enlace podréis ver el \textbf{código fuente}\footnote{\textbf{person plugin}: \url{https://github.com/JdeRobot/CustomRobots/blob/foxy-devel/amazon_hospital/hospital_world/src/person.cpp}}. Como punto de partida, tomamos como referencia un \textit{plugin} de una persona simulada que hizó \textit{Pedro Arias} en su TFM\footnote{\textbf{TFM Pedro Arias}: \url{https://github.com/RoboticsLabURJC/2021-tfm-pedro-arias}}\\
+Ahora bien, el modelo es \textit{estático}, carece de capacidad de desplazamiento, por lo que fue necesario desarrollar un \textit{plugin} para Gazebo que permitiera controlarlo o que pudiera desplazarse a través de una ruta que eligiera el programador. De modo que en el mismo paquete donde teníamos los ficheros de lanzamiento del hospital diseñamos el \textit{plugin} (escrito en C++) que denominamos \texttt{libpersonplugin.so} para incorporarlo en el fichero \texttt{model.sdf} (similar a URDF) de la persona. En este enlace podréis ver el \textbf{código fuente}\footnote{\textbf{person plugin}: \url{https://github.com/JdeRobot/CustomRobots/blob/foxy-devel/amazon_hospital/hospital_world/src/person.cpp}}. Como punto de partida, tomamos como referencia un \textit{plugin} de una persona simulada que hizó \textit{Pedro Arias} en su TFM\footnote{\textbf{TFM Pedro Arias}: \url{https://github.com/RoboticsLabURJC/2021-tfm-pedro-arias}}\\
 
 El plugin requiere 2 funcionalidades:
 \begin{enumerate}
@@ -67,7 +67,7 @@ El plugin requiere 2 funcionalidades:
 \subsection{Comunicación remota}
 \label{subsec:comunicacion_remota}
 
-En el propio fichero \textit{person.cpp} se crearon 2 hilos (threads): uno actuaría como servidor de un socket de comunicaciones que usaría el protocolo de transporte UDP (No esta orientado a la conexión y es más rápido) y otro hilo se encargaría de actualizar la posición del modelo. Dentro del socket se implementó un protocolo de comunicación que entendierá el servidor, el cual se comportara únicamente como receptor de los mensajes del cliente. Los mensajes (de 3 caracteres) que puede recibir son:\\
+En el propio fichero \texttt{person.cpp} se crearon 2 hilos (threads): uno actuaría como servidor de un socket de comunicaciones que usaría el protocolo de transporte UDP (No esta orientado a la conexión y es más rápido) y otro hilo se encargaría de actualizar la posición del modelo. Dentro del socket se implementó un protocolo de comunicación que entendierá el servidor, el cual se comportara únicamente como receptor de los mensajes del cliente. Los mensajes (de 3 caracteres) que puede recibir son:\\
 
 \begin{itemize}
 	\item \textbf{``UVF"} (User Velocity Forward). El modelo se mueve hacia delante.
@@ -78,7 +78,7 @@ En el propio fichero \textit{person.cpp} se crearon 2 hilos (threads): uno actua
 	\item \textbf{``A--"} (Autonomous). El modelo pasa a modo autónomo. Sigue la ruta establecida (actualmente desactivada).
 \end{itemize}\
 
-Pero ¿dónde entra en juego el cliente? El fichero \textit{exercise.py} incorpora un socket de comunicación UDP que se conecta al servidor del \textit{plugin} a través del puerto 36677. Además, el exercise.py actúa como servidor de un WebSocket en comunicación con la plantilla web. Cuando el usuario haga click en el botón ``Teleoperate", el fichero de eventos de JavaScript enviará a través de un Websocket (usa el puerto 1905) las teclas pulsadas para que el exercise.py se lo retransmita al \textit{plugin}. Al iguál que en la comunicación plugin-exercise.py, se implementó un protocolo de comunicación para exercise.py-exercise.html. Los mensajes que puede recibir son:\\
+Pero ¿dónde entra en juego el cliente? El fichero \texttt{exercise.py} incorpora un socket de comunicación UDP que se conecta al servidor del \textit{plugin} a través del puerto 36677. Además, el exercise.py actúa como servidor de un WebSocket en comunicación con la plantilla web. Cuando el usuario haga click en el botón ``Teleoperate", el fichero de eventos de JavaScript enviará a través de un Websocket (usa el puerto 1905) las teclas pulsadas para que el \texttt{exercise.py} se lo retransmita al \textit{plugin}. Al iguál que en la comunicación plugin-exercise.py, se implementó un protocolo de comunicación para exercise.py-exercise.html. Los mensajes que puede recibir son:\\
 
 \begin{itemize}
 	\item \textbf{``\#teleop\_true"}. Activa la teleoperación. A partir de ese momento, el usuario puede pulsar los botones ``awsdx". Envía un mensaje \textbf{``US-"} al plugin.
@@ -90,7 +90,7 @@ Pero ¿dónde entra en juego el cliente? El fichero \textit{exercise.py} incorpo
 	\item \textbf{``\#key\_x"}. Envía un mensaje \textbf{``US-"} al plugin.
 \end{itemize}\
 
-A continuación podemos ver un esquema que resuma la comunicación existente entre el exercise.html (incorpora el fichero ws\_code.js que es el manejador de eventos del menú superior de la plantilla web) con el plugin:\\
+A continuación podemos ver un esquema que resuma la comunicación existente entre la interfaz del navegador web \texttt{exercise.html} (incorpora el fichero ws\_code.js que es el manejador de eventos del menú superior de la plantilla web) con el plugin:\\
 
 \begin{figure} [H]
   \begin{center}
@@ -100,17 +100,30 @@ A continuación podemos ver un esquema que resuma la comunicación existente ent
   \label{fig:comunicacion_teleoperador}
 \end{figure}\
 
-\cleardoublepage
 
 
+% -- SECCION PLANTILLAS PYTHON
+% ------------------------------
+\section{Plantillas Python}
+\label{sec:plantilla_python}
 
+Todos los ejercicios en Robotics Academy poseen un fichero denominado \texttt{hal.py} que proporciona el módulo HAL (Hardware Abstraction Layer) y permite al usuario controlar el robot protagonista del ejercicio. Dicho módulo usa los ficheros plantilla de Python que se encuentran en un directorio llamado \textit{interfaces} que nos permite comunicarnos con nodos de ROS.\\
 
-% -- SECCION RNA
-% ----------------
-\section{Elección de RNA para detección de Objetos}
-\label{sec:eleccion_rna}
+Para los dos nuevos ejercicios hemos tomado como referencia un fichero \texttt{hal.py} y el directorio \textit{interfaces} de otros ejercicios como \textit{Follow Line} o \textit{Color Filter} y lo hemos actualizado a ROS2 incorporando las funciones necesarias para poder controlar el robot tanto real como simulado. Como plantillas \textit{interfaces} utilizamos:
 
-La elección de una RNA que pueda detectar objetos se basó en este criterio: tiene que ejecutar de manera óptima en una CPU o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los FPS (fotogramas por segundo) cuando se usan estos 2 modelos de RNA en una aplicación de Visión Artificial: YOLO a través de Darknet ROS y SSD Inceptión V2 (ambos mencionados en el capítulo 1 como arquitecturas de redes convolucionales [\ref{subsec:redes_convolucionales}]).\\
+\begin{itemize}
+	\item La cámara a través de \texttt{camera.py}.
+	\item Los motores del robot a través de \texttt{motors.py}.
+	\item La odometría a través de \texttt{pose3d.py}.
+	\item El láser a través de \texttt{laser.py}.
+	\item La RNA a través de \texttt{ssd\_detection.py} (nueva plantilla).
+\end{itemize}\
+
+Los cambios más importantes de ROS a ROS2 aplicados en los ficheros interfaces y \texttt{hal.py} fueron el modo de construcción de nodos y la creación de los publicadores y suscriptores.\\
+
+En la nueva plantilla Python (\texttt{ssd\_detection.py}), para utilizar una R-CNN creamos una clase \textit{BoundingBox} que permite diseñar fácilmente marcos de detección y una clase \textit{NeuralNetwork} para actuar de \textit{wrapper} de la red neuronal. La integración de R-CNN se llevó a cabo utilizando la librería de Visión Artificial OpenCV que posee una función llamada cv2.dnn.readNetFromTensorFlow(model, config) que permite usa una RNA pasándole sus ficheros de configuración.\\
+
+La elección de una R-CNN que pueda detectar objetos se basó en este criterio: tiene que ejecutar de manera óptima en una CPU o en un contenedor Docker sin aceleración gráfica para permitir al usuario la ópción de programar cómodamente y poder disfrutar igualmente de la experiencia. Para ello, hicimos un previo estudio de los FPS (fotogramas por segundo) cuando se usan estos 2 modelos de RNA en una aplicación de Visión Artificial: YOLO a través de Darknet ROS y SSD Inceptión V2 (ambos mencionados en el capítulo 1 como arquitecturas de redes convolucionales [\ref{subsec:redes_convolucionales}]).\\
 
 Primero probamos un paquete \textit{fork}\footnote{\textbf{Darknet ROS}: \url{https://github.com/Ar-Ray-code/darknet_ros/tree/foxy/darknet_ros/}} del repositorio oficial de \textit{Darknet ROS} para ROS2 Foxy que incluía un fichero de lanzamiento \textit{yolov4-tiny.launch.py} que ejecutaba una RNA profunda con menos capas que la original, provocando un aumento de rendimiento pero menor precisión. La ventaja de usar Darknet ROS es que indicas en un fichero de configuración el topic sobre el que se publica las imágenes de OpenCV \footnote{para la cámara IntelRealsense R200 usamos este comando para publicar la imagen sobre un topic: \textbf{ros2 run v4l2\_camera v4l2\_camera\_node --ros-args -p video\_device:="/dev/video4"}} y automáticamente la Red Neuronal procesa la imagen y publica los resultados en 3 topics: /darknet\_ros/bounding\_boxes, /darknet\_ros/found\_object y /darknet\_ros/detection\_image.\\
 
@@ -120,7 +133,7 @@ Mientras ejecutábamos Darknet ROS lanzamos este comando para medir los FPS y vo
 ros2 topic hz /darknet_ros/detection_image > darknet_ros_hz
 \end{lstlisting}\
 
-Después probamos la velocidad de procesamiento de la red Inception de SSD (cuyos ficheros de configuración los obtuvimos de este repositorio\footnote{\textbf{ficheros SSD}: \url{https://github.com/iitzco/OpenCV-dnn-samples/tree/master/tensorflow}} mientras ejecutábamos un programa en Python [\ref{cod:medicion_fps}] y mostrábamos los \textit{Bounding Boxes} en pantalla (en la sección \ref{sec:solucion_sigue_personas_simulado} explicaremos cómo dibujar los Bounding Boxes). Al igual que hicimos con \textit{Darknet ROS} volcamos los resultados en otro fichero.\\
+Después probamos la velocidad de procesamiento de la red Inception de SSD (cuyos ficheros de configuración los obtuvimos de este repositorio\footnote{\textbf{ficheros SSD}: \url{https://github.com/iitzco/OpenCV-dnn-samples/tree/master/tensorflow}} mientras ejecutábamos un programa en Python [\ref{cod:medicion_fps}] y mostrábamos los \textit{Bounding Boxes} en pantalla. Al igual que hicimos con \textit{Darknet ROS} volcamos los resultados en otro fichero.\\
 
 \begin{code}[H]
 \begin{lstlisting}
@@ -163,21 +176,8 @@ Una vez realizadas las 2 mediciones comprobamos los resultados mediante una grá
 
 Como vemos en la figura, Darknet ROS no funciona de manera óptima para portátiles sin GPU (media de 2.5 fps). En cambio, SSD Inception nos sorprende a priori con una velocidad de unos 25 fotogramas por segundo de media. Por tanto la elección de SSD se ve clara, sin embargo, estos resultados no serán los esperados cuando el usuario lance un contenedor Docker. Recordemos que el contenedor tendrá que lanzar ROS, un escenario de Gazebo y varios módulos de Python de manera concurrente (incluido VNC para visualización remota), pero con \textit{SSD Inception} habremos conseguido proporcionar un ejercicio de Deep Learning con mayor nivel de procesamiento.\\
 
+Una vez elegido SSD Inception (de ahí el nombre del fichero) como RNA diseñamos la clase \textit{Bounding Box}. que tendrá los siguientes atributos:
 
-
-
-% -- SECCION HAL
-% ----------------
-\section{Desarrollo de la Capa de Abstracción Hardware (HAL)}
-\label{sec:hal_sim_follow_person}
-
-En esta sección explicaremos el desarrollo de la Capa de Abstracción Hardware (HAL) que incluímos tanto en el ejercicio \textit{Follow Person} simulado como en el ejercicio \textit{Real Follow Person}, además de algunos nuevos cambios para su adaptación a ROS2.\\
-
-Todos los ejercicios de Robotics Academy comparten una estructura muy similar. Tienen un fichero llamado \textit{exercise.py} que se comunica tanto con el navegador como con los demás ficheros de su directorio. Partiendo de dicha ruta relativa, hay un directorio denominado \textit{interfaces} donde encontramos ficheros python que actuan a modo de plantilla para comunicarse con nodos de ROS dedicados. En todos ellos hubo que hacer algunas modificaciones debido al cambio de ROS a ROS2 (modo de creación de los nodos, publicadores y suscriptores). Como ficheros \textit{interfaces} tenemos la cámara, el láser, los motores, la odometría, y la detección mediante SSD Inception entre otros.\\
-
-La gran novedad se encuentra en el fichero \textit{ssd\_detection.py} (nueva incorporación). En él definimos la clase \textit{BoundingBox} y la clase \textit{NeuralNetwork}:\\
-
-La clase \textit{BoundingBox} tiene los siguientes atributos:
 \begin{itemize}
 	\item \textbf{id}: Es un entero que identifica un tipo de objeto.
 	\item \textbf{class\_id}: Es una cadena de texto que identifica un tipo de objeto. Con el atributo \textit{id} forman una pareja (clave - valor) que se puede observar en un fichero que importamos llamado \textit{coco\_labels.py} donde se registran todos los tipos de objetos que puede detectar la red neuronal:\\
@@ -200,14 +200,14 @@ LABEL_MAP = {
 	\item \textbf{xmax} e \textbf{ymax}: Indican las coordenadas (x, y) del extremo inferior derecho del Bounding Box.
 \end{itemize}\
 
-En la clase \textit{NeuralNetwork}, encapsulamos la importación de los ficheros que definen la red neuronal Inception: ssd\_inception\_v2\_coco.pb y ssd\_inception\_v2\_coco.pbtxt. La creación de la red neuronal se usará con OpenCv usando la función cv2.dnn.readNetFromTensorFlow(model, config) al que se le pasa como argumentos la ruta a los 2 ficheros citados anteriormente. Creamos un método llamado \textit{detect(self, img)} que se encarga de llamar internamente al modelo para realizar una detección sobre una imagen.\\
+En la clase \textit{NeuralNetwork}, utilizamos los ficheros que definen la red neuronal Inception: \texttt{ssd\_inception\_v2\_coco.pb} y \texttt{ssd\_inception\_v2\_coco.pbtxt}. Usamos la función cv2.dnn.readNetFromTensorFlow(model, config) y creamos un método llamado \textit{detect(self, img)} que encapsula la llamada al modelo RNA para realizar una detección sobre una imagen.\\
 
-Una vez creado los ficheros \textit{interfaces} crearemos la API de HAL en el fichero hal.py cuya API se comunica con los ROS Topics descritos en el capítulo 4. Nuestro módulo (que usará el usuario) tendrá las siguientes funciones:\\
+Una vez listos los ficheros \textit{interfaces}, creamos la API de HAL en \texttt{hal.py} cuya API se comunica con los ROS Topics descritos la Sección \ref{subsec:ros_topics} utilizando las plantillas Python. El módulo HAL tendrá las siguientes funciones:\\
 
 \begin{itemize}
-	\item \textbf{setV(velocity)}. Nos permite usar velocidades lineales. Internamente usa la interfaz \textit{motors} que publica sobre los topics que comandan velocidades a los motores. En el robot simulado usaremos el \textit{topic} /cmd\_vel y en el robot real /commands/velocity.
-	\item \textbf{setW(velocity)}. Nos permite usar velocidades angulares (radianes). Usa también la interfaz \textit{motors} para publicar sobre los mismos topics citados anteriormente dependiendo del ejercicio.
-	\item \textbf{getLaserData()}. Devuelve una lista 180 lecturas del láser (para facilitar la programación al usuario y ocultar distintas calibraciones) mediante de un tipo de datos llamado \textit{LaserData} usando la interfaz \textit{laser} que se suscribe al topic /scan. En el robot simulado, el láser 360 grados del fichero de configuración URDF está colocado de tal manera que el ángulo 0 apunta hacia delante del robot y en sentido anti-horario, por lo tanto fue necesario retornar 180 valores del láser en el orden que mostramos en la figura [\ref{fig:vista_planta_turtlebot2}]. De manera similar, ocurrió lo mismo con el robot real.
+	\item \textbf{setV(velocity)}. Nos permite usar velocidades lineales. Internamente usa la interfaz \textit{motors} que publica sobre los \textit{topics} que comandan velocidades a los motores. En el robot simulado usamos el \textit{topic} /cmd\_vel y en el robot real /commands/velocity.
+	\item \textbf{setW(velocity)}. Nos permite usar velocidades angulares (radianes). Usa también la interfaz \textit{motors} para publicar sobre los mismos \textit{topics} citados anteriormente dependiendo del ejercicio.
+	\item \textbf{getLaserData()}. Devuelve una lista 180 lecturas del láser (para facilitar la programación al usuario y ocultar distintas calibraciones) mediante de un tipo de datos llamado \textit{LaserData} usando la interfaz \textit{laser} que se suscribe al \textit{topic} /scan. En el robot simulado, el láser 360 grados del fichero de configuración URDF está colocado de tal manera que el ángulo 0 apunta hacia delante del robot y en sentido anti-horario, por lo tanto fue necesario retornar 180 valores del láser en el orden que mostramos en la figura [\ref{fig:vista_planta_turtlebot2}]. De manera similar, ocurrió lo mismo con el robot real.
 \begin{figure} [H]
   \begin{center}
     \includegraphics[width=10cm]{imagenes/cap5/vista-planta-turtlebot2.png}
@@ -224,22 +224,23 @@ Una vez creado los ficheros \textit{interfaces} crearemos la API de HAL en el fi
 	\caption{Módulo HAL en Real Follow Person: getLaserData}
 	\label{cod:real_follow_person_hal_laser}
 \end{code}
-	\item \textbf{getImage()}. Devuelve una imagen en formato OpenCv a través de la interfaz \textit{camera}. En el robot simulado tenemos que suscribirnos al \textit{topic} /depth\_camera/image\_raw y en el robot real al \textit{topic} /image\_raw
-	\item \textbf{getPose3d()}. Obtiene la posición actual del robot a través de la interfaz \textit{pose3d} suscrita al topic /odom
+	\item \textbf{getImage()}. Devuelve una imagen en formato OpenCV a través de la interfaz \textit{camera}. En el robot simulado tenemos que suscribirnos al \textit{topic} /depth\_camera/image\_raw y en el robot real al \textit{topic} /image\_raw
+	\item \textbf{getPose3d()}. Obtiene la posición actual del robot a través de la interfaz \textit{pose3d} suscrita al \textit{topic} /odom
 	\item \textbf{getBoundingBoxes(img)}. Dada una imagen realiza una llamada al modelo de red neuronal para realizar una detección y devolver una lista de \textbf{Bounding Boxes}.  
 \end{itemize}\
 
+Finalmente, registramos el módulo HAL en el fichero \texttt{exercise.py} para que el usuario pueda utilizarlo a través del editor de texto del ejercicio.\\
 
-
+\cleardoublepage
 
 % -- PLANTILLAS WEB
 % -------------------
 \section{Plantillas web}
 \label{subsec:plantillas_web}
 
-Con los conocimientos adquiridos en HTML, CSS y JavaScript tomamos como referencia algunas plantillas web de otros ejercicios para diseñar las nuestras.\\
+De la misma manera que todos los ejercicios de Robotics Academy poseen un fichero \texttt{exercise.py} también poseen un fichero \texttt{exercise.html} que se encarga de proporcionar la interfaz del navegador para que el usuario pueda realizar el ejercicio. Con los conocimientos adquiridos en HTML, CSS y JavaScript tomamos como referencia algunas plantillas web de otros ejercicios para diseñar las nuestras.\\
 
-En el ejercicio \textit{Simulated Follow Person} ha sido necesario que la plantilla incorpore el editor de texto, una ventana al simulador, una a los fotogramas capturados por la cámara, y otra a una consola de comandos para depurar las soluciones de los usuarios. Además, se incorporó en el menú de la plantilla el botón de Teleoperacion que permite controlar a la persona a la que tenemos que seguir en el escenario del hospital con el teclado.\\
+En la plantilla del ejercicio Sigue-Personas simulado ha sido necesario incorporar un editor de texto para programar, una ventana que muestra el simulador de Gazebo, otra que muestra una consola de comandos para depurar las soluciones de los usuarios, y un \textit{canvas} para visualizar los fotogramas capturados por la cámara simulada. Además, se incorporó en el menú de la plantilla el botón de Teleoperacion que permite controlar a la persona a la que tenemos que seguir en el escenario del hospital con el teclado. En la Figura \ref{fig:plantilla_web_simulated_follow_person} podemos observar su plantilla web.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -247,9 +248,9 @@ En el ejercicio \textit{Simulated Follow Person} ha sido necesario que la planti
   \end{center}
   \caption[Plantilla web del ejercicio Simulated Follow Person]{Plantilla web del ejercicio Simulated Follow Person}
   \label{fig:plantilla_web_simulated_follow_person}
-\end{figure}
+\end{figure}\
 
-En el ejercicio \textit{Real Follow Person} solamente hemos necesitado un editor de texto, una ventana para visualizar los fotogramas de la cámara y un terminal para depurar. Al no haber simulador, evitamos una conexión VNC extra, y sus elementos de frontend correspondientes.\\
+En el ejercicio Sigue Personas Real solamente hemos necesitado un editor de texto, una ventana para visualizar los fotogramas de la cámara y un terminal para depurar. Al no haber simulador, evitamos una conexión VNC extra, y sus elementos de frontend correspondientes. En la Figura \ref{fig:plantilla_web_real_follow_person} vemos el resultado de su plantilla web.\\
 
 \begin{figure} [H]
   \begin{center}
