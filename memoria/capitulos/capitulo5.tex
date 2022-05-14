@@ -1,7 +1,7 @@
-\chapter{Integración de los ejercicios en Robotics Academy}
+\chapter{Ejercicios Sigue-Persona en Robotics Academy}
 \label{cap:capitulo5}
 
-En este capítulo profundizamos en el proceso creativo de la infraestructura de los dos ejercicios Follow Person para Robotics Academy para dar al usuario una plantilla web óptima con el que pueda desarrollar el algoritmo cómodamente.\\
+En este capítulo profundizamos en el proceso creativo de la infraestructura de los dos ejercicios Sigue-Persona para Robotics Academy con el fin de poder proporcionar al usuario una plantilla web óptima con el que pueda desarrollar el algoritmo cómodamente.\\
 
 
 
@@ -11,7 +11,7 @@ En este capítulo profundizamos en el proceso creativo de la infraestructura de 
 \section{Entorno simulado de un hospital}
 \label{sec:hospital_gazebo}
 
-La primera tarea fue integrar un escenario de Gazebo para el ejercicio \textit{Follow Person} simulado. El escenario candidato que elegimos fue un Hospital debido a las siguientes ventajas:
+La primera tarea fue integrar un escenario de Gazebo para el ejercicio Sigue-Personas Simulado. El escenario candidato que elegimos fue un Hospital debido a las siguientes ventajas:
 
 \begin{enumerate}
 	\item El robot se enfrenta a un \textit{entorno} complejo (paredes, obstáculos, varias personas).
@@ -41,7 +41,7 @@ El siguiente paso era integrar una persona que pudiera desplazarse por el entorn
 
 La meta final es que el usuario que use la plantilla web pueda controlar manualmente una persona del Hospital para que el robot pueda seguirla. Para ello teníamos que desarrollar un \textit{teleoperador}.\\
 
-El primer punto de partida era integrar una persona en el nuevo entorno simulado, por lo que accedimos a este repositorio: \url{https://github.com/osrf/gazebo_models} que incorpora una librería de modelos para Gazebo e incorporamos el modelo \textit{person standing} en el repositorio de Robotics Academy de terceros \textit{Custom Robots}\\
+El primer punto de partida era integrar una persona en el nuevo entorno simulado, por lo que accedimos a este repositorio: \url{https://github.com/osrf/gazebo_models} que incorpora una librería de modelos para Gazebo e incorporamos el modelo \textit{person standing} en el repositorio de Robotics Academy de terceros Custom Robots.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -212,7 +212,7 @@ Una vez listos los ficheros \textit{interfaces}, creamos la API de HAL en \textt
   \begin{center}
     \includegraphics[width=10cm]{imagenes/cap5/vista-planta-turtlebot2.png}
   \end{center}
-  \caption[Láser Turtlebot 2]{Láser Turtlebot 2}
+  \caption[Láser TurtleBot2]{Láser TurtleBot2}
   \label{fig:vista_planta_turtlebot2}
 \end{figure}
 \begin{code}[H]
@@ -221,7 +221,7 @@ Una vez listos los ficheros \textit{interfaces}, creamos la API de HAL en \textt
 		values = self.laser.getLaserData().values
 		return values[270:360:1] + values[0:1] + values[1:90:1]
 	\end{lstlisting}
-	\caption{Módulo HAL en Real Follow Person: getLaserData}
+	\caption{Módulo HAL en Sigue-Persona Real: getLaserData}
 	\label{cod:real_follow_person_hal_laser}
 \end{code}
 	\item \textbf{getImage()}. Devuelve una imagen en formato OpenCV a través de la interfaz \textit{camera}. En el robot simulado tenemos que suscribirnos al \textit{topic} /depth\_camera/image\_raw y en el robot real al \textit{topic} /image\_raw
@@ -246,7 +246,7 @@ En la plantilla del ejercicio Sigue-Personas simulado ha sido necesario incorpor
   \begin{center}
     \includegraphics[width=15cm]{imagenes/cap5/plantilla-web-simulated-follow-person.png}
   \end{center}
-  \caption[Plantilla web del ejercicio Simulated Follow Person]{Plantilla web del ejercicio Simulated Follow Person}
+  \caption[Plantilla web del ejercicio Sigue-Persona Simulado]{Plantilla web del ejercicio Sigue-Persona Simulado}
   \label{fig:plantilla_web_simulated_follow_person}
 \end{figure}\
 
@@ -256,7 +256,7 @@ En el ejercicio Sigue Personas Real solamente hemos necesitado un editor de text
   \begin{center}
     \includegraphics[width=15cm]{imagenes/cap5/plantilla-web-real-follow-person.png}
   \end{center}
-  \caption[Plantilla web del ejercicio Real Follow Person]{Plantilla web del ejercicio Real Follow Person}
+  \caption[Plantilla web del ejercicio Sigue-Persona Real]{Plantilla web del ejercicio Sigue-Persona Real}
   \label{fig:plantilla_web_real_follow_person}
 \end{figure}
 

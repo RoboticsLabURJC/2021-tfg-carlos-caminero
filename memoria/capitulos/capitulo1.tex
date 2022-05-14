@@ -3,7 +3,7 @@
 \setcounter{page}{1}
 \pagestyle{plain}
 
-La tarea Sigue-Personas es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. El siguiente TFG propone desarrollar dos nuevos ejercicios para Robotics Academy con el fin de que sean integrados en la plataforma Unibotics, con el objetivo de que los usuarios programen un robot Turtlebot2 tanto simulado como real para que realice dicha tarea.\\
+La tarea Sigue-Personas es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. El siguiente TFG propone desarrollar dos nuevos ejercicios para Robotics Academy con el fin de que sean integrados en la plataforma Unibotics, con el objetivo de que los usuarios programen un robot TurtleBot2 tanto simulado como real para que realice dicha tarea.\\
 
 Este primer capítulo trata de presentar el estado actual de varios campos de la Robótica que están directamente relacionados con este proyecto para poner en contexto al lector y facilitar su lectura.\\
 
@@ -19,9 +19,9 @@ Por un lado presentaremos la Robótica Móvil, un sector de la robótica que est
 
 La robótica es la ciencia que engloba varias ramas tecnológicas o disciplinas, con el objetivo de diseñar máquinas (``robots'') que sean capaces de realizar tareas automatizadas o de simular el comportamiento humano o animal, en función de la capacidad de su software. \cite{revistaderobots}. Su término se remonta a la obra de ciencia ficción escrita por Isaac Asimov: Yo, Robot. (1950)\\
 
-Una vez que la robótica emerge a partir de mediados del siglo XX, surgen 2 sectores: la Robótica Industrial y la Robótica de Servicio. Los \textit{Robots industriales} se encargan de realizar tareas automatizadas y muy repetitivas en escenarios industriales, donde el entorno está muy controlado. Los \textit{robots de Servicio} son aquellos que realizan tareas útiles para el ser humano y mejorar su comodidad. Entre los robots de servicio, destacan los robots móviles.\\
+Una vez que la robótica emerge a partir de mediados del siglo XX, surgen 2 sectores: la Robótica Industrial y la Robótica de Servicio. Los Robots Industriales se encargan de realizar tareas automatizadas y muy repetitivas en escenarios industriales, donde el entorno está muy controlado. Los Robots de Servicio son aquellos que realizan tareas útiles para el ser humano y mejorar su comodidad. Entre los robots de servicio, destacan los robots móviles.\\
 
-Un \textit{robot móvil} es un sistema electromecánico capaz de desplazarse de ma­nera autónoma sin estar sujeto físicamente a un solo punto\cite{robots-moviles-evolucion-estado-arte}. Posee sensores que permiten monitorear en cada momento su posición relativa a su punto de origen (odometría) y a su punto de destino. Normalmente su control se basa en un sistema de lazo cerrado (modo de actuación está determinado por su estado anterior). Se clasifican en robots móviles de locomoción con \textit{ruedas}, locomoción con \textit{patas} y locomoción con \textit{orugas}.  Los primeros son más fáciles de controlar pero no se adaptan bien a muchas superficies, sin embargo los robots con patas (cuadrúpedos o bípedos) se adaptan muy bien a distintas superficies pero requieren varios controladores para mantener su equilibrio tanto estático como dinámico. El entorno en el que se enfrentan es bastante \textit{heterogéneo}, por tanto su software debe ser lo más robusto posible para adaptarse correctamente a los cambios.\\
+Un \textit{robot móvil} es un sistema electromecánico capaz de desplazarse de ma­nera autónoma sin estar sujeto físicamente a un solo punto\cite{robots-moviles-evolucion-estado-arte}. Posee sensores que permiten monitorear en cada momento su posición relativa a su punto de origen (odometría) y a su punto de destino. Normalmente su control se basa en un sistema de lazo cerrado (modo de actuación está determinado por su estado anterior). Se clasifican en robots móviles de locomoción con ruedas, locomoción con patas y locomoción con orugas.  Los primeros son más fáciles de controlar pero no se adaptan bien a muchas superficies, sin embargo los robots con patas (cuadrúpedos o bípedos) se adaptan muy bien a distintas superficies pero requieren varios controladores para mantener su equilibrio tanto estático como dinámico. El entorno en el que se enfrentan es bastante \textit{heterogéneo}, por tanto su software debe ser lo más robusto posible para adaptarse correctamente a los cambios.\\
 
 
 
@@ -49,7 +49,7 @@ marcaron grandes avances en la robótica:
 	\item En 1997, la NASA envió a Marte un dispositivo móvil llamado Sojourner Rover, para enviar fotografías a la Tierra del planeta rojo. Además, la empresa HONDA sacó el primer humanoide capaz de imitar comportamientos humanos
 	\item En 2000, Honda presenta el robot Asimo.
 	\item En 2004, Qrio de Sony, un pequeño robot humanoide capaz de correr, bailar, y reconocer caras.
-	\item En 2008, SoftBank Robotics presenta el Robot \textit{Nao}, un robot bípedo dedicado a interactuar con el ser humano y ser muy amigable. En 2014, la empresa presenta el robot \textit{Pepper}, robot con forma humana pero se desplaza con ruedas. Se ha usado sobre todo como robot guía, recepcionista y en exhibiciones, sin embargo, fue abandonado en 2021 (Figura \ref{fig:nao_pepper})
+	\item En 2008, SoftBank Robotics presenta el robot Nao, un robot bípedo dedicado a interactuar con el ser humano y ser muy amigable. En 2014, la empresa presenta el robot Pepper, robot con forma humana pero se desplaza con ruedas. Se ha usado sobre todo como robot guía, recepcionista y en exhibiciones, sin embargo, fue abandonado en 2021 (Figura \ref{fig:nao_pepper})
 	\begin{figure} [H]
 		\begin{center}
 		\includegraphics[width=10cm]{imagenes/cap1/nao-pepper.png}
@@ -57,7 +57,7 @@ marcaron grandes avances en la robótica:
 		\caption[Nao y Pepper]{Nao y Pepper. Imagen obtenida de \cite{softbank-robotics}.}
 		\label{fig:nao_pepper}
 	\end{figure}
-	\item En 2013, Boston Dynamics saca a la luz el robot \textit{Atlas}, un humanoide con actuadores neumáticos. La empresa lo usa para imitar el comportamiento humano llevándolo a otro nivel haciendo acrobacias o incluso parkour. En 2020, la empresa saca a la venta un robot cuadrúpedo llamado \textit{Spot} que imita el comportamiento de un perro, que se usa en algunas fábricas para transportar materiales o realizar tareas de mantenimiento (Figura \ref{fig:atlas_spot})
+	\item En 2013, Boston Dynamics saca a la luz el robot Atlas, un humanoide con actuadores neumáticos. La empresa lo usa para imitar el comportamiento humano llevándolo a otro nivel haciendo acrobacias o incluso parkour. En 2020, la empresa saca a la venta un robot cuadrúpedo llamado Spot que imita el comportamiento de un perro, que se usa en algunas fábricas para transportar materiales o realizar tareas de mantenimiento (Figura \ref{fig:atlas_spot})
 	
 	\begin{figure} [H]
 		\begin{center}
@@ -77,11 +77,11 @@ marcaron grandes avances en la robótica:
 Como hemos visto, el avance de los robots móviles ha emergido durantes estas últimas décadas. Con ellos han surgido una gran diversidad de aplicaciones:
 
 \begin{enumerate}
-	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como \textit{Roomba} (robot aspirador) y \textit{Braava} de iRobot (robot friegasuelos) o \textit{WinBot} de Ecovacs (limpia ventans). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
+	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como Roomba (robot aspirador) y Braava de iRobot (robot friegasuelos) o WinBot de Ecovacs (limpia ventans). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
 	\item Agricultura. Incorporación de tractores o vehículos autónomos encargados del mantenimiento y monitorización de los cultivos.
 	\item Inspección y mantenimiento en zonas críticas (centrales nucleares) o poco seguras para el ser humano
 	\item Reparto. Muy empleado en la logística, o como prototipo para las entregas a domicilio (última milla).
-	\item Enseñanza. Robots móviles usados en las ingenierías como el robot Turtlebot2 (robot usado en este proyecto).
+	\item Enseñanza. Robots móviles usados en las ingenierías como el robot TurtleBot2 (robot usado en este proyecto).
 \end{enumerate}\
 
 
@@ -90,15 +90,15 @@ Como hemos visto, el avance de los robots móviles ha emergido durantes estas ú
 % ---------------------
 \section{Machine Learning}
 \label{sec:machine_learning}
-La \textit{Inteligencia Artificial} (IA) es un campo muy extenso que está evolucionado rápidamente en este siglo XXI. Se basa en el estudio de algoritmos que permitan a las máquinas realizar tareas de manera ``inteligente'' (búsqueda, lógica, teoría de juegos, planificación). Sin embargo, la IA es sólo una \textit{apariencia}. Cuando incorporamos a un computador la capacidad de \textit{aprendizaje} es entonces cuando hablamos de \textit{Machine Learning}\\
+La Inteligencia Artificial (IA) es un campo muy extenso que está evolucionado rápidamente en este siglo XXI. Se basa en el estudio de algoritmos que permitan a las máquinas realizar tareas de manera ``inteligente'' (búsqueda, lógica, teoría de juegos, planificación). Sin embargo, la IA es sólo una \textit{apariencia}. Cuando incorporamos a un computador la capacidad de \textit{aprendizaje} es entonces cuando hablamos de \textit{Machine Learning}\\
 
-Según \emph{Arthur Samuel}, el \textit{Aprendizaje Automático} o \textit{Machine Learning} es el ``campo de estudio que otorga a los ordenadores la capacidad de aprender sin ser programados explícitamente''. Para ello se emplean diversas técnicas dependiendo del resultado deseado: Regresión Lineal, Regresión Logística, K-NN, K-Means, SVM, Redes Neuronales, Q-Learning, etc.\\
+Según \emph{Arthur Samuel}, el Aprendizaje Automático o Machine Learning es el ``campo de estudio que otorga a los ordenadores la capacidad de aprender sin ser programados explícitamente''. Para ello se emplean diversas técnicas dependiendo del resultado deseado: Regresión Lineal, Regresión Logística, K-NN, K-Means, SVM, Redes Neuronales, Q-Learning, etc.\\
 
 
 \section{Redes Neuronales Artificiales (RNA)}
 \label{sec:redes_neuronales}
 
-Una \textit{Red Nueronal Artificial (RNA)} es un modelo computacional inspirado en el cerebro humano que sirve para \textit{clasificar} datos de entrada con su correspondiente salida a partir de un entrenamiento previo. Para ello se le proporciona un \textit{dataset} (conjunto de datos), donde indicamos, por cada muestra, a qué clase pertenece (Aprendizaje Supervisado). Al iniciar el entrenamiento, se realiza un proceso de optimización ajustando los valores de unas variables que actúan como pesos o cargas de las \textit{dendritas} de las \textit{neuronas}, consiguiendo un nivel de clasificación determinado. Pero, ¿cómo funciona una neurona?\\
+Una \textit{Red Nueronal Artificial (RNA)} es un modelo computacional inspirado en el cerebro humano que sirve para clasificar datos de entrada con su correspondiente salida a partir de un entrenamiento previo. Para ello se le proporciona un \textit{dataset} (conjunto de datos), donde indicamos, por cada muestra, a qué clase pertenece (Aprendizaje Supervisado). Al iniciar el entrenamiento, se realiza un proceso de optimización ajustando los valores de unas variables que actúan como pesos o cargas de las dendritas de las neuronas, consiguiendo un nivel de clasificación determinado. Pero, ¿cómo funciona una neurona?\\
 
 Una neurona, tal y como se muestra en la figura \ref{fig:neurona} está formada pos los siguientes elementos:
 \begin{itemize}
@@ -145,7 +145,7 @@ Una aplicación muy popular de Redes Neuronales es la detección de objetos medi
 \subsection{Redes Neuronales Convolucionales (CNN)}
 \label{subsec:redes_convolucionales}
 
-Las \textit{Redes Neuronales Convolucionales, CNN} son un tipo de RNA multicapa aplicados para identificar y \textit{clasificar} objetos en una imagen o video. Se basan en la \textit{Convolución de capas}. El funcionamiento de la convolución trata de iterar sobre todos los píxeles de una imagen y aplicar varios filtros de \textit{Kernel} \footnote{\textbf{Filtro Kernel}: En Vision Artificial, es una matriz cuadrada a la que se le aplica un producto escalar a una región de píxeles con la misma dimensión} obteniendo así varias matrices de píxeles, las cuales se les aplican una función de \textit{decisión} obteniendo una mapa de detección de características.\\
+Las \textit{Redes Neuronales Convolucionales, CNN} son un tipo de RNA multicapa aplicados para identificar y clasificar objetos en una imagen o video. Se basan en la \textit{Convolución de capas}. El funcionamiento de la convolución trata de iterar sobre todos los píxeles de una imagen y aplicar varios filtros de \textit{Kernel} \footnote{\textbf{Filtro Kernel}: En Vision Artificial, es una matriz cuadrada a la que se le aplica un producto escalar a una región de píxeles con la misma dimensión} obteniendo así varias matrices de píxeles, las cuales se les aplican una función de \textit{decisión} obteniendo una mapa de detección de características.\\
 
 La siguiente capa tendrá matrices más pequeñas debido a la reducción de los mapas de características (\textit{Max-Polling}), y así sucesivamente, hasta que en las últimas capas obtenemos patrones que diferencian a unos objetos de otros. A la última capa oculta de neuronas se le aplica una función llamada \textit{Softmax} generando una capa de salida con el mismo número de neuronas que de clases.\\
 
@@ -159,7 +159,7 @@ Al usar la CNN dada una imagen obtendremos una lista de porcentajes normalizados
   \label{fig:ocr_cnn}
 \end{figure}\
 
-A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based Convolutional Neural Network}) que permite \textit{detectar} varios objetos en una imagen y que utilizaremos en este proyecto para realizar la tarea de seguir a una persona. Su funcionamiento se basa en la extracción de regiones de interés que pasan a través de una CNN devolviendo el resultado de una clasificación. Las regiones que pintamos según el resultado de la CNN se conocen como \textit{Bounding Boxes}.
+A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based Convolutional Neural Network}) que permite detectar varios objetos en una imagen y que utilizaremos en este proyecto para realizar la tarea de seguir a una persona. Su funcionamiento se basa en la extracción de regiones de interés que pasan a través de una CNN devolviendo el resultado de una clasificación. Las regiones que pintamos según el resultado de la CNN se conocen como \textit{Bounding Boxes}.
 
 \begin{figure}[H]
   \begin{center}
@@ -177,7 +177,7 @@ Actualmente, hay disponibles varias arquitecturas de R-CNN para implementar apli
 
 \subsection{Grado en Ingeniería de Robótica Software (URJC, España)}
 \label{subsec:grado_robotica_software}
-La Universidad Rey Juan Carlos (España) imparte en el campus de Fuenlabrada, el grado en Ingeniería de Robótica Software (primer año: 2018) para enseñar a los futuros ingenieros interesados en este campo a programar la \textit{inteligencia} de los robots del futuro.\\
+La Universidad Rey Juan Carlos (España) imparte en el campus de Fuenlabrada, el grado en Ingeniería de Robótica Software (primer año: 2018) para enseñar a los futuros ingenieros interesados en este campo a programar la inteligencia de los robots del futuro.\\
 
 Tal y como indica el título del grado, se trata de una carrera universitaria de programación, donde los alumnos abarcarán varios temas como por ejmplo Inteligencia Artificial, visión artificial, programación de lenguajes de alto nivel (C++, Python...), Seguridad, Drones, robots de servicio, robótica industrial, y mucho más. Las clases se imparten tanto en salas de ordenadores con sistemas operativos Linux (distribución Ubuntu) como en el laboratorio de Robótica, donde los alumnos podrán programar directamente robots reales. Además, se anima a los alumnos a participar anualmente en el campeonato internacional de la \textit{Robocup}\footnote{\textbf{Robocup}: Competición de robótica internacional que pretende promover la investigación y educacion en IA por todo el mundo} puediendo usar el laboratorio como escenario de competición\\
 
@@ -217,9 +217,9 @@ Robotics Academy \cite{robotics-academy} es una colección de ejercicios y desaf
 
 En sus orígenes, solo se podía ejecutar sobre un sistema operativo Linux, pero desde sus últimas versiones puede ejecutar también sobre Windows y MAC, gracias a la incorporación de plantillas web que se ejecutan en un navegador estableciendo una conexión a través de WebSockets con un contenedor software (Docker) que lanza el usuario, permitiendo de esta manera, el despliegue de los ejercicios sobre un sistema operativo virtualizado y con todas sus dependencias ya instaladas.\\
 
-Los usuarios una vez que escogen un ejercicio y lanzan el contenedor obtienen acceso a una dirección web local donde pueden empezar a programar. La plantilla web incorpora un Editor de Texto y la posibilidad de visualizar un simulador y un terminal mediante una conexión VNC con el contenedor. En la figura \ref{fig:rob-ac-web-template} vemos un ejemplo de plantilla web correspondiente al ejercicio \textit{Follow Person}. La programación se realiza con Python (un lenguaje fácil de entender y aprender, y muy usado en la Robótica).\\
+Los usuarios una vez que escogen un ejercicio y lanzan el contenedor obtienen acceso a una dirección web local donde pueden empezar a programar. La plantilla web incorpora un Editor de Texto y la posibilidad de visualizar un simulador y un terminal mediante una conexión VNC con el contenedor. En la Figura \ref{fig:rob-ac-web-template} vemos un ejemplo de plantilla web correspondiente al ejercicio \textit{Follow Line}. La programación se realiza con Python (un lenguaje fácil de entender y aprender, y muy usado en la Robótica).\\
 
-\begin{figure} [h!]
+\begin{figure} [H]
   \begin{center}
     \includegraphics[width=12cm]{imagenes/cap1/robotics-academy-web-template.png}
   \end{center}
@@ -232,7 +232,7 @@ Una ventaja de usar Robotics Academy, es que permite al usario centrarse única 
 \subsection{Unibotics}
 \label{sec:unibotics}
 
-\textbf{Unibotics}\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en sus sistemas operativos.\\
+Unibotics\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, poder contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en sus sistemas operativos.\\
 
 Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles [Figura \ref{fig:menu-unibotics}], que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del contenedor software la distribución ROS Noetic como base.\\
 
@@ -244,7 +244,7 @@ Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene u
   \label{fig:menu-unibotics}
 \end{figure}
 
-Con los 2 nuevos ejercicios Sigue-Personas que explicaremos en este proyecto, pretendemos integrarlos en Unibotics a través de una nueva rama que soporta ROS Foxy. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS Foxy.\\
+Con los 2 nuevos ejercicios Sigue-Personas que desarrollamos en este proyecto, pretendemos en un futuro integrarlos en Unibotics a través de una nueva rama que soporta ROS2 Foxy. De esta manera, marcaremos un inicio para la migración de varios ejercicios de ROS Noetic a ROS2 Foxy.\\
 
 
 
