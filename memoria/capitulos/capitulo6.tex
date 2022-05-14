@@ -1,12 +1,12 @@
 \chapter{Soluciones de referencia}
 \label{cap:capitulo6}
 
-En este capítulo abordaremos la solución al problema Sigue Personas para los ejercicios \textit{Simulated Follow Person} y \textit{Real Follow Person}. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (\textit{Simulated Follow Person}), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (\textit{Real Follow Person}). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
+En este capítulo abordaremos una solución de referencia a los ejercicios Sigue-Persona Simulado y Sigue-Persona Real. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (Sigue-Persona Simulado), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (Sigue-Persona Real). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
 
-\section{Solución Sigue-Personas Simulado}
+\section{Solución Sigue-Persona Simulado}
 \label{sec:solucion_sigue_personas_simulado}
 
-La solución que resuelve el problema de \textit{Seguir a una persona} lo podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados. La nueva documentación del ejercicio Follow Person simulado está disponible en Robotics Academy a través de este enlace: \url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}\\\\
+La solución que resuelve el problema de \textit{Seguir a una persona} lo podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados. La nueva documentación del ejercicio Sigue-Persona Simulado está disponible en Robotics Academy a través de este enlace: \url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}\\\\
 
 
 
@@ -24,7 +24,7 @@ Para detectar a la persona usaremos la función del módulo HAL llamada \textit{
   \label{fig:deteccion_ssd_sin_filtro}
 \end{figure}\
 
-Sin embargo, un modelo de red neuronal genera una puntuación o \textit{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por score para desechar los falsos positivos. Para ello, generamos una función que llamaremos \textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a 0.3 (el rango va de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
+Sin embargo, un modelo de red neuronal genera una puntuación o \textit{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por \textit{score} para desechar los falsos positivos. Para ello, generamos una función que llamaremos \textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a 0.3 (el rango va de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
 
 \begin{figure} [H]
   \begin{center}
@@ -59,7 +59,7 @@ Posteriormente, creamos una clase llamada \textit{Tracker} que nos proporcionar�
 \begin{itemize}
 	\item \textbf{setObjective(self, obj)}: Establece el objetivo BoundingBoxObject de seguimiento.
 	\item \textbf{getObjective(self)}: Devuelve el objetivo BoundingBoxObject actual de seguimiento.
-	\item \textbf{getObjectiveFromSet(self, objlist)}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca del actual, no supere una distancia límite(50) con él, y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la \textit{Distancia Euclídea}:
+	\item \textbf{getObjectiveFromSet(self, objlist)}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca del actual, no supere una distancia límite(50) con él, y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la Distancia Euclídea:
 	\begin{equation*}
 	d = \sqrt{(C_{x}' - C_{x})^2 + (C_{y}' - C_{y})^2}
 	\end{equation*}
@@ -177,13 +177,13 @@ En la \textit{solución} de referencia seguimos los mismos pasos que en la secci
 		\begin{center}
 			\includegraphics[width=10cm]{imagenes/cap6/tracker.png}
 		\end{center}
-		\caption[Tracker en el ejercicio Real Follow Person]{Tracker en el ejercicio Real Follow Person}
+		\caption[Tracker en el ejercicio Sigue-Persona Real]{Tracker en el ejercicio Sigue-Persona Real}
 		\label{fig:tracker_real_follow_person}
 	\end{figure}\
 	
 	\item Implementación del algoritmo VFF. Como la frecuencia de actualización cambia ante la ausencia del simulador, ha sido necesario reajustar los parámetros $\alpha$ y $\beta$ del algoritmo, para equilibrar la relación entre la fuerza de atracción y de repulsión. Es recomendable que el párametro $\alpha$ que multiplica a la fuerza de atracción sea mayor que $\beta$ para no perder al objetivo. Sin embargo, tenemos que tener en cuenta que $\beta$ debe estar correctamente ajustado para esquivar con seguridad y suavidad los obstáculos que se encuentre por su camino. Un buen ajuste de parametros permitirá por ejemplo seguir a una persona a través de un pasillo manteniendo la misma distancia con ambas paredes sin importar la colocación de su objetivo.
 	
-	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio \textit{Follow Person} simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, de esta manera, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide del útlimo \textit{Bounding Box} candidato.
+	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio Sigue-Persona Simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, de esta manera, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide del útlimo \textit{Bounding Box} candidato.
 \end{itemize}\
 
 El resultado de la solución podemos verlo en el siguiente enlace:\\

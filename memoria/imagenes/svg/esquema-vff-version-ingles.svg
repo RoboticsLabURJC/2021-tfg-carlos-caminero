@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   sodipodi:docname="esquema-vff-version-ingles.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0633188"
+     inkscape:cx="452.35728"
+     inkscape:cy="427.43531"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2153" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path2174" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path2168" />
+    </marker>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter3803"
+       x="-0.1723401"
+       y="-0.11983406"
+       width="1.3445578"
+       height="1.2328514">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.4062244"
+         id="feGaussianBlur3805" />
+    </filter>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path2174-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-3-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path2174-6-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path2174-2" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#f2f2f2;stroke:#000000;stroke-width:0.365001;stroke-linecap:round;stroke-linejoin:round"
+       id="rect933"
+       width="166.51111"
+       height="124.94747"
+       x="26.592422"
+       y="62.312321"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <rect
+       style="fill:#ac9393;stroke:#000000;stroke-width:0.365001;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1175"
+       width="41.803421"
+       height="28.505455"
+       x="86.24472"
+       y="77.474083"
+       transform="rotate(14.498624)"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#000000;stroke:#000000;stroke-width:0.365001;stroke-linecap:round;stroke-linejoin:round"
+       id="path1279"
+       cx="116.94123"
+       cy="136.69934"
+       r="4.8650055"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#ffb380;stroke:#000000;stroke-width:0.365001;stroke-linecap:round;stroke-linejoin:round"
+       id="path1383"
+       cx="102.3568"
+       cy="88.2108"
+       r="3.4553878"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#00ff00;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 116.8298,136.74677 104.22705,95.712858"
+       id="path2145"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-3)"
+       d="m 116.8298,136.74677 54.41661,18.62122"
+       id="path2145-7"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:#800080;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.64564158;filter:url(#filter3803)"
+       d="m 104.57411,107.06453 -7.136528,27.59766 15.127518,3.56785 5.39501,-6.32956 z"
+       id="path2646"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.56499997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.56499997,4.51999976;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 104.22705,95.712858 54.41661,18.621222"
+       id="path2145-7-5"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#00ff00;stroke-width:0.56499997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.56499997,4.51999976;stroke-opacity:1;stroke-dashoffset:0"
+       d="M 171.24641,155.36799 158.64366,114.33408"
+       id="path2145-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#00a5ff;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-6);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 116.8298,136.74677 41.81386,-22.41269"
+       id="path7408"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#0096d9;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:0.26499999,0.52999997;marker-end:url(#Arrow2Mend-6);stroke-dashoffset:0"
+       d="m 116.8298,136.74677 c 0,0 13.3449,-12.23365 16.64339,-26.80381 1.66289,-7.34535 1.41138,-15.775059 -4.9418,-20.308535"
+       id="path9126"
+       sodipodi:nodetypes="csc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <rect
+       style="opacity:1;fill:#cccccc;stroke:#000000;stroke-width:0.159489;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10294"
+       width="52.010277"
+       height="28.689442"
+       x="26.475464"
+       y="158.42044"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="32.26228"
+       y="165.80203"
+       id="text15174"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan15172"
+         style="stroke-width:0.264583"
+         x="32.26228"
+         y="165.80203">VFF algorithm</tspan></text>
+    <image
+       width="41.818939"
+       height="13.524424"
+       preserveAspectRatio="none"
+       xlink:href="data:image/png;base64,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 "
+       id="image15570"
+       x="30.449522"
+       y="168.84563"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:0.26499999,0.79499996;stroke-dashoffset:0"
+       d="m 192.88464,136.74677 -166.461135,0"
+       id="path15638"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458299;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:0.26458299,0.79374896;stroke-dashoffset:0"
+       d="m 116.8298,187.60134 0,-125.38925"
+       id="path15772"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="187.51556"
+       y="142.32291"
+       id="text17137"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan17135"
+         style="stroke-width:0.264583"
+         x="187.51556"
+         y="142.32291">X</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="118.09623"
+       y="67.156578"
+       id="text22655"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan22653"
+         style="stroke-width:0.264583"
+         x="118.09623"
+         y="67.156578">Y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#00a5ff;fill-opacity:1;stroke-width:0.264583"
+       x="160.50711"
+       y="112.32722"
+       id="text27987"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan27985"
+         style="fill:#00a5ff;fill-opacity:1;stroke-width:0.264583"
+         x="160.50711"
+         y="112.32722">F</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#ff0000;stroke-width:0.264583"
+       x="173.74554"
+       y="160.1524"
+       id="text39279"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan39277"
+         style="fill:#ff0000;stroke-width:0.264583"
+         x="173.74554"
+         y="160.1524">R</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#00ff00;stroke-width:0.264583"
+       x="108.41019"
+       y="105.64233"
+       id="text45323"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan45321"
+         style="fill:#00ff00;stroke-width:0.264583"
+         x="108.41019"
+         y="105.64233">A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:0.95;font-family:sans-serif;fill:#008080;stroke-width:0.264583"
+       x="139.108"
+       y="84.89724"
+       id="text53594"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan53592"
+         style="font-size:2.82222px;text-align:center;text-anchor:middle;fill:#008080;stroke-width:0.264583"
+         x="139.108"
+         y="84.89724" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:center;text-anchor:middle;fill:#008080;stroke-width:0.264583"
+         x="139.108"
+         y="87.578346"
+         id="tspan68152">expected</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;text-align:center;text-anchor:middle;fill:#008080;stroke-width:0.264583"
+         x="139.108"
+         y="90.25946"
+         id="tspan23456">movement</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="94.138184"
+       y="81.915932"
+       id="text76384"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan76382"
+         style="font-size:2.82222px;fill:#ff7f2a;stroke-width:0.264583"
+         x="94.138184"
+         y="81.915932">person</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="96.396194"
+       y="91.602852"
+       id="text82538"
+       transform="rotate(15.348283)"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan82536"
+         style="stroke-width:0.264583"
+         x="96.396194"
+         y="91.602852">obstacle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="99.026489"
+       y="143.89972"
+       id="text87710"
+       inkscape:export-filename="/home/carloscam/jderobot/toupload/RoboticsAcademy/assets/images/exercises/follow_person/vff.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan87708"
+         style="font-size:2.82222px;stroke-width:0.264583"
+         x="99.026489"
+         y="143.89972">Turtlebot2</tspan></text>
+  </g>
+</svg>

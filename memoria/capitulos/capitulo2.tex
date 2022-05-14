@@ -10,14 +10,14 @@ La importancia de los robots de servicio ha ido aumentando en los últimos años
 % ----------------------
 \section{Objetivos}
 \label{sec:objetivos}
-El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios educativos para seguir a una persona en \textit{Robotics Academy}. Estos ejercicios, una vez superen ciertos tests de calidad, se incorporarán a la plataforma \textit{Unibotics}. Un ejercicio consistirá en programar un robot Turtlebot2 simulado para seguir a una persona en un hospital, y el otro, en programar la misma tarea pero usando el robot real. Para hacer este proyecto realidad, se han marcado estos subobjetivos:
+El objetivo principal de este Trabajo Fin de Grado es desarrollar dos ejercicios educativos para seguir a una persona en Robotics Academy. Estos ejercicios, una vez superen ciertos tests de calidad, se incorporarán a la plataforma Unibotics. Un ejercicio consistirá en programar un robot TurtleBot2 simulado para seguir a una persona en un hospital, y el otro, en programar la misma tarea usando el robot real. Para hacer este proyecto realidad, se han marcado estos subobjetivos:
 
 \begin{itemize}
-	\item Crear soporte simulado del robot Turtlebot2 en \textit{ROS Foxy}. La última versión simulada del Turtlebot2 se encuentra en ROS Noetic distribuido por \textit{The Construct}\footnote{\textbf{Turtlebot2 (Noetic):} \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Profundizaremos más en el capítulo [\ref{cap:capitulo4}]
-	\item Entender la infraestructura de \textit{Robotics Academy} y aprender a desarrollar un nuevo ejercicio, diseñando su plantilla web (frontend) y sus propios ficheros personales (exercise.py, interfaces con ROS, y módulos HAL y GUI). Veremos más en el capítulo [\ref{cap:capitulo5}]
-	\item Diseñar un escenario en el simulador para el ejercicio \textit{Follow Person simulado} (incorporando un hospital de un repositorio externo de AWS) y programando un \textit{plugin} \footnote{\textbf{plugin}: Complemento que añade una funcionalidad extra o mejora a un programa} que permita controlar a una persona simulada desde el navegador web [\ref{sec:teleoperador}]
-	\item Controlar el robot real a través de un contenedor \textit{Docker}. Un robot que se conecta a un portatil abre muchos dispositivos (/dev) que necesitan ser mapeados para ser utilizados por el contenedor [\ref{sec:robot_radi4}]
-	\item Diseñar una solución de referencia para cada ejercicio. De este modo demostramos la posibilidad de usar el nuevo ejercicio como recurso educativo para futuros cursos académicos en el grado de Robótica Software y en otros ámbitos. Además, enseñamos un posible modo de resolver el problema Sigue-Personas [\ref{sec:solucion_sigue_personas_simulado}] [\ref{sec:solucion_sigue_personas_real}]
+	\item Crear soporte simulado del robot TurtleBot2 en ROS2 Foxy. La última versión simulada del TurtleBot2 se encuentra en ROS Noetic distribuido por The Construct\footnote{\textbf{Turtlebot2 (Noetic):} \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Profundizaremos más en el capítulo \ref{cap:capitulo4}
+	\item Entender la infraestructura de Robotics Academy y aprender a desarrollar un nuevo ejercicio, diseñando su plantilla web (frontend) y sus propios ficheros personales (exercise.py, interfaces con ROS, y módulos HAL y GUI). Veremos más en el capítulo \ref{cap:capitulo5}
+	\item Diseñar un escenario en el simulador para el ejercicio Sigue-Personas simulado (incorporando un hospital de un repositorio externo de AWS) y programando un \textit{plugin} \footnote{\textbf{plugin}: Complemento que añade una funcionalidad extra o mejora a un programa} que permita controlar a una persona simulada desde el navegador web (Sección \ref{sec:teleoperador})
+	\item Controlar el robot real a través de un contenedor Docker. Un robot que se conecta a un portatil abre muchos dispositivos (/dev) que necesitan ser mapeados para ser utilizados por el contenedor (Sección \ref{sec:robot_radi4})
+	\item Diseñar una solución de referencia para cada ejercicio. De este modo demostramos la posibilidad de usar el nuevo ejercicio como recurso educativo para futuros cursos académicos en el grado de Robótica Software y en otros ámbitos. Además, enseñamos un posible modo de resolver el problema Sigue-Personas (Secciones \ref{sec:solucion_sigue_personas_simulado} y \ref{sec:solucion_sigue_personas_real})
 \end{itemize}
 
 
@@ -30,23 +30,23 @@ El TFG comenzó en octubre y finalizó en mayo. Durante estos meses hemos seguid
 
 \begin{itemize}
 	\item Reuniones semanales con el tutor de TFG para comentar los avances y recibir retroalimentación. De esta manera abordábamos varios problemas buscando otras soluciones.
-	\item Se ha usado la plataforma \textit{Slack}\footnote{\textbf{Slack:} \url{https://slack.com/intl/es-es/}} para estar en comunicación con los miembros de Robotics Academy y Unibotics.
+	\item Se ha usado la plataforma Slack\footnote{\textbf{Slack:} \url{https://slack.com/intl/es-es/}} para estar en comunicación con los miembros de Robotics Academy y Unibotics.
 	\item Anotaciones semanales (con algunas excepciones dependiendo de la situación del curso académico) en un \textit{Blog}\footnote{\textbf{Weblog}: \url{https://roboticslaburjc.github.io/2021-tfg-carlos-caminero/}} de las pruebas realizadas o logros conseguidos. De esta manera mostramos al público el progreso del trabajo desde sus comienzos.
 	\item Todas las pruebas realizadas así como los ficheros fuente del proyecto se han ido subiendo, a lo largo de estos meses, en un repositorio habilitado de \textit{Robotics Lab URJC}\footnote{\textbf{Repositorio TFG:} \url{https://github.com/RoboticsLabURJC/2021-tfg-carlos-caminero}}
 \end{itemize}
 
-El primer mes se correspondió a una \textit{etapa de entrenamiento} donde se empezó a probar distintas tecnologías para elegir correctamente el tema a desarrollar: Behavior Trees, Groot, aplicaciones en ROS 2, ROS Bridge, etc.\\
+El primer mes se correspondió a una \textit{etapa de entrenamiento} donde se empezó a probar distintas tecnologías para elegir correctamente el tema a desarrollar: Behavior Trees, Groot, aplicaciones en ROS2, ROS Bridge, etc.\\
 
 Una vez elegido el tema del trabajo, fue necesario aprender varias herramientas y tecnologías para su elaboración:
 \begin{itemize}
 	\item Aprender a construir imágenes Docker personalizados.
 	\item Profundizar en XACRO y plugins a través de la página oficial de ROS Foxy \footnote{\textbf{Ros Foxy doc}: \url{https://docs.ros.org/en/foxy/}}.
-	\item Para profundizar en HTML, CSS y Javascript se ha consultado el curso del profesor \textit{Juan González Gomez} (también conocido como \textit{Obijuan}) de la asignatura de Construcción de Servicios y Aplicaciones Audiovisuales en Internet (CSAAI) \footnote{\textbf{CSAAI}: \url{https://github.com/myTeachingURJC/2020-2021-CSAAI/wiki}}.
+	\item Para profundizar en HTML, CSS y Javascript se ha consultado el curso del profesor \textit{Juan González Gomez} (también conocido como Obijuan) de la asignatura de Construcción de Servicios y Aplicaciones Audiovisuales en Internet (CSAAI) \footnote{\textbf{CSAAI}: \url{https://github.com/myTeachingURJC/2020-2021-CSAAI/wiki}}.
 \end{itemize}
 
-Una vez adquiridas las competencias necesarias comenzamos con el desarrollo de los ejercicios. Se implementó el escenario del simulador \textit{Gazebo} y se programó un \textit{plugin} para mover a una persona simulada con el teclado. Después desarrollamos la plantilla web para la programación del ejercicio y la integramos en un contenedor Docker.\\
+Una vez adquiridas las competencias necesarias comenzamos con el desarrollo de los ejercicios. Se implementó el escenario del simulador Gazebo y se programó un \textit{plugin} para mover a una persona simulada con el teclado. Después desarrollamos la plantilla web para la programación del ejercicio y la integramos en un contenedor Docker.\\
 
-De manera similiar, hicimos lo mismo con el ejercicio \textit{Real Follow Person}. Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor (todo tipo de cámaras para hacer pruebas) como por parte del laboratorio de Robótica de la ETSIT (el robot Turtlebot2, y los RPLIDAR).
+De manera similiar, hicimos lo mismo con el ejercicio Sigue-Personas Real. Al tener que usar un robot real, contaba con todo el hardware necesario tanto por parte de mi tutor (todo tipo de cámaras para hacer pruebas) como por parte del laboratorio de Robótica de la ETSIT (el robot TurtleBot2, y los láseres RPLIDAR).
 
 
 % -- SECCIÓN PLAN DE TRABAJO
@@ -57,8 +57,8 @@ A lo largo de estos meses, la planificación del TFG ha sido la siguiente:
 
 \begin{enumerate}
 	\item \textbf{Etapa de Entrenamiento}. Conociendo las herramientas y posibilidades antes de decidir el tema del que consiste este proyecto: ROS, ROS2, ROS Bridge, Docker, BTs, etc.
-	\item \textbf{Inicio} del TFG. Una vez conocido el tema, comenzar a organizar el proyecto, preparando el entorno ROS, programando el plugin y migrando el Turtlebot2 a ROS Foxy.
-	\item Programación de la \textbf{infraestructura} de los ejercicios. Usando como referencia otros ejercicios de Robotics Academy como por ejemplo \textit{Color Filter} \footnote{\textbf{Color filter (foxy github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/foxy/exercises/static/exercises/color_filter/web-template}} o \textit{Follow Line} \footnote{\textbf{Follow Line (noetic github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/master/exercises/static/exercises/follow_line/web-template}}, y, adaptándolo a ROS 2.
+	\item \textbf{Inicio del TFG}. Una vez conocido el tema, comenzar a organizar el proyecto, preparando el entorno ROS, programando un \textit{plugin} para mover una persona simulada y migrando el TurtleBot2 a ROS2 Foxy.
+	\item Programación de la \textbf{infraestructura} de los ejercicios. Usando como referencia otros ejercicios de Robotics Academy como por ejemplo \textit{Color Filter} \footnote{\textbf{Color filter (foxy github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/foxy/exercises/static/exercises/color_filter/web-template}} o \textit{Follow Line} \footnote{\textbf{Follow Line (noetic github):} \url{https://github.com/JdeRobot/RoboticsAcademy/tree/master/exercises/static/exercises/follow_line/web-template}}, y, adaptándolo a ROS2.
 	\item Programación de una \textbf{solución de referencia} para cada ejercicio Sigue Personas de Robotics Academy.
 	\item \textbf{Memoria de Trabajo Fin de Grado}. La redacción de la presente memoria se realizó durante los últimos 4 meses del curso. 
 \end{enumerate}

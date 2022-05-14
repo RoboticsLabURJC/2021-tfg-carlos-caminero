@@ -23,6 +23,13 @@
 % EXPRESIONES MATEMÁTICAS
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
 % Para que no parta las palabras
 \pretolerance=10000
 
