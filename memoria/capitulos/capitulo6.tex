@@ -1,20 +1,20 @@
 \chapter{Soluciones de referencia}
 \label{cap:capitulo6}
 
-En este capítulo abordaremos una solución de referencia a los ejercicios Sigue-Persona Simulado y Sigue-Persona Real. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una solución robótica. El primer paso es probar su programa en una simulación (Sigue-Persona Simulado), una vez que su solución es bastante robusta, pasa al siguiente nivel, probandolo en el mundo real (Sigue-Persona Real). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione igual que con un robot real. Entonces, si su solución era bastante buena, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
+En este capítulo abordaremos la solución al problema Sigue Persona para los ejercicios \textit{Simulated Follow Person} y \textit{Real Follow Person}. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una aplicación robótica. El primer paso es probar su programa en una simulación (Sigue-Persona Simulado), una vez que su solución es bastante robusta, pasa al siguiente nivel, probándolo en el mundo real (Sigue-Persona Real). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione exactamente igual con un robot real. Si su solución es bastante buena y robusta, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como el terreno) y habrá logrado su objetivo.\\
 
 \section{Solución Sigue-Persona Simulado}
 \label{sec:solucion_sigue_personas_simulado}
 
-La solución que resuelve el problema de \textit{Seguir a una persona} lo podemos dividir en 3 subobjetivos: a) detección mediante Machine Learning y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados. La nueva documentación del ejercicio Sigue-Persona Simulado está disponible en Robotics Academy a través de este enlace: \url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}\\\\
+La solución que resuelve la aplicación de \textit{Seguir a una persona} la podemos dividir en 3 subobjetivos: a) detección mediante redes neuronales y seguimiento mediante un Tracker, b) desarrollo de un algoritmo de evitación de obstáculos y c) creación de una máquina de estados. La nueva documentación del ejercicio Sigue-Persona Simulado está disponible en Robotics Academy a través de este enlace: \url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}\\\\
 
 
 
 % -- SUBSECCION TRACKER
 % -----------------------
-\subsection{detección mediante ML y creación de un Tracker}
+\subsection{Detección mediante RNA y creación de un Tracker}
 \label{subsec:ml_tracker}
-Para detectar a la persona usaremos la función del módulo HAL llamada \textit{getBoundingBoxes}. Esta función realiza una ejecución sobre el modelo de red neuronal para detectar todos los objetos posibles dada una imagen de entrada y devuelve una lista de objetos \textit{Bounding Box} (explicados en la Sección [\ref{sec:plantilla_python}]). Crearemos una función llamada \textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)} con la que podremos dibujar sobre la imagen un Bounding Box dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos los Bounding Boxes obtenidos (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
+Para detectar a la persona usamos la función del módulo HAL llamada \textit{getBoundingBoxes}. Esta función realiza una inferencia del modelo de red neuronal para detectar todos los objetos posibles dada una imagen de entrada y devuelve una lista de objetos de cajas de detección (explicados en la Sección [\ref{sec:plantilla_python}]). Crearemos una función llamada \textit{draw\_bounding\_box(img, bbox, color=(23, 230, 210), thickness=2)} con la que podremos dibujar sobre la imagen una Caja de Detección dado como entrada. En este caso usaremos el color verde (0, 255, 0) e iteraremos sobre todos las cajas de detección obtenidas (Figura \ref{fig:deteccion_ssd_sin_filtro})\\
 
 \begin{figure} [H]
   \begin{center}
@@ -24,7 +24,7 @@ Para detectar a la persona usaremos la función del módulo HAL llamada \textit{
   \label{fig:deteccion_ssd_sin_filtro}
 \end{figure}\
 
-Sin embargo, un modelo de red neuronal genera una puntuación o \textit{score} para cada objeto detectado dependiendo de su entrenamiento, por ejemplo, en una imágen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por \textit{score} para desechar los falsos positivos. Para ello, generamos una función que llamaremos \textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)} que filtre aquellos bounding boxes que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a 0.3 (el rango va de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
+Un modelo de red neuronal genera una puntuación o \textit{score} para cada objeto detectado dependiendo de su entrenamiento. Por ejemplo, en una imagen donde puede aparecer una persona y una escultura humana, es probable, que la persona detectada tenga una puntuación de un 90 \% y la escultura un 70 \% debido a su parecido. Está en la labor del programador filtrar por \textit{score} para desechar los falsos positivos. Para ello, generamos una función que llamaremos \textit{bounding\_boxes\_by\_score(bounding\_boxes, score\_limit)} que filtre aquellas cajas de detección que superen una puntuación límite. Debido a la naturaleza de este modelo neuronal preentrenado, las óptimas detecciones se han comprobado empíricamente que funcionan con una puntuación superior a 0.3 (el rango va de 0 a 1). Aplicando el filtro obtenemos el siguiente resultado (Figura \ref{fig:deteccion_ssd_filtro_score})\\
 
 \begin{figure} [H]
   \begin{center}
@@ -34,7 +34,7 @@ Sin embargo, un modelo de red neuronal genera una puntuación o \textit{score} p
   \label{fig:deteccion_ssd_filtro_score}
 \end{figure}\
 
-Tal y como vemos en la figura \ref{fig:deteccion_ssd_filtro_score}, tras el filtro de puntuación obtenemos una imagen donde hay 3 Bounding Boxes detectados: una persona y 2 sillas. Para quedarnos solo con las personas aplicaremos un \textit{segundo filtro}, en la cual nos fijaremos en la clase del Bounding Box. Recordemos que el objeto Bounding Box tenía un atributo \textit{id} que correspondía a un número entero y un atributo \textit{class\_id} que era la traducción de dicho número a una cadena de texto (ej: 1 - ``person", 2 - ``bicycle"). Crearemos una función llamada \textit{bounding\_boxes\_by\_name(bounding\_boxes, name)} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el nombre de la clase que queremos filtrar (en este caso ``person"). Aplicando el filtro obtenemos una correcta detección de personas (Figura \ref{fig:deteccion_ssd_filtro_score_class}):\\
+Tal y como vemos en la Figura \ref{fig:deteccion_ssd_filtro_score}, tras el filtro de puntuación obtenemos una imagen donde hay 3 cajas de detección detectados: una persona y 2 sillas. Para quedarnos solo con las personas aplicaremos un \textit{segundo filtro}, en la cual nos fijaremos en la clase del Bounding Box. Recordemos que el objeto Bounding Box tenía un atributo \textit{id} que correspondía a un número entero y un atributo \textit{class\_id} que era la traducción de dicho número a una cadena de texto (ej: 1 - ``person", 2 - ``bicycle"). Crearemos una función llamada \textit{bounding\_boxes\_by\_name(bounding\_boxes, name)} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el nombre de la clase que queremos filtrar (en este caso ``person"). Aplicando el filtro obtenemos una correcta detección de personas (Figura \ref{fig:deteccion_ssd_filtro_score_class}):\\
 
 \begin{figure} [H]
   \begin{center}
@@ -44,28 +44,28 @@ Tal y como vemos en la figura \ref{fig:deteccion_ssd_filtro_score}, tras el filt
   \label{fig:deteccion_ssd_filtro_score_class}
 \end{figure}
 
-Como último filtro y muy recomendable es rechazar aquellas detecciones que no superen un \textit{área} determinado. Con este filtro, evitamos que el robot se confunda con personas que se encuentren a una distancia lejana o con un falso positivo, para ello, crearemos una función llamada \textit{bounding\_boxes\_by\_area(bounding\_boxes, min\_area)} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el área mínima que debe filtrar.\\
+Como último filtro y muy recomendable es rechazar aquellas detecciones que no superen un \textit{área} determinado. Con este filtro, evitamos que el robot se confunda con personas que se encuentren a una distancia lejana o con un falso positivo. Para ello, crearemos una función llamada \textit{bounding\_boxes\_by\_area(bounding\_boxes, min\_area)} al cual dada una lista de objetos detectados pasaremos como segundo parámetro de entrada el área mínima que debe filtrar.\\
 
-El siguiente paso es crear un \textit{Tracker} de seguimiento. Nuestro tracker se basará en la distancia de los centroides de los Bounding Boxes del fotograma actual con el candidato del fotograma anterior. Recordemos que un Bounding Box tenía otros 4 parámetros más: $x_{min}$ e $y_{min}$ correspondían a las coordenadas (x,y) del extremo superior izquierdo de la caja de detección, y $x_{max}$ e $y_{max}$ correspondían a las coordenadas (x,y) del extremo inferior derecho. Para obtener el centroide aplicaremos la siguiente fórmula:\\
+El siguiente paso es crear un \textit{Tracker} de seguimiento. Nuestro \textit{tracker} se basa en la distancia de los centroides de las cajas de detección del fotograma actual con el candidato del fotograma anterior. Recordemos que una caja de detección tenía otros 4 parámetros más: $x_{min}$ e $y_{min}$ correspondían a las coordenadas (x,y) del extremo superior izquierdo de la caja de detección, y $x_{max}$ e $y_{max}$ correspondían a las coordenadas (x,y) del extremo inferior derecho. Para obtener el centroide aplicaremos la siguiente fórmula:\\
 \begin{eqnarray*}
 C_x = \frac{x_{min} + x_{max}}{2}\\
 C_y = \frac{y_{min} + y_{max}}{2}\\
 \end{eqnarray*}
 
-Crearemos una clase llamada \textit{BoundingBoxObject} que tendrá 3 atributos: El Bounding Box correspondiente, su centroide y su área. El área lo obtendremos de la siguiente manera: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$.\\
+Creamos una clase llamada \textit{BoundingBoxObject} que tiene 3 atributos: La caja de detección correspondiente, su centroide y su área. El área lo obtendremos de la siguiente manera: $A = (x_{max} - x_{min}) (y_{max} - y_{min})$.\\
 
-Posteriormente, creamos una clase llamada \textit{Tracker} que nos proporcionará una capa de abstracción al usar los siguientes métodos que definiremos:
+Posteriormente, creamos una clase llamada \textit{Tracker} que proporcionará una capa de abstracción al usar los siguientes métodos que definimos:
 
 \begin{itemize}
 	\item \textbf{setObjective(self, obj)}: Establece el objetivo BoundingBoxObject de seguimiento.
-	\item \textbf{getObjective(self)}: Devuelve el objetivo BoundingBoxObject actual de seguimiento.
-	\item \textbf{getObjectiveFromSet(self, objlist)}: Dada una lista o conjunto de objetos BoundingBoxObject, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca del actual, no supere una distancia límite(50) con él, y que la diferencia de área entre el BoundingBoxObject anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la Distancia Euclídea:
+	\item \textbf{getObjective(self)}: Devuelve el objetivo \textit{BoundingBoxObject} actual de seguimiento.
+	\item \textbf{getObjectiveFromSet(self, objlist)}: Dada una lista o conjunto de objetos \textit{BoundingBoxObject}, devuelve el objetivo candidato que más se acerca al anterior, y lo actualiza. El candidato seleccionado será aquel cuyo centroide esté más cerca del actual, no supere una distancia límite(50) con él, y que la diferencia de área entre el \textit{BoundingBoxObject} anterior y el actual sea menor a 30000. Para calcular la distancia entre centroides usaremos la Distancia Euclídea:
 	\begin{equation*}
 	d = \sqrt{(C_{x}' - C_{x})^2 + (C_{y}' - C_{y})^2}
 	\end{equation*}
 \end{itemize}\
 
-En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en qué se basa esté procedimiento: comparamos cada centroide con el centroide candidato del fotograma anterior y elegiremos aquel que cumpla los requisitos descritos anteriormente.\\
+En la Figura \ref{fig:obtencion_centroide} se puede ver con más detalle en qué se basa este procedimiento: se compara cada centroide con el centroide candidato del fotograma anterior y se elige aquel que cumpla los requisitos descritos anteriormente.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -75,7 +75,7 @@ En la figura \ref{fig:obtencion_centroide} podemos ver con más detalle en qué 
   \label{fig:obtencion_centroide}
 \end{figure}\
 
-Al principio del programa inicializamos una instancia de tipo Tracker, y, en cada iteración del bucle principal llamamos al método \textit{getObjectiveFromSet(self, objlist)} para obtener un BoundingBoxObject que dibujamos en la imagen de color rojo. El resultado queda de la siguiente manera:\\
+Al principio del programa inicializamos una instancia de tipo Tracker, y, en cada iteración del bucle principal llamamos al método \textit{getObjectiveFromSet(self, objlist)} para obtener un \textit{BoundingBoxObject} que dibujamos en la imagen de color rojo. El resultado queda de la siguiente manera:\\
 
 \begin{figure} [H]
   \begin{center}
@@ -85,12 +85,12 @@ Al principio del programa inicializamos una instancia de tipo Tracker, y, en cad
   \label{fig:uso_tracker}
 \end{figure}\
 
-Como criterio de selección de la persona a la que seguiremos, deberá cumplir los 3 filtros indicados anteriormente, aparecer en el segundo tercio de la imagen (dividiremos la imagen en 3 y analizaremos la mitad) y ser aquel BoundingBoxObject con un área mayor que el resto.\\
+Como criterio de selección de la persona a la que seguiremos, deberá cumplir los 3 filtros indicados anteriormente, aparecer en el segundo tercio de la imagen (dividiremos la imagen en 3 y analizaremos la mitad) y ser aquel \textit{BoundingBoxObject} con un área mayor que el resto.\\
 
 
 % -- SUBSECCIÓN EVITAR OBSTÁCULOS
 % ---------------------------------
-\subsection{Algoritmo VFF}
+\subsection{Algoritmo de navegación VFF}
 \label{subsec:vff}
 
 Seguir a una persona en un mundo vacío es sencillo, pero cuando el entorno presenta obstáculos, es importante tener ese riesgo en cuenta:\\
@@ -100,9 +100,9 @@ Seguir a una persona en un mundo vacío es sencillo, pero cuando el entorno pres
 	\item ¿Qué ocurre si el robot se está acercando a la pata de una mesa? ¿Y si está pasando cerca de otra persona a la que ha descartado en el proceso de Tracking?
 \end{itemize}\
 
-El algoritmo de \textit{Campo de Fuerzas Virtuales (VFF)} es el más indicado para esas situaciones. Se basa en la suma vectorial de un vector de atracción y de repulsión originando un vector resultante que indica la nueva dirección de desplazamiento. La suma vectorial estará influenciada por el valor de unos pesos $\alpha$ y $\beta$ aplicados a los vectores de atraccion y repulsión respectivamente, pudiendo de esta manera, dar más valor a uno que otro.\\
+El algoritmo de \textit{Campo de Fuerzas Virtuales (VFF)} está muy indicado para esas situaciones. Se basa en la suma vectorial de un vector de atracción y de repulsión originando un vector resultante que indica la nueva dirección de desplazamiento. La suma vectorial estará influenciada por el valor de unos pesos $\alpha$ y $\beta$ aplicados a los vectores de atraccion y repulsión respectivamente, pudiendo de esta manera dar más valor a uno que otro.\\
 
-El \textit{vector de atracción} será aquel que desde el robot apuntará al objetivo. Al usar una cámara en la que no tenemos en cuenta la profundidad, estableceremos que el módulo del vector será siempre 2 metros. Para obtener el ángulo nos basaremos en el Campo de Visión (FOV) horizontal de la cámara. Al ser una cámara simulada, en su fichero urdf.xacro (tal y como vimos en el capítulo \ref{cap:capitulo4}) indicamos que FOV fuera 1.04 radianes (60 grados). Por lo tanto, 0 grados se corresponderá al centro de la imagen y los extremos a los ángulos -30 y 30. Para conocer el ángulo con el objetivo necesitaremos conocer el ancho de la imagen, y la posición de la coordenada x del centroide. La ecuación es la siguiente:
+El \textit{vector de atracción} será aquel que desde el robot apunta al objetivo. Al usar una cámara en la que no tenemos en cuenta la profundidad, establecemos que el módulo del vector será siempre 2 metros. Para obtener el ángulo nos basaremos en el Campo de Visión (FOV) horizontal de la cámara. Al ser una cámara simulada, en su fichero urdf.xacro (tal y como vimos en el capítulo \ref{cap:capitulo4}) indicamos que FOV fuera 1.04 radianes (60 grados). Por lo tanto, 0 grados se corresponderá al centro de la imagen y los extremos a los ángulos -30 y 30. Para conocer el ángulo con el objetivo necesitaremos conocer el ancho de la imagen, y la posición de la coordenada x del centroide. La ecuación es la siguiente:
 
 \begin{equation*}
 \alpha = \frac{H_{FOV} \cdot C_{x}}{w} - \frac{H_{FOV}}{2}
@@ -114,23 +114,23 @@ A_x = m \cdot sin(\alpha)\\
 A_y = m \cdot cos(\alpha)\\
 \end{eqnarray*}
 
-El \textbf{vector de repulsión} se calculará a partir de todas las lecturas del láser. Cada obstáculo presente en el rango del láser provocará un vector en sentido contrario cuyo módulo estará influenciado por una constante y será inversamente proporcional a la distancia con el obstáculo (es decir, cuanto más cerca, mayor será el módulo). Sabiendo la constante (K) y la distancia (d) de cada lectura del láser (n lecturas), la ecuación del vector de repulsión (R) es la siguiente:
+El \textit{vector de repulsión} se calculará a partir de todas las lecturas del láser. Cada obstáculo presente en el rango del láser provocará un vector en sentido contrario cuyo módulo estará influenciado por una constante y será inversamente proporcional a la distancia con el obstáculo (es decir, cuanto más cerca, mayor será el módulo). Sabiendo la constante (K) y la distancia (d) de cada lectura del láser (n lecturas), la ecuación del vector de repulsión (R) es la siguiente:
 
 \begin{eqnarray*}
 R_x &=& \sum_{i=1}^n\left(\frac{K}{d_i}\right)^2 \cdot cos(\alpha)\\
 R_y &=& \sum_{i=1}^n\left(\frac{-K}{d_i}\right)^2 \cdot sin(\alpha)\\
 \end{eqnarray*}
 
-En la ecuación vemos como la componente $R_y$ va en dirección contraria al desplazamiento del robot. La potencia de 2 se aplica para evitar \textbf{mínimos locales}\\
+En la ecuación vemos cómo la componente $R_y$ va en dirección contraria al desplazamiento del robot. La potencia de 2 se aplica para evitar mínimos locales.\\
 
-El \textbf{vector final (F) o resultante} lo obtendremos sumando las componentes de los vectores de atracción y repulsión. Ambos multiplicados por dos constantes $\alpha$ y $\beta$ respectivamente. La ecuación queda de esta manera:
+El \textit{vector final (F) o resultante} lo obtendremos sumando las componentes de los vectores de atracción y repulsión. Ambos multiplicados por dos constantes $\alpha$ y $\beta$ respectivamente. La ecuación queda de esta manera:
 
 \begin{eqnarray*}
 F_x &=& \alpha \cdot A_x + \beta \cdot R_x\\
 F_y &=& \alpha \cdot A_y + \beta \cdot R_y\\
 \end{eqnarray*}
 
-Queda en la labor del programador ajustar empíricamente los parámetros $\alpha$ y $\beta$ dependiendo del comportamiento que desee. Si queremos darle más peso a la repulsión aumentaremos $\beta$ pero en casos extremos podríamos llegar a perder el objetivo. En cambio si queremos darle más peso a la atracción conseguiremos que evité los obstáculos sin perder al objetivo pero si está mal ajustado podríamos colisionar a causa de una escasa repulsión. En la figura \ref{fig:esquema_vff} resumimos el algoritmo VFF de manera gráfica para una mejor comprensión.\\
+Queda en la labor del programador ajustar empíricamente los parámetros $\alpha$ y $\beta$ dependiendo del comportamiento que desee. Si queremos darle más peso a la repulsión aumentaremos $\beta$ pero en casos extremos podríamos llegar a perder el objetivo. En cambio si queremos darle más peso a la atracción conseguiremos que evite los obstáculos sin perder al objetivo pero si está mal ajustado podríamos colisionar a causa de una escasa repulsión. En la Figura \ref{fig:esquema_vff} resumimos el algoritmo VFF de manera gráfica para una mejor comprensión.\\
 
 \begin{figure} [H]
   \begin{center}
@@ -140,8 +140,13 @@ Queda en la labor del programador ajustar empíricamente los parámetros $\alpha
   \label{fig:esquema_vff}
 \end{figure}\
 
-En nuestra solución de referencia, aplicaremos solamente la componente $F_x$ como velocidad angular, ya que la velocidad lineal estará \textit{basado en casos} dependiendo de la distancia al objetivo. En el siguiente apartado [\ref{subsec:maquina_estados}] lo explicaremos con más detalle.\\
+En nuestra solución de referencia, los valores $\alpha$ y $\beta$ que usamos fueron 0.5 y 0.05 respectivamente. Aplicamos solamente la componente $F_x$ del vector final como velocidad angular, ya que la velocidad lineal está \textit{basada en casos} dependiendo de la distancia al objetivo. Esta útlima depende del tamaño de la caja de detección:
 
+\begin{itemize}
+	\item Si el área es menor que 16000, el objetivo se encontrará lejos, por tanto comandaremos una velocidad lineal de 0.2 m/s.
+	\item Si el área se encuentra entre 16000 y 45000, significa que el objetivo está cerca, por tanto comandaremos una velocidad lineal de 0.1 m/s.
+	\item Si no se cumple ninguna de estas condiciones, el objetivo se encontrará muy cerca por tanto el robot se detendrá.
+\end{itemize}\
 
 
 % -- SUBSECCION MÁQUINA DE ESTADOS
@@ -151,19 +156,65 @@ En nuestra solución de referencia, aplicaremos solamente la componente $F_x$ co
 
 Como último paso de la solución, queda implementar una máquina de estados que le dé al robot la capacidad de tomar distintas acciones dependiendo del estado en el que se encuentre. En nuestro caso, hemos definido 2 estados: Buscar-Persona y Seguir-Persona.\\
 
-El estado \textit{Buscar-Persona} será aquel con el que empecemos la ejecución del programa. Al principio, girará a una velocidad angular determinada mientras aplica los 3 filtros de detección sobre la imagen para detectar personas. Transitará al siguiente estado cuando el robot identifique un candidato a seguir (mayor área del BoundingBoxObject y posicionado en la franja central de la imagen).\\
+El estado \textit{Buscar-Persona} será aquel con el que empecemos la ejecución del programa. Al principio, girará a una velocidad angular determinada mientras aplica los 3 filtros de detección sobre la imagen para detectar personas. Transitará al siguiente estado cuando el robot identifique un candidato a seguir (mayor área del \textit{BoundingBoxObject} y posicionado en la franja central de la imagen).\\
 
-En el estado \textit{Seguir-Persona} aplicaremos el algoritmo de \textit{Tracking} [\ref{subsec:ml_tracker}] y VFF [\ref{subsec:vff}]. Además, la velocidad lineal cambiará dependiendo de la distancia al objetivo. Para ello crearemos unas condiciones en las que dependiendo del área del Bounding Box aplicaremos una velocidad u otra. Cuanto más pequeño sea el área, más lejos estará nuestro objetivo. Si por algún motivo perdemos a la persona, incrementaremos un contador de fallo y de esta manera, en caso de no detectarla en el siguiente fotograma, nos quedaremos con el mismo valor del centroide candidato. Cuando el contador supere un límite, transitaremos al primer estado: \textit{Buscar-Persona}.\\
+En el estado \textit{Seguir-Persona} aplicaremos el algoritmo de \textit{Tracking} y VFF. Además, la velocidad lineal cambiará dependiendo de la distancia al objetivo. Para ello crearemos unas condiciones en las que dependiendo del área de la caja de detección aplicaremos una velocidad u otra. Cuanto más pequeño sea el área, más lejos estará nuestro objetivo. Si por algún motivo perdemos a la persona, incrementaremos un contador de fallo y de esta manera, en caso de no detectarla en el siguiente fotograma, nos quedaremos con el mismo valor del centroide candidato. Cuando el contador supere un límite, transitaremos al primer estado: \textit{Buscar-Persona}.\\
 
-El resultado de la solución podemos verla en el siguiente enlace:\\ \textit{\url{https://youtu.be/fDAU465eVxQ}}\\
+En la Figura \ref{fig:maquina_estados} se puede ver un esquema de la Máquina de Estados Finitos (FSM) utilizada.\\
+
+\begin{figure} [H]
+  \begin{center}
+    \includegraphics[width=12cm]{imagenes/cap6/maquina-estados.png}
+  \end{center}
+  \caption[Máquina de Estados Sigue-Persona]{Máquina de Estados Sigue-Persona}
+  \label{fig:maquina_estados}
+\end{figure}\
 
 
+\subsection{Validación experimental}
+\label{subsec:validacion_experimental_sim}
+
+Para la validación de la solución de referencia se puso en prueba el algoritmo a través de varias situaciones:\\
+
+\begin{itemize}
+	\item Para probar el algoritmo de navegación VFF, colocamos dos objetos de Gazebo en frente del robot con el fin de que el robot pueda esquivarlos sin perder al objetivo. Gracias a la fuerza del vector de atracción, conseguimos que cuanto más se aleje la caja de detección con el centro de la imagen mayor será el valor de su componente \textit{X}. En la Figura \ref{fig:sim_solucion_vff_test} se puede ver la prueba que realizamos para probar VFF.
+	
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap6/sim-solution-vff-test.png}
+		\end{center}
+		\caption[Solución Sigue-Persona Simulado: prueba de navegación VFF]{Solución Sigue-Persona Simulado: prueba de navegación VFF}
+		\label{fig:sim_solucion_vff_test}
+	\end{figure}
+
+	\item Para probar el algoritmo de seguimiento (\textit{tracking}), dirigimos a la persona simulada a través del recibidor del hospital (podemos encontrar varias personas estáticas de pie) y poder comprobar que el robot es capaz de seguir a su objetivo sin confundirse. En la Figura \ref{fig:sim_solucion_tracking_test} se puede ver la prueba que realizamos para el algoritmo de seguimiento.
+
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap6/sim-solution-tracking-test.png}
+		\end{center}
+		\caption[Solución Sigue-Persona Simulado: prueba de seguimiento]{Solución Sigue-Persona Simulado: prueba de seguimiento}
+		\label{fig:sim_solucion_tracking_test}
+	\end{figure}
+\end{itemize}\
+
+El resultado de la solución se puede ver en el siguiente enlace:\\
+\textit{\url{https://youtu.be/fDAU465eVxQ}}\\
+
+
+
+
+% -- SECCION SIGUE PERSONAS REAL
+% -----------------------------
 \section{Solución Sigue-Personas Real}
 \label{sec:solucion_sigue_personas_real}
 
 El modo de resolver este problema es idéntico al Sigue-Personas simulado, sin embargo, el entorno sobre el que se mueve el robot, y el rendimiento del ejercicio debido a una distinta carga computacional causada por la ausencia del simulador puede provocar que el comportamiento de la ejecución no sea el esperado.\\
 
-En la \textit{solución} de referencia seguimos los mismos pasos que en la sección [\ref{sec:solucion_sigue_personas_simulado}]:\\
+\subsection{Adaptaciones}
+\label{subsec:adaptaciones}
+
+En la solución de referencia seguimos los mismos pasos que en la sección \ref{sec:solucion_sigue_personas_simulado} y en algunos de ellos ha sido necesario adaptar o reajustar alguna parte:\\
 
 \begin{itemize}
 	\item Implementación del \textit{Tracker} de seguimiento. Los pasos son los mismos:
@@ -181,9 +232,39 @@ En la \textit{solución} de referencia seguimos los mismos pasos que en la secci
 		\label{fig:tracker_real_follow_person}
 	\end{figure}\
 	
-	\item Implementación del algoritmo VFF. Como la frecuencia de actualización cambia ante la ausencia del simulador, ha sido necesario reajustar los parámetros $\alpha$ y $\beta$ del algoritmo, para equilibrar la relación entre la fuerza de atracción y de repulsión. Es recomendable que el párametro $\alpha$ que multiplica a la fuerza de atracción sea mayor que $\beta$ para no perder al objetivo. Sin embargo, tenemos que tener en cuenta que $\beta$ debe estar correctamente ajustado para esquivar con seguridad y suavidad los obstáculos que se encuentre por su camino. Un buen ajuste de parametros permitirá por ejemplo seguir a una persona a través de un pasillo manteniendo la misma distancia con ambas paredes sin importar la colocación de su objetivo.
+	\item Implementación del algoritmo VFF. Como la frecuencia de actualización cambia ante la ausencia del simulador, ha sido necesario reajustar los parámetros $\alpha$ y $\beta$ del algoritmo para equilibrar la relación entre la fuerza de atracción y de repulsión. Es recomendable que el párametro $\alpha$ que multiplica a la fuerza de atracción sea mayor que $\beta$ para no perder al objetivo. Sin embargo, tenemos que tener en cuenta que $\beta$ debe estar correctamente ajustado para esquivar con seguridad y suavidad los obstáculos que se encuentre por su camino. Un buen ajuste de parametros permitirá por ejemplo seguir a una persona a través de un pasillo manteniendo la misma distancia con ambas paredes sin importar la colocación de su objetivo. En nuestro caso, los valores de $\alpha$ y $\beta$, comprobados empíricamente, fueron 1.5 y 0.5 respectivamente.
 	
-	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio Sigue-Persona Simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, de esta manera, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide del útlimo \textit{Bounding Box} candidato.
+	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio Sigue-Persona Simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide de la última caja de detección candidata.
+\end{itemize}\
+
+
+
+
+\subsection{Validación experimental}
+\label{subsec:validacion_experimental_real}
+
+Para su validación se realizaron las mismas pruebas que en el ejercicio Sigue-Persona Simulado:\\
+
+\begin{itemize}
+	\item Para probar el algoritmo de navegación VFF, pusimos una silla en mitad del escenario y pudimos observar como una fuerza de repulsión empujaba al robot sin perder al objetivo. Además aprovechando el escenario de la \textit{Robocup} en el Laboratorio de Robótica, probamos la navegación a través de un pasillo pudiendo observar que, debido al ajuste correcto de los parámetros de repulsión y atracción, el robot es capaz de seguir a la persona manteniendo la misma distancia con las paredes.
+	
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap6/real-solucion-vff-test.png}
+		\end{center}
+		\caption[Solución Sigue-Persona Real: prueba de navegación VFF]{Solución Sigue-Persona Real: prueba de navegación VFF}
+		\label{fig:real_solucion_vff_test}
+	\end{figure}
+	
+	\item Para el algoritmo de seguimiento, pudimos observar que el robot era capaz de seguir al objetivo sin perderlo, a pesar de falsos positivos, como puede ser la confusión producida por el robot Pepper del laboratorio o la chaqueta.
+	
+	\begin{figure} [H]
+		\begin{center}
+		\includegraphics[width=10cm]{imagenes/cap6/real-solucion-tracking-test.png}
+		\end{center}
+		\caption[Solución Sigue-Persona Real: prueba de seguimiento]{Solución Sigue-Persona Real: prueba de seguimiento}
+		\label{fig:real_solucion_tracking_test}
+	\end{figure}
 \end{itemize}\
 
 El resultado de la solución podemos verlo en el siguiente enlace:\\
@@ -193,10 +274,10 @@ El resultado de la solución podemos verlo en el siguiente enlace:\\
 
 % -- SECCION VARIANTES
 % ----------------------
-\section{Variantes de la solución}
+\section{Variantes alternativas}
 \label{sec:variantes_solucion}
 
-La solución mostrada en las secciones [\ref{sec:solucion_sigue_personas_simulado}] y [\ref{sec:solucion_sigue_personas_real}] no es lá unica para abordar el problema. Podemos enfocar el problema Sigue Personas de varias maneras. A continuación indicamos algunas posibles opciones que tuvimos en cuenta antes de llegar a la solución final de referencia:\\
+La solución mostrada en las secciones \ref{sec:solucion_sigue_personas_simulado} y \ref{sec:solucion_sigue_personas_real} no es lá unica para abordar la aplicación. Podemos enfocar el problema Sigue Personas de varias maneras. A continuación indicamos algunas posibles opciones que tuvimos en cuenta antes de llegar a la solución final de referencia:\\
 
 \begin{itemize}
 	\item \textbf{Control de velocidad basado en franjas}. En este modelo de seguimiento, dividimos la imagen en franjas y dependiendo de la posición $C_{x}$ del centroide usamos una velocidad angular determinada. A continuación mostramos un ejemplo de implementación
@@ -217,8 +298,11 @@ while True:
 \caption{Ejemplo de control de velocidad basado en franjas}
 \label{cod:vel_bar}
 \end{code}
-	\item \textbf{Velocidad basada en un controlador PID}. Con un controlador PID bien configurado obtendríamos una respuesta rápida y precisa para no perder a la persona. Su algoritmo de seguimiento sería semejante al ejercicio \textit{Follow Line} \footnote{\textbf{Follow Line}: \url{http://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/}}. Una desventaja de usar un controlador PID es el hecho de verse afectado a causa de una baja velocidad de fotogramas por segundo. Además, tendríamos que tener en cuenta la fuerza repulsiva del láser a la hora de comandar velocidades angulares.
-	\item \textbf{Detección de color}. Como solución de escape en caso de tener problemas de alto de rendimiento, pensamos poner al alcance la opción de seguir a la persona dependiendo del color de la camiseta. En el caso del hospital pusimos la camiseta del modelo teleoperado de color verde para facilitar la detección). En un escenario real, la persona podría ponerse alguna camiseta de algún color llamativo para facilitar la detección. Para abordar esa solución, tendríamos que seguir estos pasos:
+	La ventaja de este algoritmo es que el movimiento angular está controlado en un rango elegido por el programador y los cambios de velocidad se realizan de manera suave. La desventaja es que puede provocar pequeñas oscilaciones cuando la caja de detección de la persona se encuentre en el centro de la imagen. Además, hay que tener en cuenta la repulsión del láser cuya suma puede afectar al movimiento del robot al no existir un vector de atracción.
+	
+	\item \textbf{Velocidad basada en un controlador PID}. Con un controlador PID bien configurado obtendríamos una respuesta rápida y precisa para no perder a la persona. Su algoritmo de seguimiento sería semejante al ejercicio \textit{Follow Line} \footnote{\textbf{Follow Line}: \url{http://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/}}. Una desventaja de usar un controlador PID es el hecho de verse afectado a causa de una baja velocidad de fotogramas por segundo provocando oscilaciones constantes. Esta alternativa no podría tener en cuenta los obstáculos ya que cuanto más repulsión tuviera el láser, mayor sería la fuerza del controlador PID debido a su componente integral (acumula el error).
+	
+	\item \textbf{Detección de color}. Como solución de escape en caso de tener problemas de alto de rendimiento, pensamos la opción de seguir a la persona dependiendo del color de la camiseta. En el caso del hospital pusimos la camiseta del modelo teleoperado de color verde para facilitar la detección). En un escenario real, la persona podría ponerse alguna camiseta de algún color llamativo para facilitar la detección. Para abordar esa solución, tendríamos que seguir estos pasos:
 	\begin{enumerate}
 		\item Cambiar el espacio de color de la imagen de RGB a HSV\footnote{\textbf{HSV}: \url{https://es.wikipedia.org/wiki/Modelo_de_color_HSV}}. El espacio HSV (Hue, Saturation, Value) facilita la detección de colores.
 		\item Obtener el rango HSV de valores mínimo y máximo del color de la camiseta y crear una máscara que la filtre correctamente.
@@ -228,5 +312,6 @@ while True:
 		\end{equation*}
 		\item Una vez obtenido el centroide, aplicar el algoritmo VFF igual que en la solución de referencia.
 	\end{enumerate}
+	La desventaja de esta solución es que la percepción visual basada en filtros de color es frágil porque requiere que la persona a seguir se vista de una determinada manera. Es preferible una percepción basada en RNA porque es mucho más robusta, funciona en un amplio abanico de situaciones y no require que la persona se vista de ninguna manera especial.
 \end{itemize}
 
