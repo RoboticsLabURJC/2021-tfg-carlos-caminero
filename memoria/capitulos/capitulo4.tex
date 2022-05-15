@@ -398,7 +398,7 @@ El comando para lanzar el RADI 4 usando la cámara R200 será el siguiente (para
 
 \begin{code}[H]
 \begin{lstlisting}
-$>  docker run -it --device /dev/ttyUSB0 --device /dev/ttyUSB1 --device /dev/video4:/dev/video0 -p 8000:8000 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:4.3.0 ./start.sh
+$>  docker run -it --rm --device /dev/ttyUSB0 --device /dev/ttyUSB1 --device /dev/video4:/dev/video0 -p 8000:8000 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 6080:6080 -p 1108:1108 jderobot/robotics-academy:4.3.0 ./start.sh
 \end{lstlisting}
 \caption{Lanzamiento del RADI 4 con el robot real}
 \label{cod:lanzamiento_radi_robot_real}

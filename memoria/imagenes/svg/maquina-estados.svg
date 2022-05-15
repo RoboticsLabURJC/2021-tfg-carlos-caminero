@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   sodipodi:docname="maquina-estados.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.5037598"
+     inkscape:cx="400.99489"
+     inkscape:cy="477.80237"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker86802"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path86800" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path27996" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path28011" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path28014" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.926042;stroke-linecap:round;stroke-linejoin:round"
+       id="path846"
+       cx="59.898518"
+       cy="124.19035"
+       r="24.789297"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <circle
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.926042;stroke-linecap:round;stroke-linejoin:round"
+       id="path846-3"
+       cx="140.23398"
+       cy="123.98145"
+       r="24.789297"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <ellipse
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.926042;stroke-linecap:round;stroke-linejoin:round"
+       id="path4321"
+       cx="29.328632"
+       cy="87.312668"
+       rx="13.458466"
+       ry="8.3177891"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="20.890619"
+       y="89.16288"
+       id="text5197"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan5195"
+         style="stroke-width:0.264583"
+         x="20.890619"
+         y="89.16288">INICIO</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="59.18972"
+       y="119.97822"
+       id="text7481"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan7479"
+         style="font-size:7.76111px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="59.18972"
+         y="119.97822">Buscar</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.76111px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="59.18972"
+         y="129.67961"
+         id="tspan7483">Persona</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="140.37144"
+       y="121.14529"
+       id="text7481-6"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan7479-7"
+         style="font-size:7.76111px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="140.37144"
+         y="121.14529">Seguir</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.76111px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="140.37144"
+         y="130.84668"
+         id="tspan7483-5">Persona</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="84.966461"
+       y="95.793472"
+       id="text21722"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="84.966461"
+         y="95.793472"
+         id="tspan21728">persona</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="84.966461"
+         y="100.20319"
+         id="tspan24922">detectada?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.365;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 78.264884,107.42972 c 0,0 8.507804,-5.56526 24.153546,-5.07578 15.64575,0.48949 19.04392,4.76313 19.04392,4.76313"
+       id="path27991"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="165.4716"
+       y="107.92976"
+       id="text30003"><tspan
+         sodipodi:role="line"
+         id="tspan30001"
+         style="stroke-width:0.264583"
+         x="165.4716"
+         y="107.92976" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="175.24304"
+       y="103.12437"
+       id="text34329"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan34327"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="175.24304"
+         y="103.12437">objetivo</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="175.24304"
+         y="107.53409"
+         id="tspan34331">perdido?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 163.21768,113.87466 c 0,0 9.71225,-8.3823 18.17323,-1.5579 3.45589,2.78743 4.87376,8.82526 -0.44024,14.22917 -5.45392,5.54621 -15.8154,-0.76066 -15.8154,-0.76066"
+       id="path46578"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="168.57111"
+       y="133.52669"
+       id="text48561"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan48559"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="168.57111"
+         y="133.52669">contador_fallo += 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="114.14069"
+       y="156.82037"
+       id="text64285"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan64283"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="114.14069"
+         y="156.82037">contador_fallo &gt; limite?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 128.99265,146.38133 c 0,0 -9.17907,8.44887 -29.699923,7.43362 -19.695702,-0.97443 -24.85907,-9.44263 -24.85907,-9.44263"
+       id="path70140"
+       sodipodi:nodetypes="csc"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="58.273727"
+       y="137.48532"
+       id="text71949"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan71947"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="58.273727"
+         y="137.48532">Realizar</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="58.273727"
+         y="141.89505"
+         id="tspan75527">giro</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="140.07996"
+       y="138.25548"
+       id="text81911"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799"><tspan
+         sodipodi:role="line"
+         id="tspan81909"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="140.07996"
+         y="138.25548">Tracking</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="140.07996"
+         y="142.66521"
+         id="tspan81913">VFF</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 36.09789,94.299642 8.83222,9.414968"
+       id="path86798"
+       inkscape:export-filename="/home/carloscam/tfg_ws/src/2021-tfg-carlos-caminero/memoria/imagenes/cap6/maquina-estados.png"
+       inkscape:export-xdpi="98.560799"
+       inkscape:export-ydpi="98.560799" />
+  </g>
+</svg>
