@@ -1,9 +1,10 @@
 \input{estilo.tex}
 
 % Bibliografa
-\let\OLDthebibliography=\thebibliography
-\def\thebibliography#1{\OLDthebibliography{#1}
-  \addcontentsline{toc}{chapter}{\bibname}}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[backend=biber]{biblatex}
+\bibliography{bibliografia}
 
 
 \makeindex
@@ -31,7 +32,7 @@
 
 \printindex \nocite{*}
 
-\bibliographystyle{acm} \bibliography{bibliografia}
+\printbibliography
 
 \afterpage{\blankpage}
 
