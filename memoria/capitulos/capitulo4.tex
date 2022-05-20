@@ -5,7 +5,7 @@
 % -----------------
 En este capítulo se presenta el proceso de migración del robot TurtleBot2 de ROS Noetic a ROS2 Foxy. Se describirán todos los cambios relevantes realizados como puede ser la modificación de sus ficheros URDF/Xacro, su lanzamiento en Gazebo a través de los \textit{launchers} de ROS2 o incluso su integración sobre una imagen Docker.\\
 
-El soporte del robot en ROS2 Foxy supuso el primer paso del proyecto para desarrollar los nuevos ejercicios de Robotics Academy con este robot\\
+El soporte del robot en ROS2 Foxy supuso el primer paso del proyecto para desarrollar los nuevos ejercicios de Robotics Academy.\\
 
 
 
@@ -13,13 +13,13 @@ El soporte del robot en ROS2 Foxy supuso el primer paso del proyecto para desarr
 % -- SECCION ROBOT SIMULADO
 \section{Robot TurtleBot2 simulado en Gazebo}
 \label{sec:robot_simulado_gazebo}
-El soporte más estable del TurtleBot2 se encuentra en la rama de ROS Melodic (tanto real como simulado) aunque también funciona en ROS Noetic \footnote{\textbf{TurtleBot 2 (Noetic)}: \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Sin embargo, para ROS2 Foxy solamente hay un repositorio \footnote{\textbf{Base Kobuki (foxy)}: \url{https://github.com/kobuki-base/kobuki_ros}} que actúa de \textit{wrapper} con el driver del robot real (veremos más en la sección \ref{sec:robot_real_ros_foxy}). De modo que en esta sección abarcaremos el proceso de modelado del cuerpo del robot y la creación de los ficheros de lanzamiento para Gazebo.\\
+El soporte más estable del TurtleBot2 se encuentra en la rama de ROS Melodic (tanto real como simulado) aunque también funciona en ROS Noetic\footnote{\textbf{TurtleBot 2 (Noetic)}: \url{https://bitbucket.org/theconstructcore/turtlebot/src/noetic/}}. Sin embargo, para ROS2 Foxy solamente hay un repositorio\footnote{\textbf{Base Kobuki (foxy)}: \url{https://github.com/kobuki-base/kobuki_ros}} que actúa de \textit{wrapper} con el driver del robot real (veremos más en la Sección \ref{sec:robot_real_ros_foxy}). En esta sección abarcaremos el proceso de modelado del cuerpo del robot y la creación de los ficheros de lanzamiento para Gazebo.\\
 
 
 \subsection{Base Kobuki}
 \label{subsec:kobuki_base_simulado}
 
-El repositorio oficial de la base Kobuki contiene un paquete denominado \textit{kobuki\_description}, que contiene los ficheros de descripción Xacro (Sección \ref{subsec:xacro}) y URDF (Sección \ref{subsec:urdf}) de la base. En estos ficheros se describe el árbol de tranformadas que existen entre todos los \textit{links} (tramos, partes) del robot, y de esta manera conocer la localización de todos los marcos de coordenadas. También se añaden \textit{plugins} para facilitar el control de movimiento del robot (controladores de velocidad, odometría ...). Sin embargo, este paquete carece de ficheros de lanzamiento para el simulador, de modo que tuvimos que diseñar nuestros propios \textit{launchers}.\\
+El repositorio oficial de la base Kobuki contiene un paquete denominado \textit{kobuki\_description}, que contiene los ficheros de descripción Xacro (Sección \ref{subsec:xacro}) y URDF (Sección \ref{subsec:urdf}) de la base. En estos ficheros se describe el árbol de tranformadas que existen entre todos los \textit{links} (tramos, partes) del robot, y de esta manera permite conocer la localización de todos los marcos de coordenadas. También se añaden \textit{plugins} para facilitar el control de movimiento del robot (controladores de velocidad, odometría ...). Sin embargo, este paquete carece de ficheros de lanzamiento para el simulador, de modo que tuvimos que diseñar nuestros propios \textit{launchers}.\\
 
 Para conseguir la representación de la base Kobuki en Gazebo hicimos un copia\footnote{\textbf{Kobuki ROS (fork)}: \url{https://github.com/Carlosalpha1/kobuki_ros}} del repositorio oficial e implementamos un nuevo paquete llamado \textit{kobuki\_gazebo}. Dentro se incluyeron ficheros \texttt{launch.py} para lanzar tanto el simulador como la base kobuki simulada. A continuación describiremos los ficheros más importantes del nuevo paquete implementado:
 
@@ -55,7 +55,7 @@ def generate_launch_description():
 \label{cod:kobuki_gazebo_empty_world}
 \end{code}
 
-	\item \textbf{spawn\_model.launch.py}: Este fichero pasa los datos de descripción \textit{urdf} de la base Kobuki a un parámetro denominado \textit{/robot\_description}, publica el estado del robot, sus transformadas y ejecuta el fichero de gazebo\_ros \texttt{spawn\_entity.py} para visualizar el modelo en el simulador:
+	\item \textbf{spawn\_model.launch.py}: Este fichero pasa los datos de descripción URDF de la base Kobuki a un parámetro denominado \textit{/robot\_description}, publica el estado del robot, sus transformadas y ejecuta el fichero de gazebo\_ros \texttt{spawn\_entity.py} para visualizar el modelo en el simulador:
 	
 \begin{code}[H]
 \begin{lstlisting}[frame=single]
@@ -146,11 +146,11 @@ Después definimos en el fichero \texttt{colors.urdf.xacro} algunas macros para 
 \label{fig:creacion_color_link}
 \end{code}\
 
-Por útlimo, en el fichero \textit{turtlebot2.urdf.xacro} incluimos con la macro ``xacro:include" las definiciones URDF de los ficheros del paquete \textit{kobuki\_description}. Una vez llegados a este punto tendremos el robot TurtleBot2 simulado sin sensores. El siguiente paso es incorporar un láser de 360 grados y una cámara RGB-D.\\
+Por útlimo, en el fichero \texttt{turtlebot2.urdf.xacro} incluimos con la macro \textit{xacro:include} las definiciones URDF de los ficheros del paquete \textit{kobuki\_description}. Una vez llegados a este punto tendremos el robot TurtleBot2 simulado sin sensores. El siguiente paso es incorporar un láser de 360 grados y una cámara RGB-D.\\
 
 Para la visualización del modelo URDF completo en Gazebo me basé en los mismos ficheros que hice con la base Kobuki: \texttt{empty\_world.launch.py} y \texttt{spawn\_model.launch.py} (Sección \ref{subsec:kobuki_base_simulado})\\
 
-La única diferencia fue definir 3 argumentos por defecto para establecer la posición inicial del robot, y poder especificar el punto de partida cuando se quiera importar el modelo en cualquier otro mundo de Gazebo. Estos 3 argumentos se pasan al nodo \textit{spawn\_entity}. A continuación podemos ver la sección referente a la posición inicial del fichero \texttt{spawn\_model.launch.py}:\\
+La única diferencia fue definir tres argumentos por defecto para establecer la posición inicial (xyz) del robot, y poder especificar el punto de partida cuando se quiera importar el modelo en cualquier otro mundo de Gazebo. Estos tres argumentos se pasan al nodo \textit{spawn\_entity}. A continuación podemos ver la sección referente a la posición inicial del fichero \texttt{spawn\_model.launch.py}:\\
 
 \begin{code}[H]
 \begin{lstlisting}
@@ -268,7 +268,7 @@ En la figura \ref{fig:evolucion_turtlebot2_sim} podemos ver la evolución del pr
 \subsection{ROS topics}
 \label{subsec:ros_topics}
 
-Una vez que hemos descrito la parte mecánica del robot (modelo del TurtleBot2) es necesario incorporar \textit{drivers} que cojan datos de los sensores simulados y los ofrezcan en forma de \textit{topics} de ROS. Además, necesitaríamos incorporar \textit{drivers} que ofrezcan \textit{topics} con comandos de movimiento para enviarlo a los motores simulados. Para ello, usaremos los \textit{plugins} del simulador Gazebo 11.\\
+Una vez que hemos descrito la parte mecánica del robot (modelo del TurtleBot2) es necesario incorporar \textit{drivers} que cojan datos de los sensores simulados y los ofrezcan en forma de \textit{topics} de ROS. Además, necesitamos incorporar \textit{drivers} que ofrezcan \textit{topics} con comandos de movimiento para enviarlo a los motores simulados. Para ello, usaremos los \textit{plugins} del simulador Gazebo 11.\\
 
 Estos \textit{plugins} actúan como nodos ROS de manera homóloga a como actúan los drivers del robot real. Proporcionan los mismos \textit{topics} o parecidos compartiendo los mismos mensajes de transmisión. Los \textit{plugins} que ofrece Gazebo se incluyen en los ficheros URDF del robot:\\
 
@@ -304,16 +304,16 @@ Odometría & Suscriptor & /odom & nav\_msgs.msg.Odometry \\ \hline
 
 En esta sección nos centramos en los \textit{wrappers} para conectarnos a los \textit{drivers} del TurtleBot2 real usando ROS2 Foxy.\\
 
-El desarrollo de \textit{Kobuki Core} en ROS2 se separó del repositorio original originando un cambio de dirección URL\footnote{\textbf{Drivers Kobuki (ROS2)}: \url{https://github.com/kobuki-base/kobuki_core}}. Para controlar la base Kobuki usamos el repositorio \textit{Kobuki\_ROS}\footnote{\textbf{Wrapper Kobuki (ROS2)}: \url{https://github.com/kobuki-base/kobuki_ros}} (el mismo que usamos en la sección \ref{subsec:kobuki_base_simulado} para usar el paquete \textit{kobuki\_description} que actúa de \textit{wrapper} conteniendo los paquetes \textit{kobuki\_node} y \textit{kobuki\_keyop}:\\
+El desarrollo de \textit{Kobuki Core} en ROS2 se separó del repositorio original originando un cambio de dirección URL\footnote{\textbf{Drivers Kobuki (ROS2)}: \url{https://github.com/kobuki-base/kobuki_core}}. Para controlar la base Kobuki usamos el repositorio \textit{Kobuki\_ROS}\footnote{\textbf{Wrapper Kobuki (ROS2)}: \url{https://github.com/kobuki-base/kobuki_ros}} (el mismo que usamos en la sección \ref{subsec:kobuki_base_simulado}) para usar el paquete \textit{kobuki\_description} que actúa de \textit{wrapper} conteniendo los paquetes \textit{kobuki\_node} y \textit{kobuki\_keyop}:\\
 
 \begin{itemize}
 	\item \textbf{kobuki node}: Es el paquete que contiene un fichero de configuración denominado \texttt{kobuki\_node\_params.yaml} con el que podemos conectarnos al robot real usando el puerto /dev/ttyUSB0, así como la definición de algunos marcos de coordenadas (base, odom). También contiene los ficheros de los nodos necesarios para controlar la base Kobuki y su odometría. Oculta al programador la complejidad de comunicarse directamente con el hardware (motores, leds...) del robot usando nodos ROS (mediante publicadores y suscriptores). El nodo que lanza \textit{kobuki\_ros\_node} se suscribe al \textit{topic} /commands/velocity para recibir mensajes de tipo \textit{geometry\_msgs.msg.Twist} y poder mover mediante velocidad lineal y angular la base del robot. Este directorio no tiene relación con \textit{kobuki\_description}.
-	\item \textbf{kobuki\_keyop}: Es un paquete que permite mover la base del robot con el teclado del ordenador. Se crea un nodo que publica por cada pulsación del teclado, un mensaje geometry\_msgs.msg.Twist en el \textit{topic} \textit{/cmd\_vel} (tendremos que cambiar a \textit{/commands/velocity} si queremos controlar el robot real. Este paquete puede ayudar en un principio a comprobar que tenemos conexión con el hardware real.
+	\item \textbf{kobuki\_keyop}: Es un paquete que permite mover la base del robot con el teclado del ordenador. Se crea un nodo que publica por cada pulsación del teclado, un mensaje geometry\_msgs.msg.Twist en el \textit{topic} \textit{/cmd\_vel}, sin embargo, tendremos que cambiar a \textit{/commands/velocity} si queremos controlar el robot real. Este paquete puede ayudar en un principio a comprobar que tenemos conexión con el hardware del robot.
 \end{itemize}\
 
 Para usar el láser RPLIDAR A1 en la distribución Foxy se ha usado el repositorio \textit{rplidar\_ros}\footnote{\textbf{rplidar\_ros (ROS2)}: \url{https://github.com/allenh1/rplidar_ros}} del usuario de Github \textit{allenh1} en su rama para ROS2, cuyo fichero de lanzamiento \texttt{rplidar.launch.py} permite recoger lecturas con el sensor.\\
 
-La cámara IntelRealsense R200 no tenía soporte para ROS2 y por lo tanto, no podíamos aprovecharnos de sus características (profundidad). De modo que hemos usado el paquete de ROS2 \textit{v4l2-camera} que sirve para publicar sobre un \textit{topic} llamado (/image\_raw) las imágenes que captura la cámara a una frecuencia de 60 Hz.\\
+La cámara IntelRealsense R200 no tenía soporte para ROS2 y por lo tanto, no podíamos aprovecharnos de sus características (profundidad). De modo que hemos usado el paquete de ROS2 \textit{v4l2-camera} que sirve para publicar sobre un \textit{topic} llamado  /image\_raw las imágenes que captura la cámara a una frecuencia de 60 Hz.\\
 
 Con los drivers de la base Kobuki, el láser y la cámara tenemos todo lo necesario para usar la distribución Foxy en el robot real. En la Tabla \ref{tab:ros_topics_turtlebot2_real} mostramos los ROS topics que usa el robot. Como podréis ver, algunos topics han cambiado, de modo que lo hemos tenido en cuenta para la creación de los ejercicios.\\
 
@@ -384,7 +384,7 @@ RUN cd /opt/jderobot/CustomRobots && \
 \label{fig:instalacion_dependencias_turtlebot2_dockerfile}
 \end{code}
 
-Para el láser hemos cambiado en el fichero \textit{rplidar.launch.py} el puerto /dev/ttyUSB0 por /dev/ttyUSB1 usando el comando de Linux \textit{sed} ya que la base Kobuki usa /dev/ttyUSB0 por defecto.\\
+Para el láser hemos cambiado en el fichero \texttt{rplidar.launch.py} el puerto /dev/ttyUSB0 por /dev/ttyUSB1 usando el comando de Linux \textit{sed} ya que la base Kobuki usa /dev/ttyUSB0 por defecto.\\
 
 Una vez instaladas las dependencias y construida la imagen Docker, se han de tener en cuenta los dispositivos conectados en el portátil del usuario para el lanzamiento del contenedor. Para indicar al contenedor qué dispositivos del sistema operativo queremos integrar dentro del sistema virtualizado usaremos el parámetro \textit{--device}. Cuando usemos el robot real, tendremos que seguir las siguientes reglas en el siguiente orden (preferiblemente):\\
 

@@ -1,6 +1,6 @@
 <br>
 <h1 align="center">2021-TFG-Carlos Caminero</h1>
-<h2 align="center"> Ejercicios Sigue-Persona Real y Simulado para la plataforma académica Robotics Academy en ROS2 Foxy</h2>
+<h2 align="center"> Ejercicios Sigue-Persona para la plataforma académica Robotics Academy, usando un robot real y simulado en ROS2</h2>
 
 <br/><br/>
 <div align="center">

@@ -72,10 +72,10 @@ marcaron grandes avances en la robótica:
 % --------------------------
 \subsection{Aplicaciones actuales}
 \label{subsec:aplicaciones_actuales}
-Como hemos visto, el avance de los robots móviles ha emergido durantes estas últimas décadas. Con ellos han surgido una gran diversidad de aplicaciones (:
+Como hemos visto, el avance de los robots móviles ha emergido durantes estas últimas décadas. Con ellos han surgido una gran diversidad de aplicaciones:
 
 \begin{enumerate}
-	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como Roomba (robot aspirador) y Braava de iRobot (robot friegasuelos) o WinBot de Ecovacs (limpia ventans). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
+	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como Roomba (robot aspirador) y Braava de iRobot (robot friegasuelos) o WinBot de Ecovacs (limpia ventanas). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
 	\item Agricultura. Incorporación de tractores o vehículos autónomos encargados del mantenimiento y monitorización de los cultivos.
 	\item Inspección y mantenimiento en zonas críticas (centrales nucleares) o poco seguras para el ser humano
 	\item Logística: tanto para mover mercancias en almacenas como para reparto. Algunos robots moviles se usan de prototipo para las entregas a domicilio (última milla).
@@ -96,7 +96,7 @@ Como hemos visto, el avance de los robots móviles ha emergido durantes estas ú
 % ---------------------
 \section{Redes Neuronales Artificiales (RNA)}
 \label{sec:redes_neuronales}
-La Inteligencia Artificial (IA) es un campo muy extenso que está evolucionado rápidamente en este siglo XXI. Se basa en el estudio de algoritmos que permitan a las máquinas realizar tareas de manera ``inteligente'' (búsqueda, lógica, teoría de juegos, planificación, etc). Cuando incorporamos a un computador la capacidad de \textit{aprendizaje} es entonces cuando hablamos de \textit{Machine Learning}\\
+La Inteligencia Artificial (IA) es un campo muy extenso que está evolucionado rápidamente en este siglo XXI. Se basa en el estudio de algoritmos que permitan a las máquinas realizar tareas de manera ``inteligente'' (búsqueda, lógica, teoría de juegos, planificación, etc). Cuando incorporamos a un computador la capacidad de \textit{aprendizaje} es entonces cuando hablamos de \textit{Machine Learning}.\\
 
 Según \emph{Arthur Samuel}, el Aprendizaje Automático o Machine Learning es el ``campo de estudio que otorga a los ordenadores la capacidad de aprender sin ser programados explícitamente''. Para ello se emplean diversas técnicas dependiendo del resultado deseado: Regresión Lineal, Regresión Logística, K-NN, K-Means, SVM, Redes Neuronales, Q-Learning, etc. Un paradigma de procesamiento en Aprendizaje Automático muy exitoso en los últimos años son las redes neuronales artificiales.\\
 
@@ -119,7 +119,7 @@ Una neurona, tal y como se muestra en la Figura \ref{fig:neurona} está formada 
   \label{fig:neurona}
 \end{figure}
 
-Tomando como ejemplo un Perceptrón (neurona utilizada para resolver tareas de clasificación binaria) la clasificación se realiza mediante un \textit{hiperplano de separación} sujeto a la función de decisión (función escalón) separando en dos clases (0 o 1) los datos de entrada. La posición y orientación del hiperplano de separación está determinado por el proceso de optimización realizado durante el entrenamiento de la neurona. En la Figura \ref{fig:salida_perceptron} mostramos dos ejemplo de un Perceptrón entrenado a partir de cuatro datos de entrada que simulan una puerta lógica AND y OR respectivamente:\\
+Tomando como ejemplo un Perceptrón (neurona utilizada para resolver tareas de clasificación binaria) la clasificación se realiza mediante un \textit{hiperplano de separación} sujeto a la función de decisión (función escalón) separando en dos clases (0 o 1) los datos de entrada. La posición y orientación del hiperplano de separación está determinado por el proceso de optimización realizado durante el entrenamiento de la neurona. En la Figura \ref{fig:salida_perceptron} mostramos dos ejemplos de un Perceptrón entrenado a partir de cuatro datos de entrada que simulan una puerta lógica AND y OR respectivamente:\\
 
 \begin{figure}[H]
   \begin{center}
@@ -131,7 +131,7 @@ Tomando como ejemplo un Perceptrón (neurona utilizada para resolver tareas de c
 
 Cuando los datos de entrada no son linealmente separables mediante un hiperplano de separación es cuando necesitamos aumentar el número de neuronas. Normalmente, una RNA consta de un conjunto de capas formado por varias neuronas que se encuentran interconectadas. Suelen dividirse en 1 capa de entrada, 1 o más capas ocultas y 1 capa de salida.\\
 
-Cuando el problema de clasificación involucra una gran cantidad de información y entradas como puede ser un video o una imagen, se usan modelos de redes neuronales profundas (\textit{Deep Neural Networks}, DNN) de varias capas con un elevado número de neuronas. Variante de \textit{Machine Learning} conocida como \textit{Deep Learning}\\
+Cuando el problema de clasificación involucra una gran cantidad de información y entradas como puede ser un video o una imagen, se usan modelos de redes neuronales profundas (\textit{Deep Neural Networks}, DNN) de varias capas con un elevado número de neuronas. Variante de \textit{Machine Learning} conocida como \textit{Deep Learning}.\\
 
 \begin{figure}[H]
   \begin{center}
@@ -157,11 +157,11 @@ Al usar la CNN dada una imagen obtendremos una lista de porcentajes normalizados
   \begin{center}
     \includegraphics[width=15cm]{imagenes/cap1/ocr-cnn.png}
   \end{center}
-  \caption[OCR usando CNN)]{OCR usando CNN. Imagen obtenida de \cite{dnn}}
+  \caption[OCR usando CNN]{OCR usando CNN. Imagen obtenida de \cite{dnn}}
   \label{fig:ocr_cnn}
 \end{figure}\
 
-A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based Convolutional Neural Network}) que permite detectar varios objetos en una imagen y que utilizaremos en este proyecto para realizar la tarea de seguir a una persona. Su funcionamiento se basa en la extracción de regiones de interés que pasan a través de una CNN devolviendo el resultado de una clasificación. Las regiones que pintamos según el resultado de la CNN se conocen como \textit{Bounding Boxes} (cajas de detección).
+A partir de CNN surge otro tipo de RNA, denominado R-CNN (\textit{Region-based Convolutional Neural Network}) que permite detectar varios objetos en una imagen y que hemos utilizado en este proyecto para realizar la tarea de seguir a una persona. Su funcionamiento se basa en la extracción de regiones de interés que pasan a través de una CNN devolviendo el resultado de una clasificación. Las regiones que pintamos según el resultado de la CNN se conocen como \textit{Bounding Boxes} (cajas de detección).
 
 \begin{figure}[H]
   \begin{center}
@@ -193,7 +193,7 @@ Tal y como indica el título del grado, se trata de una carrera universitaria de
   \label{fig:laboratorio_robocup}
 \end{figure}\
 
-El robot usado en este Trabajo Fin de Grado y proporcionado por el grado es un modelo Turtlebot 2 de Yujin. Consta de una base  similar a la de un robot de limpieza con sensores de contacto, y un soporte encima que le permite incorporar un RPLIDAR, una cámara, y colocar el portátil del estudiante cuando desarrolla una solución al problema.
+El robot usado en este Trabajo Fin de Grado y proporcionado por el grado es un modelo TurtleBot2 de Yujin. Consta de una base  similar a la de un robot de limpieza con sensores de contacto, y un soporte encima que le permite incorporar un RPLIDAR, una cámara, y colocar el portátil del estudiante cuando desarrolla una solución al problema.\\
 
 \begin{figure}[H]
   \begin{center}
@@ -202,6 +202,8 @@ El robot usado en este Trabajo Fin de Grado y proporcionado por el grado es un m
   \caption[Robots Turtlebot2 del laboratorio de robótica]{Robots Turtlebot2 del laboratorio de robótica}
   \label{fig:robots_laboratorio_robotica}
 \end{figure}\
+
+\cleardoublepage
 
 \subsection{The Construct}
 \label{subsec:the_construct}
@@ -252,7 +254,7 @@ Una ventaja de usar Robotics Academy es que permite al usario centrarse única y
 
 Unibotics\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en su propio ordenador.\\
 
-Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles (Figura \ref{fig:menu-unibotics}), que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados usando dentro del contenedor software con la distribución ROS Noetic como base.\\
+Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles (Figura \ref{fig:menu-unibotics}), que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados dentro del contenedor software usando la distribución ROS Noetic como base.\\
 
 \begin{figure} [H]
   \begin{center}
