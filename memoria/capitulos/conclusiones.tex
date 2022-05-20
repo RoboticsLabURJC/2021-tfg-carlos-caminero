@@ -1,33 +1,36 @@
 \chapter{Conclusiones}
 \label{cap:Conclusiones}
 
-Concluímos este Trabajo Fin de Grado con las conclusiones y un resumen con los objetivos que hemos alcanzado, además de algunas posibles líneas para futuras derivaciones, investigaciones o ampliaciones que superen las metas alcanzadas en este proyecto
+Finalizamos este Trabajo Fin de Grado con las conclusiones y un resumen con los objetivos que hemos alcanzado, además de algunas posibles líneas para futuras derivaciones, investigaciones o ampliaciones que superen las metas alcanzadas en este proyecto
 
 \section{¿Qué ha aportado este trabajo?}
 \label{sec:aportaciones}
 
-\begin{itemize}
-	\item Migración de un modelo TurtleBot2 simulado y adaptado de ROS Noetic a ROS2 Foxy. Incorporación de los ficheros fuente en el repositorio oficial de Custom Robots \footnote{\url{https://github.com/JdeRobot/CustomRobots/tree/foxy-devel}} (rama foxy)
-	\item La primera vez que se utiliza un \textit{robot real} en un ejercicio que usa la infraestructura Robotics Academy / Unibotics.
-	\item Cración de un \textit{plugin} en ROS2 para controlar una persona simulada en Gazebo usando los botones del teclado a través del frontend de la plantilla web
-	\item Desarrollo de dos nuevos ejercicios para su implementación en la plataforma universitaria Unibotics. Actualmente han sido incorporados al set de ejercicios de Robotics Academy: Sigue-Persona Simulado\footnote{\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}} y Sigue-Persona Real\footnote{\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/real_follow_person}}.
-	\item Desarrollo de una \textit{solución} robusta y funcional Sigue-Personas para los 2 nuevos ejercicios.
-	\item Incoporación de un modelo de red neuronal óptimo para arquitecturas y software de bajo rendimiento computacional (ejemplo: Docker, Raspberry Pi) para Robotics Academy.
-\end{itemize}\
+Una vez terminado el proyecto, hemos logrado alcanzar los objetivos que nos propusimos al principio en el capítulo \ref{cap:capitulo2}:
+
+\begin{enumerate}
+	\item Logramos migrar un modelo TurtleBot2 simulado y adaptarlo de ROS Noetic a ROS2 Foxy. Los ficheros fuente se integraron en el repositorio oficial de Custom Robots \footnote{\url{https://github.com/JdeRobot/CustomRobots/tree/foxy-devel}} (rama foxy).
+	\item Uno de los objetivos principales conseguidos era entender la infraestructura de Robotics Academy para desarrollar los dos nuevos ejercicios. Actualmente han sido incorporados al conjunto de ejercicios de Robotics Academy: Sigue-Persona Simulado\footnote{\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}} y Sigue-Persona Real\footnote{\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/real_follow_person}}.
+	\item Había que diseñar un escenario para el ejercicio Sigue-Persona Simulado, de modo que desarrollamos un \textit{plugin} en ROS2 para controlar una persona simulada en Gazebo usando los botones del teclado a través de la página web. Además incorporamos un hospital, que proporcionaba AWS, en el simulador.
+	\item Se ha conseguido integrar por primera vez un \textit{robot real} para un ejercicio de Robotics Academy.
+	\item Como último objetivo que marcamos, pudimos proporcionar una \textit{solución} robusta y funcional del algoritmo Sigue-Persona para los dos nuevos ejercicios.
+\end{enumerate}
+
+Como aporte adicional, hemos logrado incorporar un modelo de red neuronal óptimo para arquitecturas y software de bajo rendimiento computacional (ejemplo: Docker, Raspberry Pi) para Robotics Academy.
 
 \section{Competencias adquiridas}
 \label{sec:competencias}
 
-Durante la realización del TFG se han ido adquiridendo varios conocimientos y competencias sobre distintas tecnologías:
+Durante la realización del TFG se han ido adquiriendo varios conocimientos y competencias sobre distintas tecnologías:
 
 \begin{itemize}
-	\item Conocimiento avanzado de Docker: creación de imágenes y uso de contenedores
+	\item Conocimiento avanzado de Docker: creación de imágenes y uso de contenedores.
 	\item Profundización en HTML, CSS y JavaScript.
-	\item Ampliación de conocimientos en ROS1, ROS2 y ROS Bridge.
+	\item Ampliación de conocimientos en ROS, ROS2 y ROS Bridge.
 	\item Creación de \textit{plugins} para Gazebo.
-	\item Amplicación de conocimientos en URDF y Xacro.
+	\item Ampliación de conocimientos en URDF y Xacro.
 	\item Funcionamiento del frontend y backend de Robotics Academy.
-	\item Creación de una solución más robusta en el problema robótico de seguir a una persona utilizando algoritmos como \textit{tracking} y \textit{VFF}.
+	\item Creación de una solución más robusta en el problema robótico de seguir a una persona utilizando algoritmos como \textit{tracking} perceptivo y navegación con \textit{VFF}.
 	\item Correcta metodología para trabajar en proyectos de software libre en Github.
 \end{itemize}\
 
@@ -38,8 +41,8 @@ Una vez lograda la meta principal de este proyecto, han quedado abiertas varias 
 
 \begin{itemize}
 	\item Sería posible incorporar varios modelos de redes neuronales ligeros parecidos a SSD Inception V2 para ejercicios de \textit{Deep Learning}.
-	\item Crear nuevos ejercicios para Robotics Academy usando el TurtleBot2 real o su modelo simulado.
-	\item Encontrar soporte para cámaras RGB-D en ROS2 Foxy que puedan ser utilizadas en \textit{Robotics Academy} para aprovechar la característica de estimar la distancia de los objetos presentes en los fotogramas.
-	\item En relación al apartado anterior, sería interesante poder mejorar la solución Sigue Personas aprovechando la profundidad de una cámara RGB-D. De esta manera, al identificar al objetivo podríamos lanzar una transformada desde el \textit{frame base\_footprint} y seguir constantemente a la persona gracias a su frame dinámico. Con ello, mejoraríamos en precisión y sería más difícil perder a la persona. También se podría usar la profundidad para determinar el módulo del vector de atracción al utilizar VFF.
+	\item Crear nuevos ejercicios para Robotics Academy usando el TurtleBot2 real o su modelo simulado. Por ejemplo una navegación global en el entorno del Laboratorio de Robótica de la ETSIT-URJC.
+	\item Encontrar soporte para cámaras RGB-D en ROS2 Foxy que puedan ser utilizadas en \textit{Robotics Academy} para aprovechar la característica de estimar la distancia de los objetos presentes en los fotogramas o manejar nubes de puntos 3D.
+	\item Sería interesante mejorar la solución Sigue-Persona aprovechando la profundidad de una cámara RGB-D. De esta manera, al identificar al objetivo, podríamos lanzar una transformada desde el marco de coordenadas \textit{base\_footprint} y seguir constantemente a la persona gracias a su marco de coordenadas dinámico. Con ello, mejoraríamos en precisión y sería más difícil perder a la persona. También se podría usar la profundidad para determinar el módulo del vector de atracción al utilizar VFF.
 \end{itemize}
 
