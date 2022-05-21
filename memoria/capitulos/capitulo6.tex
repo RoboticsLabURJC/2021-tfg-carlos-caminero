@@ -1,7 +1,7 @@
 \chapter{Soluciones de referencia}
 \label{cap:capitulo6}
 
-En este capítulo abordaremos una solución de referencia para los ejercicios Sigue-Persona Simulado y Sigue-Persona Real. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una aplicación robótica. El primer paso es probar su programa en una simulación (Sigue-Persona Simulado). Una vez que su solución es bastante robusta, pasa al siguiente nivel, probándolo en el mundo real (Sigue-Persona Real). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione exactamente igual con un robot real. Si su solución es bastante buena y robusta, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como por ejemplo la luz ambiental o el rendimiento de CPU) y habrá logrado su objetivo.\\
+En este capítulo abordamos una solución de referencia para los ejercicios Sigue-Persona Simulado y Sigue-Persona Real. Con los dos ejercicios el usuario podrá poner a prueba su algoritmo. Se pretende poner en práctica la experiencia del programador robótico cuando desarrolla una aplicación robótica. El primer paso es probar su programa en una simulación (Sigue-Persona Simulado). Una vez que su solución es bastante robusta, pasa al siguiente nivel, probándolo en el mundo real (Sigue-Persona Real). El programador se dará cuenta de que es muy probable que el mismo programa en simulación no funcione exactamente igual con un robot real. Si su solución es bastante buena y robusta, solamente tendrá que ajustar algunos parámetros y tener en cuenta ciertos factores (como por ejemplo la luz ambiental o el rendimiento de CPU) y habrá logrado su objetivo.\\
 
 \section{Solución Sigue-Persona Simulado}
 \label{sec:solucion_sigue_personas_simulado}
@@ -102,7 +102,7 @@ Seguir a una persona en un mundo vacío es sencillo, pero cuando el entorno pres
 
 El algoritmo de \textit{Campo de Fuerzas Virtuales (VFF)} está muy indicado para esas situaciones. Se basa en la suma vectorial de un vector de atracción y de repulsión originando un vector resultante que indica la nueva dirección de desplazamiento. La suma vectorial estará influenciada por el valor de unos pesos $\alpha$ y $\beta$ aplicados a los vectores de atraccion y repulsión respectivamente, pudiendo de esta manera dar más valor a uno que otro.\\
 
-El \textit{vector de atracción} será aquel que desde el robot apunta al objetivo. Al usar una cámara en la que no tenemos en cuenta la profundidad, establecemos que el módulo del vector será siempre 2 metros. Para obtener el ángulo nos basaremos en el Campo de Visión (FOV) horizontal de la cámara. Al ser una cámara simulada, en su fichero \texttt{camera.urdf.xacro} (tal y como vimos en el capítulo \ref{cap:capitulo4}) indicamos que FOV fuera 1.04 radianes (60 grados). Por lo tanto, 0 grados se corresponderá al centro de la imagen y los extremos a los ángulos -30 y 30. Para conocer el ángulo con el objetivo necesitaremos conocer el ancho de la imagen, y la posición de la coordenada x del centroide. La ecuación es la siguiente:
+El \textit{vector de atracción} será aquel que desde el robot apunta al objetivo. Al usar una cámara en la que no tenemos en cuenta la profundidad, establecemos que el módulo del vector será siempre 2 metros. Para obtener el ángulo nos basamos en el Campo de Visión (FOV) horizontal de la cámara. Al ser una cámara simulada, en su fichero \texttt{camera.urdf.xacro} (tal y como vimos en el capítulo \ref{cap:capitulo4}) indicamos que FOV fuera 1.04 radianes (60 grados). Por lo tanto, 0 grados se corresponderá al centro de la imagen y los extremos a los ángulos -30 y 30. Para conocer el ángulo con el objetivo necesitaremos conocer el ancho de la imagen, y la posición de la coordenada x del centroide. La ecuación es la siguiente:
 
 \begin{equation*}
 \alpha = \frac{H_{FOV} \cdot C_{x}}{w} - \frac{H_{FOV}}{2}
@@ -174,7 +174,7 @@ En la Figura \ref{fig:maquina_estados} se puede ver un esquema de la Máquina de
 \subsection{Validación experimental}
 \label{subsec:validacion_experimental_sim}
 
-A continuación describiremos la ejecución de la solución de referencia donde pusimos en prueba nuestro algoritmo:
+A continuación describimos la ejecución de la solución de referencia donde pusimos en prueba nuestro algoritmo:
 
 \begin{itemize}
 	\item Para probar el algoritmo de navegación VFF, colocamos dos objetos de Gazebo en frente del robot con el fin de que pudiera esquivarlos sin perder al objetivo. Primero, el robot se encontraba en el estado Buscar-Persona hasta que detecta a su objetivo en el medio de la imagen. Al transitar de estado, el robot comienza a utilizar la navegación VFF con una velocidad lineal de 0.1 m/s debido a la distancia que le separa con la persona. Al principio, debido a la repulsión del obstáculo que tiene a su derecha, el robot gira a la izquierda, pero debido al valor incremental de la componente $A_{x}$ de la fuerza del vector de atracción, el robot bordea el obstáculo. Seguidamente, realiza lo mismo con el obstáculo que tiene a su izquierda. En la Figura \ref{fig:sim_solucion_vff_test} se puede ver la prueba realizada. Después de esquivar los dos obstáculos, el robot recuperaba su estabilidad.
@@ -187,7 +187,7 @@ A continuación describiremos la ejecución de la solución de referencia donde 
 		\label{fig:sim_solucion_vff_test}
 	\end{figure}
 
-	\item Luego, para probar el algoritmo de seguimiento (\textit{tracking}), dirigimos a la persona simulada a través del recibidor del hospital (la zona del escenario donde hay más personas) pudiendo comprobar que el robot era capaz de seguir a su objetivo sin confundirse. Poco después de comenzar el seguimiento, utilizamos a la persona simulada para alejarla lo máximo posible del robot y vimos como su velocidad lineal cambiaba de 0.1 m/s a 0.2 m/s. Luego pasamos cerca de una enfermera cuya caja de detección aumentaba en la parte derecha de la imagen conforme el robot se acercaba, pero no perdía a su objetivo inicial. En la Figura \ref{fig:sim_solucion_tracking_test} se puede ver la prueba que realizamos para el algoritmo de \textit{tracking} perceptivo.
+	\item Luego, para probar el algoritmo de seguimiento (\textit{tracking}), dirigimos a la persona simulada a través del recibidor del hospital (la zona del escenario donde hay más personas) pudiendo comprobar que el robot era capaz de seguir a su objetivo sin confundirse. Poco después de comenzar el seguimiento, utilizamos a la persona simulada para alejarla lo máximo posible del robot y vimos cómo su velocidad lineal cambiaba de 0.1 m/s a 0.2 m/s. Luego pasamos cerca de una enfermera cuya caja de detección aumentaba en la parte derecha de la imagen conforme el robot se acercaba, pero no perdía a su objetivo inicial. En la Figura \ref{fig:sim_solucion_tracking_test} se puede ver la prueba que realizamos para el algoritmo de \textit{tracking} perceptivo.
 
 	\begin{figure} [H]
 		\begin{center}
@@ -205,10 +205,10 @@ El vídeo de la solución que muestra todas las pruebas descritas se puede ver e
 
 % -- SECCION SIGUE PERSONAS REAL
 % -----------------------------
-\section{Solución Sigue-Personas Real}
+\section{Solución Sigue-Persona Real}
 \label{sec:solucion_sigue_personas_real}
 
-El modo de resolver este problema es idéntico al Sigue-Personas simulado, sin embargo, el entorno sobre el que se mueve el robot, y el rendimiento del ejercicio debido a una distinta carga computacional causada por la ausencia del simulador puede provocar que el comportamiento de la ejecución no sea el esperado.\\
+El modo de resolver este problema es idéntico al Sigue-Persona simulado, sin embargo, el entorno sobre el que se mueve el robot, y el rendimiento del ejercicio debido a una distinta carga computacional causada por la ausencia del simulador puede provocar que el comportamiento de la ejecución en el robot real no sea como la ejecución en el robot simulado.\\
 
 \subsection{Adaptaciones}
 \label{subsec:adaptaciones}
@@ -233,7 +233,7 @@ En la solución de referencia seguimos los mismos pasos que en la sección \ref{
 	
 	\item Implementación del algoritmo VFF. Como la frecuencia de actualización cambia ante la ausencia del simulador, ha sido necesario reajustar los parámetros $\alpha$ y $\beta$ del algoritmo para equilibrar la relación entre la fuerza de atracción y de repulsión. Es recomendable que el párametro $\alpha$ que multiplica a la fuerza de atracción sea mayor que $\beta$ para no perder al objetivo. Sin embargo, tenemos que tener en cuenta que $\beta$ debe estar correctamente ajustado para esquivar con seguridad y suavidad los obstáculos que se encuentre por su camino. Un buen ajuste de parametros permitirá por ejemplo seguir a una persona a través de un pasillo manteniendo la misma distancia con ambas paredes sin importar la colocación de su objetivo. En nuestro caso, los valores de $\alpha$ y $\beta$, comprobados empíricamente, fueron 1.5 y 0.5 respectivamente.
 	
-	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que indiciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio Sigue-Persona Simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide de la última caja de detección candidata.
+	\item Máquina de Estados Finitos. Seguimos usando dos estados maestros: Buscar-Persona y Seguir-Persona. La transición del estado Seguir-Persona a Buscar-Persona estaba determinado por el contador de fallo que iniciamos en el proceso de seguimiento del Tracking. El límite del contador dependerá de los fotogramas por segundo. En el ejercicio Sigue-Persona Simulado, la velocidad de fotogramas era baja por lo tanto el límite era menor, pero en este caso, al haber aumentado la velocidad de refresco, tiene sentido aumentar el límite del contador para que, si perdemos a la persona en un fotograma, podamos seguir guardando el centroide de la última caja de detección candidata.
 \end{itemize}\
 
 
@@ -277,7 +277,7 @@ El vídeo de la ejecución donde mostramos las pruebas descritas esta accesible 
 \section{Variantes alternativas}
 \label{sec:variantes_solucion}
 
-La solución mostrada en las secciones \ref{sec:solucion_sigue_personas_simulado} y \ref{sec:solucion_sigue_personas_real} no es lá unica para abordar la aplicación. Podemos enfocar el problema Sigue-Persona de varias maneras. A continuación indicamos algunas posibles opciones que tuvimos en cuenta antes de llegar a la solución final de referencia:\\
+La solución mostrada en las secciones \ref{sec:solucion_sigue_personas_simulado} y \ref{sec:solucion_sigue_personas_real} no es la única para abordar la aplicación. Podemos enfocar el problema Sigue-Persona de varias maneras. A continuación indicamos algunas posibles opciones que tuvimos en cuenta antes de llegar a la solución final de referencia:\\
 
 \begin{itemize}
 	\item \textbf{Control de velocidad basado en franjas}. En este modelo de seguimiento, dividimos la imagen en franjas y dependiendo de la posición $C_{x}$ del centroide usamos una velocidad angular determinada. En el código \ref{cod:vel_bar} podemos ver un ejemplo de implementación.
@@ -301,7 +301,7 @@ while True:
 	Esta fue la primera solución alternativa utilizada, cuyo video se puede ver a través de este enlace: \url{https://www.youtube.com/watch?v=58ckb5fFvrs}\\
 	La ventaja de este algoritmo es que el movimiento angular está controlado en un rango elegido por el programador y los cambios de velocidad se realizan de manera suave. La desventaja es que puede provocar pequeñas oscilaciones cuando la caja de detección de la persona se encuentre en el centro de la imagen. Además, hay que tener en cuenta la repulsión del láser, cuya suma puede afectar al movimiento del robot al no existir un vector de atracción.
 	
-	\item \textbf{Velocidad basada en un controlador PID}. Con un controlador PID bien configurado obtendríamos una respuesta rápida y precisa para no perder a la persona. Su algoritmo de seguimiento sería semejante al ejercicio \textit{Follow Line}\footnote{\textbf{Follow Line}: \url{http://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/}}. Una desventaja de usar un controlador PID es el hecho de verse afectado a causa de una baja velocidad de fotogramas por segundo provocando oscilaciones constantes. Esta alternativa no podría tener en cuenta los obstáculos ya que cuanto más repulsión tuviera el láser, mayor sería la fuerza del controlador PID debido a la acumulación del error.
+	\item \textbf{Velocidad basada en un controlador PID}. Con un controlador PID bien configurado obtendríamos una respuesta rápida y precisa para no perder a la persona. Su algoritmo de seguimiento sería semejante al ejercicio \textit{Follow Line}\footnote{\textbf{Follow Line}: \url{http://jderobot.github.io/RoboticsAcademy/exercises/AutonomousCars/follow_line/}}. Una desventaja de usar un controlador PID es el hecho de verse afectado a causa de una baja velocidad de fotogramas por segundo provocando oscilaciones constantes. Esta alternativa no tendría en cuenta los obstáculos.
 	
 	\item \textbf{Detección de color}. Como solución de escape en caso de tener problemas de alto de rendimiento, pensamos la opción de seguir a la persona dependiendo del color de la camiseta. En el caso del hospital pusimos la camiseta del modelo teleoperado de color verde para facilitar la detección. En un escenario real, la persona podría ponerse alguna camiseta de algún color llamativo para facilitar la detección. Para abordar esa solución, tendríamos que seguir estos pasos:
 	\begin{enumerate}
@@ -324,6 +324,6 @@ while True:
 	\label{fig:color_deteccion}
 \end{figure}
 	
-	La desventaja de esta solución es que la percepción visual basada en filtros de color es frágil porque requiere que la persona a seguir se vista de una determinada manera. Es preferible una percepción basada en RNA porque es mucho más robusta, funciona en un amplio abanico de situaciones y no require que la persona se vista de ninguna manera especial.
+	La desventaja de esta solución es que la percepción visual basada en filtros de color es frágil porque requiere que la persona a seguir se vista de una determinada manera. Es preferible una percepción basada en RNA porque es mucho más robusta, funciona en un amplio abanico de situaciones y no requiere que la persona se vista de ninguna manera especial.
 \end{itemize}
 

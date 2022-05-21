@@ -64,7 +64,7 @@ El nuevo \textit{plugin} proporciona dos funcionalidades:
 \subsection{Comunicación remota}
 \label{subsec:comunicacion_remota}
 
-En el propio fichero \texttt{person.cpp} se crearon dos hilos (threads): uno actuaría como servidor de un socket de comunicaciones que usaría el protocolo de transporte UDP (no está orientado a la conexión y es más rápido) y otro hilo se encargaría de actualizar la posición del modelo. Dentro del socket se implementó un protocolo de comunicación que entendiera el servidor, el cual se comportará únicamente como receptor de los mensajes del cliente. Los mensajes (de 3 caracteres) que puede recibir son:\\
+En el propio fichero \texttt{person.cpp} se crearon dos hilos (threads): uno actuaría como servidor de un socket de comunicaciones que usaría el protocolo de transporte UDP (no está orientado a la conexión y es más rápido) y otro hilo se encargaría de actualizar la posición del modelo. Dentro del socket se implementó un protocolo de comunicación que entendiera el servidor, el cual se comporta únicamente como receptor de los mensajes del cliente. Los mensajes (de 3 caracteres) que puede recibir son:\\
 
 \begin{itemize}
 	\item \textbf{``UVF"} (User Velocity Forward). El modelo se mueve hacia delante.
@@ -357,7 +357,7 @@ En el ejercicio Sigue-Persona Real solamente necesitamos un editor de texto, una
 
 Una vez terminada la infraestructura de los dos ejercicios creamos la documentación de cada uno de ellos para la página web de Robotics Academy proporcionando las instrucciones de lanzamiento y API, junto con la teoría (explicada en profundidad el capítulo \ref{cap:capitulo6}. Los enlaces son los siguientes:
 \begin{itemize}
-	\item Sigue-Personas Simulado.\\\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}
-	\item Sigue-Personas Real.\\\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/real_follow_person}
+	\item Sigue-Persona Simulado.\\\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/follow_person}
+	\item Sigue-Persona Real.\\\url{http://jderobot.github.io/RoboticsAcademy/exercises/MobileRobots/real_follow_person}
 \end{itemize}
 
