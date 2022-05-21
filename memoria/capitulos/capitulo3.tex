@@ -1,7 +1,7 @@
 \chapter{Herramientas utilizadas}
 \label{cap:capitulo3}
 
-El desarrollo de los dos nuevos ejercicios de Robotics Academy han abarcado varios campos: programación, Docker, modelado y simulación de robots, ROS y ROS2, visión artificial, Machine Learning, desarrollo web... por lo que es necesario introducir y describir las herramientas y tecnologías utilizadas.\\
+El desarrollo de los dos nuevos ejercicios de Robotics Academy ha abarcado varios campos: programación, Docker, modelado y simulación de robots, ROS y ROS2, visión artificial, Machine Learning, desarrollo web... por lo que es necesario introducir y describir las herramientas y tecnologías utilizadas.\\
 
 
 
@@ -114,7 +114,7 @@ Gazebo presenta características relevantes para nuestro proyecto:
   \label{fig:simulador_gazebo}
 \end{figure}\
 
-¿Cuál ha sido la utilidad de Gazebo en este proyecto? Incorporar un escenario proporcionado por AWS que simula un hospital e integrar el robot simulado TurtleBot2 (sensores incluidos) adaptado para ROS2 Foxy. El nuevo ejercicio Follow Person simulado hace uso de dicho simulador. La versión utilizada ha sido \textit{Gazebo 11}.\\
+¿Cuál ha sido la utilidad de Gazebo en este proyecto? Incorporar un escenario proporcionado por AWS que simula un hospital e integrar el robot simulado TurtleBot2 (sensores incluidos) adaptado para ROS2 Foxy. El nuevo ejercicio Sigue-Persona Simulado hace uso de dicho simulador. La versión utilizada ha sido \textit{Gazebo 11}.\\
 
 
 
@@ -179,7 +179,7 @@ Una vez que tenemos nuestro diseño en Xacro, podemos exportarlo a URDF mediante
 
 
 
-\section{Tecnologías de frontend}
+\section{Tecnologías web de frontend}
 \label{sec:tecnologias_frontend}
 
 % -- SECCION HTML Y CSS
@@ -187,7 +187,7 @@ Una vez que tenemos nuestro diseño en Xacro, podemos exportarlo a URDF mediante
 \subsection{HTML y CSS}
 \label{subsec:html_css}
 
-HTML (HiperText Markup Language) es un lenguaje de marcado de tipo XML para el diseño de la estructura de las páginas web. Es un lenguaje que entiende el navegador web y se suele acompañar mediante una hoja de estilos que nos proporciona el lenguaje CSS (Cascading Style Sheets) para crear el estilo gráfico de la página web.\\
+HTML (HiperText Markup Language) es un lenguaje de marcado de tipo XML para el diseño de la estructura de las páginas web. Es un lenguaje que entiende el navegador web y se suele acompañar mediante una hoja de estilos que proporciona el lenguaje CSS (Cascading Style Sheets) para crear el estilo gráfico de la página web.\\
 
 
 \begin{code}[H]
@@ -258,7 +258,7 @@ $> docker run --rm -it -p 7681:7681 -p 2303:2303 -p 1905:1905 -p 8765:8765 -p 60
 
 \textit{Robotics Academy}\footnote{\textbf{Robotics Academy}: \url{http://jderobot.github.io/RoboticsAcademy/}} es una plataforma web que proporciona una colección de ejercicios de Robótica. Para su ejecución usamos unos contenedores \textit{Docker} [\ref{sec:docker}]  (imagen RADI) que lanza un servidor local (Django) proporcionando todos los ejercicios (las dependencias quedan resueltas) y permitiendo al usuario programar sus soluciones a través del navegador.\\
 
-Por lo general, el usuario dispone en cada ejercicio de un editor de texto, una ventana al simulador de Gazebo y un terminal para depurar su programa. Además, dentro del RADI se lanzan distintos nodos de ROS o incluso el simulador dependiendo del ejercicio. La encapsulación proporcionada hace creer al usuario que todo el procesamiento ocurre en el navegador mientras que en realidad es en el contenedor. El funcionamiento y protocolo de comunicación queda reflejado en la siguiente Figura [\ref{fig:arquitectura_robotics_academy}]:\\
+Por lo general, el usuario dispone en cada ejercicio de un editor de texto, una ventana al simulador de Gazebo y un terminal para depurar su programa. Además, dentro del RADI se lanzan distintos nodos de ROS o incluso el simulador dependiendo del ejercicio. La encapsulación proporcionada hace creer al usuario que todo el procesamiento ocurre en el navegador mientras que en realidad es en el contenedor. El funcionamiento y protocolo de comunicación queda reflejado en la Figura \ref{fig:arquitectura_robotics_academy}:\\
 
 \begin{figure} [H]
   \begin{center}
@@ -304,7 +304,7 @@ La base inferior del TurtleBot2 se denomina Kobuki. Es similar a las aspiradoras
 \subsection{Cuerpot del Turtlebot2}
 \label{subsec:turtlebot2_cuerpo}
 
-Se trata de la base superior del robot donde el alumno puede colocar su portatil y conectarse a la base Kobuki mediante USB. Está adaptado para incorporar varios tipos de sensores como cámaras (RGB y RGB-D), láseres e incluso actuadores como un brazo robótico.
+Se trata de la base superior del robot donde el alumno puede colocar su portátil y conectarse a la base Kobuki mediante USB. Está adaptado para incorporar varios tipos de sensores como cámaras (RGB y RGB-D), láseres e incluso actuadores como un brazo robótico.
 
 \begin{figure} [H]
   \begin{center}
@@ -343,7 +343,7 @@ En la Figura [\ref{fig:laser_rviz}] vemos la visualización de las lecturas de u
 \subsection{Cámara Intel Realsense 3d R200}
 \label{subsec:turtlebot2_intel_realsense_3d}
 
-Durante este proyecto hemos probado varias cámaras: Asus XTION PRO Live, Realsense D435 y T265. Debido a la inexistencia de repositorios soportados para ROS Foxy, Intel Realsense 3D R200 fue la cámara candidata. Sin embargo, este modelo no permitía usar la profundidad 3D en ROS, por lo que la utilizamos como una simple cámara RGB. Cualquier cámara que abra dispositivos en /dev/video* (como por ejemplo una webcam) podrá ser utilizada en el ejercicio Sigue-Persona Real. Simplemente tendremos que realizar un mapeo de puertos cuando lancemos el contenedor Docker indicado.\\
+Durante este proyecto hemos probado varias cámaras: Asus XTION PRO Live, Realsense D435 y T265. Debido a la inexistencia de repositorios soportados para ROS2 Foxy, Intel Realsense 3D R200 fue la cámara candidata. Sin embargo, este modelo no permitía usar la profundidad 3D en ROS, por lo que la utilizamos como una simple cámara RGB. Cualquier cámara que abra dispositivos en /dev/video* (como por ejemplo una webcam) podrá ser utilizada en el ejercicio Sigue-Persona Real. Simplemente tendremos que realizar un mapeo de puertos cuando lancemos el contenedor Docker indicado.\\
 
 \begin{figure} [H]
   \begin{center}

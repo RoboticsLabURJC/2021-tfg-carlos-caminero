@@ -3,7 +3,7 @@
 \setcounter{page}{1}
 \pagestyle{plain}
 
-La tarea Sigue-Personas es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. Este TFG propone desarrollar dos nuevos ejercicios para el entorno educativo Robotics Academy con el fin de que sean integrados en la plataforma web Unibotics. Ambos ejercicios requieren que los usuarios programen un robot TurtleBot2, tanto simulado como real para que realice dicha tarea.\\
+La tarea Sigue-Persona es una de las más empleadas y solicitadas en los Robots de Servicio para multitud de sectores que incorporan soluciones robóticas. Este TFG propone desarrollar dos nuevos ejercicios para el entorno educativo Robotics Academy con el fin de que sean integrados en la plataforma web Unibotics. Ambos ejercicios requieren que los usuarios programen un robot TurtleBot2, tanto simulado como real, para que realice dicha tarea.\\
 
 Este primer capítulo presenta el estado actual de varios campos de la Robótica que están directamente relacionados con este proyecto para poner en contexto al lector. Por un lado presentaremos la Robótica Móvil, un sector de la robótica que está en constante crecimiento y muy presente en la Robótica de Servicio; por otra parte, introduciremos las Redes Neuronales, un avance significativo en IA que ha permitido realizar aplicaciones muy robustas basadas en datos, tanto en la percepción como en el razonamiento. Por último hablaremos de la Robótica Educativa, e introduciremos varias plataformas como TheConstruct, Robotics Academy, o Unibotics siendo estas dos últimas las que incorporarán el ejercicio educativo Sigue-Persona.
 
@@ -35,7 +35,7 @@ marcaron grandes avances en la robótica:
 \begin {itemize}
 	\item En 1952 aparece la primera máquina de control numérico del MIT que era capaz de automatizar algunas tareas industriales.
 	\item En 1961, la compañía Unimate introdujo el primer robot industral en la General Motors.
-	\item En 1966, comenzó el desarrollo del primer robot móvil llamado Shakey [Nilsson, 1984]
+	\item En 1966, comenzó el desarrollo del primer robot móvil llamado Shakey [Nilsson, 1984].
 	\begin{figure} [H]
 	\begin{center}
 	\includegraphics[width=5cm]{imagenes/cap1/shakey.jpg}
@@ -43,8 +43,8 @@ marcaron grandes avances en la robótica:
 	\caption[Shakey (1966-1972)]{Shakey (1966-1972) Imagen obtenida de \cite{shakey-the-robot}.}
 	\label{fig:shakey}
 	\end{figure}\
-	\item En los años 70, NASA desarrolló MARS-ROVER, una plataforma móvil que integraba un brazo mecánico, sensores de proximidad, un dispositivo telemétrico láser y cámaras estéreo
-	\item En 1997, la NASA envió a Marte un dispositivo móvil llamado Sojourner Rover, para enviar fotografías a la Tierra del planeta rojo. Además, la empresa HONDA sacó el primer humanoide capaz de imitar comportamientos humanos
+	\item En los años 70, NASA desarrolló MARS-ROVER, una plataforma móvil que integraba un brazo mecánico, sensores de proximidad, un dispositivo telemétrico láser y cámaras estéreo.
+	\item En 1997, la NASA envió a Marte un dispositivo móvil llamado Sojourner Rover, para enviar fotografías a la Tierra del planeta rojo. Además, la empresa HONDA sacó el primer humanoide capaz de imitar comportamientos humanos.
 	\item En 2000, Honda presenta el robot Asimo.
 	\item En 2004, Qrio de Sony, un pequeño robot humanoide capaz de correr, bailar, y reconocer caras.
 	\item En 2008, SoftBank Robotics presenta el robot Nao, un robot bípedo dedicado a interactuar con el ser humano y ser muy amigable. En 2014, la empresa presenta el robot Pepper, robot con forma humana pero se desplaza con ruedas. Se ha usado sobre todo como robot guía, recepcionista y en exhibiciones, sin embargo, fue abandonado en 2021 (Figura \ref{fig:nao_pepper}).
@@ -78,15 +78,15 @@ Como hemos visto, el avance de los robots móviles ha emergido durantes estas ú
 	\item Aplicaciones domésticas. Podemos destacar los robots de limpieza como Roomba (robot aspirador) y Braava de iRobot (robot friegasuelos) o WinBot de Ecovacs (limpia ventanas). La realización de sus tareas se logra mediante algoritmos de navegación y cobertura para limpiar el mayor espacio en el menor tiempo posible.
 	\item Agricultura. Incorporación de tractores o vehículos autónomos encargados del mantenimiento y monitorización de los cultivos.
 	\item Inspección y mantenimiento en zonas críticas (centrales nucleares) o poco seguras para el ser humano
-	\item Logística: tanto para mover mercancias en almacenas como para reparto. Algunos robots moviles se usan de prototipo para las entregas a domicilio (última milla).
-	\item Conducción autónoma. Empresas como Tesla o Waymo han sacado coches autónomos con algunas capacidades autónomas. El objetivo para el futuro es desarrollar coches con el nivel más alto de autonomía.
+	\item Logística: tanto para mover mercancías en almacenes como para reparto. Algunos robots móviles se usan de prototipo para las entregas a domicilio (última milla).
+	\item Conducción autónoma. Empresas como Tesla o Waymo han sacado coches con algunas capacidades autónomas. El objetivo para el futuro es desarrollar coches con el nivel más alto de autonomía.
 \end{enumerate}\
 
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=15cm]{imagenes/cap1/aplicaciones.png}
   \end{center}
-  \caption[Ejemplos de aplicaciones de los Robots de Servicio]{Ejemplo de aplicaciones de los Robots de Servicio}
+  \caption[Ejemplos de aplicaciones de los Robots de Servicio]{Ejemplos de aplicaciones de los Robots de Servicio}
   \label{fig:neurona}
 \end{figure}\
 
@@ -219,7 +219,7 @@ The Construct es una empresa que mantiene una plataforma para aprender robótica
 
 \subsection{Riders}
 \label{subsec:riders}
-Riders es una plataforma de competición de programación de robots. En ella los usuarios aprenden robótica programando robots reales en un entorno simulado usando C++ o Python como lenguajes de programación. Mediante la competición, Riders consigue fomentar la ingeniería, la robótica y la programación.\\
+Riders es una plataforma de competición y programación de robots. En ella los usuarios aprenden robótica programando robots en un entorno simulado usando C++ o Python como lenguajes. Mediante la competición, Riders consigue fomentar la ingeniería, la robótica y la programación.\\
 
 \begin{figure}[H]
   \begin{center}
@@ -252,7 +252,7 @@ Una ventaja de usar Robotics Academy es que permite al usario centrarse única y
 \subsection{Unibotics}
 \label{subsec:unibotics}
 
-Unibotics\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y, contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en su propio ordenador.\\
+Unibotics\footnote{\textbf{Unibotics}: \url{https://unibotics.org/}} es una plataforma de Robótica que incorpora parte de la coleción de ejercicios de Robotics Academy. Con Unibotics, JdeRobot da un nuevo paso, permitiendo a los usuarios registrarse en un servidor donde pueden guardar sus códigos, acceder cuando deseen, y contar con la posibilidad de lanzar los ejercicios en un servidor remoto proporcionando la opción de no instalar un contenedor software en su propio ordenador.\\
 
 Una vez que el usuario introduce sus credenciales y accede a su sesión, tiene una lista de ejercicios disponibles (Figura \ref{fig:menu-unibotics}), que funcionan de la misma manera que aquellos que proporciona \textit{Robotics Academy}. Actualmente todos los ejercicios disponibles están implementados dentro del contenedor software usando la distribución ROS Noetic como base.\\
 
