@@ -132,11 +132,7 @@ def atraction_vector(centroid_x, width_img):
     horizontal_fov = 1.05
     
     # angle of the object to follow with the camera
-    angle = horizontal_fov*centroid_x/width_img
-    if centroid_x > (width_img/2):
-        angle = angle - (horizontal_fov/2)
-    else:
-        angle = -((horizontal_fov/2) - angle)
+    angle = horizontal_fov*centroid_x/width_img - horizontal_fov/2
     
     # attraction vector
     tx = dist*math.sin(angle)
@@ -165,11 +161,9 @@ def repulsion_vector(laser_data):
 
 
 def parse_laser_data(laser_data):
-    values = laser_data.values
-    aux = values[90:0:-1] + values[0:1] + values[360:270:-1]
     values = []
-    for i in range(len(aux)):
-        dist = aux[i]
+    for i in range(len(laser_data)):
+        dist = laser_data[i]
         if dist == float("inf"):
             continue
         angle = math.radians(i)

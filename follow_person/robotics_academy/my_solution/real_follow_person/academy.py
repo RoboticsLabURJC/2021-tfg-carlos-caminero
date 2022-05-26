@@ -25,7 +25,7 @@ class Tracker:
 
     def __init__(self, obj=None):
         self.obj = None
-        self.limit = 50
+        self.limit = 60
 
 
     def setObjective(self, obj):
@@ -161,11 +161,9 @@ def repulsion_vector(laser_data):
 
 
 def parse_laser_data(laser_data):
-    values = laser_data.values
-    aux = values[270:360:1] + values[0:1] + values[1:90:1]
     values = []
-    for i in range(len(aux)):
-        dist = aux[i]
+    for i in range(len(laser_data)):
+        dist = laser_data[i]
         if dist == float("inf"):
             continue
         if dist < 0.35:
@@ -182,7 +180,7 @@ tracking_failure_cont = 0
 
 # VFF variables
 alfa = 1.5
-beta = 0.2
+beta = 0.5
 
 last_centroid = None
 
@@ -248,11 +246,11 @@ while True:
                 
                 print(object2follow.area)
                 if object2follow.area < 30000:
-                    linear_vel = 0.2
+                    linear_vel = 0.3
                 elif object2follow.area < 95000:
-                    linear_vel = 0.1
-                else:
-                    linear_vel = 0.0
+                    linear_vel = 0.2
+                #else:
+                    #linear_vel = 0.0
                 draw_bounding_box(img, filter3[index], color=(0, 0, 255), thickness=3)
                 HAL.setW(-fx)
                 HAL.setV(linear_vel)
